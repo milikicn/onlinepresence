@@ -35,7 +35,7 @@ public class Property {
 	public boolean equals(Object o){
 		if(o instanceof Property){
 			Property p = (Property) o;
-			if(this.name.equals(p.getName())|| this.value == p.isValue())
+			if(this.name.equals(p.getName()))
 					return true;
 			return false;
 		}
