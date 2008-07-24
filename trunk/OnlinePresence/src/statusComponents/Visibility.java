@@ -6,14 +6,11 @@
 */
 package statusComponents;
 
-import java.util.Set;
-
-import presence.Property;
 
 /**
  * @author Nikola Milikic
  *
  */
 public class Visibility implements OnlineStatusComponent{
-	Set<Property> properties;
+
 }
