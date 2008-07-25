@@ -12,5 +12,5 @@ package statusComponents;
  *
  */
 public class Visibility implements OnlineStatusComponent{
-
+	 public static Visibility Visible;
 }
