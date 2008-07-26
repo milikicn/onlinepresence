@@ -8,13 +8,15 @@ package presenceComponents;
 
 import java.util.LinkedList;
 
+import presence.OntologyConcept;
+
 import statusComponents.OnlineStatusComponent;
 
 /**
  * @author Nikola Milikic
  *
  */
-public class OnlineStatus implements OnlinePresenceComponent{
+public class OnlineStatus extends OntologyConcept implements OnlinePresenceComponent{
 	private LinkedList<OnlineStatusComponent> statusComponents = new LinkedList<OnlineStatusComponent>();
 
 	public LinkedList<OnlineStatusComponent> getStatusComponents() {
@@ -23,5 +25,11 @@ public class OnlineStatus implements OnlinePresenceComponent{
 
 	public boolean addOnlineStatusComponent(OnlineStatusComponent e) {
 		return statusComponents.add(e);
+	}
+	public String statusName;
+	
+	//Ads a specific OnlineStatusComponent
+	public void addComponent(OnlineStatusComponent OnlineStatusComponent){
+		statusComponents.add(OnlineStatusComponent);
 	}
 }

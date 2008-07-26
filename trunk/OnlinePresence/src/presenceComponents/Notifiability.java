@@ -6,10 +6,12 @@
 */
 package presenceComponents;
 
+import presence.OntologyConcept;
+
 /**
  * @author Nikola Milikic
  *
  */
-public class Notifiability implements OnlinePresenceComponent{
+public class Notifiability extends OntologyConcept implements OnlinePresenceComponent{
 
 }

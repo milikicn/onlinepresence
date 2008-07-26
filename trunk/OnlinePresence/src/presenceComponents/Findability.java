@@ -6,10 +6,12 @@
 */
 package presenceComponents;
 
+import presence.OntologyConcept;
+
 /**
  * @author Nikola Milikic
  *
  */
-public class Findability implements OnlinePresenceComponent{
+public class Findability extends OntologyConcept implements OnlinePresenceComponent{
 
 }
