@@ -15,5 +15,13 @@ import statusComponents.OnlineStatusComponent;
  *
  */
 public class OnlineStatus implements OnlinePresenceComponent{
-	LinkedList<OnlineStatusComponent> statusComponents;
+	private LinkedList<OnlineStatusComponent> statusComponents = new LinkedList<OnlineStatusComponent>();
+
+	public LinkedList<OnlineStatusComponent> getStatusComponents() {
+		return statusComponents;
+	}
+
+	public boolean addOnlineStatusComponent(OnlineStatusComponent e) {
+		return statusComponents.add(e);
+	}
 }

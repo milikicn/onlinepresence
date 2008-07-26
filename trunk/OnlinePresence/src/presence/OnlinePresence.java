@@ -16,5 +16,15 @@ import presenceComponents.OnlinePresenceComponent;
  *
  */
 public class OnlinePresence {
-	LinkedList<OnlinePresenceComponent> presenceComponents;
+	private LinkedList<OnlinePresenceComponent> presenceComponents=new LinkedList<OnlinePresenceComponent>();
+
+	public LinkedList<OnlinePresenceComponent> getPresenceComponents() {
+		return presenceComponents;
+	}
+
+	public boolean addOnlinePresenceComponent(OnlinePresenceComponent e) {
+		return presenceComponents.add(e);
+	}
+
+	
 }
