@@ -2,6 +2,8 @@ package presence;
 
 import java.util.LinkedList;
 
+import agent.Agent;
+
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
 
@@ -18,6 +20,7 @@ import presenceComponents.OnlineStatus;
  */
 public class OnlinePresence {
 		
+	Agent agent;
 	OnlineStatus onlineStatus;
 	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();;
 	Image image;
@@ -36,5 +39,9 @@ public class OnlinePresence {
 	//Sets the Image (Avatar)
 	public void setImage(Image image){
 		this.image = image;
+	}
+	
+	public void setDeclaredByAgent(Agent agent){
+		this.agent = agent;
 	}
 }
