@@ -2,8 +2,7 @@ package presence;
 
 import java.net.URI;
 
-public class OntologyConcept {
+public abstract class OntologyConcept {
 	
 	public URI uri;
-
 }

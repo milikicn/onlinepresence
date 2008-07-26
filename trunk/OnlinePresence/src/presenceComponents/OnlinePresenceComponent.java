@@ -11,11 +11,5 @@ package presenceComponents;
  *
  */
 public interface OnlinePresenceComponent {
-	
-	
-	
-	
-	
-	
 
 }

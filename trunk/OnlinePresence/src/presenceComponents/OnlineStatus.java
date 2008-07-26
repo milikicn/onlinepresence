@@ -17,6 +17,8 @@ import statusComponents.OnlineStatusComponent;
  *
  */
 public class OnlineStatus extends OntologyConcept implements OnlinePresenceComponent{
+	public String statusName;
+	
 	private LinkedList<OnlineStatusComponent> statusComponents = new LinkedList<OnlineStatusComponent>();
 
 	public LinkedList<OnlineStatusComponent> getStatusComponents() {
@@ -26,9 +28,8 @@ public class OnlineStatus extends OntologyConcept implements OnlinePresenceCompo
 	public boolean addOnlineStatusComponent(OnlineStatusComponent e) {
 		return statusComponents.add(e);
 	}
-	public String statusName;
 	
-	//Ads a specific OnlineStatusComponent
+	//Adds a specific OnlineStatusComponent
 	public void addComponent(OnlineStatusComponent OnlineStatusComponent){
 		statusComponents.add(OnlineStatusComponent);
 	}
