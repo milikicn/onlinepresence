@@ -13,5 +13,19 @@ import presence.OntologyConcept;
  *
  */
 public class Notifiability extends OntologyConcept implements OnlinePresenceComponent{
-
+	
+	/**
+	 * Agent can receive notifications from applications.
+	 */
+	public static Notifiability ALLNOTIFICATIONSPASS = new Notifiability();
+	
+	/**
+	 * The acceptance of notifications from applications is somehow constrained (by using some rules or policies).
+	 */
+	public static Notifiability NOTIFICATIONSCONSTRAINED = new Notifiability();
+	
+	/**
+	 * Agent cannot receive any notification from applications.
+	 */
+	public static Notifiability NOTIFICATIONSPROHIBITED = new Notifiability();
 }

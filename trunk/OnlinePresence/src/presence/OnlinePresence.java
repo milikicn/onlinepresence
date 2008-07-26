@@ -1,6 +1,8 @@
 package presence;
 
 import java.net.URI;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -25,66 +27,131 @@ import presenceProperties.*;
  */
 public class OnlinePresence {
 
-	Agent agent;
+	private Agent agent;
 
-	OnlineStatus onlineStatus;
+	private OnlineStatus onlineStatus;
+	
+	private Date startTime;
 
 	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
 
 	Set<Property> presenceProperties = new HashSet<Property>();
+
+	
+	
+	/**
+	 * @param agent
+	 * @param onlineStatus
+	 * @param presenceComponents
+	 * @param presenceProperties
+	 * @param startTime
+	 */
+	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
+			LinkedList<OnlinePresenceComponent> presenceComponents,
+			Set<Property> presenceProperties, Date startTime) {
+		this.agent = agent;
+		this.onlineStatus = onlineStatus;
+		this.presenceComponents = presenceComponents;
+		this.presenceProperties = presenceProperties;
+		this.startTime = startTime;
+	}
+	
+	/**
+	 * @param agent
+	 * @param onlineStatus
+	 * @param presenceComponents
+	 * @param presenceProperties
+	 * @param startTime
+	 */
+	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
+			LinkedList<OnlinePresenceComponent> presenceComponents,
+			Set<Property> presenceProperties) {
+		this.agent = agent;
+		this.onlineStatus = onlineStatus;
+		this.presenceComponents = presenceComponents;
+		this.presenceProperties = presenceProperties;
+		this.startTime = Calendar.getInstance().getTime();
+	}
 
 	/**
 	 * Sets the current OnlinePresence Status.
 	 * 
 	 * @param OnlineStatus
 	 */
-	public void setStatus(OnlineStatus OnlineStatus) {
+	public void setOnlineStatus(OnlineStatus OnlineStatus) {
 		this.onlineStatus = OnlineStatus;
 		// presenceComponents.add(os);
+	}
+
+	/**
+	 * @return the onlineStatus
+	 */
+	public OnlineStatus getOnlineStatus() {
+		return onlineStatus;
+	}
+
+	/**
+	 * @return the agent
+	 */
+	public Agent getAgent() {
+		return agent;
+	}
+
+	/**
+	 * @param agent
+	 *            the agent to set
+	 */
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
 
 	/**
 	 * Adds a specific OnlinePresenceComponent.
 	 * 
 	 * @param OnlinePresenceComponent
+	 * @return
 	 */
-	public void addComponent(OnlinePresenceComponent OnlinePresenceComponent) {
-		presenceComponents.add(OnlinePresenceComponent);
+	public boolean addComponent(OnlinePresenceComponent OnlinePresenceComponent) {
+		return presenceComponents.add(OnlinePresenceComponent);
 	}
 
 	/**
 	 * Sets the Avatar.
 	 * 
 	 * @param avatar
+	 * @return
 	 */
-	public void setAvatar(Avatar avatar) {
+	public boolean setAvatar(Avatar avatar) {
 		presenceProperties.remove(getProperty("avatar"));
-		presenceProperties.add(avatar);
+		return addProperty(avatar);
 	}
 
 	/**
 	 * 
 	 * @param avatarURI
+	 * @return
 	 */
-	public void setAvatar(URI avatarURI) {
-		setAvatar(new Avatar(avatarURI));
+	public boolean setAvatar(URI avatarURI) {
+		return setAvatar(new Avatar(avatarURI));
 	}
 
 	/**
 	 * 
 	 * @param curMessage
+	 * @return
 	 */
-	public void setCustomMessage(CustomMessage curMessage) {
+	public boolean setCustomMessage(CustomMessage curMessage) {
 		presenceProperties.remove(getProperty("currentMessage"));
-		presenceProperties.add(curMessage);
+		return addProperty(curMessage);
 	}
 
 	/**
 	 * 
 	 * @param curMessage
+	 * @return
 	 */
-	public void setCustomMessage(String curMessage) {
-		setCustomMessage(new CustomMessage(curMessage));
+	public boolean setCustomMessage(String curMessage) {
+		return setCustomMessage(new CustomMessage(curMessage));
 	}
 
 	/**

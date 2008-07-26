@@ -15,7 +15,6 @@ public class CustomMessage extends Property {
 	private String message;
 
 	/**
-	 * @param name
 	 * @param message
 	 */
 	public CustomMessage(String message) {
