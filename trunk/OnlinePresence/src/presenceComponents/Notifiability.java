@@ -6,6 +6,8 @@
 */
 package presenceComponents;
 
+import java.net.URI;
+
 import presence.OntologyConcept;
 
 /**
@@ -28,4 +30,13 @@ public class Notifiability extends OntologyConcept implements OnlinePresenceComp
 	 * Agent cannot receive any notification from applications.
 	 */
 	public static Notifiability NOTIFICATIONSPROHIBITED = new Notifiability();
+
+	/**
+	 * Sets URIs for static instances of the class.
+	 */
+	static {
+		ALLNOTIFICATIONSPASS.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass"));
+		NOTIFICATIONSCONSTRAINED.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"));
+		NOTIFICATIONSPROHIBITED.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited"));
+	}
 }

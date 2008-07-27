@@ -6,6 +6,8 @@
 */
 package presenceComponents;
 
+import java.net.URI;
+
 import presence.OntologyConcept;
 
 /**
@@ -13,7 +15,7 @@ import presence.OntologyConcept;
  *
  */
 public class Findability extends OntologyConcept implements OnlinePresenceComponent{
-
+	
 	/**
 	 * The Agent's contact details cannot be found by anyone on the Web, but the findability is controled by some rules/policies.
 	 */
@@ -23,4 +25,12 @@ public class Findability extends OntologyConcept implements OnlinePresenceCompon
 	 * The Agent's contact details can be found by anyone on the Web.
 	 */
 	public static Findability PUBLICLYFINDABLE = new Findability();
+
+	/**
+	 * Sets URIs for static instances of the class.
+	 */
+	static {
+		CONSTRAINEDFINDABILITY.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+		PUBLICLYFINDABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
+	}
 }

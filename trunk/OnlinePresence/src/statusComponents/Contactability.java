@@ -6,6 +6,8 @@
 */
 package statusComponents;
 
+import java.net.URI;
+
 import presence.OntologyConcept;
 
 /**
@@ -14,7 +16,7 @@ import presence.OntologyConcept;
  */
 
 public class Contactability extends OntologyConcept implements OnlineStatusComponent{
-	
+		
 	/**
 	 * The Agent can be contacted by anyone on the Web.
 	 */
@@ -26,4 +28,11 @@ public class Contactability extends OntologyConcept implements OnlineStatusCompo
 	 */
 	public static Contactability CONSTRAINEDCONTACTABILITY = new Contactability();
 
+	/**
+	 * Sets URIs for static instances of the class.
+	 */
+	static {
+		FREELYCONTACTABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
+		CONSTRAINEDCONTACTABILITY.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+	}
 }

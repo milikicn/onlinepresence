@@ -32,6 +32,8 @@ public class OnlinePresence {
 	private OnlineStatus onlineStatus;
 	
 	private Date startTime;
+	
+	private Date duration;
 
 	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
 

@@ -7,9 +7,7 @@
 package presenceComponents;
 
 import java.util.LinkedList;
-
 import presence.OntologyConcept;
-
 import statusComponents.OnlineStatusComponent;
 
 /**

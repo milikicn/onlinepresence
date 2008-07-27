@@ -6,6 +6,8 @@
 */
 package statusComponents;
 
+import java.net.URI;
+
 import presence.OntologyConcept;
 
 /**
@@ -23,4 +25,12 @@ public class Disturbability extends OntologyConcept implements OnlineStatusCompo
 	 * The Agent is busy and does not want to be contacted by other Agents.
 	 */
 	public static Disturbability DONOTDISTURB = new Disturbability();
+
+	/**
+	 * Sets URIs for static instances of the class.
+	 */
+	static {
+		AVAILABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Available"));
+		DONOTDISTURB.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
+	}
 }
