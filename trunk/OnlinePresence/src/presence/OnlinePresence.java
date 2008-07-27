@@ -1,3 +1,9 @@
+/**
+ * @author: Nikola Milikic
+ * e-mail: nikola.milikic@gmail.com
+ * @date: Jul 24, 2008
+ * @version: 0.1
+ */
 package presence;
 
 import java.net.URI;
@@ -13,13 +19,6 @@ import agent.Agent;
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
 import presenceProperties.*;
-
-/**
- * @autor: Nikola Milikic
- * e-mail: nikola.milikic@gmail.com
- * @date: Jul 24, 2008
- * @version: 0.1
- */
 
 /**
  * @author Nikola Milikic
@@ -39,8 +38,6 @@ public class OnlinePresence {
 
 	Set<Property> presenceProperties = new HashSet<Property>();
 
-	
-	
 	/**
 	 * @param agent
 	 * @param onlineStatus

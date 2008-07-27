@@ -1,7 +1,17 @@
+/**
+ * @author: Filip Radulovic
+ * e-mail: filiprd@gmail.com
+ * @date: Jul 26, 2008
+ * @version: 0.1
+ */
 package presence;
 
 import java.net.URI;
 
+/**
+ * @author Filip Radulovic
+ * 
+ */
 public abstract class OntologyConcept {
 	
 	public URI uri;
