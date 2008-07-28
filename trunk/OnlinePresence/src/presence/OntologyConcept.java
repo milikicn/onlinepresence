@@ -36,5 +36,7 @@ public abstract class OntologyConcept {
 		this.uri = uri;
 	}
 	
-	
+	public URI getURI(){
+		return this.uri;
+	}
 }
