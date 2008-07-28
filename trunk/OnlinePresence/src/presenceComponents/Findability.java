@@ -30,12 +30,8 @@ public class Findability extends OntologyConcept implements OnlinePresenceCompon
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-<<<<<<< .mine
-		CONSTRAINED_FINDABILITY.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
-		PUBLICLY_FINDABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
-=======
 		CONSTRAINED_FINDABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
 		PUBLICLY_FINDABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
->>>>>>> .r25
+
 	}
 }
