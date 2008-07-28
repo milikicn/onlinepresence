@@ -22,13 +22,13 @@ public class OPOExporter {
 	public OPOExporter(Agent agent){
 		this.onlinePresence = agent.onlinePresence;
 		this.onlineStatus = agent.onlinePresence.getOnlineStatus();
-		resource = model.createResource(agent.getUri().toString());
+		resource = model.createResource(agent.getURI().toString());
 	}
 	
 	public OPOExporter(OnlinePresence op){
 		this.onlinePresence = op;
 		this.onlineStatus = op.getOnlineStatus();
-		resource = model.createResource(op.getAgent().getUri().toString());
+		resource = model.createResource(op.getAgent().getURI().toString());
 	}
 	
 	public void exportOnlinePresence(){
@@ -36,7 +36,7 @@ public class OPOExporter {
 		LinkedList<OnlinePresenceComponent> presenceComponents = onlinePresence.getPresenceComponents();
 		for(int i=0; i<presenceComponents.size(); i++){
 			if (presenceComponents.get(i) instanceof OnlineStatus){
-				os = model.createResource(onlineStatus.getClassURI().toString());
+				os = model.createResource(onlineStatus.getURI().toString());
 				LinkedList<OnlineStatusComponent> statusComponents = onlineStatus.getStatusComponents();
 				for (int j = 0; j < statusComponents.size(); j++) {
 					os.addProperty(RDFS.subClassOf, statusComponents.get(i).toString());
