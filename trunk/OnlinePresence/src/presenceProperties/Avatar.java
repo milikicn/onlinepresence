@@ -12,7 +12,7 @@ import java.net.URI;
  * @author Nikola Milikic
  * 
  */
-public class Avatar extends Property {
+public class Avatar extends PresenceProperty {
 
 	private URI imageURI;
 

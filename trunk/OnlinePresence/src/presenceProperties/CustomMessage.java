@@ -10,7 +10,7 @@ package presenceProperties;
  * @author Nikola Milikic
  * 
  */
-public class CustomMessage extends Property {
+public class CustomMessage extends PresenceProperty {
 
 	private String message;
 

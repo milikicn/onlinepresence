@@ -14,7 +14,7 @@ import presence.OntologyConcept;
  * @author Nikola Milikic
  *
  */
-public class Notifiability extends OntologyConcept implements OnlinePresenceComponent{
+public class Notifiability extends OnlinePresenceComponent{
 	
 	/**
 	 * Agent can receive notifications from applications.

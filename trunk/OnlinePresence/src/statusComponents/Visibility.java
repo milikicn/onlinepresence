@@ -14,9 +14,7 @@ import presence.OntologyConcept;
  * @author Nikola Milikic
  *
  */
-public class Visibility extends OntologyConcept implements OnlineStatusComponent{
-	
-	public static String CLASSURI = "http://ggg.milanstankovic.org/opo/ns#Visibility";
+public class Visibility extends OnlineStatusComponent{
 	
 	/**
 	 * The Agent's OnlineStatus is visible to other Agents.

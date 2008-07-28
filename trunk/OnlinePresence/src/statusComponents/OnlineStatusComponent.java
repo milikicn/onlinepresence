@@ -6,11 +6,13 @@
  */
 package statusComponents;
 
+import presence.OntologyConcept;
+
 /**
  * The component of the OnlineStatus representing one of its dimensions.
  * 
  * @author Nikola Milikic
  */
-public interface OnlineStatusComponent {
+public abstract class OnlineStatusComponent extends OntologyConcept{
 
 }

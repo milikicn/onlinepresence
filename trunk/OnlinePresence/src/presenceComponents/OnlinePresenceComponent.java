@@ -6,10 +6,12 @@
 */
 package presenceComponents;
 
+import presence.OntologyConcept;
+
 /**
  * @author Nikola Milikic
  *
  */
-public interface OnlinePresenceComponent {
+public abstract class OnlinePresenceComponent extends OntologyConcept{
 
 }

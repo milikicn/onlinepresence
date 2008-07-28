@@ -15,7 +15,7 @@ import presence.OntologyConcept;
  * @author Nikola Milikic
  *
  */
-public class Activity extends OntologyConcept implements OnlineStatusComponent {
+public class Activity extends OnlineStatusComponent {
 	
 	private Date inactivityPeriod;
 

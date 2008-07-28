@@ -21,7 +21,7 @@ public class Agent extends OntologyConcept {
 	OnlinePresence onlinePresence;
 
 	public static Agent AGENT = new Agent();
-
+	
 	public URI getClassURI() {
 		try {
 			return new URI("http://xmlns.com/foaf/0.1/Agent");
@@ -29,6 +29,13 @@ public class Agent extends OntologyConcept {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	/**
+	 * @return the onlinePresence
+	 */
+	public OnlinePresence getOnlinePresence() {
+		return onlinePresence;
 	}
 	
 	/**

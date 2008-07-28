@@ -14,8 +14,7 @@ import statusComponents.OnlineStatusComponent;
  * @author Nikola Milikic
  * 
  */
-public class OnlineStatus extends OntologyConcept implements
-		OnlinePresenceComponent {
+public class OnlineStatus extends OnlinePresenceComponent {
 	public String statusName;
 
 	private LinkedList<OnlineStatusComponent> statusComponents = new LinkedList<OnlineStatusComponent>();

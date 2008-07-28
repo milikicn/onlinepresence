@@ -36,7 +36,7 @@ public class OnlinePresence {
 
 	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
 
-	Set<Property> presenceProperties = new HashSet<Property>();
+	Set<PresenceProperty> presenceProperties = new HashSet<PresenceProperty>();
 
 	/**
 	 * @param agent
@@ -47,7 +47,7 @@ public class OnlinePresence {
 	 */
 //	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
 //			LinkedList<OnlinePresenceComponent> presenceComponents,
-//			Set<Property> presenceProperties, Date startTime) {
+//			Set<PresenceProperty> presenceProperties, Date startTime) {
 //		this.agent = agent;
 //		this.onlineStatus = onlineStatus;
 //		this.presenceComponents = presenceComponents;
@@ -55,6 +55,20 @@ public class OnlinePresence {
 //		this.startTime = startTime;
 //	}
 	
+	/**
+	 * @return the presenceProperties
+	 */
+	public Set<PresenceProperty> getPresenceProperties() {
+		return presenceProperties;
+	}
+
+	/**
+	 * @param presenceProperties the presenceProperties to set
+	 */
+	public void setPresenceProperties(Set<PresenceProperty> presenceProperties) {
+		this.presenceProperties = presenceProperties;
+	}
+
 	/**
 	 * @param agent
 	 * @param onlineStatus
@@ -64,7 +78,7 @@ public class OnlinePresence {
 	 */
 	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
 			LinkedList<OnlinePresenceComponent> presenceComponents,
-			Set<Property> presenceProperties) {
+			Set<PresenceProperty> presenceProperties) {
 		this.agent = agent;
 		this.onlineStatus = onlineStatus;
 		this.presenceComponents = presenceComponents;
@@ -167,12 +181,12 @@ public class OnlinePresence {
 	 * @param pName
 	 * @return
 	 */
-	public Property getProperty(String pName) {
-		Property prop = null;
-		Iterator<Property> it = presenceProperties.iterator();
+	public PresenceProperty getProperty(String pName) {
+		PresenceProperty prop = null;
+		Iterator<PresenceProperty> it = presenceProperties.iterator();
 
 		while (it.hasNext()) {
-			Property temp = it.next();
+			PresenceProperty temp = it.next();
 			if (temp.getName().equals(pName)) {
 				prop = temp;
 				break;
@@ -186,7 +200,7 @@ public class OnlinePresence {
 	 * @param property
 	 * @return
 	 */
-	public boolean addProperty(Property property) {
+	public boolean addProperty(PresenceProperty property) {
 		return presenceProperties.add(property);
 	}
 	

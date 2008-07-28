@@ -14,7 +14,7 @@ import presence.OntologyConcept;
  * @author Nikola Milikic
  *
  */
-public class Disturbability extends OntologyConcept implements OnlineStatusComponent{
+public class Disturbability extends OnlineStatusComponent{
 	
 	/**
 	 * The agent is not busy and therefore available for contatct by other Agents.

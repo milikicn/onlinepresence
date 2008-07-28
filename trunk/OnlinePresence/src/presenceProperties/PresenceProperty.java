@@ -6,18 +6,19 @@
  */
 package presenceProperties;
 
+import presence.OntologyConcept;
+
 /**
  * @author Nikola Milikic
  * 
  */
-public abstract class Property {
+public abstract class PresenceProperty extends OntologyConcept{
 	private String name;
-
+	
 	/**
 	 * @param name
 	 */
-	public Property(String name) {
-		super();
+	public PresenceProperty(String name) {
 		this.name = name;
 	}
 
@@ -37,8 +38,8 @@ public abstract class Property {
 	}
 
 	public boolean equals(Object o) {
-		if (o instanceof Property) {
-			Property p = (Property) o;
+		if (o instanceof PresenceProperty) {
+			PresenceProperty p = (PresenceProperty) o;
 			if (this.getClass().equals(p.getClass()))
 				return true;
 			return false;

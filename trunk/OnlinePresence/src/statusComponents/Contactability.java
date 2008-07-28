@@ -15,7 +15,7 @@ import presence.OntologyConcept;
  *
  */
 
-public class Contactability extends OntologyConcept implements OnlineStatusComponent{
+public class Contactability extends OnlineStatusComponent{
 		
 	/**
 	 * The Agent can be contacted by anyone on the Web.

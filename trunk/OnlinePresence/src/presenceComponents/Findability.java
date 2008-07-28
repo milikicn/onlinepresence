@@ -14,7 +14,7 @@ import presence.OntologyConcept;
  * @author Nikola Milikic
  *
  */
-public class Findability extends OntologyConcept implements OnlinePresenceComponent{
+public class Findability extends OnlinePresenceComponent{
 	
 	/**
 	 * The Agent's contact details cannot be found by anyone on the Web, but the findability is controled by some rules/policies.

@@ -15,14 +15,15 @@ import java.net.URISyntaxException;
  */
 public abstract class OntologyConcept {
 	
-	public URI uri;
+	private URI uri;
 
 	/**
 	 * @return the uri
 	 */
 	public URI getClassURI() {
 		try {
-			return new URI("http://ggg.milanstankovic.org/opo/ns#" + this.getClass().getName());
+			String className = this.getClass().getName();
+			return new URI("http://ggg.milanstankovic.org/opo/ns#" + className.substring(className.lastIndexOf('.')+1));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return null;
