@@ -52,14 +52,8 @@ public class Activity extends OntologyConcept implements OnlineStatusComponent {
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-<<<<<<< .mine
-		ACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Active"));
-		INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
-		PROLONGEDINACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
-=======
 		ACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Active"));
 		INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
 		PROLONGED_INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
->>>>>>> .r29
 	}
 }
