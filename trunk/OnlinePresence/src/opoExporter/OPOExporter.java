@@ -1,3 +1,9 @@
+/**
+ * @author: Filip Radulovic
+ * e-mail: filiprd@gmail.com
+ * @date: Jul 28, 2008
+ * @version: 0.1
+ */
 package opoExporter;
 
 import java.io.FileNotFoundException;
@@ -24,6 +30,10 @@ import presenceComponents.*;
 import presenceProperties.*;
 import statusComponents.*;
 
+/**
+ * @author Filip Radulovic
+ * 
+ */
 public class OPOExporter {
 	
 	OnlinePresence onlinePresence;
@@ -34,18 +44,29 @@ public class OPOExporter {
 	}
 	Resource resource = model.createResource("http://ggg.milanstankovic.org/opo/ns#OnlinePresence");
 
+	/**
+	 * 
+	 * @param agent
+	 */
 	public OPOExporter(Agent agent){
 		this.onlinePresence = agent.getOnlinePresence();
 		this.onlineStatus = agent.getOnlinePresence().getOnlineStatus();
 //		resource = model.createResource(agent.getURI().toString());
 	}
 	
+	/**
+	 * 
+	 * @param op
+	 */
 	public OPOExporter(OnlinePresence op){
 		this.onlinePresence = op;
 		this.onlineStatus = op.getOnlineStatus();
 //		resource = model.createResource(op.getAgent().getURI().toString());
 	}
 	
+	/**
+	 * 
+	 */
 	public void exportOnlinePresence(){
 		LinkedList<OnlinePresenceComponent> presenceComponents = onlinePresence.getPresenceComponents();
 		
@@ -63,6 +84,11 @@ public class OPOExporter {
 		
 	}
 	
+	/**
+	 * 
+	 * @param onlineStatus
+	 * @return
+	 */
 	private RDFNode getResource(OnlineStatus onlineStatus){
 		Resource res = model.createResource(onlineStatus.getClassURI().toString());
 		
@@ -73,10 +99,21 @@ public class OPOExporter {
 		return res;
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param opc
+	 * @return
+	 */
 	private <T extends OntologyConcept> Property returnAsProperty(T opc){
 		return ModelFactory.createDefaultModel().createProperty(opc.getClassURI().toString());
 	}
 	
+	/**
+	 * 
+	 * @param rName
+	 * @throws FileNotFoundException
+	 */
 	public void serializeToXMLRDF(String rName)throws FileNotFoundException{
 		FileOutputStream fout = new FileOutputStream(rName);
 		model.write(fout, "RDF/XML-ABBREV");
@@ -87,6 +124,11 @@ public class OPOExporter {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param rName
+	 * @throws FileNotFoundException
+	 */
 	public void serializeToRDFTurtle(String rName)throws FileNotFoundException{
 		FileOutputStream fout = new FileOutputStream(rName);
 		model.write(fout, "N-TRIPLE");
