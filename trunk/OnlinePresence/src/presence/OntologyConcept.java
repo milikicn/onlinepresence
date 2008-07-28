@@ -7,6 +7,7 @@
 package presence;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * @author Filip Radulovic
@@ -19,14 +20,19 @@ public abstract class OntologyConcept {
 	/**
 	 * @return the uri
 	 */
-	public URI getUri() {
-		return uri;
+	public URI getClassURI() {
+		try {
+			return new URI("http://ggg.milanstankovic.org/opo/ns#" + this.getClass().getName());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
 	 * @param uri the uri to set
 	 */
-	public void setUri(URI uri) {
+	public void setURI(URI uri) {
 		this.uri = uri;
 	}
 }

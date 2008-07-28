@@ -19,18 +19,18 @@ public class Findability extends OntologyConcept implements OnlinePresenceCompon
 	/**
 	 * The Agent's contact details cannot be found by anyone on the Web, but the findability is controled by some rules/policies.
 	 */
-	public static Findability CONSTRAINEDFINDABILITY = new Findability();
+	public static Findability CONSTRAINED_FINDABILITY = new Findability();
 	
 	/**
 	 * The Agent's contact details can be found by anyone on the Web.
 	 */
-	public static Findability PUBLICLYFINDABLE = new Findability();
+	public static Findability PUBLICLY_FINDABLE = new Findability();
 
 	/**
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		CONSTRAINEDFINDABILITY.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
-		PUBLICLYFINDABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
+		CONSTRAINED_FINDABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+		PUBLICLY_FINDABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
 	}
 }

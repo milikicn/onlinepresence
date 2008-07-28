@@ -46,14 +46,14 @@ public class Activity extends OntologyConcept implements OnlineStatusComponent {
 	/**
 	 * The Agent is inactive for at least 20 min.
 	 */
-	public static Activity PROLONGEDINACTIVE = new Activity();
+	public static Activity PROLONGED_INACTIVE = new Activity();
 
 	/**
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		ACTIVE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Active"));
-		INACTIVE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
-		PROLONGEDINACTIVE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
+		ACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Active"));
+		INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
+		PROLONGED_INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
 	}
 }

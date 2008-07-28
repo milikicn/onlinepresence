@@ -16,6 +16,8 @@ import presence.OntologyConcept;
  */
 public class Visibility extends OntologyConcept implements OnlineStatusComponent{
 	
+	public static String CLASSURI = "http://ggg.milanstankovic.org/opo/ns#Visibility";
+	
 	/**
 	 * The Agent's OnlineStatus is visible to other Agents.
 	 */
@@ -30,7 +32,7 @@ public class Visibility extends OntologyConcept implements OnlineStatusComponent
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		VISIBLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Visible"));
-		INVISIBLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Invisible"));
+		VISIBLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Visible"));
+		INVISIBLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Invisible"));
 	}
 }

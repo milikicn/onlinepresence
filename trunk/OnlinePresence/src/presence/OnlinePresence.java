@@ -162,7 +162,7 @@ public class OnlinePresence {
 	}
 
 	/**
-	 * Returns an instance of the class Property with 'oName' as its name.
+	 * Returns an instance of the class Property with 'pName' as its name.
 	 * 
 	 * @param pName
 	 * @return

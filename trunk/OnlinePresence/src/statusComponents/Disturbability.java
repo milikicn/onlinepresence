@@ -24,13 +24,13 @@ public class Disturbability extends OntologyConcept implements OnlineStatusCompo
 	/**
 	 * The Agent is busy and does not want to be contacted by other Agents.
 	 */
-	public static Disturbability DONOTDISTURB = new Disturbability();
+	public static Disturbability DO_NOT_DISTURB = new Disturbability();
 
 	/**
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		AVAILABLE.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#Available"));
-		DONOTDISTURB.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
+		AVAILABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Available"));
+		DO_NOT_DISTURB.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
 	}
 }

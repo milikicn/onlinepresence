@@ -19,24 +19,24 @@ public class Notifiability extends OntologyConcept implements OnlinePresenceComp
 	/**
 	 * Agent can receive notifications from applications.
 	 */
-	public static Notifiability ALLNOTIFICATIONSPASS = new Notifiability();
+	public static Notifiability ALL_NOTIFICATIONS_PASS = new Notifiability();
 	
 	/**
 	 * The acceptance of notifications from applications is somehow constrained (by using some rules or policies).
 	 */
-	public static Notifiability NOTIFICATIONSCONSTRAINED = new Notifiability();
+	public static Notifiability NOTIFICATIONS_CONSTRAINED = new Notifiability();
 	
 	/**
 	 * Agent cannot receive any notification from applications.
 	 */
-	public static Notifiability NOTIFICATIONSPROHIBITED = new Notifiability();
+	public static Notifiability NOTIFICATIONS_PROHIBITED = new Notifiability();
 
 	/**
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		ALLNOTIFICATIONSPASS.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass"));
-		NOTIFICATIONSCONSTRAINED.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"));
-		NOTIFICATIONSPROHIBITED.setUri(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited"));
+		ALL_NOTIFICATIONS_PASS.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass"));
+		NOTIFICATIONS_CONSTRAINED.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"));
+		NOTIFICATIONS_PROHIBITED.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited"));
 	}
 }
