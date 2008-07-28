@@ -32,7 +32,12 @@ public class Contactability extends OntologyConcept implements OnlineStatusCompo
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
+<<<<<<< .mine
+		FREELYCONTACTABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
+		CONSTRAINEDCONTACTABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+=======
 		FREELY_CONTACTABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
 		CONSTRAINED_CONTACTABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+>>>>>>> .r29
 	}
 }
