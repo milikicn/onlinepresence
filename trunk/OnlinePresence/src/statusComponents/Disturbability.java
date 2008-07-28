@@ -32,5 +32,6 @@ public class Disturbability extends OntologyConcept implements OnlineStatusCompo
 	static {
 		AVAILABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Available"));
 		DO_NOT_DISTURB.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
+
 	}
 }
