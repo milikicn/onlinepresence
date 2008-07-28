@@ -37,15 +37,4 @@ public abstract class OntologyConcept {
 	}
 	
 	
-	public URI getClassURI(){
-		URI uri = null;
-		String s = "http://ggg.milanstankovic.org/opo/ns#" + this.getClass().getName();
-		try {
-			uri = new URI(s);
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return uri;
-		}
 }
