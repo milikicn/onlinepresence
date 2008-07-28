@@ -189,4 +189,10 @@ public class OnlinePresence {
 	public boolean addProperty(Property property) {
 		return presenceProperties.add(property);
 	}
+	
+	
+	public LinkedList<OnlinePresenceComponent> getPresenceComponents(){
+		return presenceComponents;
+	}
 }
+
