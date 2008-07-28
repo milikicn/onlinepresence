@@ -21,10 +21,6 @@ public class Agent extends OntologyConcept {
 
 	public static Agent AGENT = new Agent();
 
-	{
-		this.setUri(URI.create("http://xmlns.com/foaf/spec/#term_Agent"));
-	}
-
 	/**
 	 * Sets Agent's OnlinePresence properties.
 	 * 

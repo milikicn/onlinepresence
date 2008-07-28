@@ -30,9 +30,9 @@ public class OnlinePresence {
 
 	private OnlineStatus onlineStatus;
 	
-	private Date startTime;
+//	private Date startTime;
 	
-	private Date duration;
+//	private Date duration;
 
 	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
 
@@ -45,15 +45,15 @@ public class OnlinePresence {
 	 * @param presenceProperties
 	 * @param startTime
 	 */
-	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
-			LinkedList<OnlinePresenceComponent> presenceComponents,
-			Set<Property> presenceProperties, Date startTime) {
-		this.agent = agent;
-		this.onlineStatus = onlineStatus;
-		this.presenceComponents = presenceComponents;
-		this.presenceProperties = presenceProperties;
-		this.startTime = startTime;
-	}
+//	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
+//			LinkedList<OnlinePresenceComponent> presenceComponents,
+//			Set<Property> presenceProperties, Date startTime) {
+//		this.agent = agent;
+//		this.onlineStatus = onlineStatus;
+//		this.presenceComponents = presenceComponents;
+//		this.presenceProperties = presenceProperties;
+//		this.startTime = startTime;
+//	}
 	
 	/**
 	 * @param agent
@@ -69,7 +69,7 @@ public class OnlinePresence {
 		this.onlineStatus = onlineStatus;
 		this.presenceComponents = presenceComponents;
 		this.presenceProperties = presenceProperties;
-		this.startTime = Calendar.getInstance().getTime();
+//		this.startTime = Calendar.getInstance().getTime();
 	}
 
 	/**
