@@ -45,37 +45,6 @@ public class OnlinePresence {
 	 * @param presenceProperties
 	 * @param startTime
 	 */
-//	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
-//			LinkedList<OnlinePresenceComponent> presenceComponents,
-//			Set<PresenceProperty> presenceProperties, Date startTime) {
-//		this.agent = agent;
-//		this.onlineStatus = onlineStatus;
-//		this.presenceComponents = presenceComponents;
-//		this.presenceProperties = presenceProperties;
-//		this.startTime = startTime;
-//	}
-	
-	/**
-	 * @return the presenceProperties
-	 */
-	public Set<PresenceProperty> getPresenceProperties() {
-		return presenceProperties;
-	}
-
-	/**
-	 * @param presenceProperties the presenceProperties to set
-	 */
-	public void setPresenceProperties(Set<PresenceProperty> presenceProperties) {
-		this.presenceProperties = presenceProperties;
-	}
-
-	/**
-	 * @param agent
-	 * @param onlineStatus
-	 * @param presenceComponents
-	 * @param presenceProperties
-	 * @param startTime
-	 */
 	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
 			LinkedList<OnlinePresenceComponent> presenceComponents,
 			Set<PresenceProperty> presenceProperties) {
@@ -85,24 +54,7 @@ public class OnlinePresence {
 		this.presenceProperties = presenceProperties;
 //		this.startTime = Calendar.getInstance().getTime();
 	}
-
-	/**
-	 * Sets the current OnlinePresence Status.
-	 * 
-	 * @param OnlineStatus
-	 */
-	public void setOnlineStatus(OnlineStatus OnlineStatus) {
-		this.onlineStatus = OnlineStatus;
-		// presenceComponents.add(os);
-	}
-
-	/**
-	 * @return the onlineStatus
-	 */
-	public OnlineStatus getOnlineStatus() {
-		return onlineStatus;
-	}
-
+	
 	/**
 	 * @return the agent
 	 */
@@ -116,6 +68,53 @@ public class OnlinePresence {
 	 */
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+	}
+	
+	/**
+	 * @return the onlineStatus
+	 */
+	public OnlineStatus getOnlineStatus() {
+		return onlineStatus;
+	}
+	
+	/**
+	 * Sets the current OnlinePresence Status.
+	 * 
+	 * @param OnlineStatus
+	 */
+	public void setOnlineStatus(OnlineStatus OnlineStatus) {
+		this.onlineStatus = OnlineStatus;
+		// presenceComponents.add(os);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public LinkedList<OnlinePresenceComponent> getPresenceComponents(){
+		return presenceComponents;
+	}
+	
+	/**
+	 * @param presenceComponents the presenceComponents to set
+	 */
+	public void setPresenceComponents(
+			LinkedList<OnlinePresenceComponent> presenceComponents) {
+		this.presenceComponents = presenceComponents;
+	}
+	
+	/**
+	 * @return the presenceProperties
+	 */
+	public Set<PresenceProperty> getPresenceProperties() {
+		return presenceProperties;
+	}
+
+	/**
+	 * @param presenceProperties the presenceProperties to set
+	 */
+	public void setPresenceProperties(Set<PresenceProperty> presenceProperties) {
+		this.presenceProperties = presenceProperties;
 	}
 
 	/**
@@ -202,11 +201,6 @@ public class OnlinePresence {
 	 */
 	public boolean addProperty(PresenceProperty property) {
 		return presenceProperties.add(property);
-	}
-	
-	
-	public LinkedList<OnlinePresenceComponent> getPresenceComponents(){
-		return presenceComponents;
 	}
 }
 
