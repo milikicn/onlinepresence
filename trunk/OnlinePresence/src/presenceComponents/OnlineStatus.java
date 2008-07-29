@@ -8,7 +8,6 @@ package presenceComponents;
 
 import java.net.URI;
 import java.util.LinkedList;
-import presence.OntologyConcept;
 import statusComponents.OnlineStatusComponent;
 
 /**

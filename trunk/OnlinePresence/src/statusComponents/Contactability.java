@@ -8,9 +8,6 @@ package statusComponents;
 
 import java.net.URI;
 
-import presence.OntologyConcept;
-import presenceComponents.Findability;
-
 /**
  * @author Nikola Milikic
  *

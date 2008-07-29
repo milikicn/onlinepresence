@@ -9,8 +9,6 @@ package statusComponents;
 import java.net.URI;
 import java.util.Date;
 
-import presence.OntologyConcept;
-
 /**
  * @author Nikola Milikic
  *

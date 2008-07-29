@@ -8,9 +8,6 @@ package presenceComponents;
 
 import java.net.URI;
 
-import presence.OntologyConcept;
-import statusComponents.Visibility;
-
 /**
  * @author Nikola Milikic
  *

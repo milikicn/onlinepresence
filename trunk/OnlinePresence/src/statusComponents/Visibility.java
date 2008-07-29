@@ -8,8 +8,6 @@ package statusComponents;
 
 import java.net.URI;
 
-import presence.OntologyConcept;
-
 /**
  * @author Nikola Milikic
  *

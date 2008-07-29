@@ -7,8 +7,6 @@
 package presence;
 
 import java.net.URI;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
