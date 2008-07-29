@@ -37,4 +37,7 @@ public class CustomMessage extends PresenceProperty {
 		this.message = message;
 	}
 
+	public String getContent(){
+		return getMessage();
+	}
 }

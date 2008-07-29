@@ -36,11 +36,12 @@ import statusComponents.*;
  */
 public class OPOExporter {
 	
+	String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
 	OnlinePresence onlinePresence;
 	OnlineStatus onlineStatus;
 	Model model = ModelFactory.createDefaultModel();
 	{
-		model.setNsPrefix("opo", "http://ggg.milanstankovic.org/opo/ns#");
+		model.setNsPrefix("opo", opoNS);
 	}
 	Resource resource = model.createResource("http://ggg.milanstankovic.org/opo/ns#OnlinePresence");
 
@@ -74,14 +75,13 @@ public class OPOExporter {
 			resource.addProperty(returnAsProperty(presenceComponents.get(i)), presenceComponents.get(i).getURI().toString());
 		}
 		
-//		Iterator<PresenceProperty> it = onlinePresence.getPresenceProperties().iterator();
-//		while(it.hasNext()){
-//			PresenceProperty pp = it.next();
-//			resource.addProperty(returnAsProperty(pp), pp.);
-//		}
+		Iterator<PresenceProperty> it = onlinePresence.getPresenceProperties().iterator();
+		while(it.hasNext()){
+			PresenceProperty pp = it.next();
+			resource.addProperty(returnAsProperty(pp), pp.getContent());
+		}
 				
 		resource.addProperty(returnAsProperty(onlineStatus), getResource(onlineStatus));
-		
 	}
 	
 	/**

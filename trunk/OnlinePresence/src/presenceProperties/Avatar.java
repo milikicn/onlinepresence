@@ -38,4 +38,8 @@ public class Avatar extends PresenceProperty {
 	public void setImageURI(URI imageURI) {
 		this.imageURI = imageURI;
 	}
+	
+	public String getContent(){
+		return getImageURI().toString();
+	}
 }

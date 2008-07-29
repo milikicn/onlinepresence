@@ -46,4 +46,6 @@ public abstract class PresenceProperty extends OntologyConcept{
 		}
 		return false;
 	}
+	
+	public abstract String getContent();
 }

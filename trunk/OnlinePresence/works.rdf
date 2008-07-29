@@ -1,0 +1,17 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:opo="http://ggg.milanstankovic.org/opo/ns#">
+  <rdf:Description rdf:about="http://ggg.milanstankovic.org/opo/ns#OnlinePresence">
+    <opo:OnlineStatus>
+      <rdf:Description rdf:about="http://ggg.milanstankovic.org/opo/ns#OnlineStatus">
+        <opo:Activity>http://ggg.milanstankovic.org/opo/ns#Active</opo:Activity>
+        <opo:Contactability>http://ggg.milanstankovic.org/opo/ns#FreelyContactable</opo:Contactability>
+        <opo:Disturbability>http://ggg.milanstankovic.org/opo/ns#Available</opo:Disturbability>
+      </rdf:Description>
+    </opo:OnlineStatus>
+    <opo:CustomMessage xml:lang="b">a</opo:CustomMessage>
+    <opo:Avatar xml:lang="b">a</opo:Avatar>
+    <opo:Notifiability>http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained</opo:Notifiability>
+    <opo:Findability>http://ggg.milanstankovic.org/opo/ns#PubliclyFindable</opo:Findability>
+  </rdf:Description>
+</rdf:RDF>
