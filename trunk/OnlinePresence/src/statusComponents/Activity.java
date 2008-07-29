@@ -56,4 +56,13 @@ public class Activity extends OnlineStatusComponent {
 		INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
 		PROLONGED_INACTIVE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
 	}
+	
+	public static Activity getInstance(String name){
+		if(name.equalsIgnoreCase("active"))
+			return ACTIVE;
+		else if(name.equalsIgnoreCase("inactive"))
+			return INACTIVE;
+		else
+			return PROLONGED_INACTIVE;
+	}
 }

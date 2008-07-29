@@ -33,4 +33,11 @@ public class Visibility extends OnlineStatusComponent{
 		VISIBLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Visible"));
 		INVISIBLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Invisible"));
 	}
+	
+	public static Visibility getInstance(String name){
+		if(name.equalsIgnoreCase("Visible"))
+			return VISIBLE;
+		else
+			return INVISIBLE;
+	}
 }

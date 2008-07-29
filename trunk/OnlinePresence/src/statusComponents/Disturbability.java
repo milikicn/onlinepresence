@@ -32,6 +32,12 @@ public class Disturbability extends OnlineStatusComponent{
 	static {
 		AVAILABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#Available"));
 		DO_NOT_DISTURB.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
-
+	}
+	
+	public static Disturbability getInstance(String name){
+		if(name.equalsIgnoreCase("Available"))
+			return AVAILABLE;
+		else
+			return DO_NOT_DISTURB;
 	}
 }

@@ -6,6 +6,7 @@
  */
 package presenceComponents;
 
+import java.net.URI;
 import java.util.LinkedList;
 import presence.OntologyConcept;
 import statusComponents.OnlineStatusComponent;
@@ -24,7 +25,14 @@ public class OnlineStatus extends OnlinePresenceComponent {
 	}
 
 	/**
-	 * dds a specific OnlineStatusComponent
+	 * @param statusName
+	 */
+	public OnlineStatus(URI uri) {
+		this.setURI(uri);
+	}
+	
+	/**
+	 * adds a specific OnlineStatusComponent
 	 * 
 	 * @param onlineStatusComponent
 	 * @return
@@ -32,4 +40,15 @@ public class OnlineStatus extends OnlinePresenceComponent {
 	public boolean addComponent(OnlineStatusComponent onlineStatusComponent) {
 		return statusComponents.add(onlineStatusComponent);
 	}
+	
+	/**
+	 * 
+	 * @param listOSComponents
+	 */
+	public void addComponent(LinkedList<OnlineStatusComponent> listOSComponents){
+		for (int i = 0; i < listOSComponents.size(); i++) {
+			statusComponents.add(listOSComponents.get(i));
+		} 
+	}
+	
 }

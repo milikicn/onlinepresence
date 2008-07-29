@@ -23,6 +23,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.*;
 
 import presence.OnlinePresence;
 import presence.OntologyConcept;
@@ -36,15 +37,20 @@ import statusComponents.*;
  */
 public class OPOExporter {
 	
-	String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
+	private String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
+	private String foafNS = "http://xmlns.com/foaf/0.1/";
+	private String xmlsNS = "http://www.w3.org/2001/XMLSchema#";
+	
 	OnlinePresence onlinePresence;
 	OnlineStatus onlineStatus;
 	Model model = ModelFactory.createDefaultModel();
 	{
 		model.setNsPrefix("opo", opoNS);
+		model.setNsPrefix("foaf", foafNS);
+		model.setNsPrefix("xsd", xmlsNS);
 	}
-	Resource resource = model.createResource("http://ggg.milanstankovic.org/opo/ns#OnlinePresence");
-
+	Resource resource;
+	
 	/**
 	 * 
 	 * @param agent
@@ -52,17 +58,18 @@ public class OPOExporter {
 	public OPOExporter(Agent agent){
 		this.onlinePresence = agent.getOnlinePresence();
 		this.onlineStatus = agent.getOnlinePresence().getOnlineStatus();
-//		resource = model.createResource(agent.getURI().toString());
+		resource = model.createResource(onlinePresence.getURI().toString()).addProperty(RDF.type, onlinePresence.getClassURI().toString());
+		resource.addProperty(RDF.type, model.createResource(onlinePresence.getClassURI().toString()));
 	}
 	
 	/**
-	 * 
 	 * @param op
 	 */
 	public OPOExporter(OnlinePresence op){
 		this.onlinePresence = op;
 		this.onlineStatus = op.getOnlineStatus();
-//		resource = model.createResource(op.getAgent().getURI().toString());
+		resource = model.createResource(onlinePresence.getURI().toString());
+		resource.addProperty(RDF.type, model.createResource(onlinePresence.getClassURI().toString()));
 	}
 	
 	/**
@@ -90,7 +97,7 @@ public class OPOExporter {
 	 * @return
 	 */
 	private RDFNode getResource(OnlineStatus onlineStatus){
-		Resource res = model.createResource(onlineStatus.getClassURI().toString());
+		Resource res = model.createResource(onlineStatus.getURI().toString());
 		
 		LinkedList<OnlineStatusComponent> statusComponents = onlineStatus.getStatusComponents();
 		for (int j = 0; j < statusComponents.size(); j++) {
@@ -147,11 +154,11 @@ public class OPOExporter {
 			e.printStackTrace();
 		}
 		
-		OnlineStatus os = new OnlineStatus();
+		OnlineStatus os = new OnlineStatus(URI.create("http://nekiUriZaOnlineStatus.com"));
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
-		os.addComponent(Activity.ACTIVE);
+		os.addComponent(Visibility.INVISIBLE);
 
 		LinkedList<OnlinePresenceComponent> li = new LinkedList<OnlinePresenceComponent>();
 		li.add(Findability.PUBLICLY_FINDABLE);
@@ -165,9 +172,14 @@ public class OPOExporter {
 		}
 		ha.add(new CustomMessage("watching a game, having a bud"));
 		
-		OnlinePresence o = new OnlinePresence(a, os, li, ha);
+		OnlinePresence op = new OnlinePresence(a, os, li, ha);
+		try {
+			op.setURI(new URI("http://nekiUriZaOnlinePresence.com"));
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		}
 		
-		OPOExporter oe = new OPOExporter(o);
+		OPOExporter oe = new OPOExporter(op);
 		
 		oe.exportOnlinePresence();
 		try {

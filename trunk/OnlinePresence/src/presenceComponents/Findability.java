@@ -9,6 +9,7 @@ package presenceComponents;
 import java.net.URI;
 
 import presence.OntologyConcept;
+import statusComponents.Visibility;
 
 /**
  * @author Nikola Milikic
@@ -32,6 +33,12 @@ public class Findability extends OnlinePresenceComponent{
 	static {
 		CONSTRAINED_FINDABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
 		PUBLICLY_FINDABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
-
+	}
+	
+	public static Findability getInstance(String name){
+		if(name.equalsIgnoreCase("constrainedFindability"))
+			return CONSTRAINED_FINDABILITY;
+		else
+			return PUBLICLY_FINDABLE;
 	}
 }

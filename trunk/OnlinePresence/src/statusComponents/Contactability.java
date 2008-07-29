@@ -9,6 +9,7 @@ package statusComponents;
 import java.net.URI;
 
 import presence.OntologyConcept;
+import presenceComponents.Findability;
 
 /**
  * @author Nikola Milikic
@@ -34,5 +35,12 @@ public class Contactability extends OnlineStatusComponent{
 	static {
 		FREELY_CONTACTABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
 		CONSTRAINED_CONTACTABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+	}
+	
+	public static Contactability getInstance(String name){
+		if(name.equalsIgnoreCase("freelyContactable"))
+			return FREELY_CONTACTABLE;
+		else
+			return CONSTRAINED_CONTACTABILITY;
 	}
 }

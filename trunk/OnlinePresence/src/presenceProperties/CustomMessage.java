@@ -6,6 +6,9 @@
  */
 package presenceProperties;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * @author Nikola Milikic
  * 
@@ -39,5 +42,17 @@ public class CustomMessage extends PresenceProperty {
 
 	public String getContent(){
 		return getMessage();
+	}  
+	
+	/**
+	 * 
+	 */
+	public URI getClassURI() {
+		try {
+			return new URI("http://www.w3.org/2001/XMLSchema#string");
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

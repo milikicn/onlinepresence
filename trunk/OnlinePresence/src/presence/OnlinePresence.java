@@ -24,7 +24,7 @@ import presenceProperties.*;
  * @author Nikola Milikic
  * 
  */
-public class OnlinePresence {
+public class OnlinePresence extends OntologyConcept{
 
 	private Agent agent;
 

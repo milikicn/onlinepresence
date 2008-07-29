@@ -1,17 +1,20 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:opo="http://ggg.milanstankovic.org/opo/ns#">
-  <rdf:Description rdf:about="http://ggg.milanstankovic.org/opo/ns#OnlinePresence">
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <opo:OnlinePresence rdf:about="http://nekiUriZaOnlinePresence.com">
     <opo:OnlineStatus>
-      <rdf:Description rdf:about="http://ggg.milanstankovic.org/opo/ns#OnlineStatus">
+      <rdf:Description rdf:about="http://nekiUriZaOnlineStatus.com">
+        <opo:Visibility>http://ggg.milanstankovic.org/opo/ns#Invisible</opo:Visibility>
         <opo:Activity>http://ggg.milanstankovic.org/opo/ns#Active</opo:Activity>
         <opo:Contactability>http://ggg.milanstankovic.org/opo/ns#FreelyContactable</opo:Contactability>
         <opo:Disturbability>http://ggg.milanstankovic.org/opo/ns#Available</opo:Disturbability>
       </rdf:Description>
     </opo:OnlineStatus>
-    <opo:CustomMessage>watching a game, having a bud</opo:CustomMessage>
-    <opo:Avatar>http://nikola.em3.rs/images/photo.jpg</opo:Avatar>
+    <foaf:Image>http://nikola.em3.rs/images/photo.jpg</foaf:Image>
+    <xsd:string>watching a game, having a bud</xsd:string>
     <opo:Notifiability>http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained</opo:Notifiability>
     <opo:Findability>http://ggg.milanstankovic.org/opo/ns#PubliclyFindable</opo:Findability>
-  </rdf:Description>
+  </opo:OnlinePresence>
 </rdf:RDF>

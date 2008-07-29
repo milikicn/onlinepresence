@@ -9,6 +9,7 @@ package presenceComponents;
 import java.net.URI;
 
 import presence.OntologyConcept;
+import statusComponents.Activity;
 
 /**
  * @author Nikola Milikic
@@ -38,5 +39,14 @@ public class Notifiability extends OnlinePresenceComponent{
 		ALL_NOTIFICATIONS_PASS.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass"));
 		NOTIFICATIONS_CONSTRAINED.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"));
 		NOTIFICATIONS_PROHIBITED.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited"));
+	}
+	
+	public static Notifiability getInstance(String name){
+		if(name.equalsIgnoreCase("allNotificationsPass"))
+			return ALL_NOTIFICATIONS_PASS;
+		else if(name.equalsIgnoreCase("notificationsConstrained"))
+			return NOTIFICATIONS_CONSTRAINED;
+		else
+			return NOTIFICATIONS_PROHIBITED;
 	}
 }
