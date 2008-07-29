@@ -124,7 +124,7 @@ public class OPOImporter {
 			InputStream is = new BufferedInputStream(new FileInputStream(
 					fileName));
 			m = ModelFactory.createDefaultModel();
-			return m.read(new InputStreamReader(is), "");
+			return m.read(new InputStreamReader(is), opoNS);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return m;
@@ -141,7 +141,6 @@ public class OPOImporter {
 		try {
 			oex.serializeToXMLRDF("worksfine.rdf");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
