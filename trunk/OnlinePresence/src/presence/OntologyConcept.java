@@ -23,7 +23,7 @@ public abstract class OntologyConcept {
 	public URI getClassURI() {
 		try {
 			String className = this.getClass().getName();
-			return new URI("http://ggg.milanstankovic.org/opo/ns#" + className.substring(className.lastIndexOf('.')+1));
+			return new URI("http://ggg.milanstankovic.org/opo/ns#" + className.substring(className.lastIndexOf(".")+1));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return null;

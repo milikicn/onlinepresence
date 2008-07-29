@@ -14,6 +14,9 @@ import java.io.InputStreamReader;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 import presence.OnlinePresence;
 
@@ -30,7 +33,18 @@ public class OPOImporter {
 		Model model = getModelFromRDF(fileName);
 		
 		if(model != null){
+			StmtIterator iter = model.listStatements();
 			
+			while(iter.hasNext()){
+				Statement stat = iter.nextStatement();
+				
+				String res = stat.getPredicate().toString();
+				String componentClass = res.substring(res.lastIndexOf("#") + 1);
+				
+				System.out.println(componentClass);
+
+	//			System.out.println(stringStat.substring(stringStat.lastIndexOf("#")));
+			}
 			
 //			op = new OnlinePresence();
 		}

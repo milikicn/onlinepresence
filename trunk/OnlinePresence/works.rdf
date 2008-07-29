@@ -9,8 +9,8 @@
         <opo:Disturbability>http://ggg.milanstankovic.org/opo/ns#Available</opo:Disturbability>
       </rdf:Description>
     </opo:OnlineStatus>
-    <opo:CustomMessage xml:lang="b">a</opo:CustomMessage>
-    <opo:Avatar xml:lang="b">a</opo:Avatar>
+    <opo:CustomMessage>watching a game, having a bud</opo:CustomMessage>
+    <opo:Avatar>http://nikola.em3.rs/images/photo.jpg</opo:Avatar>
     <opo:Notifiability>http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained</opo:Notifiability>
     <opo:Findability>http://ggg.milanstankovic.org/opo/ns#PubliclyFindable</opo:Findability>
   </rdf:Description>
