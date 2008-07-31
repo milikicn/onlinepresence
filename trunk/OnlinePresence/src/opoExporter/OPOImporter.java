@@ -35,8 +35,7 @@ import statusComponents.*;
  */
 public class OPOImporter {
 
-	String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
-
+	
 	public OnlinePresence importRDF(String fileName){
 		OnlinePresence op = null;
 		Model model = getModelFromRDF(fileName);
@@ -123,7 +122,7 @@ public class OPOImporter {
 			InputStream is = new BufferedInputStream(new FileInputStream(
 					fileName));
 			m = ModelFactory.createDefaultModel();
-			return m.read(new InputStreamReader(is), opoNS);
+			return m.read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return m;
@@ -137,7 +136,7 @@ public class OPOImporter {
 		OnlinePresence o = oim.importRDF("works.rdf");
 		
 		OPOExporter oex = new OPOExporter(o);
-		oex.exportOnlinePresence();
+		oex.makeModel();
 		try {
 			oex.serializeToXMLRDF("worksfine.rdf");
 		} catch (FileNotFoundException e) {
