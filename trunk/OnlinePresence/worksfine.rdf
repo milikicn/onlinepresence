@@ -12,8 +12,8 @@
         <opo:Disturbability>http://ggg.milanstankovic.org/opo/ns#Available</opo:Disturbability>
       </rdf:Description>
     </opo:OnlineStatus>
-    <foaf:Image>http://nikola.em3.rs/images/photo.jpg</foaf:Image>
     <xsd:string>watching a game, having a bud</xsd:string>
+    <foaf:Image>http://nikola.em3.rs/images/photo.jpg</foaf:Image>
     <opo:Notifiability>http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained</opo:Notifiability>
     <opo:Findability>http://ggg.milanstankovic.org/opo/ns#PubliclyFindable</opo:Findability>
   </opo:OnlinePresence>
