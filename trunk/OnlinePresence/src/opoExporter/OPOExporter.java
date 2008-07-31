@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -37,19 +36,14 @@ import statusComponents.*;
  */
 public class OPOExporter {
 	
-	// Ne vidim razlog da ovo budu polja. Mogle bi pre da budu konstante, mada mi se cini da je i to nepotrebno buduci da se samo jednom koriste (tu odmah ispod). Posebno je besmisleno sto isto takvo polje postoji u klasi OPOImporter
-	
-	private String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
-	private String foafNS = "http://xmlns.com/foaf/0.1/";
-	private String xmlsNS = "http://www.w3.org/2001/XMLSchema#";
-	
+		
 	OnlinePresence onlinePresence;
 	OnlineStatus onlineStatus;
 	Model model = ModelFactory.createDefaultModel();
 	{
-		model.setNsPrefix("opo", opoNS);
-		model.setNsPrefix("foaf", foafNS);
-		model.setNsPrefix("xsd", xmlsNS);
+		model.setNsPrefix("opo", "http://ggg.milanstankovic.org/opo/ns#");
+		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
+		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
 	}
 	Resource resource;
 	
@@ -78,19 +72,15 @@ public class OPOExporter {
 	 * 
 	 */
 	//Ne dopada mi se nzaiv ove metode s obzirom da ne vraca nista a rec export asocira kao da ce nesto da vrati, ako je moguce naci drugu rec
-	public void exportOnlinePresence(){
-		LinkedList<OnlinePresenceComponent> presenceComponents = onlinePresence.getPresenceComponents();
-		
-		for(int i=0; i<presenceComponents.size(); i++){
-			resource.addProperty(returnAsProperty(presenceComponents.get(i)), presenceComponents.get(i).getURI().toString());
+	public void makeModel(){
+						
+		for(OnlinePresenceComponent opo : onlinePresence.getPresenceComponents()){
+			resource.addProperty(returnAsProperty(opo), opo.getURI().toString());
 		}
-		
-		//Treba praviti ovakve petlje umesto while i klasicne for jer su mnogo preglednije !	
-		//To promeniti gde god je smisleno
+				
 		for (PresenceProperty pp : onlinePresence.getPresenceProperties()) {
 			resource.addProperty(returnAsProperty(pp), pp.getContent());
-		}
-		
+		}		
 				
 		resource.addProperty(returnAsProperty(onlineStatus), getResource(onlineStatus));
 	}
@@ -101,12 +91,10 @@ public class OPOExporter {
 	 * @return
 	 */
 	private RDFNode getResource(OnlineStatus onlineStatus){
-		Resource res = model.createResource(onlineStatus.getURI().toString());
-		
-		LinkedList<OnlineStatusComponent> statusComponents = onlineStatus.getStatusComponents();
-		for (int j = 0; j < statusComponents.size(); j++) {
-			res.addProperty(returnAsProperty(statusComponents.get(j)), statusComponents.get(j).getURI().toString());
-		}
+		Resource res = model.createResource(onlineStatus.getURI().toString());		
+		for(OnlineStatusComponent osc : onlineStatus.getStatusComponents()){
+			res.addProperty(returnAsProperty(osc), osc.getURI().toString());
+		}				
 		return res;
 	}
 	
@@ -185,7 +173,7 @@ public class OPOExporter {
 		
 		OPOExporter oe = new OPOExporter(op);
 		
-		oe.exportOnlinePresence();
+		oe.makeModel();
 		try {
 			oe.serializeToXMLRDF("works.rdf");
 		} catch (FileNotFoundException e) {
