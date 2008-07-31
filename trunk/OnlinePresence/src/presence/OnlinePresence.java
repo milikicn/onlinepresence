@@ -179,17 +179,11 @@ public class OnlinePresence extends OntologyConcept{
 	 * @return
 	 */
 	public PresenceProperty getProperty(String pName) {
-		PresenceProperty prop = null;
-		Iterator<PresenceProperty> it = presenceProperties.iterator();
-
-		while (it.hasNext()) {
-			PresenceProperty temp = it.next();
-			if (temp.getName().equals(pName)) {
-				prop = temp;
-				break;
-			}
+		for(PresenceProperty pp : presenceProperties){
+			if (pp.getName().equals(pName))
+				return pp;
 		}
-		return prop;
+		return null;		
 	}
 
 	/**
