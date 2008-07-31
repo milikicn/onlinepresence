@@ -131,6 +131,7 @@ public class OPOImporter {
 	}
 	
 	public static void main(String[] args) {
+		//Ove testove prebaciti u odgovarajuce JUnit metode u folderu test
 		OPOImporter oim = new OPOImporter();
 		
 		OnlinePresence o = oim.importRDF("works.rdf");

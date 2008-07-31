@@ -37,6 +37,8 @@ import statusComponents.*;
  */
 public class OPOExporter {
 	
+	// Ne vidim razlog da ovo budu polja. Mogle bi pre da budu konstante, mada mi se cini da je i to nepotrebno buduci da se samo jednom koriste (tu odmah ispod). Posebno je besmisleno sto isto takvo polje postoji u klasi OPOImporter
+	
 	private String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
 	private String foafNS = "http://xmlns.com/foaf/0.1/";
 	private String xmlsNS = "http://www.w3.org/2001/XMLSchema#";
@@ -75,6 +77,7 @@ public class OPOExporter {
 	/**
 	 * 
 	 */
+	//Ne dopada mi se nzaiv ove metode s obzirom da ne vraca nista a rec export asocira kao da ce nesto da vrati, ako je moguce naci drugu rec
 	public void exportOnlinePresence(){
 		LinkedList<OnlinePresenceComponent> presenceComponents = onlinePresence.getPresenceComponents();
 		
@@ -82,11 +85,12 @@ public class OPOExporter {
 			resource.addProperty(returnAsProperty(presenceComponents.get(i)), presenceComponents.get(i).getURI().toString());
 		}
 		
-		Iterator<PresenceProperty> it = onlinePresence.getPresenceProperties().iterator();
-		while(it.hasNext()){
-			PresenceProperty pp = it.next();
+		//Treba praviti ovakve petlje umesto while i klasicne for jer su mnogo preglednije !	
+		//To promeniti gde god je smisleno
+		for (PresenceProperty pp : onlinePresence.getPresenceProperties()) {
 			resource.addProperty(returnAsProperty(pp), pp.getContent());
 		}
+		
 				
 		resource.addProperty(returnAsProperty(onlineStatus), getResource(onlineStatus));
 	}

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/antlr-2.7.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/arq.jar"/>
@@ -19,5 +20,6 @@
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/wstx-asl-3.0.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/xercesImpl.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/xml-apis.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
