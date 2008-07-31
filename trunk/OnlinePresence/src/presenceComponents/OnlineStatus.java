@@ -44,10 +44,10 @@ public class OnlineStatus extends OnlinePresenceComponent {
 	 * 
 	 * @param listOSComponents
 	 */
-	public void addComponent(LinkedList<OnlineStatusComponent> listOSComponents){
-		for (int i = 0; i < listOSComponents.size(); i++) {
-			statusComponents.add(listOSComponents.get(i));
-		} 
+	public void addComponent(LinkedList<OnlineStatusComponent> listOSComponents){		
+		for(OnlineStatusComponent osc : listOSComponents){
+			statusComponents.add(osc);
+		}		
 	}
 	
 }
