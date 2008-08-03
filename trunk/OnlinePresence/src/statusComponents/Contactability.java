@@ -33,11 +33,11 @@ public class Contactability extends OnlineStatusComponent{
 		FREELY_CONTACTABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
 		CONSTRAINED_CONTACTABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
 	}
-	
-	public static Contactability getInstance(String name){
-		if(name.equalsIgnoreCase("freelyContactable"))
-			return FREELY_CONTACTABLE;
-		else
-			return CONSTRAINED_CONTACTABILITY;
-	}
+	// Mislim da je ovo nepotrebno. M.
+//	public static Contactability getInstance(String name){
+//		if(name.equalsIgnoreCase("freelyContactable"))
+//			return FREELY_CONTACTABLE;
+//		else
+//			return CONSTRAINED_CONTACTABILITY;
+//	}
 }

@@ -34,17 +34,16 @@ public class OnlineStatus extends OnlinePresenceComponent {
 	 * adds a specific OnlineStatusComponent
 	 * 
 	 * @param onlineStatusComponent
-	 * @return
 	 */
-	public boolean addComponent(OnlineStatusComponent onlineStatusComponent) {
-		return statusComponents.add(onlineStatusComponent);
+	public void addComponent(OnlineStatusComponent onlineStatusComponent) {
+		statusComponents.add(onlineStatusComponent);
 	}
 	
 	/**
 	 * 
 	 * @param listOSComponents
 	 */
-	public void addComponent(LinkedList<OnlineStatusComponent> listOSComponents){		
+	public void addComponents(LinkedList<OnlineStatusComponent> listOSComponents){		
 		for(OnlineStatusComponent osc : listOSComponents){
 			statusComponents.add(osc);
 		}		

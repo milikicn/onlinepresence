@@ -119,7 +119,6 @@ public class OnlinePresence extends OntologyConcept{
 	 * Adds a specific OnlinePresenceComponent.
 	 * 
 	 * @param OnlinePresenceComponent
-	 * @return
 	 */
 	public boolean addComponent(OnlinePresenceComponent OnlinePresenceComponent) {
 		return presenceComponents.add(OnlinePresenceComponent);

@@ -52,6 +52,7 @@ public class OPOExporter {
 	 * @param agent
 	 */
 	public OPOExporter(Agent agent){
+		//Informacija o agentu nije nigde snimljena!
 		this.onlinePresence = agent.getOnlinePresence();
 		this.onlineStatus = agent.getOnlinePresence().getOnlineStatus();
 		resource = model.createResource(onlinePresence.getURI().toString()).addProperty(RDF.type, onlinePresence.getClassURI().toString());
@@ -71,7 +72,7 @@ public class OPOExporter {
 	/**
 	 * 
 	 */
-	//Ne dopada mi se nzaiv ove metode s obzirom da ne vraca nista a rec export asocira kao da ce nesto da vrati, ako je moguce naci drugu rec
+	
 	public void makeModel(){
 						
 		for(OnlinePresenceComponent opo : onlinePresence.getPresenceComponents()){

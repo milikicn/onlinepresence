@@ -18,7 +18,7 @@ import presence.OntologyConcept;
  */
 public class Agent extends OntologyConcept {
 
-	OnlinePresence onlinePresence;
+	private OnlinePresence onlinePresence;
 
 	public static Agent AGENT = new Agent();
 	
