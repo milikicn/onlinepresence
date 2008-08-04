@@ -7,34 +7,21 @@
 package presence;
 
 import java.net.URI;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
-
-import agent.Agent;
 
 import presenceComponents.OnlinePresenceComponent;
-import presenceComponents.OnlineStatus;
-import presenceProperties.*;
+import presenceProperties.ObjectProperty;
+import presenceProperties.StringProperty;
+import presenceProperties.URIProperty;
+import agent.Agent;
 
 /**
  * @author Nikola Milikic
  * 
  */
-public class OnlinePresence extends OntologyConcept{
+public class OnlinePresence extends PresenceClass {
 
 	private Agent agent;
-
-	private OnlineStatus onlineStatus;
-	
-//	private Date startTime;
-	
-//	private Date duration;
-
-	LinkedList<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
-
-	Set<PresenceProperty> presenceProperties = new HashSet<PresenceProperty>();
+	private PresenceClass os;
 
 	/**
 	 * @param agent
@@ -43,16 +30,14 @@ public class OnlinePresence extends OntologyConcept{
 	 * @param presenceProperties
 	 * @param startTime
 	 */
-	public OnlinePresence(Agent agent, OnlineStatus onlineStatus,
-			LinkedList<OnlinePresenceComponent> presenceComponents,
-			Set<PresenceProperty> presenceProperties) {
+	public OnlinePresence(Agent agent, URI uri) {
+
+		setURI(uri);
+
 		this.agent = agent;
-		this.onlineStatus = onlineStatus;
-		this.presenceComponents = presenceComponents;
-		this.presenceProperties = presenceProperties;
-//		this.startTime = Calendar.getInstance().getTime();
+
 	}
-	
+
 	/**
 	 * @return the agent
 	 */
@@ -67,72 +52,25 @@ public class OnlinePresence extends OntologyConcept{
 	public void setAgent(Agent agent) {
 		this.agent = agent;
 	}
-	
-	/**
-	 * @return the onlineStatus
-	 */
-	public OnlineStatus getOnlineStatus() {
-		return onlineStatus;
-	}
-	
+
 	/**
 	 * Sets the current OnlinePresence Status.
 	 * 
 	 * @param OnlineStatus
 	 */
-	public void setOnlineStatus(OnlineStatus OnlineStatus) {
-		this.onlineStatus = OnlineStatus;
-		// presenceComponents.add(os);
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public LinkedList<OnlinePresenceComponent> getPresenceComponents(){
-		return presenceComponents;
-	}
-	
-	/**
-	 * @param presenceComponents the presenceComponents to set
-	 */
-	public void setPresenceComponents(
-			LinkedList<OnlinePresenceComponent> presenceComponents) {
-		this.presenceComponents = presenceComponents;
-	}
-	
-	/**
-	 * @return the presenceProperties
-	 */
-	public Set<PresenceProperty> getPresenceProperties() {
-		return presenceProperties;
+	public void setOnlineStatus(PresenceClass onlineStatus) {
+		propertyList.add(new ObjectProperty("hasPresenceComponent",
+				onlineStatus));
 	}
 
 	/**
-	 * @param presenceProperties the presenceProperties to set
-	 */
-	public void setPresenceProperties(Set<PresenceProperty> presenceProperties) {
-		this.presenceProperties = presenceProperties;
-	}
-
-	/**
-	 * Adds a specific OnlinePresenceComponent.
+	 * adds a specific OnlineStatusComponent
 	 * 
-	 * @param OnlinePresenceComponent
+	 * @param onlineStatusComponent
 	 */
-	public boolean addComponent(OnlinePresenceComponent OnlinePresenceComponent) {
-		return presenceComponents.add(OnlinePresenceComponent);
-	}
-
-	/**
-	 * Sets the Avatar.
-	 * 
-	 * @param avatar
-	 * @return
-	 */
-	public boolean setAvatar(Avatar avatar) {
-		presenceProperties.remove(getProperty("avatar"));
-		return addProperty(avatar);
+	public void addComponent(OnlinePresenceComponent onlinePresenceComponent) {
+		propertyList.add(new URIProperty("hasPresenceComponent",
+				onlinePresenceComponent.getURI()));
 	}
 
 	/**
@@ -140,8 +78,8 @@ public class OnlinePresence extends OntologyConcept{
 	 * @param avatarURI
 	 * @return
 	 */
-	public boolean setAvatar(URI avatarURI) {
-		return setAvatar(new Avatar(avatarURI));
+	public void setAvatar(URI avatarURI) {
+		propertyList.add(new URIProperty("avatar", avatarURI));
 	}
 
 	/**
@@ -149,18 +87,8 @@ public class OnlinePresence extends OntologyConcept{
 	 * @param curMessage
 	 * @return
 	 */
-	public boolean setCustomMessage(CustomMessage curMessage) {
-		presenceProperties.remove(getProperty("currentMessage"));
-		return addProperty(curMessage);
-	}
-
-	/**
-	 * 
-	 * @param curMessage
-	 * @return
-	 */
-	public boolean setCustomMessage(String curMessage) {
-		return setCustomMessage(new CustomMessage(curMessage));
+	public void setCustomMessage(String curMessage) {
+		propertyList.add(new StringProperty("customMessage", curMessage));
 	}
 
 	/**
@@ -171,27 +99,8 @@ public class OnlinePresence extends OntologyConcept{
 		this.agent = agent;
 	}
 
-	/**
-	 * Returns an instance of the class Property with 'pName' as its name.
-	 * 
-	 * @param pName
-	 * @return
-	 */
-	public PresenceProperty getProperty(String pName) {
-		for(PresenceProperty pp : presenceProperties){
-			if (pp.getName().equals(pName))
-				return pp;
-		}
-		return null;		
+	public PresenceClass getOnlineStatus() {
+		return os;
 	}
 
-	/**
-	 * 
-	 * @param property
-	 * @return
-	 */
-	public boolean addProperty(PresenceProperty property) {
-		return presenceProperties.add(property);
-	}
 }
-

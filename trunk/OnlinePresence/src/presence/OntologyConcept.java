@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
  * 
  */
 public abstract class OntologyConcept {
-	
+
 	private URI uri;
 
 	/**
@@ -22,22 +22,29 @@ public abstract class OntologyConcept {
 	 */
 	public URI getClassURI() {
 		try {
-			String className = this.getClass().getName();
-			return new URI("http://ggg.milanstankovic.org/opo/ns#" + className.substring(className.lastIndexOf(".")+1));
+
+			return new URI("http://ggg.milanstankovic.org/opo/ns#"
+					+ getOPOName());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
+	protected String getOPOName() {
+		String className = this.getClass().getName();
+		return className.substring(className.lastIndexOf(".") + 1);
+	}
+
 	/**
-	 * @param uri the uri to set
+	 * @param uri
+	 *            the uri to set
 	 */
 	public void setURI(URI uri) {
 		this.uri = uri;
 	}
-	
-	public URI getURI(){
+
+	public URI getURI() {
 		return this.uri;
 	}
 }

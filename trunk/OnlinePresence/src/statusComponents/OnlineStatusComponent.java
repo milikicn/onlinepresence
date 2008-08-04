@@ -13,6 +13,6 @@ import presence.OntologyConcept;
  * 
  * @author Nikola Milikic
  */
-public abstract class OnlineStatusComponent extends OntologyConcept{
+public abstract class OnlineStatusComponent extends OntologyConcept {
 
 }

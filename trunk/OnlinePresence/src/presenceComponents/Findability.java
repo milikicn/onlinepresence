@@ -1,24 +1,25 @@
 /**
-* @author: Nikola Milikic
-* e-mail: nikola.milikic@gmail.com
-* @date: Jul 24, 2008
-* @version: 0.1
-*/
+ * @author: Nikola Milikic
+ * e-mail: nikola.milikic@gmail.com
+ * @date: Jul 24, 2008
+ * @version: 0.1
+ */
 package presenceComponents;
 
 import java.net.URI;
 
 /**
  * @author Nikola Milikic
- *
+ * 
  */
-public class Findability extends OnlinePresenceComponent{
-	
+public class Findability extends OnlinePresenceComponent {
+
 	/**
-	 * The Agent's contact details cannot be found by anyone on the Web, but the findability is controled by some rules/policies.
+	 * The Agent's contact details cannot be found by anyone on the Web, but the
+	 * findability is controled by some rules/policies.
 	 */
 	public static Findability CONSTRAINED_FINDABILITY = new Findability();
-	
+
 	/**
 	 * The Agent's contact details can be found by anyone on the Web.
 	 */
@@ -28,14 +29,18 @@ public class Findability extends OnlinePresenceComponent{
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		CONSTRAINED_FINDABILITY.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
-		PUBLICLY_FINDABLE.setURI(URI.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
+		CONSTRAINED_FINDABILITY
+				.setURI(URI
+						.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+		PUBLICLY_FINDABLE
+				.setURI(URI
+						.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
 	}
 	// Mislim da je ovo nepotrebno. M.
-//	public static Findability getInstance(String name){
-//		if(name.equalsIgnoreCase("constrainedFindability"))
-//			return CONSTRAINED_FINDABILITY;
-//		else
-//			return PUBLICLY_FINDABLE;
-//	}
+	// public static Findability getInstance(String name){
+	// if(name.equalsIgnoreCase("constrainedFindability"))
+	// return CONSTRAINED_FINDABILITY;
+	// else
+	// return PUBLICLY_FINDABLE;
+	// }
 }

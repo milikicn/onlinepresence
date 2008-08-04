@@ -11,110 +11,103 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 
+import presence.OnlinePresence;
+import presence.OntologyConcept;
+import presence.PresenceClass;
+import presenceComponents.Findability;
+import presenceComponents.Notifiability;
+import presenceComponents.OnlineStatus;
+import statusComponents.Activity;
+import statusComponents.Contactability;
+import statusComponents.Disturbability;
+import statusComponents.Visibility;
 import agent.Agent;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.*;
-
-import presence.OnlinePresence;
-import presence.OntologyConcept;
-import presenceComponents.*;
-import presenceProperties.*;
-import statusComponents.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * @author Filip Radulovic
  * 
  */
 public class OPOExporter {
-	
-		
-	OnlinePresence onlinePresence;
-	OnlineStatus onlineStatus;
-	Model model = ModelFactory.createDefaultModel();
+
+	private String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
+	private OnlinePresence onlinePresence;
+	private Model model = ModelFactory.createDefaultModel();
 	{
-		model.setNsPrefix("opo", "http://ggg.milanstankovic.org/opo/ns#");
+		model.setNsPrefix("opo", opoNS);
 		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
 		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
 	}
-	Resource resource;
-	
+
 	/**
 	 * 
 	 * @param agent
 	 */
-	public OPOExporter(Agent agent){
-		//Informacija o agentu nije nigde snimljena!
-		this.onlinePresence = agent.getOnlinePresence();
-		this.onlineStatus = agent.getOnlinePresence().getOnlineStatus();
-		resource = model.createResource(onlinePresence.getURI().toString()).addProperty(RDF.type, onlinePresence.getClassURI().toString());
-		resource.addProperty(RDF.type, model.createResource(onlinePresence.getClassURI().toString()));
+	public OPOExporter(Agent agent) {
+		this(agent.getOnlinePresence());
+		onlinePresence.setAgent(agent);
+
 	}
-	
+
 	/**
 	 * @param op
 	 */
-	public OPOExporter(OnlinePresence op){
+	public OPOExporter(OnlinePresence op) {
 		this.onlinePresence = op;
-		this.onlineStatus = op.getOnlineStatus();
-		resource = model.createResource(onlinePresence.getURI().toString());
-		resource.addProperty(RDF.type, model.createResource(onlinePresence.getClassURI().toString()));
+
+
 	}
-	
+
 	/**
 	 * 
 	 */
-	
-	public void makeModel(){
-						
-		for(OnlinePresenceComponent opo : onlinePresence.getPresenceComponents()){
-			resource.addProperty(returnAsProperty(opo), opo.getURI().toString());
-		}
-				
-		for (PresenceProperty pp : onlinePresence.getPresenceProperties()) {
-			resource.addProperty(returnAsProperty(pp), pp.getContent());
-		}		
-				
-		resource.addProperty(returnAsProperty(onlineStatus), getResource(onlineStatus));
+
+	public void makeModel() {
+		Resource resource = model.createResource(onlinePresence.getURI()
+				.toString());
+		resource.addProperty(RDF.type, model.createResource(onlinePresence
+				.getClassURI().toString()));
+
+		onlinePresence.makeResource(resource);
+
 	}
-	
-	/**
-	 * 
-	 * @param onlineStatus
-	 * @return
-	 */
-	private RDFNode getResource(OnlineStatus onlineStatus){
-		Resource res = model.createResource(onlineStatus.getURI().toString());		
-		for(OnlineStatusComponent osc : onlineStatus.getStatusComponents()){
-			res.addProperty(returnAsProperty(osc), osc.getURI().toString());
-		}				
-		return res;
-	}
-	
+
+	// /**
+	// *
+	// * @param onlineStatus
+	// * @return
+	// */
+	// private RDFNode getResource(OnlineStatus onlineStatus){
+	// Resource res = model.createResource(onlineStatus.getURI().toString());
+	// for(OnlineStatusComponent osc : onlineStatus.getStatusComponents()){
+	// res.addProperty(model.createProperty(opoNS + "hasStatusComponent"),
+	// model.createResource(osc.getURI().toString()));
+	// }
+	// return res;
+	// }
+
 	/**
 	 * 
 	 * @param <T>
 	 * @param opc
 	 * @return
 	 */
-	private <T extends OntologyConcept> Property returnAsProperty(T opc){
-		return ModelFactory.createDefaultModel().createProperty(opc.getClassURI().toString());
+	private <T extends OntologyConcept> Property returnAsProperty(T opc) {
+		return model.createProperty(opoNS + "hasPresenceComponent");
 	}
-	
+
 	/**
 	 * 
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToXMLRDF(String rName)throws FileNotFoundException{
+	public void serializeToXMLRDF(String rName) throws FileNotFoundException {
 		FileOutputStream fout = new FileOutputStream(rName);
 		model.write(fout, "RDF/XML-ABBREV");
 		try {
@@ -123,13 +116,13 @@ public class OPOExporter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToRDFTurtle(String rName)throws FileNotFoundException{
+	public void serializeToRDFTurtle(String rName) throws FileNotFoundException {
 		FileOutputStream fout = new FileOutputStream(rName);
 		model.write(fout, "N-TRIPLE");
 		try {
@@ -138,7 +131,7 @@ public class OPOExporter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Agent a = new Agent();
 		try {
@@ -146,34 +139,39 @@ public class OPOExporter {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		
-		OnlineStatus os = new OnlineStatus(URI.create("http://nekiUriZaOnlineStatus.com"));
+
+		OnlineStatus os = new OnlineStatus(URI
+				.create("http://nekiUriZaOnlineStatus.com"));
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
 		os.addComponent(Visibility.INVISIBLE);
 
-		LinkedList<OnlinePresenceComponent> li = new LinkedList<OnlinePresenceComponent>();
-		li.add(Findability.PUBLICLY_FINDABLE);
-		li.add(Notifiability.NOTIFICATIONS_CONSTRAINED);
-		
-		Set<PresenceProperty> ha = new HashSet<PresenceProperty>();
-		try {
-			ha.add(new Avatar(new URI("http://nikola.em3.rs/images/photo.jpg")));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		ha.add(new CustomMessage("watching a game, having a bud"));
-		
-		OnlinePresence op = new OnlinePresence(a, os, li, ha);
-		try {
-			op.setURI(new URI("http://nekiUriZaOnlinePresence.com"));
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		}
-		
+		OnlinePresence op = new OnlinePresence(null, URI
+				.create("http://nekiUriZaOnlinePresence.com"));
+		op.setURI(URI.create("http://nekiUriZaOnlinePresence.com"));
+		op.setOnlineStatus(os);
+
+		op.addComponent(Findability.PUBLICLY_FINDABLE);
+		op.addComponent(Notifiability.NOTIFICATIONS_CONSTRAINED);
+
+		op.setAvatar(URI.create("http://nikola.em3.rs/images/photo.jpg"));
+
+		op.setCustomMessage("watching a game, having a bud");
+
+		// Model m = ModelFactory.createDefaultModel();
+		// Resource res = m.createResource("");
+		// res.addLiteral(RDF.type, "http://www.fdfd.com");
+		//		
+		// try {
+		// m.write(new FileOutputStream("aaa.rdf"), "RDF/XML-ABBREV");
+		// } catch (FileNotFoundException e1) {
+		//			
+		// e1.printStackTrace();
+		// }
+
 		OPOExporter oe = new OPOExporter(op);
-		
+
 		oe.makeModel();
 		try {
 			oe.serializeToXMLRDF("works.rdf");

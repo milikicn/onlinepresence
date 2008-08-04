@@ -7,7 +7,6 @@
 package agent;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import presence.OnlinePresence;
 import presence.OntologyConcept;
@@ -21,8 +20,9 @@ public class Agent extends OntologyConcept {
 	private OnlinePresence onlinePresence;
 
 	public static Agent AGENT = new Agent();
-	
-	public URI getClassURI() {
+
+	@Override
+	private public URI getClassURI() {
 		try {
 			return new URI("http://xmlns.com/foaf/0.1/Agent");
 		} catch (URISyntaxException e) {
@@ -30,14 +30,14 @@ public class Agent extends OntologyConcept {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @return the onlinePresence
 	 */
 	public OnlinePresence getOnlinePresence() {
 		return onlinePresence;
 	}
-	
+
 	/**
 	 * Sets Agent's OnlinePresence properties.
 	 * 
