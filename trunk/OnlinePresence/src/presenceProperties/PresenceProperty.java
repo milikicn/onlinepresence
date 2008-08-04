@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
  * @author Nikola Milikic
  * 
  */
+@SuppressWarnings("unchecked")
 public abstract class PresenceProperty<T> extends OntologyConcept {
 	protected String name;
 	protected T value;
