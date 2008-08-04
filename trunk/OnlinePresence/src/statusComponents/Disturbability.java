@@ -34,11 +34,11 @@ public class Disturbability extends OnlineStatusComponent {
 		DO_NOT_DISTURB.setURI(URI
 				.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
 	}
-	// Mislim da je ovo nepotrebno. M.
-	// public static Disturbability getInstance(String name){
-	// if(name.equalsIgnoreCase("Available"))
-	// return AVAILABLE;
-	// else
-	// return DO_NOT_DISTURB;
-	// }
+	
+	 public static Disturbability getInstance(String name){
+	 if(name.equalsIgnoreCase("Available"))
+	 return AVAILABLE;
+	 else
+	 return DO_NOT_DISTURB;
+	 }
 }

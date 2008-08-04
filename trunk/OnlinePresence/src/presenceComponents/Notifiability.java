@@ -45,13 +45,13 @@ public class Notifiability extends OnlinePresenceComponent {
 						.create("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited"));
 	}
 
-	// Mislim da je ovo nepotrebno. M.
-	// public static Notifiability getInstance(String name){
-	// if(name.equalsIgnoreCase("allNotificationsPass"))
-	// return ALL_NOTIFICATIONS_PASS;
-	// else if(name.equalsIgnoreCase("notificationsConstrained"))
-	// return NOTIFICATIONS_CONSTRAINED;
-	// else
-	// return NOTIFICATIONS_PROHIBITED;
-	// }
+	
+	 public static Notifiability getInstance(String name){
+	 if(name.equalsIgnoreCase("allNotificationsPass"))
+	 return ALL_NOTIFICATIONS_PASS;
+	 else if(name.equalsIgnoreCase("notificationsConstrained"))
+	 return NOTIFICATIONS_CONSTRAINED;
+	 else
+	 return NOTIFICATIONS_PROHIBITED;
+	 }
 }
