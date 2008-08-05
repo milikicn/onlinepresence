@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
  */
 public abstract class OntologyConcept {
 
+	protected String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
 	private URI uri;
 
 	/**
@@ -23,8 +24,7 @@ public abstract class OntologyConcept {
 	public URI getClassURI() {
 		try {
 
-			return new URI("http://ggg.milanstankovic.org/opo/ns#"
-					+ getOPOName());
+			return new URI(opoNS + getOPOName());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return null;

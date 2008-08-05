@@ -8,13 +8,11 @@
     <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
     <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"/>
     <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"/>
-    <opo:hasPresenceComponent>
-      <opo:OnlineStatus rdf:about="http://nekiUriZaOnlineStatus.com">
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#FreelyContactable"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Active"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
-      </opo:OnlineStatus>
-    </opo:hasPresenceComponent>
   </opo:OnlinePresence>
+  <opo:OnlineStatus rdf:about="http://nekiUriZaOnlineStatus.com">
+    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
+    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#FreelyContactable"/>
+    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Active"/>
+    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
+  </opo:OnlineStatus>
 </rdf:RDF>
