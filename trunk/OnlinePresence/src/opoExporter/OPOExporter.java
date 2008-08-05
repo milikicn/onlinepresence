@@ -14,7 +14,6 @@ import java.net.URISyntaxException;
 
 import presence.OnlinePresence;
 import presence.OntologyConcept;
-import presence.PresenceClass;
 import presenceComponents.Findability;
 import presenceComponents.Notifiability;
 import presenceComponents.OnlineStatus;
