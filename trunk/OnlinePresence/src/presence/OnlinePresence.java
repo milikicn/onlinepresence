@@ -26,11 +26,9 @@ public class OnlinePresence extends PresenceClass {
 	private PresenceClass os;
 
 	/**
+	 * 
 	 * @param agent
-	 * @param onlineStatus
-	 * @param presenceComponents
-	 * @param presenceProperties
-	 * @param startTime
+	 * @param uri
 	 */
 	public OnlinePresence(Agent agent, URI uri) {
 		setURI(uri);

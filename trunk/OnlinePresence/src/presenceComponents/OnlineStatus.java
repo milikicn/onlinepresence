@@ -21,6 +21,13 @@ import statusComponents.OnlineStatusComponent;
 public class OnlineStatus extends PresenceClass {
 
 	/**
+	 * @param statusName
+	 */
+	public OnlineStatus(URI uri) {
+		setURI(uri);
+	}
+	
+	/**
 	 * A setter method for statusName
 	 * 
 	 * @param statusName
@@ -28,13 +35,6 @@ public class OnlineStatus extends PresenceClass {
 	 */
 	public void setStatusName(String statusName) {
 		propertyList.add(new StringProperty("statusName", statusName));
-	}
-
-	/**
-	 * @param statusName
-	 */
-	public OnlineStatus(URI uri) {
-		setURI(uri);
 	}
 
 	/**
@@ -56,5 +56,4 @@ public class OnlineStatus extends PresenceClass {
 			this.addComponent(osc);
 		}
 	}
-
 }

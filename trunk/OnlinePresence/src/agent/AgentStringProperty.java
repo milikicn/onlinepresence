@@ -15,6 +15,7 @@ import presenceProperties.StringProperty;
 public class AgentStringProperty extends StringProperty {
 
 	/**
+	 * Constructor that sets fields of the superclass.
 	 * @param name
 	 * @param value
 	 */

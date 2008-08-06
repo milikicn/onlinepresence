@@ -17,6 +17,7 @@ import presenceProperties.URIProperty;
 public class AgentURIProperty extends URIProperty {
 
 	/**
+	 * Constructor that sets fields of the superclass.
 	 * @param name
 	 * @param value
 	 */

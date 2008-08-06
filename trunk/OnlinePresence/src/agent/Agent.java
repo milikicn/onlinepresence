@@ -27,12 +27,12 @@ public class Agent extends PresenceClass {
 	private OnlinePresence onlinePresence;
 
 	/**
-	 * Plain constructor
+	 * Plain constructor.
 	 */
 	public Agent(){}
 	
 	/**
-	 * Constructor tha recives URI of the agent
+	 * Constructor tha recives URI of the agent.
 	 * @param uri
 	 */
 	public Agent(URI uri) {
@@ -48,7 +48,7 @@ public class Agent extends PresenceClass {
 	}
 
 	/**
-	 * Returns the value of the field containing current online presence of the Agent
+	 * Returns the value of the field containing current online presence of the Agent.
 	 * @return the onlinePresence
 	 */
 	public OnlinePresence getOnlinePresence() {
@@ -65,7 +65,7 @@ public class Agent extends PresenceClass {
 	}
 
 	/**
-	 * 
+	 * Adds new component to agent's property list with the name 'name' and content 'content'.
 	 * @param name
 	 * @param content
 	 */
@@ -74,14 +74,18 @@ public class Agent extends PresenceClass {
 	}
 	
 	/**
-	 * 
+	 * Adds new component to agent's property list with the name 'name' and the 'uri' as the URI of the property.
 	 * @param name
 	 * @param uri
 	 */
 	public void addComponent(String name, URI uri) {
 		propertyList.add(new AgentURIProperty(name, uri));
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see presence.PresenceClass#createAsBlankNode(com.hp.hpl.jena.rdf.model.Model)
+	 */
+	@Override
 	public Resource createAsBlankNode(Model model){
 		Resource s = null;
 		if(getURI() != null)
