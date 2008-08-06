@@ -38,6 +38,7 @@ public abstract class PresenceClass extends OntologyConcept {
 	
 	/**
 	 * 
+	 * 
 	 * @param list
 	 */
 	public void setPropertyList(LinkedList<PresenceProperty> list){
