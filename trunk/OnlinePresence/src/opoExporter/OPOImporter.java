@@ -44,17 +44,15 @@ public class OPOImporter {
 			Agent a = null;
 			Findability fin = null;
 			Notifiability not = null;
-			Avatar ava = null;
-			CustomMessage cm = null;
 			OnlineStatus os = null;
 			Disturbability dis = null;
 			Contactability con = null;
 			Activity act = null;
 			Visibility vis = null;
-			LinkedList<OnlineStatusComponent> listOSC = new LinkedList<OnlineStatusComponent>();
-			LinkedList<OnlinePresenceComponent> listOPC = new LinkedList<OnlinePresenceComponent>();
-			Set<PresenceProperty> setPC = new HashSet<PresenceProperty>();
 			String presenceURI = null;
+			LinkedList<PresenceProperty> presenceList = new LinkedList<PresenceProperty>();
+			LinkedList<PresenceProperty> statusList = new LinkedList<PresenceProperty>();
+			
 			
 			StmtIterator iter = model.listStatements();
 			
@@ -70,47 +68,67 @@ public class OPOImporter {
 				
 				System.out.println("class: " + componentClass + " value: " + componentValue);
 
-				if(componentClass.equalsIgnoreCase("Agent")){
-					presenceURI = stat.getSubject().toString();
-					a = new Agent();
-					a.setURI(URI.create(componentValue));
-				}else if(componentClass.equalsIgnoreCase("Findability")){
+////				if(componentClass.equalsIgnoreCase("Agent")){
+////					presenceURI = stat.getSubject().toString();
+////					a = new Agent(URI.create(componentValue));
+//				}else 
+					if(componentValue.equalsIgnoreCase("ConstrainedFindability") ||
+						componentValue.equalsIgnoreCase("PubliclyFindable")){
 					presenceURI = stat.getSubject().toString();
 					fin = Findability.getInstance(componentValue);
-					listOPC.add(fin);
-				}else if(componentClass.equalsIgnoreCase("Notifiability")){
+					presenceList.add(new URIProperty("hasPresenceComponent",
+							fin.getURI()));
+				}else if(componentValue.equalsIgnoreCase("AllNotificationsPass") ||
+						componentValue.equalsIgnoreCase("NotificationsConstrained") ||
+						componentValue.equalsIgnoreCase("NotificationsProhibited")){
 					presenceURI = stat.getSubject().toString();
 					not = Notifiability.getInstance(componentValue);
-					listOPC.add(not);
-				}else if(componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/Image")){
+					presenceList.add(new URIProperty("hasPresenceComponent",
+							not.getURI()));
+				}else if(componentClass.equalsIgnoreCase("Avatar")){
 					presenceURI = stat.getSubject().toString();
-					ava = new Avatar(URI.create(componentValue));
-					setPC.add(ava);
-				}else if(componentClass.equalsIgnoreCase("string")){
+					URIProperty ava = new URIProperty("avatar", URI.create(obj));
+					presenceList.add(ava);
+				}else if(componentClass.equalsIgnoreCase("customMessage")){
 					presenceURI = stat.getSubject().toString();
-					cm = new CustomMessage(componentValue);
-					setPC.add(cm);
-				}else if(componentClass.equalsIgnoreCase("OnlineStatus")){
-					os = new OnlineStatus(URI.create(componentValue));
-				}else if(componentClass.equalsIgnoreCase("Disturbability")){
+					StringProperty cm = new StringProperty("customMessage", obj);
+					presenceList.add(cm);
+				}else if(componentValue.equalsIgnoreCase("OnlineStatus")){
+					os = new OnlineStatus(URI.create(obj));
+				}else if(componentValue.equalsIgnoreCase("Available") ||
+						componentValue.equalsIgnoreCase("DoNotDisturb")){
 					dis = Disturbability.getInstance(componentValue);
-					listOSC.add(dis);
-				}else if(componentClass.equalsIgnoreCase("Contactability")){
+					statusList.add(new URIProperty("hasStatusComponent", dis.getURI()));
+				}else if(componentValue.equalsIgnoreCase("FreelyContactable") ||
+						componentValue.equalsIgnoreCase("ConstrainedContactability")){
 					con = Contactability.getInstance(componentValue);
-					listOSC.add(con);
-				}else if(componentClass.equalsIgnoreCase("Activity")){
+					statusList.add(new URIProperty("hasStatusComponent", con.getURI()));
+				}else if(componentValue.equalsIgnoreCase("Active") ||
+						componentValue.equalsIgnoreCase("Inactive") ||
+						componentValue.equalsIgnoreCase("ProlongedInactive")){					
 					act = Activity.getInstance(componentValue);
-					listOSC.add(act);
-				}else if(componentClass.equalsIgnoreCase("Visibility")){
+					statusList.add(new URIProperty("hasStatusComponent", act.getURI()));
+				}else if(componentValue.equalsIgnoreCase("Visible") ||
+						componentValue.equalsIgnoreCase("Invisible")){
 					vis = Visibility.getInstance(componentValue);
-					listOSC.add(vis);
+					statusList.add(new URIProperty("hasStatusComponent", vis.getURI()));
 				}
 			}
 			
-			os.addComponent(listOSC);
+			os.setPropertyList(statusList);
 			
-			op = new OnlinePresence(a , os, listOPC, setPC);
-			op.setURI(URI.create(presenceURI));
+			
+			a = new Agent();
+			a.addComponent("name", "nikola milikic");
+			a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
+			
+			op = new OnlinePresence(null, URI.create(presenceURI));
+			//op.setAgent(a);
+			op.setPropertyList(presenceList);
+			
+			op.setOnlineStatus(os);
+			
+			op.setAgent(a);
 		}
 		
 		return op;

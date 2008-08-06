@@ -7,10 +7,12 @@
 package presence;
 
 import java.net.URI;
+import java.util.LinkedList;
 
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
 import presenceProperties.ObjectProperty;
+import presenceProperties.PresenceProperty;
 import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
 import agent.Agent;
@@ -102,4 +104,5 @@ public class OnlinePresence extends PresenceClass {
 	public void setDeclaredByAgent(Agent agent) {
 		this.agent = agent;
 	}
+		
 }
