@@ -20,7 +20,6 @@ import statusComponents.OnlineStatusComponent;
  */
 public class OnlineStatus extends PresenceClass {
 
-	
 	/**
 	 * A setter method for statusName
 	 * 

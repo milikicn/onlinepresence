@@ -13,7 +13,7 @@ public class URIProperty extends PresenceProperty<URI> {
 	}
 
 	@Override
-	public void attachProperty(Resource res) {
+	public void attachAsProperty(Resource res) {
 		res.addProperty(ModelFactory.createDefaultModel().createProperty(
 				getClassURI().toString()), ModelFactory.createDefaultModel()
 				.createResource(value.toString()));

@@ -9,6 +9,7 @@ package presence;
 import java.net.URI;
 
 import presenceComponents.OnlinePresenceComponent;
+import presenceComponents.OnlineStatus;
 import presenceProperties.ObjectProperty;
 import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
@@ -20,6 +21,7 @@ import agent.Agent;
  */
 public class OnlinePresence extends PresenceClass {
 
+	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
 	private Agent agent;
 	private PresenceClass os;
 
@@ -31,26 +33,31 @@ public class OnlinePresence extends PresenceClass {
 	 * @param startTime
 	 */
 	public OnlinePresence(Agent agent, URI uri) {
-
 		setURI(uri);
-
 		this.agent = agent;
-
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public PresenceClass getOnlineStatus() {
+		return os;
+	}
+	
 	/**
 	 * @return the agent
 	 */
 	public Agent getAgent() {
 		return agent;
 	}
-
+	
 	/**
+	 * 
 	 * @param agent
-	 *            the agent to set
 	 */
-	public void setAgent(Agent agent) {
-		this.agent = agent;
+	public void setAgent(Agent agent){
+		propertyList.add(new ObjectProperty("declaredBy", agent));
 	}
 
 	/**
@@ -58,11 +65,10 @@ public class OnlinePresence extends PresenceClass {
 	 * 
 	 * @param OnlineStatus
 	 */
-	public void setOnlineStatus(PresenceClass onlineStatus) {
-		propertyList.add(new ObjectProperty("hasPresenceComponent",
-				onlineStatus));
+	public void setOnlineStatus(OnlineStatus onlineStatus) {
+		propertyList.add(new ObjectProperty("hasPresenceComponent", onlineStatus));
 	}
-
+	
 	/**
 	 * adds a specific OnlineStatusComponent
 	 * 
@@ -98,9 +104,4 @@ public class OnlinePresence extends PresenceClass {
 	public void setDeclaredByAgent(Agent agent) {
 		this.agent = agent;
 	}
-
-	public PresenceClass getOnlineStatus() {
-		return os;
-	}
-
 }

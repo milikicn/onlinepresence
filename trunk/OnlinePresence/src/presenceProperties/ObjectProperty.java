@@ -9,21 +9,20 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 public class ObjectProperty extends PresenceProperty<PresenceClass> {
 
+	/**
+	 * 
+	 * @param name
+	 * @param value
+	 */
 	public ObjectProperty(String name, PresenceClass value) {
 		super(name, value);
-
 	}
 
 	@Override
-	public void attachProperty(Resource res) {
+	public void attachAsProperty(Resource res) {
 		Model model = ModelFactory.createDefaultModel();
-		Resource s = model.createResource(value.getURI().toString());
-		s.addProperty(RDF.type, model.createResource(value.getClassURI()
-				.toString()));
-		value.makeResource(s);
+		Resource s = value.createAsBlankNode(model);
 		res.addProperty(model.createProperty(getClassURI().toString()), s);
 		res.getModel().add(model);
-
 	}
-
 }

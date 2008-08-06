@@ -9,33 +9,24 @@ package presence;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import sun.security.jca.GetInstance;
+
 /**
  * @author Filip Radulovic
  * 
  */
 public abstract class OntologyConcept {
 
-	protected String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
 	private URI uri;
 
 	/**
-	 * @return the uri
+	 * 
+	 * @return
 	 */
-	public URI getClassURI() {
-		try {
-
-			return new URI(opoNS + getOPOName());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public URI getURI() {
+		return this.uri;
 	}
-
-	protected String getOPOName() {
-		String className = this.getClass().getName();
-		return className.substring(className.lastIndexOf(".") + 1);
-	}
-
+	
 	/**
 	 * @param uri
 	 *            the uri to set
@@ -43,8 +34,33 @@ public abstract class OntologyConcept {
 	public void setURI(URI uri) {
 		this.uri = uri;
 	}
+	
+	/**
+	 * @return the uri
+	 */
+	public URI getClassURI() {
+		try {
+			return new URI(getNameSpace()+ getOPOName());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected String getNameSpace(){
+		return OnlinePresence.ONLINEPRESENCENS;
+	}
 
-	public URI getURI() {
-		return this.uri;
+	/**
+	 * 
+	 * @return
+	 */
+	protected String getOPOName() {
+		String className = this.getClass().getName();
+		return className.substring(className.lastIndexOf(".") + 1);
 	}
 }

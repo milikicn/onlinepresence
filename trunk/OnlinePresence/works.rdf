@@ -4,15 +4,23 @@
     xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
   <opo:OnlinePresence rdf:about="http://nekiUriZaOnlinePresence.com">
+    <opo:declaredBy>
+      <foaf:Agent>
+        <foaf:name>nikola milikic</foaf:name>
+        <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
+      </foaf:Agent>
+    </opo:declaredBy>
     <opo:customMessage>watching a game, having a bud</opo:customMessage>
     <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
     <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"/>
     <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"/>
+    <opo:hasPresenceComponent>
+      <opo:OnlineStatus rdf:about="http://nekiUriZaOnlineStatus.com">
+        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
+        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#FreelyContactable"/>
+        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Active"/>
+        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
+      </opo:OnlineStatus>
+    </opo:hasPresenceComponent>
   </opo:OnlinePresence>
-  <opo:OnlineStatus rdf:about="http://nekiUriZaOnlineStatus.com">
-    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
-    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#FreelyContactable"/>
-    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Active"/>
-    <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
-  </opo:OnlineStatus>
 </rdf:RDF>

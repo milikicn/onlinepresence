@@ -11,7 +11,7 @@ public class StringProperty extends PresenceProperty<String> {
 	}
 
 	@Override
-	public void attachProperty(Resource res) {
+	public void attachAsProperty(Resource res) {
 		res.addProperty(ModelFactory.createDefaultModel().createProperty(
 				getClassURI().toString()), value);
 	}

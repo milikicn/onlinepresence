@@ -36,11 +36,11 @@ public class Findability extends OnlinePresenceComponent {
 				.setURI(URI
 						.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
 	}
-	
-	 public static Findability getInstance(String name){
-	 if(name.equalsIgnoreCase("constrainedFindability"))
-	 return CONSTRAINED_FINDABILITY;
-	 else
-	 return PUBLICLY_FINDABLE;
-	 }
+
+	public static Findability getInstance(String name) {
+		if (name.equalsIgnoreCase("constrainedFindability"))
+			return CONSTRAINED_FINDABILITY;
+		else
+			return PUBLICLY_FINDABLE;
+	}
 }

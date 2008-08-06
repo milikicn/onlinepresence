@@ -65,7 +65,7 @@ public abstract class PresenceProperty<T> extends OntologyConcept {
 		return value;
 	}
 
-	public abstract void attachProperty(Resource res);
+	public abstract void attachAsProperty(Resource res);
 
 	/*
 	 * (non-Javadoc)

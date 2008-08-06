@@ -52,7 +52,6 @@ public class OPOExporter {
 	public OPOExporter(Agent agent) {
 		this(agent.getOnlinePresence());
 		onlinePresence.setAgent(agent);
-
 	}
 
 	/**
@@ -60,8 +59,6 @@ public class OPOExporter {
 	 */
 	public OPOExporter(OnlinePresence op) {
 		this.onlinePresence = op;
-
-
 	}
 
 	/**
@@ -75,32 +72,17 @@ public class OPOExporter {
 				.getClassURI().toString()));
 
 		onlinePresence.makeResource(resource);
-
 	}
-
-	// /**
-	// *
-	// * @param onlineStatus
-	// * @return
-	// */
-	// private RDFNode getResource(OnlineStatus onlineStatus){
-	// Resource res = model.createResource(onlineStatus.getURI().toString());
-	// for(OnlineStatusComponent osc : onlineStatus.getStatusComponents()){
-	// res.addProperty(model.createProperty(opoNS + "hasStatusComponent"),
-	// model.createResource(osc.getURI().toString()));
-	// }
-	// return res;
-	// }
-
-	/**
+/*
+	*//**
 	 * 
 	 * @param <T>
 	 * @param opc
 	 * @return
-	 */
+	 *//*
 	private <T extends OntologyConcept> Property returnAsProperty(T opc) {
 		return model.createProperty(opoNS + "hasPresenceComponent");
-	}
+	}*/
 
 	/**
 	 * 
@@ -134,12 +116,9 @@ public class OPOExporter {
 
 	public static void main(String[] args) {
 		Agent a = new Agent();
-		try {
-			a.setURI(new URI("http://nikola.em3.rs/foaf.rdf#nikola"));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-
+		a.addComponent("name", "nikola milikic");
+		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
+		
 		OnlineStatus os = new OnlineStatus(URI
 				.create("http://nekiUriZaOnlineStatus.com"));
 		os.addComponent(Disturbability.AVAILABLE);
@@ -158,6 +137,8 @@ public class OPOExporter {
 		op.setAvatar(URI.create("http://nikola.em3.rs/images/photo.jpg"));
 
 		op.setCustomMessage("watching a game, having a bud");
+		
+		op.setAgent(a);
 
 		// Model m = ModelFactory.createDefaultModel();
 		// Resource res = m.createResource("");
