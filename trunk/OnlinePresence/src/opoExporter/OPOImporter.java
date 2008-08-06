@@ -41,7 +41,7 @@ public class OPOImporter {
 		Model model = getModelFromRDF(fileName);
 		
 		if(model != null){
-			Agent a = null;
+			Agent a = new Agent();
 			Findability fin = null;
 			Notifiability not = null;
 			OnlineStatus os = null;
@@ -65,14 +65,14 @@ public class OPOImporter {
 				
 				String obj = stat.getObject().toString();
 				String componentValue = obj.substring(obj.lastIndexOf("#") + 1);
-				
-				System.out.println("class: " + componentClass + " value: " + componentValue);
 
-////				if(componentClass.equalsIgnoreCase("Agent")){
-////					presenceURI = stat.getSubject().toString();
-////					a = new Agent(URI.create(componentValue));
-//				}else 
-					if(componentValue.equalsIgnoreCase("ConstrainedFindability") ||
+				
+				
+				if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
+						a.addComponent("img", URI.create(componentValue.toString()));
+				}else if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/name")){
+					a.addComponent("name", componentValue);
+				}else if(componentValue.equalsIgnoreCase("ConstrainedFindability") ||
 						componentValue.equalsIgnoreCase("PubliclyFindable")){
 					presenceURI = stat.getSubject().toString();
 					fin = Findability.getInstance(componentValue);
@@ -116,12 +116,7 @@ public class OPOImporter {
 			}
 			
 			os.setPropertyList(statusList);
-			
-			
-			a = new Agent();
-			a.addComponent("name", "nikola milikic");
-			a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
-			
+									
 			op = new OnlinePresence(null, URI.create(presenceURI));
 			//op.setAgent(a);
 			op.setPropertyList(presenceList);

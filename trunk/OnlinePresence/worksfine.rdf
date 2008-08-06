@@ -6,8 +6,8 @@
   <opo:OnlinePresence rdf:about="http://nekiUriZaOnlinePresence.com">
     <opo:declaredBy>
       <foaf:Agent>
-        <foaf:name>nikola milikic</foaf:name>
         <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
+        <foaf:name>nikola milikic</foaf:name>
       </foaf:Agent>
     </opo:declaredBy>
     <opo:hasPresenceComponent>
