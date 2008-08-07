@@ -21,7 +21,7 @@ public class ObjectProperty extends PresenceProperty<PresenceClass> {
 	@Override
 	public void attachAsProperty(Resource res) {
 		Model model = ModelFactory.createDefaultModel();
-		Resource s = value.createAsBlankNode(model);
+		Resource s = value.createAsNode(model);
 		res.addProperty(model.createProperty(getClassURI().toString()), s);
 		res.getModel().add(model);
 	}

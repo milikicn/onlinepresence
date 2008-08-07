@@ -24,8 +24,6 @@ import agent.Agent;
 public class OnlinePresence extends PresenceClass {
 
 	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
-	private Agent agent;
-	private PresenceClass os;
 
 	/**
 	 * 
@@ -34,22 +32,8 @@ public class OnlinePresence extends PresenceClass {
 	 */
 	public OnlinePresence(Agent agent, URI uri) {
 		setURI(uri);
-		this.agent = agent;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public PresenceClass getOnlineStatus() {
-		return os;
-	}
-	
-	/**
-	 * @return the agent
-	 */
-	public Agent getAgent() {
-		return agent;
+		if(agent!= null)
+			setAgent(agent);
 	}
 	
 	/**
@@ -96,13 +80,4 @@ public class OnlinePresence extends PresenceClass {
 	public void setCustomMessage(String curMessage) {
 		propertyList.add(new StringProperty("customMessage", curMessage));
 	}
-
-	/**
-	 * 
-	 * @param agent
-	 */
-	public void setDeclaredByAgent(Agent agent) {
-		this.agent = agent;
-	}
-		
 }

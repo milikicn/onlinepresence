@@ -28,8 +28,12 @@ public abstract class PresenceClass extends OntologyConcept {
 	 * @param model
 	 * @return
 	 */
-	public Resource createAsBlankNode(Model model){
-		Resource s = model.createResource(getURI().toString());
+	public Resource createAsNode(Model model){
+		Resource s = null;
+		if(getURI() != null)
+			s = model.createResource(getURI().toString());
+		else
+			s = model.createResource();
 		s.addProperty(RDF.type, model.createResource(getClassURI().toString()));
 		makeResource(s);
 		

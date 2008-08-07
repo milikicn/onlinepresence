@@ -66,23 +66,15 @@ public class OPOExporter {
 	 */
 
 	public void makeModel() {
-		Resource resource = model.createResource(onlinePresence.getURI()
+		onlinePresence.createAsNode(model);
+/*		Resource resource = model.createResource(onlinePresence.getURI()
 				.toString());
 		resource.addProperty(RDF.type, model.createResource(onlinePresence
 				.getClassURI().toString()));
 
-		onlinePresence.makeResource(resource);
+		onlinePresence.makeResource(resource);*/
 	}
-/*
-	*//**
-	 * 
-	 * @param <T>
-	 * @param opc
-	 * @return
-	 *//*
-	private <T extends OntologyConcept> Property returnAsProperty(T opc) {
-		return model.createProperty(opoNS + "hasPresenceComponent");
-	}*/
+
 
 	/**
 	 * 
@@ -115,20 +107,17 @@ public class OPOExporter {
 	}
 
 	public static void main(String[] args) {
-		Agent a = new Agent();
+		Agent a = new Agent(URI.create("http://dsddsfsd.com"));
 		a.addComponent("name", "nikola milikic");
 		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
 		
-		OnlineStatus os = new OnlineStatus(URI
-				.create("http://nekiUriZaOnlineStatus.com"));
+		OnlineStatus os = new OnlineStatus(null);
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
 		os.addComponent(Visibility.INVISIBLE);
 
-		OnlinePresence op = new OnlinePresence(null, URI
-				.create("http://nekiUriZaOnlinePresence.com"));
-		op.setURI(URI.create("http://nekiUriZaOnlinePresence.com"));
+		OnlinePresence op = new OnlinePresence(null, URI.create("http://nekiURIZaOnlinePresence.com"));
 		op.setOnlineStatus(os);
 
 		op.addComponent(Findability.PUBLICLY_FINDABLE);
@@ -140,24 +129,12 @@ public class OPOExporter {
 		
 		op.setAgent(a);
 
-		// Model m = ModelFactory.createDefaultModel();
-		// Resource res = m.createResource("");
-		// res.addLiteral(RDF.type, "http://www.fdfd.com");
-		//		
-		// try {
-		// m.write(new FileOutputStream("aaa.rdf"), "RDF/XML-ABBREV");
-		// } catch (FileNotFoundException e1) {
-		//			
-		// e1.printStackTrace();
-		// }
-
 		OPOExporter oe = new OPOExporter(op);
 
 		oe.makeModel();
 		try {
 			oe.serializeToXMLRDF("works.rdf");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

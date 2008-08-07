@@ -23,8 +23,6 @@ import presence.PresenceClass;
 public class Agent extends PresenceClass {
 
 	public static String AGENTNS = "http://xmlns.com/foaf/0.1/";
-	
-	private OnlinePresence onlinePresence;
 
 	/**
 	 * Plain constructor.
@@ -38,6 +36,11 @@ public class Agent extends PresenceClass {
 	public Agent(URI uri) {
 		setURI(uri);
 	}
+	
+	public Agent(String stringURI){
+		this(URI.create(stringURI));
+	}
+	
 		
 	/* (non-Javadoc)
 	 * @see presence.OntologyConcept#getNameSpace()
@@ -46,23 +49,28 @@ public class Agent extends PresenceClass {
 	public String getNameSpace() {
 		return Agent.AGENTNS;
 	}
-
-	/**
-	 * Returns the value of the field containing current online presence of the Agent.
-	 * @return the onlinePresence
-	 */
-	public OnlinePresence getOnlinePresence() {
-		return onlinePresence;
-	}
 	
 	/**
+	 * 
+	 * @return
+	 */
+	public OnlinePresence getOnlinePresence(){
+		for (int i = 0; i < propertyList.size(); i++) {
+			if(propertyList.get(i).getValue() instanceof OnlinePresence){
+				return (OnlinePresence)propertyList.get(i).getValue();
+			}
+		}
+		return null;
+	}
+	
+/*	*//**
 	 * Sets Agent's OnlinePresence properties.
 	 * 
 	 * @param OnlinePresence
-	 */
+	 *//*
 	public void setOnlinePresence(OnlinePresence OnlinePresence) {
-		this.onlinePresence = OnlinePresence;
-	}
+		propertyList.add(new ObjectProperty)
+	}*/
 
 	/**
 	 * Adds new component to agent's property list with the name 'name' and content 'content'.
@@ -80,21 +88,5 @@ public class Agent extends PresenceClass {
 	 */
 	public void addComponent(String name, URI uri) {
 		propertyList.add(new AgentURIProperty(name, uri));
-	}
-
-	/* (non-Javadoc)
-	 * @see presence.PresenceClass#createAsBlankNode(com.hp.hpl.jena.rdf.model.Model)
-	 */
-	@Override
-	public Resource createAsBlankNode(Model model){
-		Resource s = null;
-		if(getURI() != null)
-			s = model.createResource(getURI().toString());
-		else{
-			s = model.createResource();
-			s.addProperty(RDF.type, model.createResource(getClassURI().toString()));
-			makeResource(s);
-		}
-		return s;
 	}
 }
