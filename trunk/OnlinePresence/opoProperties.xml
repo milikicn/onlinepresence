@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Active">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#ProlongedInactive">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability">presenceComponents.Findability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Visible">statusComponents.Visibility</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable">presenceComponents.Findability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Invisible">statusComponents.Visibility</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass">presenceComponents.Notifiability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited">presenceComponents.Notifiability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#FreelyContactable">statusComponents.Contactability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained">presenceComponents.Notifiability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#DoNotDistrub">statusComponents.Disturbability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Inactive">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Available">statusComponents.Disturbability</entry>
+</properties>

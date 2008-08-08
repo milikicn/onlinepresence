@@ -66,7 +66,7 @@ public class OPOImporter {
 				String obj = stat.getObject().toString();
 				String componentValue = obj.substring(obj.lastIndexOf("#") + 1);
 
-				
+				System.out.println(stat);
 				
 				if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
 						a.addComponent("img", URI.create(componentValue.toString()));

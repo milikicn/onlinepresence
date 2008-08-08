@@ -51,14 +51,12 @@ public class Activity extends OnlineStatusComponent {
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		ACTIVE
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#Active"));
+		ACTIVE.setURI(URI
+				.create("http://ggg.milanstankovic.org/opo/ns#Active"));
 		INACTIVE.setURI(URI
 				.create("http://ggg.milanstankovic.org/opo/ns#Inactive"));
-		PROLONGED_INACTIVE
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
+		PROLONGED_INACTIVE.setURI(URI
+				.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
 	}
 	
 	 public static Activity getInstance(String name){

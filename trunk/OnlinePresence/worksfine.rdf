@@ -3,7 +3,7 @@
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-  <opo:OnlinePresence rdf:about="http://nekiUriZaOnlinePresence.com">
+  <opo:OnlinePresence rdf:about="http://nekiURIZaOnlinePresence.com">
     <opo:declaredBy>
       <foaf:Agent>
         <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
