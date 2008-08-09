@@ -46,6 +46,8 @@ public abstract class PresenceClass extends OntologyConcept {
 	 * @param list
 	 */
 	public void setPropertyList(LinkedList<PresenceProperty> list){
-		propertyList = list;
+		for (PresenceProperty pp : list) {
+			propertyList.add(pp);
+		}
 	}
 }
