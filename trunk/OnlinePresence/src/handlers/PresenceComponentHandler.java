@@ -23,6 +23,5 @@ public class PresenceComponentHandler implements AbstractHandler {
 	@Override
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
 		OnlinePresenceComponent opc = null;
-		opc.getInstance(node.toString());
 	}
 }
