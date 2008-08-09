@@ -77,7 +77,7 @@ public class OPOImporter {
 				
 				System.out.println(handler.getClass().getName());
 				
-	//			handler.handleNode(oPresence, stat.getObject());
+				handler.handleNode(oPresence, stat.getObject());
 				
 				/*if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
 						a.addComponent("img", URI.create(componentValue.toString()));

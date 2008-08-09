@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="http://ggg.milanstankovic.org/opo/ns#declaredBy">handlers.AgentHandler</entry>
+<entry key="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">handlers.TypeHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#hasStatusComponent">handlers.StatusComponentHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent">handlers.PresenceComponentHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#customMessage">handlers.CustomMessageHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#avatar">handlers.AvatarHandler</entry>
+</properties>

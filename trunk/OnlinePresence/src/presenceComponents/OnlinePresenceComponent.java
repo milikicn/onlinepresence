@@ -13,5 +13,5 @@ import presence.OntologyConcept;
  * 
  */
 public abstract class OnlinePresenceComponent extends OntologyConcept {
-
+	public abstract OnlinePresenceComponent getInstance(String name);
 }

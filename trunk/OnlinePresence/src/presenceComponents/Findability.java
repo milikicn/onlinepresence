@@ -37,10 +37,16 @@ public class Findability extends OnlinePresenceComponent {
 						.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
 	}
 
-	public static Findability getInstance(String name) {
+	/* (non-Javadoc)
+	 * @see presenceComponents.OnlinePresenceComponent#getInstance(java.lang.String)
+	 */
+	@Override
+	public OnlinePresenceComponent getInstance(String name) {
 		if (name.equalsIgnoreCase("constrainedFindability"))
 			return CONSTRAINED_FINDABILITY;
 		else
 			return PUBLICLY_FINDABLE;
 	}
+
+
 }
