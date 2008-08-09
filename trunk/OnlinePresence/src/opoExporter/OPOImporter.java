@@ -42,7 +42,7 @@ public class OPOImporter {
 
 	
 	public OnlinePresence importRDF(String fileName) throws FileNotFoundException, IOException, InvalidPropertiesFormatException, InstantiationException, IllegalAccessException, ClassNotFoundException{
-		OnlinePresence op = null;
+		OnlinePresence oPresence = null;
 		Model model = null;
 		
 		Properties opoProperties = OPOImporter.readXmlProperties("opoProperties.xml");
@@ -71,14 +71,13 @@ public class OPOImporter {
 				
 				String pred = stat.getPredicate().toString();
 				
-				String obj = stat.getObject().toString();
-//				String componentValue = obj.substring(obj.lastIndexOf("#") + 1);
-
 			//	System.out.println(stat);
 				
 				AbstractHandler handler = (AbstractHandler) Class.forName(opoProperties.getProperty(pred)).newInstance();
 				
 				System.out.println(handler.getClass().getName());
+				
+				handler.handleNode(oPresence, stat.getObject());
 				
 				/*if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
 						a.addComponent("img", URI.create(componentValue.toString()));
@@ -138,7 +137,7 @@ public class OPOImporter {
 			op.setAgent(a);*/
 		}
 		
-		return op;
+		return oPresence;
 	}
 	
 	public static Properties readXmlProperties(String filePath) throws InvalidPropertiesFormatException, FileNotFoundException, IOException {
