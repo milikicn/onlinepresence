@@ -6,14 +6,19 @@
  */
 package opoExporter;
 
+import handlers.AbstractHandler;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.HashSet;
+import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.Set;
 
 import agent.Agent;
@@ -36,12 +41,16 @@ import statusComponents.*;
 public class OPOImporter {
 
 	
-	public OnlinePresence importRDF(String fileName){
+	public OnlinePresence importRDF(String fileName) throws FileNotFoundException, IOException, InvalidPropertiesFormatException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		OnlinePresence op = null;
-		Model model = getModelFromRDF(fileName);
+		Model model = null;
+		
+		Properties opoProperties = OPOImporter.readXmlProperties("opoProperties.xml");
+
+		model = getModelFromRDF(fileName);
 		
 		if(model != null){
-			Agent a = new Agent();
+/*			Agent a = new Agent();
 			Findability fin = null;
 			Notifiability not = null;
 			OnlineStatus os = null;
@@ -52,8 +61,8 @@ public class OPOImporter {
 			String presenceURI = null;
 			LinkedList<PresenceProperty> presenceList = new LinkedList<PresenceProperty>();
 			LinkedList<PresenceProperty> statusList = new LinkedList<PresenceProperty>();
-			
-			
+	*/		
+		
 			StmtIterator iter = model.listStatements();
 			
 			while(iter.hasNext()){
@@ -61,14 +70,17 @@ public class OPOImporter {
 				Statement stat = iter.nextStatement();
 				
 				String pred = stat.getPredicate().toString();
-				String componentClass = pred.substring(pred.lastIndexOf("#") + 1);
 				
 				String obj = stat.getObject().toString();
-				String componentValue = obj.substring(obj.lastIndexOf("#") + 1);
+//				String componentValue = obj.substring(obj.lastIndexOf("#") + 1);
 
-				System.out.println(stat);
+			//	System.out.println(stat);
 				
-				if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
+				AbstractHandler handler = (AbstractHandler) Class.forName(opoProperties.getProperty(pred)).newInstance();
+				
+				System.out.println(handler.getClass().getName());
+				
+				/*if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/img")){
 						a.addComponent("img", URI.create(componentValue.toString()));
 				}else if (componentClass.equalsIgnoreCase("http://xmlns.com/foaf/0.1/name")){
 					a.addComponent("name", componentValue);
@@ -112,10 +124,10 @@ public class OPOImporter {
 						componentValue.equalsIgnoreCase("Invisible")){
 					vis = Visibility.getInstance(componentValue);
 					statusList.add(new URIProperty("hasStatusComponent", vis.getURI()));
-				}
+				}*/
 			}
 			
-			os.setPropertyList(statusList);
+/*			os.setPropertyList(statusList);
 									
 			op = new OnlinePresence(null, URI.create(presenceURI));
 			//op.setAgent(a);
@@ -123,37 +135,55 @@ public class OPOImporter {
 			
 			op.setOnlineStatus(os);
 			
-			op.setAgent(a);
+			op.setAgent(a);*/
 		}
 		
 		return op;
 	}
+	
+	public static Properties readXmlProperties(String filePath) throws InvalidPropertiesFormatException, FileNotFoundException, IOException {
+		Properties prop = new Properties();
+		prop.loadFromXML(new FileInputStream(filePath));
+		return prop;
+	}
 
-	public Model getModelFromRDF(String fileName) {
+	public Model getModelFromRDF(String fileName) throws IOException, FileNotFoundException{
 		Model m = null;
-		try {
-			InputStream is = new BufferedInputStream(new FileInputStream(
-					fileName));
-			m = ModelFactory.createDefaultModel();
-			return m.read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return m;
-		}
+		
+		InputStream is = new BufferedInputStream(new FileInputStream(
+				fileName));
+		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#");
+		is.close();
+		return m;
 	}
 	
 	public static void main(String[] args) {
 		//Ove testove prebaciti u odgovarajuce JUnit metode u folderu test
 		OPOImporter oim = new OPOImporter();
 		
-		OnlinePresence o = oim.importRDF("works.rdf");
+		OnlinePresence o = null;
+		try {
+			o = oim.importRDF("works.rdf");
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (InvalidPropertiesFormatException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
 		
-		OPOExporter oex = new OPOExporter(o);
+/*		OPOExporter oex = new OPOExporter(o);
 		oex.makeModel();
 		try {
 			oex.serializeToXMLRDF("worksfine.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

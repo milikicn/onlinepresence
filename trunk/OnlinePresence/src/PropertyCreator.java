@@ -22,20 +22,12 @@ import statusComponents.*;
 public class PropertyCreator {
 	private static Properties opoProperties = new Properties();
 	static {
-		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#Visible", "statusComponents.Visibility");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#Invisible", "statusComponents.Visibility");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#Available", "statusComponents.Disturbability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub", "statusComponents.Disturbability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#FreelyContactable", "statusComponents.Contactability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability", "statusComponents.Contactability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#Active", "statusComponents.Activity");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#Inactive", "statusComponents.Activity");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive", "statusComponents.Activity");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass", "presenceComponents.Notifiability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained", "presenceComponents.Notifiability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited", "presenceComponents.Notifiability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability", "presenceComponents.Findability");
-		opoProperties.put("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable", "presenceComponents.Findability");
+		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#declaredBy", "handlers.AgentHandler");
+		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#avatar", "handlers.AvatarHandler");
+		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#customMessage", "handlers.CustomMessageHandler");
+		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent", "handlers.PresenceComponentHandler");
+		opoProperties.setProperty("http://ggg.milanstankovic.org/opo/ns#hasStatusComponent", "handlers.StatusComponentHandler");
+		opoProperties.setProperty("http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "handlers.TypeHandler");
 	}
 	
 	public static void createPropertyFile(String fileName) throws IOException{
@@ -46,7 +38,6 @@ public class PropertyCreator {
 		try {
 			PropertyCreator.createPropertyFile("opoProperties.xml");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

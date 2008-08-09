@@ -6,10 +6,14 @@
 */
 package handlers;
 
+import com.hp.hpl.jena.rdf.model.RDFNode;
+
+import presence.OnlinePresence;
+
 /**
  * @author Nikola Milikic
  *
  */
 public interface AbstractHandler {
-
+	public void handleNode(OnlinePresence oPresence, RDFNode node);
 }
