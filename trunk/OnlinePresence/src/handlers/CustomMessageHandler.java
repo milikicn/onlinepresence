@@ -20,9 +20,8 @@ public class CustomMessageHandler implements AbstractHandler{
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence presence, RDFNode node) {
-		// TODO Auto-generated method stub
-		
+	public void handleNode(OnlinePresence oPresence, RDFNode node) {
+		oPresence.setCustomMessage(node.toString());
 	}
 
 }

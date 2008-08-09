@@ -36,6 +36,10 @@ public class OnlinePresence extends PresenceClass {
 			setAgent(agent);
 	}
 	
+	//ovo sam dodao kako bi se u klasi OPOImporter mogao instancirati prazan objekat 
+	//ove klase
+	public OnlinePresence(){}
+	
 	/**
 	 * 
 	 * @param agent
@@ -79,5 +83,23 @@ public class OnlinePresence extends PresenceClass {
 	 */
 	public void setCustomMessage(String curMessage) {
 		propertyList.add(new StringProperty("customMessage", curMessage));
+	}
+	
+	//u klasi koja poziva ovu metodu treba obraditi sta se desava ako se vrati null     N.
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public PresenceProperty getComponent(String name){
+		PresenceProperty pp = null;
+		for (int i = 0; i < propertyList.size(); i++) {
+			PresenceProperty temp = propertyList.get(i);
+			if(temp.getName().equals(name)){
+				pp = temp;
+				break;
+			}
+		}
+		return pp;
 	}
 }

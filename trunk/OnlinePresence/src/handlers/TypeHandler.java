@@ -20,7 +20,7 @@ public class TypeHandler implements AbstractHandler {
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence presence, RDFNode node) {
+	public void handleNode(OnlinePresence oPresence, RDFNode node) {
 		// TODO Auto-generated method stub
 		
 	}

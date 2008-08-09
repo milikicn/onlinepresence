@@ -8,6 +8,8 @@ package handlers;
 
 import presence.OnlinePresence;
 
+import agent.Agent;
+
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
 /**
@@ -20,9 +22,7 @@ public class AgentHandler implements AbstractHandler {
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence presence, RDFNode node) {
-		// TODO Auto-generated method stub
-		
+	public void handleNode(OnlinePresence oPresence, RDFNode node) {
+		oPresence.setAgent(new Agent());
 	}
-
 }
