@@ -6,8 +6,6 @@
  */
 package statusComponents;
 
-import java.net.URI;
-
 /**
  * @author Nikola Milikic
  * 
@@ -31,11 +29,9 @@ public class Contactability extends OnlineStatusComponent {
 	 */
 	static {
 		FREELY_CONTACTABLE
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#FreelyContactable"));
+				.setURI("http://ggg.milanstankovic.org/opo/ns#FreelyContactable");
 		CONSTRAINED_CONTACTABILITY
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+				.setURI("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability");
 	}
 	
 	 public OnlineStatusComponent getStaticInstance(String name){

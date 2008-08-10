@@ -1,12 +1,6 @@
-import java.beans.Visibility;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import presenceComponents.*;
-
-import statusComponents.*;
-
 
 /**
  * @author: Nikola Milikic

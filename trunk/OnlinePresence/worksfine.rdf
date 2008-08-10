@@ -6,20 +6,18 @@
   <opo:OnlinePresence>
     <opo:customMessage>watching a game, having a bud</opo:customMessage>
     <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
-    <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"/>
-    <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"/>
     <opo:declaredBy>
-      <foaf:Agent>
+      <foaf:Agent rdf:about="http://nekiURIZaAgenta.com">
         <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
         <foaf:name>nikola milikic</foaf:name>
       </foaf:Agent>
     </opo:declaredBy>
     <opo:hasPresenceComponent>
       <opo:OnlineStatus>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Active"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#FreelyContactable"/>
-        <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
+        <opo:hasStatusComponent rdf:resource="#Invisible"/>
+        <opo:hasStatusComponent rdf:resource="#Active"/>
+        <opo:hasStatusComponent rdf:resource="#FreelyContactable"/>
+        <opo:hasStatusComponent rdf:resource="#Available"/>
       </opo:OnlineStatus>
     </opo:hasPresenceComponent>
   </opo:OnlinePresence>

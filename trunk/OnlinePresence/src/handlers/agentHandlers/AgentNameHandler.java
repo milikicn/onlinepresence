@@ -6,13 +6,10 @@
 */
 package handlers.agentHandlers;
 
-import java.net.URI;
-
 import presence.OnlinePresence;
 
 import agent.Agent;
 import agent.AgentStringProperty;
-import agent.AgentURIProperty;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 

@@ -6,8 +6,6 @@
  */
 package presenceComponents;
 
-import java.net.URI;
-
 /**
  * @author Nikola Milikic
  * 
@@ -30,11 +28,9 @@ public class Findability extends OnlinePresenceComponent {
 	 */
 	static {
 		CONSTRAINED_FINDABILITY
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
+				.setURI("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability");
 		PUBLICLY_FINDABLE
-				.setURI(URI
-						.create("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"));
+				.setURI("http://ggg.milanstankovic.org/opo/ns#PubliclyFindable");
 	}
 
 	/* (non-Javadoc)

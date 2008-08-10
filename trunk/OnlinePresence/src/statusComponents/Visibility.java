@@ -6,8 +6,6 @@
  */
 package statusComponents;
 
-import java.net.URI;
-
 /**
  * @author Nikola Milikic
  * 
@@ -28,10 +26,8 @@ public class Visibility extends OnlineStatusComponent {
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		VISIBLE.setURI(URI
-				.create("http://ggg.milanstankovic.org/opo/ns#Visible"));
-		INVISIBLE.setURI(URI
-				.create("http://ggg.milanstankovic.org/opo/ns#Invisible"));
+		VISIBLE.setURI("http://ggg.milanstankovic.org/opo/ns#Visible");
+		INVISIBLE.setURI("http://ggg.milanstankovic.org/opo/ns#Invisible");
 	}
 	
 	 public OnlineStatusComponent getStaticInstance(String name){

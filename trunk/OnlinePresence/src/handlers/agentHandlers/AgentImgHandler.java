@@ -9,7 +9,6 @@ package handlers.agentHandlers;
 import java.net.URI;
 
 import presence.OnlinePresence;
-import presence.PresenceClass;
 
 import agent.Agent;
 import agent.AgentURIProperty;

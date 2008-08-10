@@ -77,7 +77,7 @@ public class OPOExporter {
 	 */
 	public void serializeToXMLRDF(String rName) throws FileNotFoundException {
 		FileOutputStream fout = new FileOutputStream(rName);
-		model.write(fout, "RDF/XML-ABBREV");
+		model.write(fout, "RDF/XML-ABBREV", "http://ggg.milanstankovic.org/opo/ns#");
 		try {
 			fout.close();
 		} catch (IOException e) {
@@ -90,9 +90,9 @@ public class OPOExporter {
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToRDFTurtle(String rName) throws FileNotFoundException {
+	public void serializeToRDFNTripple(String rName) throws FileNotFoundException {
 		FileOutputStream fout = new FileOutputStream(rName);
-		model.write(fout, "N-TRIPLE");
+		model.write(fout, "N-TRIPLE", "http://ggg.milanstankovic.org/opo/ns#");
 		try {
 			fout.close();
 		} catch (IOException e) {
@@ -101,11 +101,11 @@ public class OPOExporter {
 	}
 
 	public static void main(String[] args) {
-		Agent a = new Agent(URI.create("http://dsddsfsd.com"));
+		Agent a = new Agent("http://nekiURIZaAgenta.com");
 		a.addComponent("name", "nikola milikic");
 		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
 		
-		OnlineStatus os = new OnlineStatus(null);
+		OnlineStatus os = new OnlineStatus(URI.create("http://nekiURIzaOnlineStatus.com"));
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
@@ -127,7 +127,7 @@ public class OPOExporter {
 
 		oe.makeModel();
 		try {
-			oe.serializeToXMLRDF("works.rdf");
+			oe.serializeToRDFNTripple("works.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

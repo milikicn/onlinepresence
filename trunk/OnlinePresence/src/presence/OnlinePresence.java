@@ -7,14 +7,10 @@
 package presence;
 
 import java.net.URI;
-import java.util.LinkedList;
 
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
-import presenceProperties.ObjectProperty;
-import presenceProperties.PresenceProperty;
-import presenceProperties.StringProperty;
-import presenceProperties.URIProperty;
+import presenceProperties.*;
 import statusComponents.OnlineStatusComponent;
 import agent.Agent;
 
@@ -32,6 +28,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @param uri
 	 */
 	public OnlinePresence(Agent agent, URI uri) {
+		this();
 		setURI(uri);
 		if(agent!= null)
 			setAgent(agent);
@@ -39,7 +36,9 @@ public class OnlinePresence extends PresenceClass {
 	
 	//ovo sam dodao kako bi se u klasi OPOImporter mogao instancirati prazan objekat 
 	//ove klase
-	public OnlinePresence(){}
+	public OnlinePresence(){
+		
+	}
 	
 	/**
 	 * 

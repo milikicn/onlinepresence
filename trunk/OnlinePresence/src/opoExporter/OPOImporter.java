@@ -73,7 +73,7 @@ public class OPOImporter {
 		
 		InputStream is = new BufferedInputStream(new FileInputStream(
 				fileName));
-		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#");
+		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#", "N-TRIPLE");
 		is.close();
 		return m;
 	}

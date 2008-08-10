@@ -6,8 +6,6 @@
  */
 package statusComponents;
 
-import java.net.URI;
-
 /**
  * @author Nikola Milikic
  * 
@@ -29,10 +27,8 @@ public class Disturbability extends OnlineStatusComponent {
 	 * Sets URIs for static instances of the class.
 	 */
 	static {
-		AVAILABLE.setURI(URI
-				.create("http://ggg.milanstankovic.org/opo/ns#Available"));
-		DO_NOT_DISTURB.setURI(URI
-				.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
+		AVAILABLE.setURI("http://ggg.milanstankovic.org/opo/ns#Available");
+		DO_NOT_DISTURB.setURI("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub");
 	}
 	
 	 public OnlineStatusComponent getStaticInstance(String name){

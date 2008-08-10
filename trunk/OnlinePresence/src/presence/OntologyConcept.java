@@ -26,6 +26,14 @@ public abstract class OntologyConcept {
 	}
 	
 	/**
+	 * @param stringURI
+	 *            the uri to set
+	 */
+	public void setURI(String stringURI) {
+		setURI(URI.create(stringURI));
+	}
+	
+	/**
 	 * @param uri
 	 *            the uri to set
 	 */
