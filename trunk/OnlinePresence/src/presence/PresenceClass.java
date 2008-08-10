@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import presenceProperties.PresenceProperty;
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 @SuppressWarnings("unchecked")
@@ -13,6 +12,8 @@ public abstract class PresenceClass extends OntologyConcept {
 
 	protected LinkedList<PresenceProperty> propertyList = new LinkedList<PresenceProperty>();
 
+	public abstract <T> void addComponent(T component);
+	
 	/**
 	 * 
 	 * @param resource

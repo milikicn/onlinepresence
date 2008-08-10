@@ -10,7 +10,6 @@ import java.net.URI;
 import java.util.LinkedList;
 
 import presence.PresenceClass;
-import presenceProperties.PresenceProperty;
 import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
 import statusComponents.OnlineStatusComponent;
@@ -43,9 +42,10 @@ public class OnlineStatus extends PresenceClass {
 	 * 
 	 * @param onlineStatusComponent
 	 */
-	public void addComponent(OnlineStatusComponent onlineStatusComponent) {
+	public <T> void addComponent(T onlineStatusComponent) {
+		OnlineStatusComponent osc = (OnlineStatusComponent) onlineStatusComponent;
 		propertyList.add(new URIProperty("hasStatusComponent",
-				onlineStatusComponent.getURI()));
+				osc.getURI()));
 	}
 
 	/**

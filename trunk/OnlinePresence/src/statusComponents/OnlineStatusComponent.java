@@ -15,4 +15,7 @@ import presence.OntologyConcept;
  */
 public abstract class OnlineStatusComponent extends OntologyConcept {
 
+	public abstract OnlineStatusComponent getStaticInstance(String name);		
 }
+
+

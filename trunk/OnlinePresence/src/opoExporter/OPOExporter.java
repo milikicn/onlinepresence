@@ -10,11 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import presence.OnlinePresence;
-import presence.OntologyConcept;
-import presence.PresenceClass;
 import presenceComponents.Findability;
 import presenceComponents.Notifiability;
 import presenceComponents.OnlineStatus;
@@ -26,9 +23,6 @@ import agent.Agent;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * @author Filip Radulovic
@@ -133,7 +127,7 @@ public class OPOExporter {
 
 		oe.makeModel();
 		try {
-			oe.serializeToXMLRDF("works.rdf");
+			oe.serializeToRDFTurtle("works.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

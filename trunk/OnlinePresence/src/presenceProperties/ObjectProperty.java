@@ -5,7 +5,6 @@ import presence.PresenceClass;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
 
 public class ObjectProperty extends PresenceProperty<PresenceClass> {
 

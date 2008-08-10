@@ -38,7 +38,7 @@ public class Contactability extends OnlineStatusComponent {
 						.create("http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability"));
 	}
 	
-	 public static Contactability getInstance(String name){
+	 public OnlineStatusComponent getStaticInstance(String name){
 	 if(name.equalsIgnoreCase("freelyContactable"))
 	 return FREELY_CONTACTABLE;
 	 else

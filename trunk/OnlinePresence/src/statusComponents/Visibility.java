@@ -34,10 +34,12 @@ public class Visibility extends OnlineStatusComponent {
 				.create("http://ggg.milanstankovic.org/opo/ns#Invisible"));
 	}
 	
-	 public static Visibility getInstance(String name){
+	 public OnlineStatusComponent getStaticInstance(String name){
 	 if(name.equalsIgnoreCase("Visible"))
 	 return VISIBLE;
 	 else
 	 return INVISIBLE;
 	 }
+	 
+	
 }

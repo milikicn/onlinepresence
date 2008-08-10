@@ -41,7 +41,7 @@ public class Findability extends OnlinePresenceComponent {
 	 * @see presenceComponents.OnlinePresenceComponent#getInstance(java.lang.String)
 	 */
 	@Override
-	public OnlinePresenceComponent getInstance(String name) {
+	public OnlinePresenceComponent getStaticInstance(String name) {
 		if (name.equalsIgnoreCase("constrainedFindability"))
 			return CONSTRAINED_FINDABILITY;
 		else

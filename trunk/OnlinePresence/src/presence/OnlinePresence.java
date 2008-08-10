@@ -15,6 +15,7 @@ import presenceProperties.ObjectProperty;
 import presenceProperties.PresenceProperty;
 import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
+import statusComponents.OnlineStatusComponent;
 import agent.Agent;
 
 /**
@@ -62,9 +63,10 @@ public class OnlinePresence extends PresenceClass {
 	 * 
 	 * @param onlineStatusComponent
 	 */
-	public void addComponent(OnlinePresenceComponent onlinePresenceComponent) {
+	public <T> void addComponent(T onlinePresenceComponent) {
+		OnlinePresenceComponent opc = (OnlinePresenceComponent) onlinePresenceComponent;
 		propertyList.add(new URIProperty("hasPresenceComponent",
-				onlinePresenceComponent.getURI()));
+				opc.getURI()));
 	}
 
 	/**
@@ -91,6 +93,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @param name
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public PresenceProperty getComponent(String name){
 		PresenceProperty pp = null;
 		for (int i = 0; i < propertyList.size(); i++) {
@@ -101,5 +104,14 @@ public class OnlinePresence extends PresenceClass {
 			}
 		}
 		return pp;
+	}
+	
+	//treba baciti izuzetak ako nista ne uradi ili upisati u log (ako cemo to da ubacujemo)
+	@SuppressWarnings("unchecked")
+	public void addComponentToOnlineStatus(OnlineStatusComponent osc){
+		PresenceProperty<ObjectProperty> os = getComponent("onlineStatus");
+		if(os != null){
+			os.getValue()
+		}
 	}
 }

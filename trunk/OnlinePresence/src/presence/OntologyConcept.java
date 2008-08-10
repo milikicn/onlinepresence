@@ -9,8 +9,6 @@ package presence;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import sun.security.jca.GetInstance;
-
 /**
  * @author Filip Radulovic
  * 

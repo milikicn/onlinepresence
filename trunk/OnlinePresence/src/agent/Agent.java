@@ -1,19 +1,15 @@
 /**
  * @author: Filip Radulovic
  * e-mail: filiprd@gmail.com
- * @date: Jul 26, 2008
+ * @date: July 26, 2008
  * @version: 0.1
  */
 package agent;
 
 import java.net.URI;
-
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
-
 import presence.OnlinePresence;
 import presence.PresenceClass;
+import presenceProperties.PresenceProperty;
 
 
 /**
@@ -30,7 +26,7 @@ public class Agent extends PresenceClass {
 	public Agent(){}
 	
 	/**
-	 * Constructor tha recives URI of the agent.
+	 * Constructor that receives URI of the agent.
 	 * @param uri
 	 */
 	public Agent(URI uri) {
@@ -87,6 +83,13 @@ public class Agent extends PresenceClass {
 	 * @param uri
 	 */
 	public void addComponent(String name, URI uri) {
-		propertyList.add(new AgentURIProperty(name, uri));
+		addComponent(new AgentURIProperty(name, uri));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> void addComponent(T component) {
+		PresenceProperty pp = (PresenceProperty) component;
+		propertyList.add(pp);
 	}
 }

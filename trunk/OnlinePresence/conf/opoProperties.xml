@@ -8,4 +8,20 @@
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent">handlers.PresenceComponentHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#customMessage">handlers.CustomMessageHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#avatar">handlers.AvatarHandler</entry>
+
+<entry key="http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability">presenceComponents.Findability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable">presenceComponents.Findability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited">presenceComponents.Notifiability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass">presenceComponents.Notifiability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained">presenceComponents.Notifiability</entry>
+
+<entry key="http://ggg.milanstankovic.org/opo/ns#Active">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Inactive">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#ProlongedInactive">statusComponents.Activity</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#FreelyContactable">statusComponents.Contactability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability">statusComponents.Contactability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Available">statusComponents.Disturbability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#DoNotDistrub">statusComponents.Disturbability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Visible">statusComponents.Visibility</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#Invisible">statusComponents.Visibility</entry>
 </properties>

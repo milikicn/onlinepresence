@@ -59,7 +59,7 @@ public class Activity extends OnlineStatusComponent {
 				.create("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive"));
 	}
 	
-	 public static Activity getInstance(String name){
+	 public OnlineStatusComponent getStaticInstance(String name){
 	 if(name.equalsIgnoreCase("active"))
 	 return ACTIVE;
 	 else if(name.equalsIgnoreCase("inactive"))

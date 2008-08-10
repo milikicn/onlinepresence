@@ -46,7 +46,7 @@ public class Notifiability extends OnlinePresenceComponent {
 	 * @see presenceComponents.OnlinePresenceComponent#getInstance(java.lang.String)
 	 */
 	@Override
-	public OnlinePresenceComponent getInstance(String name) {
+	public OnlinePresenceComponent getStaticInstance(String name) {
 		if (name.equalsIgnoreCase("allNotificationsPass"))
 			return ALL_NOTIFICATIONS_PASS;
 		else if (name.equalsIgnoreCase("notificationsConstrained"))

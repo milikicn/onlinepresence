@@ -35,7 +35,7 @@ public class Disturbability extends OnlineStatusComponent {
 				.create("http://ggg.milanstankovic.org/opo/ns#DoNotDistrub"));
 	}
 	
-	 public static Disturbability getInstance(String name){
+	 public OnlineStatusComponent getStaticInstance(String name){
 	 if(name.equalsIgnoreCase("Available"))
 	 return AVAILABLE;
 	 else
