@@ -1,28 +1,37 @@
 /**
 * @author: Nikola Milikic
 * e-mail: nikola.milikic@gmail.com
-* @date: Aug 8, 2008
+* @date: Aug 10, 2008
 * @version: 0.1
 */
-package handlers;
+package handlers.agentHandlers;
+
+import java.net.URI;
 
 import presence.OnlinePresence;
+import presence.PresenceClass;
+
+import agent.Agent;
+import agent.AgentURIProperty;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+
+import handlers.AbstractHandler;
 
 /**
  * @author Nikola Milikic
  *
  */
-public class OnlinePresenceHandler implements AbstractHandler {
+public class AgentImgHandler implements AbstractHandler {
 
 	/* (non-Javadoc)
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		// TODO Auto-generated method stub
+		Agent agent = oPresence.getAgent();
 		
+		agent.addComponent(new AgentURIProperty("img", URI.create(node.toString())));
 	}
 
 }

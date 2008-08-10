@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
 import presence.OnlinePresence;
@@ -28,7 +29,8 @@ public class PresenceComponentHandler implements AbstractHandler {
 	 */
 	@Override
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		oPresence.addComponent(getComponent(node));
+		if(!node.isAnon())
+			oPresence.addComponent(getComponent(node));
 	}
 
 	private OnlinePresenceComponent getComponent(RDFNode node) {

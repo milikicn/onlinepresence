@@ -48,11 +48,7 @@ public class OPOImporter {
 				Statement stat = iter.nextStatement();
 				String pred = stat.getPredicate().toString();
 				
-//				String clas = pred.substring(pred.lastIndexOf("#") + 1);
-				
-				if((stat.getObject().toString().charAt(0))=='-') continue;
-				
-//				if(clas.equalsIgnoreCase("hasStatusComponent") || clas.equalsIgnoreCase("hasPresenceComponent")){
+				System.out.println(pred);
 				
 				AbstractHandler handler = (AbstractHandler) Class.forName(opoProperties.getProperty(pred)).newInstance();
 					

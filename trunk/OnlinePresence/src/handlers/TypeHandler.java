@@ -21,7 +21,6 @@ public class TypeHandler implements AbstractHandler {
 	 */
 	@Override
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		// TODO Auto-generated method stub
 		
 	}
 

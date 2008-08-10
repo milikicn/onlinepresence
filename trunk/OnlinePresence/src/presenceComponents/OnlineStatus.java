@@ -28,6 +28,11 @@ public class OnlineStatus extends PresenceClass {
 	}
 	
 	/**
+	 * 
+	 */
+	public OnlineStatus(){}
+	
+	/**
 	 * A setter method for statusName
 	 * 
 	 * @param statusName

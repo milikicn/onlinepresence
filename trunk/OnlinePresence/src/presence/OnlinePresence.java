@@ -92,26 +92,51 @@ public class OnlinePresence extends PresenceClass {
 	 * 
 	 * @param name
 	 * @return
+	 * @throws ClassNotFoundException 
 	 */
 	@SuppressWarnings("unchecked")
-	public PresenceProperty getComponent(String name){
-		PresenceProperty pp = null;
+	public PresenceClass getObjectProperty(String className){
+		PresenceClass pc = null;
+		
 		for (int i = 0; i < propertyList.size(); i++) {
 			PresenceProperty temp = propertyList.get(i);
-			if(temp.getName().equals(name)){
-				pp = temp;
-				break;
+			
+			if( (temp instanceof ObjectProperty)){
+				ObjectProperty op = (ObjectProperty) temp;
+				
+				if(op.getValue().getClass().getName().endsWith(className)){
+					pc = op.getValue();
+					break;
+				}
 			}
 		}
-		return pp;
+		return pc;
 	}
 	
 	//treba baciti izuzetak ako nista ne uradi ili upisati u log (ako cemo to da ubacujemo)
-	@SuppressWarnings("unchecked")
-	public void addComponentToOnlineStatus(OnlineStatusComponent osc){
-		PresenceProperty<ObjectProperty> os = getComponent("onlineStatus");
-		if(os != null){
-			os.getValue()
+	public void addComponentToOnlineStatus(OnlineStatusComponent onlineStatusComponent){
+		OnlineStatus os;
+
+		os = (OnlineStatus) getObjectProperty("OnlineStatus");
+		
+		if(os == null){
+			os = new OnlineStatus();
+			setOnlineStatus(os);
 		}
+		
+		os.addComponent(onlineStatusComponent);
+	}
+	
+	public Agent getAgent(){
+		PresenceClass temp = getObjectProperty("Agent");
+		Agent agent = null;
+		
+		if(temp == null){
+			agent = new Agent();
+			setAgent(agent);
+		}else
+			agent = (Agent) temp;
+		
+		return agent;
 	}
 }

@@ -127,7 +127,7 @@ public class OPOExporter {
 
 		oe.makeModel();
 		try {
-			oe.serializeToRDFTurtle("works.rdf");
+			oe.serializeToXMLRDF("works.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

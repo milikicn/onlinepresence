@@ -1,28 +1,29 @@
 /**
 * @author: Nikola Milikic
 * e-mail: nikola.milikic@gmail.com
-* @date: Aug 8, 2008
+* @date: Aug 10, 2008
 * @version: 0.1
 */
-package handlers;
+package handlers.agentHandlers;
 
 import presence.OnlinePresence;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
+import handlers.AbstractHandler;
+
 /**
  * @author Nikola Milikic
  *
  */
-public class OnlineStatusHandler implements AbstractHandler {
+public class AgentHandler implements AbstractHandler {
 
 	/* (non-Javadoc)
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		// TODO Auto-generated method stub
-		
+	public void handleNode(OnlinePresence oPesence, RDFNode node) {
+		oPesence.getAgent();
 	}
 
 }
