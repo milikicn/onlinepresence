@@ -6,7 +6,14 @@
 */
 package handlers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.InvalidPropertiesFormatException;
+import java.util.Properties;
+
 import presence.OnlinePresence;
+import presence.PresenceClass;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
@@ -21,7 +28,13 @@ public class TypeHandler implements AbstractHandler {
 	 */
 	@Override
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
+		String uri = node.toString();
+		String className = uri.substring(uri.indexOf("#") + 1);
 		
+		if(className == "OnlinePresence")
+			oPresence.setURI(uri);
+		else
+			oPresence.getObjectProperty(className).setURI(uri);
 	}
 
 }

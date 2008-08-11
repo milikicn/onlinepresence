@@ -7,9 +7,10 @@
 package presence;
 
 import java.net.URI;
+import java.util.Calendar;
 
-import presenceComponents.OnlinePresenceComponent;
-import presenceComponents.OnlineStatus;
+import presence.presenceComponents.OnlinePresenceComponent;
+import presence.presenceComponents.OnlineStatus;
 import presenceProperties.*;
 import statusComponents.OnlineStatusComponent;
 import agent.Agent;
@@ -35,7 +36,7 @@ public class OnlinePresence extends PresenceClass {
 	}
 	
 	public OnlinePresence(){
-		
+		//addComponent(new StringProperty("startTime", String.valueOf(Calendar.getInstance().getTimeInMillis())));
 	}
 	
 	/**

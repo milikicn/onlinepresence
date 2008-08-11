@@ -15,7 +15,7 @@ import java.util.Properties;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
 import presence.OnlinePresence;
-import presenceComponents.OnlinePresenceComponent;
+import presence.presenceComponents.OnlinePresenceComponent;
 
 /**
  * @author Nikola Milikic

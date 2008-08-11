@@ -4,7 +4,7 @@
  * @date: Jul 24, 2008
  * @version: 0.1
  */
-package presenceComponents;
+package presence.presenceComponents;
 
 import java.net.URI;
 import java.util.LinkedList;

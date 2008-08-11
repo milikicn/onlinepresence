@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URI;
 
 import presence.OnlinePresence;
-import presenceComponents.Findability;
-import presenceComponents.Notifiability;
-import presenceComponents.OnlineStatus;
+import presence.presenceComponents.Findability;
+import presence.presenceComponents.Notifiability;
+import presence.presenceComponents.OnlineStatus;
 import statusComponents.Activity;
 import statusComponents.Contactability;
 import statusComponents.Disturbability;
