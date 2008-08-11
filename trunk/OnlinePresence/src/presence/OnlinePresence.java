@@ -22,7 +22,10 @@ import agent.Agent;
 public class OnlinePresence extends PresenceClass {
 
 	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
-
+	{
+		setStartTime(Calendar.getInstance().getTime().toString());
+	}
+	
 	/**
 	 * 
 	 * @param agent
