@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URI;
 
 import presence.OnlinePresence;
-import presence.presenceComponents.Findability;
-import presence.presenceComponents.Notifiability;
-import presence.presenceComponents.OnlineStatus;
+import presenceComponents.Findability;
+import presenceComponents.Notifiability;
+import presenceComponents.OnlineStatus;
 import statusComponents.Activity;
 import statusComponents.Contactability;
 import statusComponents.Disturbability;
@@ -99,7 +99,7 @@ public class OPOExporter {
 		a.addComponent("name", "nikola milikic");
 		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
 		
-		OnlineStatus os = new OnlineStatus(URI.create("http://nekiURIzaOnlineStatus.com"));
+		OnlineStatus os = new OnlineStatus();
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
@@ -121,7 +121,7 @@ public class OPOExporter {
 
 		oe.makeModel();
 		try {
-			oe.serializeToXMLRDF("works.rdf");
+			oe.serializeToRDFNTripple("works.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

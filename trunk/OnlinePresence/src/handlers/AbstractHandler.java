@@ -7,6 +7,7 @@
 package handlers;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 import presence.OnlinePresence;
 
@@ -15,5 +16,5 @@ import presence.OnlinePresence;
  *
  */
 public interface AbstractHandler {
-	public void handleNode(OnlinePresence oPresence, RDFNode node);
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object);
 }

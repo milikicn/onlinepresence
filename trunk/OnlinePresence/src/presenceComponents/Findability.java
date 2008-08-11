@@ -4,7 +4,8 @@
  * @date: Jul 24, 2008
  * @version: 0.1
  */
-package presence.presenceComponents;
+package presenceComponents;
+
 
 
 /**

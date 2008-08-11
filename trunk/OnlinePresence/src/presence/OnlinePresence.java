@@ -9,8 +9,8 @@ package presence;
 import java.net.URI;
 import java.util.Calendar;
 
-import presence.presenceComponents.OnlinePresenceComponent;
-import presence.presenceComponents.OnlineStatus;
+import presenceComponents.OnlinePresenceComponent;
+import presenceComponents.OnlineStatus;
 import presenceProperties.*;
 import statusComponents.OnlineStatusComponent;
 import agent.Agent;
@@ -137,4 +137,13 @@ public class OnlinePresence extends PresenceClass {
 		
 		return agent;
 	}
+	
+//	public PresenceClass getOrCreateObjectProperty(String className){
+//		PresenceClass presenceComponent = getObjectProperty(className);
+//		
+//		if(presenceComponent == null)
+//			addProperty(new ObjectProperty(null, null));
+//		
+//		return presenceComponent;
+//	}
 }

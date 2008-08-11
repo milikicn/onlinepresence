@@ -12,6 +12,7 @@ import presenceProperties.StringProperty;
 import agent.Agent;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 import handlers.AbstractHandler;
 
@@ -21,10 +22,10 @@ import handlers.AbstractHandler;
  */
 public class AgentNameHandler implements AbstractHandler {
 
-	public void handleNode(OnlinePresence oPresence, RDFNode node) {
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
 		Agent agent = oPresence.getAgent();
 		
-		agent.addComponent(new StringProperty("name", node.toString()));
+		agent.addComponent(new StringProperty("name", object.toString()));
 	}
 
 }

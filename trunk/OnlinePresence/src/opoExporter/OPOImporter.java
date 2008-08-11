@@ -53,7 +53,7 @@ public class OPOImporter {
 					
 				System.out.println(handler.getClass().getName());
 					
-				handler.handleNode(op, stat.getObject());
+				handler.handleNode(op, stat.getSubject(), stat.getObject());
 			}
 		}
 		

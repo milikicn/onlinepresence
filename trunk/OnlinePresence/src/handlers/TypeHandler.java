@@ -6,16 +6,10 @@
 */
 package handlers;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.InvalidPropertiesFormatException;
-import java.util.Properties;
-
 import presence.OnlinePresence;
-import presence.PresenceClass;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
  * @author Nikola Milikic
@@ -27,14 +21,23 @@ public class TypeHandler implements AbstractHandler {
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		String uri = node.toString();
-		String className = uri.substring(uri.indexOf("#") + 1);
-		
-		if(className == "OnlinePresence")
-			oPresence.setURI(uri);
-		else
-			oPresence.getObjectProperty(className).setURI(uri);
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
+		if(!subject.isAnon()){
+			String objectString = object.toString();
+			String className = null;
+			
+			if(objectString.contains("#"))
+				className = objectString.substring(objectString.indexOf("#") + 1);
+			else
+				className = objectString.substring(objectString.lastIndexOf("/") + 1);
+			
+			System.out.println(subject.toString());
+			
+			if(className.equals("OnlinePresence"))
+				oPresence.setURI(subject.toString());
+			else
+				oPresence.getObjectProperty(className).setURI(subject.toString());
+		}
 	}
 
 }

@@ -9,6 +9,7 @@ package handlers;
 import presence.OnlinePresence;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
  * @author Nikola Milikic
@@ -20,8 +21,8 @@ public class CustomMessageHandler implements AbstractHandler{
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		oPresence.setCustomMessage(node.toString());
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
+		oPresence.setCustomMessage(object.toString());
 	}
 
 }

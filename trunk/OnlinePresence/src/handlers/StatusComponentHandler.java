@@ -16,6 +16,7 @@ import presence.OnlinePresence;
 import statusComponents.OnlineStatusComponent;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
  * @author Nikola Milikic
@@ -27,8 +28,8 @@ public class StatusComponentHandler implements AbstractHandler{
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence oPresence, RDFNode node) {
-		oPresence.addComponentToOnlineStatus(getComponent(node));
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
+		oPresence.addComponentToOnlineStatus(getComponent(object));
 	}
 
 	private OnlineStatusComponent getComponent(RDFNode node) {

@@ -11,6 +11,7 @@ import presence.OnlinePresence;
 import agent.Agent;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 import handlers.AbstractHandler;
 
@@ -24,11 +25,11 @@ public class AgentHandler implements AbstractHandler {
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
 	@Override
-	public void handleNode(OnlinePresence oPesence, RDFNode node) {
-		Agent agent = oPesence.getAgent();
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
+		Agent agent = oPresence.getAgent();
 		
-		if (!node.isAnon()) {
-			agent.setURI(node.toString());
+		if (!object.isAnon()) {
+			agent.setURI(object.toString());
 		}
 	}
 
