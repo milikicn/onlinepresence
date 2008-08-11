@@ -33,6 +33,7 @@ public class OnlinePresence extends PresenceClass {
 		setURI(uri);
 		if(agent!= null)
 			setAgent(agent);
+		addProperty(new StringProperty("startTime", Calendar.getInstance().getTime().toString()));
 	}
 	
 	public OnlinePresence(){
@@ -83,6 +84,14 @@ public class OnlinePresence extends PresenceClass {
 	 */
 	public void setCustomMessage(String curMessage) {
 		addProperty(new StringProperty("customMessage", curMessage));
+	}
+	
+	/**
+	 * 
+	 * @param startTime
+	 */
+	public void setStartTime(String startTime) {
+		addProperty(new StringProperty("startTime", startTime));
 	}
 	
 	//u klasi koja poziva ovu metodu treba obraditi sta se desava ako se vrati null     N.
