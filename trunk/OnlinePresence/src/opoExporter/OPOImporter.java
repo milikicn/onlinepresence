@@ -36,7 +36,6 @@ public class OPOImporter {
 		Model model = null;
 		
 		Properties opoProperties = OPOImporter.readXmlProperties("conf/opoProperties.xml");
-
 		model = getModelFromRDF(fileName);
 		
 		if(model != null){
@@ -55,7 +54,6 @@ public class OPOImporter {
 				System.out.println(handler.getClass().getName());
 					
 				handler.handleNode(op, stat.getObject());
-//				}
 			}
 		}
 		

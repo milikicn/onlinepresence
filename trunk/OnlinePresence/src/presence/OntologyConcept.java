@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
  */
 public abstract class OntologyConcept {
 
+	protected String nameSpace = "";
 	private URI uri;
 
 	/**
@@ -41,6 +42,20 @@ public abstract class OntologyConcept {
 		this.uri = uri;
 	}
 	
+		/**
+	 * @return the nameSpace
+	 */
+	public String getNameSpace() {
+		return nameSpace;
+	}
+
+	/**
+	 * @param nameSpace the nameSpace to set
+	 */
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
+	}
+
 	/**
 	 * @return the uri
 	 */
@@ -53,14 +68,6 @@ public abstract class OntologyConcept {
 		}
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	protected String getNameSpace(){
-		return OnlinePresence.ONLINEPRESENCENS;
-	}
-
 	/**
 	 * 
 	 * @return

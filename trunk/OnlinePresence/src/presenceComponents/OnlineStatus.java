@@ -39,7 +39,7 @@ public class OnlineStatus extends PresenceClass {
 	 *            the statusName to set
 	 */
 	public void setStatusName(String statusName) {
-		propertyList.add(new StringProperty("statusName", statusName));
+		addProperty(new StringProperty("statusName", statusName));
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class OnlineStatus extends PresenceClass {
 	 */
 	public <T> void addComponent(T onlineStatusComponent) {
 		OnlineStatusComponent osc = (OnlineStatusComponent) onlineStatusComponent;
-		propertyList.add(new URIProperty("hasStatusComponent",
+		addProperty(new URIProperty("hasStatusComponent",
 				osc.getURI()));
 	}
 

@@ -61,12 +61,6 @@ public class OPOExporter {
 
 	public void makeModel() {
 		onlinePresence.createAsNode(model);
-/*		Resource resource = model.createResource(onlinePresence.getURI()
-				.toString());
-		resource.addProperty(RDF.type, model.createResource(onlinePresence
-				.getClassURI().toString()));
-
-		onlinePresence.makeResource(resource);*/
 	}
 
 
@@ -127,7 +121,7 @@ public class OPOExporter {
 
 		oe.makeModel();
 		try {
-			oe.serializeToRDFNTripple("works.rdf");
+			oe.serializeToXMLRDF("works.rdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -9,9 +9,9 @@ package handlers.agentHandlers;
 import java.net.URI;
 
 import presence.OnlinePresence;
+import presenceProperties.URIProperty;
 
 import agent.Agent;
-import agent.AgentURIProperty;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
@@ -30,7 +30,7 @@ public class AgentImgHandler implements AbstractHandler {
 	public void handleNode(OnlinePresence oPresence, RDFNode node) {
 		Agent agent = oPresence.getAgent();
 		
-		agent.addComponent(new AgentURIProperty("img", URI.create(node.toString())));
+		agent.addComponent(new URIProperty("img", URI.create(node.toString())));
 	}
 
 }

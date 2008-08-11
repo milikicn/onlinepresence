@@ -9,7 +9,7 @@ package agent;
 import java.net.URI;
 import presence.OnlinePresence;
 import presence.PresenceClass;
-import presenceProperties.PresenceProperty;
+import presenceProperties.*;
 
 
 /**
@@ -17,8 +17,6 @@ import presenceProperties.PresenceProperty;
  * 
  */
 public class Agent extends PresenceClass {
-
-	public static String AGENTNS = "http://xmlns.com/foaf/0.1/";
 
 	/**
 	 * Plain constructor.
@@ -35,15 +33,6 @@ public class Agent extends PresenceClass {
 	
 	public Agent(String stringURI){
 		this(URI.create(stringURI));
-	}
-	
-		
-	/* (non-Javadoc)
-	 * @see presence.OntologyConcept#getNameSpace()
-	 */
-	@Override
-	public String getNameSpace() {
-		return Agent.AGENTNS;
 	}
 	
 	/**
@@ -74,7 +63,7 @@ public class Agent extends PresenceClass {
 	 * @param content
 	 */
 	public void addComponent(String name, String content) {
-		propertyList.add(new AgentStringProperty(name, content));
+		addProperty(new StringProperty(name, content));
 	}
 	
 	/**
@@ -83,13 +72,13 @@ public class Agent extends PresenceClass {
 	 * @param uri
 	 */
 	public void addComponent(String name, URI uri) {
-		addComponent(new AgentURIProperty(name, uri));
+		addComponent(new URIProperty(name, uri));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> void addComponent(T component) {
 		PresenceProperty pp = (PresenceProperty) component;
-		propertyList.add(pp);
+		addProperty(pp);
 	}
 }

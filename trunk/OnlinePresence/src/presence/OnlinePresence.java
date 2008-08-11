@@ -34,8 +34,6 @@ public class OnlinePresence extends PresenceClass {
 			setAgent(agent);
 	}
 	
-	//ovo sam dodao kako bi se u klasi OPOImporter mogao instancirati prazan objekat 
-	//ove klase
 	public OnlinePresence(){
 		
 	}
@@ -45,7 +43,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @param agent
 	 */
 	public void setAgent(Agent agent){
-		propertyList.add(new ObjectProperty("declaredBy", agent));
+		addProperty(new ObjectProperty("declaredBy", agent));
 	}
 
 	/**
@@ -54,7 +52,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @param OnlineStatus
 	 */
 	public void setOnlineStatus(OnlineStatus onlineStatus) {
-		propertyList.add(new ObjectProperty("hasPresenceComponent", onlineStatus));
+		addProperty(new ObjectProperty("hasPresenceComponent", onlineStatus));
 	}
 	
 	/**
@@ -64,7 +62,7 @@ public class OnlinePresence extends PresenceClass {
 	 */
 	public <T> void addComponent(T onlinePresenceComponent) {
 		OnlinePresenceComponent opc = (OnlinePresenceComponent) onlinePresenceComponent;
-		propertyList.add(new URIProperty("hasPresenceComponent",
+		addProperty(new URIProperty("hasPresenceComponent",
 				opc.getURI()));
 	}
 
@@ -74,7 +72,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @return
 	 */
 	public void setAvatar(URI avatarURI) {
-		propertyList.add(new URIProperty("avatar", avatarURI));
+		addProperty(new URIProperty("avatar", avatarURI));
 	}
 
 	/**
@@ -83,7 +81,7 @@ public class OnlinePresence extends PresenceClass {
 	 * @return
 	 */
 	public void setCustomMessage(String curMessage) {
-		propertyList.add(new StringProperty("customMessage", curMessage));
+		addProperty(new StringProperty("customMessage", curMessage));
 	}
 	
 	//u klasi koja poziva ovu metodu treba obraditi sta se desava ako se vrati null     N.
