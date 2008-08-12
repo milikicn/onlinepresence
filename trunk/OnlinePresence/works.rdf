@@ -1,16 +1,26 @@
-_:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ggg.milanstankovic.org/opo/ns#OnlineStatus> .
-_:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Available> .
-_:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#FreelyContactable> .
-_:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Active> .
-_:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Invisible> .
-<http://nekiURIZaAgenta.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Agent> .
-<http://nekiURIZaAgenta.com> <http://xmlns.com/foaf/0.1/name> "nikola milikic" .
-<http://nekiURIZaAgenta.com> <http://xmlns.com/foaf/0.1/img> <http://mojaslika.com/slika.jpg> .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#declaredBy> <http://nekiURIZaAgenta.com> .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#customMessage> "watching a game, having a bud" .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#avatar> <http://nikola.em3.rs/images/photo.jpg> .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> <http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained> .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> <http://ggg.milanstankovic.org/opo/ns#PubliclyFindable> .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> _:AX2dX3fc7df44X3aX11bb656b012X3aXX2dX8000 .
-<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#startTime> "2008-08-12T11:54:38" .
-<http://nekiURIZaOnlinePresence.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ggg.milanstankovic.org/opo/ns#OnlinePresence> .
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <opo:OnlinePresence rdf:about="http://nekiURIZaOnlinePresence.com">
+    <opo:declaredBy>
+      <foaf:Agent rdf:about="http://nekiURIZaAgenta.com">
+        <foaf:name>nikola milikic</foaf:name>
+        <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
+      </foaf:Agent>
+    </opo:declaredBy>
+    <opo:customMessage>watching a game, having a bud</opo:customMessage>
+    <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
+    <opo:hasPresenceComponent rdf:resource="#NotificationsConstrained"/>
+    <opo:hasPresenceComponent rdf:resource="#PubliclyFindable"/>
+    <opo:hasPresenceComponent>
+      <opo:OnlineStatus>
+        <opo:hasStatusComponent rdf:resource="#Available"/>
+        <opo:hasStatusComponent rdf:resource="#FreelyContactable"/>
+        <opo:hasStatusComponent rdf:resource="#Active"/>
+        <opo:hasStatusComponent rdf:resource="#Invisible"/>
+      </opo:OnlineStatus>
+    </opo:hasPresenceComponent>
+  </opo:OnlinePresence>
+</rdf:RDF>

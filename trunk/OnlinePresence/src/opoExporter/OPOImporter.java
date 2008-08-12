@@ -99,10 +99,8 @@ public class OPOImporter {
 		
 		OPOExporter oex = new OPOExporter(o);
 		oex.makeModel();
-		try {
-			oex.serializeToXMLRDF("worksfine.rdf");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+
+		oex.serializeToXMLRDF("worksfine.rdf");
+
 	}
 }

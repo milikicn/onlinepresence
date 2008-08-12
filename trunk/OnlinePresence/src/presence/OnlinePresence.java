@@ -9,7 +9,7 @@ package presence;
 import java.net.URI;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
@@ -24,10 +24,6 @@ import agent.Agent;
 public class OnlinePresence extends PresenceClass {
 
 	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
-	{
-		Format format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		setStartTime(format.format(Calendar.getInstance().getTime()));
-	}
 	
 	/**
 	 * 
@@ -95,6 +91,23 @@ public class OnlinePresence extends PresenceClass {
 	 */
 	public void setStartTime(String startTime) {
 		addProperty(new StringProperty("startTime", startTime));
+	}
+	
+	/**
+	 * 
+	 * @param duration
+	 */
+	public void setDuration(String duration) {
+		addProperty(new StringProperty("duration", duration));
+	}
+	
+	/**
+	 * 
+	 * @param startTime
+	 */
+	public void setStartTime(Date startTime) {
+		Format formater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		setStartTime(formater.format(startTime));
 	}
 	
 	//u klasi koja poziva ovu metodu treba obraditi sta se desava ako se vrati null     N.

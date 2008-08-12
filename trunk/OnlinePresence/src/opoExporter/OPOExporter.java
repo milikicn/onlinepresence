@@ -69,11 +69,14 @@ public class OPOExporter {
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToXMLRDF(String rName) throws FileNotFoundException {
-		FileOutputStream fout = new FileOutputStream(rName);
-		model.write(fout, "RDF/XML-ABBREV", "http://ggg.milanstankovic.org/opo/ns#");
+	public void serializeToXMLRDF(String rName){
+		FileOutputStream fout;
 		try {
+			fout = new FileOutputStream(rName);
+			model.write(fout, "RDF/XML-ABBREV", "http://ggg.milanstankovic.org/opo/ns#");
 			fout.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -84,11 +87,14 @@ public class OPOExporter {
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToRDFNTripple(String rName) throws FileNotFoundException {
-		FileOutputStream fout = new FileOutputStream(rName);
-		model.write(fout, "N-TRIPLE", "http://ggg.milanstankovic.org/opo/ns#");
+	public void serializeToRDFNTripple(String rName) {
+		FileOutputStream fout;
 		try {
+			fout = new FileOutputStream(rName);
+			model.write(fout, "N-TRIPLE", "http://ggg.milanstankovic.org/opo/ns#");
 			fout.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -116,14 +122,15 @@ public class OPOExporter {
 		op.setCustomMessage("watching a game, having a bud");
 		
 		op.setAgent(a);
+		
+		op.setStartTime("2008-03-01T18:51:19");
+		
+		op.setDuration("T18:51:19");
 
 		OPOExporter oe = new OPOExporter(op);
 
 		oe.makeModel();
-		try {
-			oe.serializeToRDFNTripple("works.rdf");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+
+		oe.serializeToXMLRDF("works.rdf");
 	}
 }

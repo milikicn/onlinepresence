@@ -12,6 +12,7 @@
 <entry key="http://xmlns.com/foaf/0.1/name">handlers.agentHandlers.AgentNameHandler</entry>
 <entry key="http://xmlns.com/foaf/0.1/img">handlers.agentHandlers.AgentImgHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#startTime">handlers.TimeHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#duration">handlers.DurationHandler</entry>
 
 <entry key="http://ggg.milanstankovic.org/opo/ns#OnlinePresence">onlinePresence</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#OnlineStatus">presenceComponents.OnlineStatus</entry>
