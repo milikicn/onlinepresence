@@ -8,7 +8,7 @@
     <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
     <opo:hasPresenceComponent rdf:resource="#NotificationsConstrained"/>
     <opo:hasPresenceComponent rdf:resource="#PubliclyFindable"/>
-    <opo:startTime>Mon Aug 11 22:13:14 CEST 2008</opo:startTime>
+    <opo:startTime>2008-08-12T11:54:38</opo:startTime>
     <opo:declaredBy>
       <foaf:Agent rdf:about="http://nekiURIZaAgenta.com">
         <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
@@ -23,5 +23,6 @@
         <opo:hasStatusComponent rdf:resource="#Available"/>
       </opo:OnlineStatus>
     </opo:hasPresenceComponent>
+    <opo:startTime>2008-08-12T11:56:40</opo:startTime>
   </opo:OnlinePresence>
 </rdf:RDF>

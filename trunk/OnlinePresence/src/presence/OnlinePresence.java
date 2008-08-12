@@ -7,6 +7,8 @@
 package presence;
 
 import java.net.URI;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import presenceComponents.OnlinePresenceComponent;
@@ -23,7 +25,8 @@ public class OnlinePresence extends PresenceClass {
 
 	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
 	{
-		setStartTime(Calendar.getInstance().getTime().toString());
+		Format format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		setStartTime(format.format(Calendar.getInstance().getTime()));
 	}
 	
 	/**
@@ -36,12 +39,9 @@ public class OnlinePresence extends PresenceClass {
 		setURI(uri);
 		if(agent!= null)
 			setAgent(agent);
-		addProperty(new StringProperty("startTime", Calendar.getInstance().getTime().toString()));
 	}
 	
-	public OnlinePresence(){
-		//addComponent(new StringProperty("startTime", String.valueOf(Calendar.getInstance().getTimeInMillis())));
-	}
+	public OnlinePresence(){}
 	
 	/**
 	 * 
