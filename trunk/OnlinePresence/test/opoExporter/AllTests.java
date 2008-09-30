@@ -15,12 +15,12 @@ import junit.framework.TestSuite;
  */
 public class AllTests {
 
-	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for opoExporter");
-		//$JUnit-BEGIN$
-		suite.addTestSuite(OPOExporterTest.class);
-		//$JUnit-END$
-		return suite;
-	}
+//	public static Test suite() {
+//		TestSuite suite = new TestSuite("Test for opoExporter");
+//		//$JUnit-BEGIN$
+//		suite.addTestSuite(OPOExporterTest.class);
+//		//$JUnit-END$
+//		return suite;
+//	}
 
 }
