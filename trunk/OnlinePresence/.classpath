@@ -3,23 +3,23 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/xml-apis.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/antlr-2.7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/arq.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/arq-extra.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/concurrent.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/icu4j_3_4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/iri.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/jena.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/jenatest.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/json.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/junit.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/log4j-1.2.12.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/lucene-core-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/stax-api-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/wstx-asl-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/Jena-2.5.6/lib/xercesImpl.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/antlr-2.7.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/arq.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/arq-extra.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/concurrent.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/icu4j_3_4.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/iri.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/jena.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/jenatest.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/json.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/log4j-1.2.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/lucene-core-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/stax-api-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/wstx-asl-3.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/xercesImpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Nikola/Java/workspaces/OPO/OnlinePresence/lib/Jena/xml-apis.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
