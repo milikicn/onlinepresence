@@ -4,6 +4,8 @@
     xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
   <opo:OnlinePresence rdf:about="http://nekiURIZaOnlinePresence.com">
+    <opo:duration>T18:51:19</opo:duration>
+    <opo:startTime>2008-03-01T18:51:19</opo:startTime>
     <opo:declaredBy>
       <foaf:Agent rdf:about="http://nekiURIZaAgenta.com">
         <foaf:name>nikola milikic</foaf:name>
