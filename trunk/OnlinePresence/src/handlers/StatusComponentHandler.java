@@ -27,7 +27,7 @@ public class StatusComponentHandler implements AbstractHandler{
 	/* (non-Javadoc)
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
-	@Override
+	
 	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
 		oPresence.addComponentToOnlineStatus(getComponent(object));
 	}
@@ -36,7 +36,7 @@ public class StatusComponentHandler implements AbstractHandler{
 		Properties prop = new Properties();
 		
 		try {
-			prop.loadFromXML(new FileInputStream("conf/opoProperties.xml"));
+			prop.loadFromXML(ClassLoader.getSystemResourceAsStream("conf/opoProperties.xml"));
 		} catch (InvalidPropertiesFormatException e1) {
 			e1.printStackTrace();
 		} catch (FileNotFoundException e1) {
