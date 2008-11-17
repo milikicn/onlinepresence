@@ -35,7 +35,7 @@ public class OPOImporter {
 		OnlinePresence op = new OnlinePresence();;
 		Model model = null;
 		
-		Properties opoProperties = OPOImporter.readXmlProperties("conf/opoProperties.xml");
+		Properties opoProperties = OPOImporter.readXmlProperties("opoProperties.xml");
 		model = getModelFromRDF(fileName);
 		
 		if(model != null){
@@ -62,7 +62,8 @@ public class OPOImporter {
 	
 	public static Properties readXmlProperties(String filePath) throws InvalidPropertiesFormatException, FileNotFoundException, IOException {
 		Properties prop = new Properties();
-		prop.loadFromXML(new FileInputStream(filePath));
+		
+		prop.loadFromXML(ClassLoader.getSystemResourceAsStream(filePath));
 		return prop;
 	}
 
@@ -71,7 +72,7 @@ public class OPOImporter {
 		
 		InputStream is = new BufferedInputStream(new FileInputStream(
 				fileName));
-		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#", "N-TRIPLE");
+		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#", "RDF/XML");
 		is.close();
 		return m;
 	}
