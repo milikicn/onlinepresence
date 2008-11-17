@@ -20,7 +20,7 @@ public class DurationHandler implements AbstractHandler {
 	/* (non-Javadoc)
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.Resource, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
-	@Override
+	
 	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
 		oPresence.setDuration(object.toString());
 	}
