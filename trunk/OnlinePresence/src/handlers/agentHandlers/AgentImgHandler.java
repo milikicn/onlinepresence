@@ -27,7 +27,7 @@ public class AgentImgHandler implements AbstractHandler {
 	/* (non-Javadoc)
 	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
 	 */
-	@Override
+	
 	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
 		Agent agent = oPresence.getAgent();
 		
