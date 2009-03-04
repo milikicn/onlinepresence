@@ -2,7 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment/>
-<entry key="http://ggg.milanstankovic.org/opo/ns#declaredBy">handlers.AgentHandler</entry>
 <entry key="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">handlers.TypeHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasStatusComponent">handlers.StatusComponentHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent">handlers.PresenceComponentHandler</entry>
@@ -18,7 +17,7 @@
 <entry key="http://ggg.milanstankovic.org/opo/ns#OnlineStatus">presenceComponents.OnlineStatus</entry>
 <entry key="http://xmlns.com/foaf/0.1/Agent">agent.Agent</entry>
 
-<entry key="http://ggg.milanstankovic.org/opo/ns#ConstrainedContactability">presenceComponents.Findability</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#ConstrainedFindability">presenceComponents.Findability</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable">presenceComponents.Findability</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#NotificationsProhibited">presenceComponents.Notifiability</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#AllNotificationsPass">presenceComponents.Notifiability</entry>
