@@ -1,0 +1,36 @@
+/**
+* @author: Nikola Milikic
+* e-mail: nikola.milikic@gmail.com
+* @date: Aug 10, 2008
+* @version: 0.1
+*/
+package opo.handlers.agentHandlers;
+
+import opo.agent.Agent;
+import opo.handlers.AbstractHandler;
+import opo.presence.OnlinePresence;
+
+
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+
+
+/**
+ * @author Nikola Milikic
+ *
+ */
+public class AgentHandler implements AbstractHandler {
+
+	/* (non-Javadoc)
+	 * @see handlers.AbstractHandler#handleNode(presence.OnlinePresence, com.hp.hpl.jena.rdf.model.RDFNode)
+	 */
+	
+	public void handleNode(OnlinePresence oPresence, Resource subject, RDFNode object){
+		Agent agent = oPresence.getAgent();
+		
+		if (!object.isAnon()) {
+			agent.setURI(object.toString());
+		}
+	}
+
+}
