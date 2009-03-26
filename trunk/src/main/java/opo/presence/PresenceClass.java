@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
 
-import opo.exporter.OPOImporter;
 import opo.presenceProperties.PresenceProperty;
+import opo.service.OPOImporter;
 
 
 import com.hp.hpl.jena.rdf.model.Model;

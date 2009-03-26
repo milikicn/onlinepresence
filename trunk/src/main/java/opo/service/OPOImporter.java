@@ -4,7 +4,7 @@
  * @date: Jul 29, 2008
  * @version: 0.1
  */
-package opo.exporter;
+package opo.service;
 
 
 import java.io.BufferedInputStream;
@@ -72,33 +72,5 @@ public class OPOImporter {
 		m  = ModelFactory.createDefaultModel().read(new InputStreamReader(is), "http://ggg.milanstankovic.org/opo/ns#", "RDF/XML");
 		is.close();
 		return m;
-	}
-	
-	public static void main(String[] args) {
-		//Ove testove prebaciti u odgovarajuce JUnit metode u folderu test
-		OPOImporter oim = new OPOImporter();
-		
-		OnlinePresence o = null;
-		try {
-			o = oim.importRDF("works.rdf");
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (InvalidPropertiesFormatException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		
-		OPOExporter oex = new OPOExporter(o);
-		oex.makeModel();
-
-		oex.serializeToXMLRDF("worksfine.rdf");
-
 	}
 }
