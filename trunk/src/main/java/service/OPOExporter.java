@@ -20,7 +20,6 @@ import statusComponents.Contactability;
 import statusComponents.Disturbability;
 import statusComponents.Visibility;
 
-
 import agent.Agent;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -60,22 +59,21 @@ public class OPOExporter {
 	/**
 	 * 
 	 */
-
 	public void makeModel() {
 		onlinePresence.createAsNode(model);
 	}
-
 
 	/**
 	 * 
 	 * @param rName
 	 * @throws FileNotFoundException
 	 */
-	public void serializeToXMLRDF(String rName){
+	public void serializeToXMLRDF(String rName) {
 		FileOutputStream fout;
 		try {
 			fout = new FileOutputStream(rName);
-			model.write(fout, "RDF/XML-ABBREV", "http://ggg.milanstankovic.org/opo/ns#");
+			model.write(fout, "RDF/XML-ABBREV",
+					"http://ggg.milanstankovic.org/opo/ns#");
 			fout.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
@@ -93,7 +91,8 @@ public class OPOExporter {
 		FileOutputStream fout;
 		try {
 			fout = new FileOutputStream(rName);
-			model.write(fout, "N-TRIPLE", "http://ggg.milanstankovic.org/opo/ns#");
+			model.write(fout, "N-TRIPLE",
+					"http://ggg.milanstankovic.org/opo/ns#");
 			fout.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
