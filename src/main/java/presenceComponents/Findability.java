@@ -6,8 +6,6 @@
  */
 package presenceComponents;
 
-
-
 /**
  * @author Nikola Milikic
  * 

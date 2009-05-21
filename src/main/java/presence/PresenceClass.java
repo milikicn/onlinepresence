@@ -8,18 +8,17 @@ import java.util.LinkedList;
 import presenceProperties.PresenceProperty;
 import service.OPOImporter;
 
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
-@SuppressWarnings("unchecked")
+
 public abstract class PresenceClass extends OntologyConcept {
 	
 	{
 		setNameSpace(this.getClassNameSpace());
 	}
 
-	protected LinkedList<PresenceProperty> propertyList = new LinkedList<PresenceProperty>();
+	protected LinkedList<PresenceProperty<?>> propertyList = new LinkedList<PresenceProperty<?>>();
 
 	/**
 	 * 
@@ -33,7 +32,7 @@ public abstract class PresenceClass extends OntologyConcept {
 	 * @param resource
 	 */
 	public void makeResource(Resource resource) {
-		for (PresenceProperty pp : propertyList) {
+		for (PresenceProperty<?> pp : propertyList) {
 			pp.attachAsProperty(resource);
 		}
 	}
@@ -60,11 +59,11 @@ public abstract class PresenceClass extends OntologyConcept {
 	 * 
 	 * @param list
 	 */
-	public void addPropertyList(LinkedList<PresenceProperty> list){
+	public void addPropertyList(LinkedList<PresenceProperty<?>> list){
 		propertyList.addAll(list);
 	}
 	
-	public void addProperty(PresenceProperty property){
+	public void addProperty(PresenceProperty<?> property){
 		property.setNameSpace(this.getNameSpace());
 		propertyList.add(property);
 	}

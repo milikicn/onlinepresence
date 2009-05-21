@@ -14,7 +14,6 @@ import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
 import statusComponents.OnlineStatusComponent;
 
-
 /**
  * @author Nikola Milikic
  * 
