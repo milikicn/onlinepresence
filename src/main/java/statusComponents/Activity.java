@@ -52,15 +52,16 @@ public class Activity extends OnlineStatusComponent {
 	static {
 		ACTIVE.setURI("http://ggg.milanstankovic.org/opo/ns#Active");
 		INACTIVE.setURI("http://ggg.milanstankovic.org/opo/ns#Inactive");
-		PROLONGED_INACTIVE.setURI("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive");
+		PROLONGED_INACTIVE
+				.setURI("http://ggg.milanstankovic.org/opo/ns#ProlongedInactive");
 	}
-	
-	 public OnlineStatusComponent getStaticInstance(String name){
-	 if(name.equalsIgnoreCase("active"))
-	 return ACTIVE;
-	 else if(name.equalsIgnoreCase("inactive"))
-	 return INACTIVE;
-	 else
-	 return PROLONGED_INACTIVE;
-	 }
+
+	public OnlineStatusComponent getStaticInstance(String name) {
+		if (name.equalsIgnoreCase("active"))
+			return ACTIVE;
+		else if (name.equalsIgnoreCase("inactive"))
+			return INACTIVE;
+		else
+			return PROLONGED_INACTIVE;
+	}
 }
