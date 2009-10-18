@@ -2,6 +2,9 @@ package service;
 
 import java.net.URI;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+
 import presence.OnlinePresence;
 import presenceComponents.Findability;
 import presenceComponents.Notifiability;
@@ -17,7 +20,9 @@ public class OPOExporterTest {
 	public static void main(String[] args) {
 		Agent a = new Agent("http://nekiURIZaAgenta.com");
 		a.addComponent("name", "nikola milikic");
+		Model model = ModelFactory.createDefaultModel();
 		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
+		a.addComponent("mbox", URI.create("mailto:filiprd@gmail.com"));
 		
 		OnlineStatus os = new OnlineStatus();
 		os.addComponent(Disturbability.AVAILABLE);

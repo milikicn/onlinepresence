@@ -14,7 +14,7 @@ public class OPOImporterTest {
 		
 		OnlinePresence o = null;
 		try {
-			o = oim.importRDF("exported.rdf");
+			o = oim.importRDF("SparkOPO.rdf");
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (InvalidPropertiesFormatException e1) {

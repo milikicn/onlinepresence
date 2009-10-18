@@ -73,7 +73,7 @@ public class OPOExporter {
 		try {
 			fout = new FileOutputStream(rName);
 			model.write(fout, "RDF/XML-ABBREV",
-					"http://ggg.milanstankovic.org/opo/ns#");
+					"");
 			fout.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
