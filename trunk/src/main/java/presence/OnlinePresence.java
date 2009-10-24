@@ -11,8 +11,17 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.VCARD;
+
+
 import agent.Agent;
 
+import presenceComponents.StatusMessage;
 import presenceComponents.OnlinePresenceComponent;
 import presenceComponents.OnlineStatus;
 import presenceProperties.*;
@@ -24,7 +33,7 @@ import statusComponents.OnlineStatusComponent;
  * 
  */
 public class OnlinePresence extends PresenceClass {
-
+	
 	public static String ONLINEPRESENCENS = "http://ggg.milanstankovic.org/opo/ns#";
 	
 	/**
@@ -40,6 +49,24 @@ public class OnlinePresence extends PresenceClass {
 	}
 	
 	public OnlinePresence(){}
+	
+	//added
+	public Resource createAsNode(Model model){
+		Resource s = null;
+		if(getURI() != null)
+			s = model.createResource("http://www.hahaha.com");
+		else
+			s = model.createResource();
+			
+		Model model1 = ModelFactory.createDefaultModel();
+		Resource res = super.createAsNode(model1);
+		
+		String opoNS = "http://ggg.milanstankovic.org/opo/ns#";
+		s.addProperty(model1.createProperty(opoNS + "declaresOnlinePresence"), res);
+		s.getModel().add(model1);
+		
+		return s;
+	}
 	
 	/**
 	 * 
@@ -80,11 +107,11 @@ public class OnlinePresence extends PresenceClass {
 
 	/**
 	 * 
-	 * @param curMessage
+	 * @param cMessage
 	 * @return
 	 */
-	public void setCustomMessage(String curMessage) {
-		addProperty(new StringProperty("customMessage", curMessage));
+	public void setStatusMessage(StatusMessage cMessage) {
+		addProperty(new ObjectProperty("customMessage", cMessage));
 	}
 	
 	/**
@@ -163,6 +190,19 @@ public class OnlinePresence extends PresenceClass {
 			agent = (Agent) temp;
 		
 		return agent;
+	}
+	
+	public StatusMessage getStatusMessage(){
+		PresenceClass temp = getObjectProperty("StatusMessage");
+		StatusMessage statusMessage = null;
+		
+		if(temp == null){
+			statusMessage = new StatusMessage();
+			setStatusMessage(statusMessage);
+		}else
+			statusMessage = (StatusMessage) temp;
+		
+		return statusMessage;
 	}
 	
 //	public PresenceClass getOrCreateObjectProperty(String className){

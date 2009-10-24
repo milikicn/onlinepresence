@@ -4,5 +4,6 @@
 <comment/>
 <entry key="presence.OnlinePresence">http://ggg.milanstankovic.org/opo/ns#</entry>
 <entry key="presenceComponents.OnlineStatus">http://ggg.milanstankovic.org/opo/ns#</entry>
+<entry key="presenceComponents.StatusMessage">http://ggg.milanstankovic.org/opo/ns#</entry>
 <entry key="agent.Agent">http://xmlns.com/foaf/0.1/</entry>
 </properties>

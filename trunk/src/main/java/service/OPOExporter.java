@@ -38,6 +38,8 @@ public class OPOExporter {
 		model.setNsPrefix("opo", opoNS);
 		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
 		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
+		//added
+		model.setNsPrefix("sioc", "http://rdfs.org/sioc/ns#");
 	}
 
 	/**
