@@ -1,0 +1,23 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:opo="http://ggg.milanstankovic.org/opo/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <opo:OnlinePresence rdf:about="http://nekiURIZaOnlinePresence.com">
+    <opo:duration>T14:19:55</opo:duration>
+    <opo:startTime>2009-07-24T14:19:55</opo:startTime>
+    <opo:hasPresenceComponent>
+      <opo:OnlineStatus>
+        <opo:hasStatusComponent rdf:resource="#Visible"/>
+        <opo:hasStatusComponent rdf:resource="#ConstrainedContactability"/>
+        <opo:hasStatusComponent rdf:resource="#Available"/>
+        <opo:hasStatusComponent rdf:resource="#Active"/>
+      </opo:OnlineStatus>
+    </opo:hasPresenceComponent>
+    <opo:declaredBy>
+      <foaf:Agent rdf:about="igniterealtime.org/filip">
+        <foaf:name>nikola milikic</foaf:name>
+      </foaf:Agent>
+    </opo:declaredBy>
+  </opo:OnlinePresence>
+</rdf:RDF>
