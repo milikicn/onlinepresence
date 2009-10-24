@@ -8,6 +8,10 @@ package agent;
 
 import java.net.URI;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+
 import presence.OnlinePresence;
 import presence.PresenceClass;
 import presenceProperties.*;
@@ -35,7 +39,7 @@ public class Agent extends PresenceClass {
 	public Agent(String stringURI){
 		this(URI.create(stringURI));
 	}
-	
+		
 	/**
 	 * 
 	 * @return

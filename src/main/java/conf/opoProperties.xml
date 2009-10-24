@@ -6,7 +6,8 @@
 <entry key="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">handlers.TypeHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasStatusComponent">handlers.StatusComponentHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent">handlers.PresenceComponentHandler</entry>
-<entry key="http://ggg.milanstankovic.org/opo/ns#customMessage">handlers.CustomMessageHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#customMessage">handlers.statusMessageHandlers.StatusMessageHandler</entry>
+<entry key="http://rdfs.org/sioc/ns#content">handlers.statusMessageHandlers.StatusMessageContentHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#avatar">handlers.AvatarHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#declaredBy">handlers.agentHandlers.AgentHandler</entry>
 <entry key="http://xmlns.com/foaf/0.1/name">handlers.agentHandlers.AgentNameHandler</entry>
