@@ -1,0 +1,26 @@
+<http://www.hahaha.com> <http://ggg.milanstankovic.org/opo/ns#declaresOnlinePresence> <http://nekiURIZaOnlinePresence.com> .
+<http://nekiURIZaOnlinePresence.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ggg.milanstankovic.org/opo/ns#OnlinePresence> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> <http://nekiURIzaOnlineStatus> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> <http://ggg.milanstankovic.org/opo/ns#PubliclyFindable> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent> <http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#avatar> <http://nikola.em3.rs/images/photo.jpg> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#declaredBy> <http://nekiURIZaAgenta.com> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#customMessage> <http://nekiURIZaCM.com> .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#startTime> "2008-03-01T18:51:19" .
+<http://nekiURIZaOnlinePresence.com> <http://ggg.milanstankovic.org/opo/ns#duration> "T18:51:19" .
+<http://nekiURIZaAgenta.com> <http://xmlns.com/foaf/0.1/mbox> <mailto:filiprd@gmail.com> .
+<http://nekiURIZaAgenta.com> <http://xmlns.com/foaf/0.1/img> <http://mojaslika.com/slika.jpg> .
+<http://nekiURIZaAgenta.com> <http://xmlns.com/foaf/0.1/name> "nikola milikic" .
+<http://nekiURIZaAgenta.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Agent> .
+<http://nekiURIZaCM.com> <http://rdfs.org/sioc/ns#reply_of> <http://nekiURIZaSiocRepliedPost.com> .
+<http://nekiURIZaCM.com> <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> <http://uriPrimaryTopicSiocPost.com> .
+<http://nekiURIZaCM.com> <http://rdfs.org/sioc/ns#content> "my content" .
+<http://nekiURIZaCM.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdfs.org/sioc/ns#Post> .
+<http://nekiURIZaSiocRepliedPost.com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdfs.org/sioc/ns#Post> .
+<http://nekiURIZaSiocRepliedPost.com> <http://rdfs.org/sioc/ns#content> "my  replied content" .
+<http://nekiURIZaSiocRepliedPost.com> <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> <http://uriPrimaryTopicRepliedPost.com> .
+<http://nekiURIzaOnlineStatus> <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Invisible> .
+<http://nekiURIzaOnlineStatus> <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Active> .
+<http://nekiURIzaOnlineStatus> <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#FreelyContactable> .
+<http://nekiURIzaOnlineStatus> <http://ggg.milanstankovic.org/opo/ns#hasStatusComponent> <http://ggg.milanstankovic.org/opo/ns#Available> .
+<http://nekiURIzaOnlineStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ggg.milanstankovic.org/opo/ns#OnlineStatus> .
