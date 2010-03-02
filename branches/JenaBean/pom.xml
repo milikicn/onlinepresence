@@ -8,7 +8,7 @@
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>jena</artifactId>
-      <version>2.5.7</version>
+      <version>2.6.2</version>
     </dependency>
 	<dependency>
 		<groupId>org.testng</groupId>
@@ -17,5 +17,10 @@
 		<classifier>jdk15</classifier>
 		<scope>test</scope>
 	</dependency>
+	<dependency> 
+  		<groupId>thewebsemantic</groupId> 
+  		<artifactId>jenabean</artifactId> 
+  		<version>1.0.3</version> 
+  	</dependency>
   </dependencies>
 </project>
