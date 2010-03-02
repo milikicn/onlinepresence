@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-<comment/>
-<entry key="presence.OnlinePresence">http://ggg.milanstankovic.org/opo/ns#</entry>
-<entry key="presenceComponents.OnlineStatus">http://ggg.milanstankovic.org/opo/ns#</entry>
-<entry key="presenceComponents.StatusMessage">http://ggg.milanstankovic.org/opo/ns#</entry>
-<entry key="agent.Agent">http://xmlns.com/foaf/0.1/</entry>
-</properties>
