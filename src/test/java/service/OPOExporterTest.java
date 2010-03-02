@@ -7,6 +7,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 
 import presence.OnlinePresence;
+import presenceComponents.Post;
 import presenceComponents.StatusMessage;
 import presenceComponents.Findability;
 import presenceComponents.Notifiability;
@@ -23,14 +24,25 @@ public class OPOExporterTest {
 		Agent a = new Agent("http://nekiURIZaAgenta.com");
 		a.addComponent("name", "nikola milikic");
 		
-		StatusMessage cm = new StatusMessage("http://nekiURIZaCM.com");
-		cm.addComponent("content", "neki neki tekst");
+//		StatusMessage cm = new StatusMessage("http://nekiURIZaCM.com");
+//		cm.addComponent("content", "neki neki tekst");
+		
+		Post siocPost = new Post("http://nekiURIZaCM.com");
+		siocPost.addComponent(Post.SIOC_CONTENT, "my content", "http://rdfs.org/sioc/ns#");
+		siocPost.addComponent(Post.FOAF_IS_PRIMARY_TOPIC_OF, URI.create("http://uriPrimaryTopicSiocPost.com"), "http://xmlns.com/foaf/0.1/");
+		
+		Post siocRepliedPost = new Post("http://nekiURIZaSiocRepliedPost.com");
+		siocRepliedPost.addComponent(Post.SIOC_CONTENT, "my  replied content", "http://rdfs.org/sioc/ns#");
+		siocRepliedPost.addComponent(Post.FOAF_IS_PRIMARY_TOPIC_OF, URI.create("http://uriPrimaryTopicRepliedPost.com"), "http://xmlns.com/foaf/0.1/");
+		
+		siocPost.setReplyPost(siocRepliedPost);
 		
 		Model model = ModelFactory.createDefaultModel();
 		a.addComponent("img", URI.create("http://mojaslika.com/slika.jpg"));
-//		a.addComponent("mbox", URI.create("mailto:filiprd@gmail.com"));
+		a.addComponent("mbox", URI.create("mailto:filiprd@gmail.com"));
 		
 		OnlineStatus os = new OnlineStatus();
+		os.setURI("http://nekiURIzaOnlineStatus");
 		os.addComponent(Disturbability.AVAILABLE);
 		os.addComponent(Contactability.FREELY_CONTACTABLE);
 		os.addComponent(Activity.ACTIVE);
@@ -48,7 +60,7 @@ public class OPOExporterTest {
 		
 		op.setAgent(a);
 		
-		op.setStatusMessage(cm);
+		op.setCustomMessage(siocPost);
 		
 		op.setStartTime("2008-03-01T18:51:19");
 		
@@ -58,7 +70,8 @@ public class OPOExporterTest {
 
 		oe.makeModel();
 
-		oe.serializeToXMLRDF("exported.rdf");
+		//oe.serializeToXMLRDF("exported.rdf");
+		oe.serializeToRDFNTripple("exported.rdf");
 
 	}
 }

@@ -48,7 +48,7 @@ public class OPOImporter {
 				
 				Statement stat = iter.nextStatement();
 				String pred = stat.getPredicate().toString();
-				System.out.println(pred);
+				System.out.println("PRED:"+pred);
 				AbstractHandler handler = (AbstractHandler) Class.forName(opoProperties.getProperty(pred)).newInstance();
 					
 				handler.handleNode(op, stat.getSubject(), stat.getObject());

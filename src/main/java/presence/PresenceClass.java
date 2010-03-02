@@ -68,6 +68,16 @@ public abstract class PresenceClass extends OntologyConcept {
 		propertyList.add(property);
 	}
 	
+	/**
+	 * Adding a property from another namespace specified by a parameter 'namespace'
+	 * @param property
+	 * @param namespace
+	 */
+	public void addProperty(PresenceProperty<?> property, String namespace){
+		property.setNameSpace(namespace);
+		propertyList.add(property);
+	}
+	
 	private String getClassNameSpace(){
 		String result = "";
 		try {

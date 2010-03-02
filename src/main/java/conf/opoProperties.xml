@@ -2,7 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment/>
-<entry key="http://ggg.milanstankovic.org/opo/ns#declaredBy">handlers.AgentHandler</entry>
 <entry key="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">handlers.TypeHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasStatusComponent">handlers.StatusComponentHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#hasPresenceComponent">handlers.PresenceComponentHandler</entry>
@@ -12,8 +11,13 @@
 <entry key="http://ggg.milanstankovic.org/opo/ns#declaredBy">handlers.agentHandlers.AgentHandler</entry>
 <entry key="http://xmlns.com/foaf/0.1/name">handlers.agentHandlers.AgentNameHandler</entry>
 <entry key="http://xmlns.com/foaf/0.1/img">handlers.agentHandlers.AgentImgHandler</entry>
+<entry key="http://xmlns.com/foaf/0.1/mbox">handlers.agentHandlers.AgentMboxHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#startTime">handlers.TimeHandler</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#duration">handlers.DurationHandler</entry>
+<entry key="http://ggg.milanstankovic.org/opo/ns#declaresOnlinePresence">handlers.agentHandlers.AgentHandler</entry>
+
+<entry key="http://xmlns.com/foaf/0.1/isPrimaryTopicOf">handlers.statusMessageHandlers.StatusMessageHandler</entry>
+<entry key="http://rdfs.org/sioc/ns#reply_of">handlers.statusMessageHandlers.StatusMessageHandler</entry>
 
 <entry key="http://ggg.milanstankovic.org/opo/ns#OnlinePresence">onlinePresence</entry>
 <entry key="http://ggg.milanstankovic.org/opo/ns#OnlineStatus">presenceComponents.OnlineStatus</entry>

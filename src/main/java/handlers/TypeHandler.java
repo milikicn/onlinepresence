@@ -7,6 +7,7 @@
 package handlers;
 
 import presence.OnlinePresence;
+import presenceComponents.Post;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -35,8 +36,17 @@ public class TypeHandler implements AbstractHandler {
 			
 			if(className.equals("OnlinePresence"))
 				oPresence.setURI(subject.toString());
-			else
-				oPresence.getObjectProperty(className).setURI(subject.toString());
+			else{
+				System.out.println(className + "-----" + subject.toString());
+				
+				try {
+					oPresence.getObjectProperty(className).setURI(subject.toString());
+				} catch (Exception e) {
+					Post sp = new Post();
+					oPresence.setCustomMessage(sp);
+					oPresence.getObjectProperty("StatusMessage").setURI(subject.toString());
+				}
+			}
 		}
 	}
 

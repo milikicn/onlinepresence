@@ -10,7 +10,6 @@ import java.net.URI;
 
 import presence.PresenceClass;
 import presenceProperties.PresenceProperty;
-import presenceProperties.StringProperty;
 import presenceProperties.URIProperty;
 import presenceProperties.specificProperties.StatusMessageProperty;
 
