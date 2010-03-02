@@ -110,8 +110,10 @@ public class OnlinePresence extends PresenceClass {
 	 * @param cMessage
 	 * @return
 	 */
-	public void setStatusMessage(StatusMessage cMessage) {
-		addProperty(new ObjectProperty("customMessage", cMessage));
+	public void setCustomMessage(PresenceClass cMessage) {
+		ObjectProperty op = new ObjectProperty("customMessage", cMessage);
+		System.out.println(op.getName() + "||||" +op.getNameSpace());
+		addProperty(op);
 	}
 	
 	/**
@@ -193,12 +195,13 @@ public class OnlinePresence extends PresenceClass {
 	}
 	
 	public StatusMessage getStatusMessage(){
+		System.out.println("!!!!!!!!!!!!!!!!!!!!getStatusMessage()");
 		PresenceClass temp = getObjectProperty("StatusMessage");
 		StatusMessage statusMessage = null;
 		
 		if(temp == null){
 			statusMessage = new StatusMessage();
-			setStatusMessage(statusMessage);
+			setCustomMessage(statusMessage);
 		}else
 			statusMessage = (StatusMessage) temp;
 		

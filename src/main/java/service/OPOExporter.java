@@ -9,16 +9,8 @@ package service;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 
 import presence.OnlinePresence;
-import presenceComponents.Findability;
-import presenceComponents.Notifiability;
-import presenceComponents.OnlineStatus;
-import statusComponents.Activity;
-import statusComponents.Contactability;
-import statusComponents.Disturbability;
-import statusComponents.Visibility;
 
 import agent.Agent;
 

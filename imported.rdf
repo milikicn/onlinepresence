@@ -7,22 +7,23 @@
   <rdf:Description rdf:about="http://www.hahaha.com">
     <opo:declaresOnlinePresence>
       <opo:OnlinePresence rdf:about="http://nekiURIZaOnlinePresence.com">
-        <opo:customMessage>
-          <opo:StatusMessage rdf:about="http://nekiURIZaCM.com">
-            <sioc:content>nekiiiiiiiiiiiiiiiiiiii text</sioc:content>
-          </opo:StatusMessage>
-        </opo:customMessage>
         <opo:declaredBy>
           <foaf:Agent rdf:about="http://nekiURIZaAgenta.com">
+            <foaf:mbox rdf:resource="mailto:filiprd@gmail.com"/>
             <foaf:img rdf:resource="http://mojaslika.com/slika.jpg"/>
             <foaf:name>nikola milikic</foaf:name>
           </foaf:Agent>
         </opo:declaredBy>
-        <opo:duration>T18:51:19</opo:duration>
-        <opo:startTime>2008-03-01T18:51:19</opo:startTime>
+        <opo:customMessage>
+          <opo:StatusMessage rdf:about="http://nekiURIZaCM.com">
+            <sioc:content>my content</sioc:content>
+          </opo:StatusMessage>
+        </opo:customMessage>
         <opo:avatar rdf:resource="http://nikola.em3.rs/images/photo.jpg"/>
-        <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"/>
-        <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"/>
+        <opo:startTime>2008-03-01T18:51:19</opo:startTime>
+        <opo:customMessage>
+          <sioc:Post/>
+        </opo:customMessage>
         <opo:hasPresenceComponent>
           <opo:OnlineStatus>
             <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Invisible"/>
@@ -31,6 +32,9 @@
             <opo:hasStatusComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#Available"/>
           </opo:OnlineStatus>
         </opo:hasPresenceComponent>
+        <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#NotificationsConstrained"/>
+        <opo:duration>T18:51:19</opo:duration>
+        <opo:hasPresenceComponent rdf:resource="http://ggg.milanstankovic.org/opo/ns#PubliclyFindable"/>
       </opo:OnlinePresence>
     </opo:declaresOnlinePresence>
   </rdf:Description>
