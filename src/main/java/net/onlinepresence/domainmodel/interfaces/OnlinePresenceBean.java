@@ -6,7 +6,6 @@ import net.onlinepresence.domainmodel.foaf.interfaces.ImageBean;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
 import net.onlinepresence.domainmodel.interfaces.actions.ActionBean;
-import net.onlinepresence.domainmodel.interfaces.sharingspace.SharingSpaceBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
 
