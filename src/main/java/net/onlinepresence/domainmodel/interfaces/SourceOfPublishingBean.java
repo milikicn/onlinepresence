@@ -1,8 +1,8 @@
 package net.onlinepresence.domainmodel.interfaces;
 
-import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.domainmodel.general.ResourceBean;
 
-public interface SourceOfPublishing extends Resource{
+public interface SourceOfPublishingBean extends ResourceBean{
 
 	public void setName(String sourceName);
 	public String getName();
