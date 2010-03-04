@@ -1,8 +1,8 @@
 package net.onlinepresence.domainmodel.interfaces.statuscomponents;
 
-import net.onlinepresence.domainmodel.interfaces.OnlineStatusComponent;
+import net.onlinepresence.domainmodel.interfaces.OnlineStatusComponentBean;
 
-public interface Activity extends OnlineStatusComponent{
+public interface ActivityBean extends OnlineStatusComponentBean{
 
 	public void setInactivityPeriod(int inactivityPeriod);
 	public int getInactivityPeriod();
