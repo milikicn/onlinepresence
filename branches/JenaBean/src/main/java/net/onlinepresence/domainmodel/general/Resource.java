@@ -26,6 +26,10 @@ implements ResourceBean{
 		return uri;
 	}
 	
+	public void setURI(String uri){
+		this.uri = uri;
+	}
+	
 	public boolean equals(Object o) {
 		if ( !(o instanceof ResourceBean) )
 			return false;

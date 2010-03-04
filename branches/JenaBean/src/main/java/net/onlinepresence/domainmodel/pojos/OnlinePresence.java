@@ -12,9 +12,9 @@ import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
 import net.onlinepresence.domainmodel.interfaces.AgentBean;
 import net.onlinepresence.domainmodel.interfaces.OnlinePresenceBean;
 import net.onlinepresence.domainmodel.interfaces.OnlinePresenceComponentBean;
+import net.onlinepresence.domainmodel.interfaces.SharingSpaceBean;
 import net.onlinepresence.domainmodel.interfaces.SourceOfPublishingBean;
 import net.onlinepresence.domainmodel.interfaces.actions.ActionBean;
-import net.onlinepresence.domainmodel.interfaces.sharingspace.SharingSpaceBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
 

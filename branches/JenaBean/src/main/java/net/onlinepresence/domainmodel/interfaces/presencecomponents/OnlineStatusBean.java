@@ -7,7 +7,7 @@ import net.onlinepresence.domainmodel.interfaces.OnlineStatusComponentBean;
 
 public interface OnlineStatusBean extends OnlinePresenceComponentBean{
 
-	public void setStatusComponents(Collection<OnlineStatusComponentBean> statusComponents);
+	public void setOnlineStatusComponents(Collection<OnlineStatusComponentBean> statusComponents);
 	public Collection<OnlineStatusComponentBean> getOnlineStatusComponents();
 	public void addStatusComponent(OnlineStatusComponentBean statusComponent);
 	

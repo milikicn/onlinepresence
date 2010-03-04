@@ -1,4 +1,4 @@
-package net.onlinepresence.domainmodel.interfaces.sharingspace;
+package net.onlinepresence.domainmodel.interfaces;
 
 import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.GroupBean;
