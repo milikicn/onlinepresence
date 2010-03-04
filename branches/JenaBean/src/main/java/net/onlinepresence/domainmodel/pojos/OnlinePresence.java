@@ -80,8 +80,8 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setIntendentFor(SharingSpaceBean intendentFor) {
-		if(action != null)
-		this.intendentFor = intendentFor;
+		if(intendentFor != null)
+			this.intendentFor = intendentFor;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#currentLocation")
@@ -90,8 +90,8 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setLocation(SpatialThingBean location) {
-		if(action != null)
-		this.location = location;
+		if(location != null)
+			this.location = location;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#hasPresenceComponent")
@@ -101,14 +101,14 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 
 	public void setPresenceComponents(
 			Collection<OnlinePresenceComponentBean> presenceComponents) {
-		if(action != null)
-		this.presenceComponents = presenceComponents;
+		if(presenceComponents != null)
+			this.presenceComponents = presenceComponents;
 	}
 
 	public void addPresenceComponent(
 			OnlinePresenceComponentBean presenceComponent) {
-		if(action != null)
-		getPresenceComponents().add(presenceComponent);
+		if(presenceComponent != null)
+			getPresenceComponents().add(presenceComponent);
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#publishedFrom")
@@ -117,8 +117,8 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setSource(SourceOfPublishingBean source) {
-		if(action != null)
-		this.source = source;
+		if(source != null)
+			this.source = source;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#startTime")
@@ -127,8 +127,8 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setStartTime(String startTime) {
-		if(action != null)
-		this.startTime = startTime;
+		if(startTime != null)
+			this.startTime = startTime;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#customMessage")
@@ -137,8 +137,8 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setStatusMessage(ItemBean statusMessage) {
-		if(action != null)
-		this.statusMessage = statusMessage;
+		if(statusMessage != null)
+			this.statusMessage = statusMessage;
 	}
 
 	@RdfProperty("http://rdfs.org/sioc/ns#has_creator")
@@ -147,7 +147,7 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	public void setUser(UserBean user) {
-		if(action != null)
-		this.user = user;
+		if(user != null)
+			this.user = user;
 	}
 }

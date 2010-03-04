@@ -18,7 +18,8 @@ public class Activity extends OnlineStatusComponent implements ActivityBean{
 	}
 
 	public void setInactivityPeriod(int inactivityPeriod) {
-		this.inactivityPeriod = inactivityPeriod;
+		if(inactivityPeriod > 0)
+			this.inactivityPeriod = inactivityPeriod;
 	}
 	
 	/**
@@ -46,7 +47,4 @@ public class Activity extends OnlineStatusComponent implements ActivityBean{
 				.setURI("http://online-presence.net/opo/ns#ProlongedInactive");
 	}
 
-
-	
-	
 }

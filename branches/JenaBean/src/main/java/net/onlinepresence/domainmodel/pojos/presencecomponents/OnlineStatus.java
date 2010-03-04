@@ -24,11 +24,13 @@ public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatu
 
 	public void setOnlineStatusComponents(
 			Collection<OnlineStatusComponentBean> statusComponents) {
-		this.statusComponents = statusComponents;
+		if(statusComponents != null)
+			this.statusComponents = statusComponents;
 	}
 	
 	public void addStatusComponent(OnlineStatusComponentBean statusComponent){
-		getOnlineStatusComponents().add(statusComponent);
+		if(statusComponent != null)
+			getOnlineStatusComponents().add(statusComponent);
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#onlineStatusName")
@@ -37,8 +39,8 @@ public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatu
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name != null)
+			this.name = name;
 	}
-	
 	
 }

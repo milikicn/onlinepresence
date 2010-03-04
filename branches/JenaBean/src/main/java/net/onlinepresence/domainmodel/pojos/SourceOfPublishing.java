@@ -18,8 +18,8 @@ public class SourceOfPublishing extends Resource implements SourceOfPublishingBe
 	}
 
 	public void setName(String sourceName) {
-		this.name = sourceName;
+		if(sourceName != null)
+			this.name = sourceName;
 	}
-	
 	
 }

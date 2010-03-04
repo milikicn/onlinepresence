@@ -19,7 +19,8 @@ public class OnlinePresenceComponent extends Resource implements OnlinePresenceC
 	}
 
 	public void setComponent(OnlinePresenceBean component) {
-		this.component = component;
+		if(component != null)
+			this.component = component;
 	}
 	
 	

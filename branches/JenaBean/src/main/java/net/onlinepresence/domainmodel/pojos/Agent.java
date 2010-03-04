@@ -19,8 +19,8 @@ public class Agent extends Resource implements AgentBean{
 	}
 
 	public void setOnlinePresence(OnlinePresenceBean onlinePresence) {
-		this.onlinePresence = onlinePresence;
+		if(onlinePresence != null)
+			this.onlinePresence = onlinePresence;
 	}
-	
-	
+
 }

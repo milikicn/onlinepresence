@@ -35,7 +35,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setEvent(EventBean event) {
-		this.event = event;
+		if(event != null)
+			this.event = event;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#basedNear")
@@ -44,7 +45,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setNearLocation(SpatialThingBean nearLocation) {
-		this.nearLocation = nearLocation;
+		if(nearLocation != null)
+			this.nearLocation = nearLocation;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#currentlyIn")
@@ -53,7 +55,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setCurrentLocation(SpatialThingBean currentLocation) {
-		this.currentLocation = currentLocation;
+		if(currentLocation != null)
+			this.currentLocation = currentLocation;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#closestFriendsOf")
@@ -62,7 +65,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setFriend(PersonBean friend) {
-		this.friend = friend;
+		if(friend != null)
+			this.friend = friend;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#familyOf")
@@ -71,7 +75,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setFamily(PersonBean family) {
-		this.family = family;
+		if(family != null)
+			this.family = family;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#commonInterest")
@@ -80,7 +85,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setCommonInterest(DocumentBean commonInterest) {
-		this.commonInterest = commonInterest;
+		if(commonInterest != null)
+			this.commonInterest = commonInterest;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#schoolHomepage")
@@ -89,7 +95,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setSchoolHomepage(DocumentBean schoolHomepage) {
-		this.schoolHomepage = schoolHomepage;
+		if(schoolHomepage != null)
+			this.schoolHomepage = schoolHomepage;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#workplaceHomepage")
@@ -98,7 +105,8 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	public void setWorkplaceHomepage(DocumentBean workplaceHomepage) {
-		this.workplaceHomepage = workplaceHomepage;
+		if(workplaceHomepage != null)
+			this.workplaceHomepage = workplaceHomepage;
 	}
 			
 }

@@ -5,7 +5,6 @@ import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
 import thewebsemantic.Uri;
 
-
 @Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 @RdfType("Resource")
 public class Resource
@@ -40,7 +39,5 @@ implements ResourceBean{
 	public String toString() {
 		return getUri();
 	}
-
-	
 
 }

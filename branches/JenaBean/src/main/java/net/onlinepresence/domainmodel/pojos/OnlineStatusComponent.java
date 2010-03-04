@@ -19,7 +19,8 @@ public class OnlineStatusComponent extends Resource implements OnlineStatusCompo
 	}
 
 	public void setComponent(OnlineStatusBean component) {
-		this.component = component;
+		if(component != null)
+			this.component = component;
 	}
 
 }
