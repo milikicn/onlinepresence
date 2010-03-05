@@ -34,5 +34,4 @@ public class OrganizedEvent extends Resource implements OrganizedEventBean{
 		this.location = location;
 	}
 	
-	
 }
