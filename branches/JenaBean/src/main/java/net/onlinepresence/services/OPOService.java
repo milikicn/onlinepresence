@@ -17,7 +17,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public class OPOService {
 
-	public static void export(OnlinePresenceBean onlinePresence, String syntax){
+	public static void export(OnlinePresenceBean onlinePresence, String fileName, String syntax){
 		
 		try {
 			Model m = ModelFactory.createDefaultModel();
@@ -34,7 +34,7 @@ public class OPOService {
 			Bean2RDF writer = new Bean2RDF(m);
 			
 			writer.save(onlinePresence);
-			m.write(new FileOutputStream("Exported.rdf"), syntax);
+			m.write(new FileOutputStream(fileName), syntax);
 			
 		} catch (Exception e) {
 			System.err.println("Error");
