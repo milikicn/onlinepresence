@@ -1,6 +1,7 @@
 package net.onlinepresence.domainmodel.opo.pojos.presencecomponents;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
@@ -13,7 +14,7 @@ import net.onlinepresence.domainmodel.opo.pojos.OnlinePresenceComponent;
 @RdfType("OnlineStatus")
 public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatusBean{
 
-	private Collection<OnlineStatusComponentBean> statusComponents;
+	private Collection<OnlineStatusComponentBean> statusComponents = new LinkedList<OnlineStatusComponentBean>();
 	
 	private String name;
 

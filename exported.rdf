@@ -1,0 +1,66 @@
+<rdf:RDF
+    xmlns:opo="http://online-presence.net/opo/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:event="http://purl.org/NET/c4dm/event.owl#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:swc="http://data.semanticweb.org/ns/swc/ontology#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:j.0="http://thewebsemantic.com/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:sioc="http://rdfs.org/sioc/ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:wgs84="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+  <rdf:Description rdf:about="http://thewebsemantic.com/javaclass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://nekiURIzaOnlinePresence.com">
+    <opo:customMessage rdf:resource="http://nekiURIzaStatusMessage.com"/>
+    <opo:hasPresenceComponent rdf:resource="http://nekiURIzaOnlineStatus.com"/>
+    <opo:hasPresenceComponent rdf:resource="http://online-presence.net/opo/ns#AllNotificationsPass"/>
+    <opo:hasPresenceComponent rdf:resource="http://online-presence.net/opo/ns#PubliclyFindable"/>
+    <opo:duration rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</opo:duration>
+    <opo:declaredBy rdf:resource="http://nekiURIzaAgenta.com"/>
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#OnlinePresence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#AllNotificationsPass">
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Notifiability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://nekiURIzaStatusMessage.com">
+    <sioc:content rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Testiramo novu biblioteku</sioc:content>
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#StatusMessage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#OnlinePresence">
+    <j.0:javaclass>net.onlinepresence.domainmodel.opo.pojos.OnlinePresence</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#Findability">
+    <j.0:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#StatusMessage">
+    <j.0:javaclass>net.onlinepresence.domainmodel.opo.pojos.StatusMessage</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#Notifiability">
+    <j.0:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#PubliclyFindable">
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Findability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#Agent">
+    <j.0:javaclass>net.onlinepresence.domainmodel.foaf.pojos.Agent</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#OnlineStatus">
+    <j.0:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus</j.0:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://nekiURIzaAgenta.com">
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://nekiURIzaOnlineStatus.com">
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#OnlineStatus"/>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,6 +1,7 @@
 package net.onlinepresence.domainmodel.opo.pojos;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
@@ -28,7 +29,7 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public int duration;
 	public SharingSpaceBean intendentFor;
 	public SpatialThingBean location;
-	public Collection<OnlinePresenceComponentBean> presenceComponents;
+	public Collection<OnlinePresenceComponentBean> presenceComponents = new LinkedList<OnlinePresenceComponentBean>();
 	public SourceOfPublishingBean source;
 	public String startTime;
 	public ItemBean statusMessage;
