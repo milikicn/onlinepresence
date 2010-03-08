@@ -1,0 +1,94 @@
+@prefix sioc:    <http://rdfs.org/sioc/ns#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix opo:     <http://online-presence.net/opo/ns#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wgs84:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix jenabean:  <http://thewebsemantic.com/> .
+@prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
+
+jenabean:javaclass
+      a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+
+opo:FreelyContactable
+      a       opo:Contactability .
+
+<http://nekiURIzaOnlinePresence.com>
+      a       opo:OnlinePresence ;
+      opo:customMessage <http://someUriForStatusMessage.com> ;
+      opo:declaredBy <http://someUriForAgent.com> ;
+      opo:duration "0"^^xsd:int ;
+      opo:hasPresenceComponent
+              opo:AllNotificationsPass , opo:PubliclyFindable , <http://someUriForOnlineStatus.com> .
+
+opo:AllNotificationsPass
+      a       opo:Notifiability .
+
+opo:Disturbability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Disturbability" .
+
+opo:Visibility
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility" .
+
+<http://someUriForAgent.com>
+      a       opo:Agent ;
+      foaf:name "agent name"^^xsd:string .
+
+<http://someUriForOnlineStatus.com>
+      a       opo:OnlineStatus ;
+      opo:hasStatusComponent
+              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .
+
+opo:Active
+      a       opo:Activity ;
+      opo:inactivityPeriod
+              "0"^^xsd:int .
+
+opo:OnlinePresence
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.OnlinePresence" .
+
+opo:Findability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability" .
+
+opo:StatusMessage
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.StatusMessage" .
+
+opo:PubliclyFindable
+      a       opo:Findability .
+
+opo:Notifiability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability" .
+
+opo:Visible
+      a       opo:Visibility .
+
+opo:Agent
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.foaf.pojos.Agent" .
+
+opo:Activity
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Activity" .
+
+opo:Contactability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Contactability" .
+
+opo:Available
+      a       opo:Disturbability .
+
+opo:OnlineStatus
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus" .
+
+<http://someUriForStatusMessage.com>
+      a       opo:StatusMessage ;
+      sioc:content "Testing new library"^^xsd:string .

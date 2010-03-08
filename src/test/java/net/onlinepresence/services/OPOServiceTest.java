@@ -39,9 +39,11 @@ public class OPOServiceTest {
 		statusMessage.setContent("Testing new library");		
 		onlinePresence.setStatusMessage(statusMessage);
 		
-//		OPOService.export(onlinePresence, "exported.rdf", "RDF/XML");
+		OPOService.export(onlinePresence, "exportedXML.rdf", "RDF/XML");
 		
-		OPOService.export(onlinePresence, "exported.rdf", "TURTLE");
+		OPOService.export(onlinePresence, "exportedTURTLE.rdf", "TURTLE");
+		
+		OPOService.export(onlinePresence, "exportedN3.rdf", "N3");
 		
 	}
 	
