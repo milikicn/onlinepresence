@@ -13,7 +13,7 @@ public class Reading<T> extends Action implements ReadingBean<T> {
 	private T readingMaterial;
 
 	public Reading() {
-
+		super();
 	}
 	
 	public Reading(String uri) {

@@ -10,7 +10,7 @@ import net.onlinepresence.domainmodel.opoactions.interfaces.WorkingBean;
 public class Working extends Action implements WorkingBean {
 
 	public Working() {
-
+		super();
 	}
 	
 	public Working(String uri) {

@@ -12,26 +12,16 @@ public class Contactability extends OnlineStatusComponent implements Contactabil
 	/**
 	 * The Agent can be contacted by anyone on the Web.
 	 */
-	public static Contactability FREELY_CONTACTABLE = new Contactability();
+	public static Contactability FREELY_CONTACTABLE = new Contactability("http://online-presence.net/opo/ns#FreelyContactable");
 
 	/**
 	 * The Agent cannot be contated by anyone on the Web, but the contactability
 	 * is controled by some rules/policies.
 	 */
-	public static Contactability CONSTRAINED_CONTACTABILITY = new Contactability();
-
-	/**
-	 * Sets URIs for static instances of the class.
-	 */
-	static {
-		FREELY_CONTACTABLE
-				.setURI("http://online-presence.net/opo/ns#FreelyContactable");
-		CONSTRAINED_CONTACTABILITY
-				.setURI("http://online-presence.net/opo/ns#ConstrainedContactability");
-	}
+	public static Contactability CONSTRAINED_CONTACTABILITY = new Contactability("http://online-presence.net/opo/ns#ConstrainedContactability");
 
 	public Contactability() {
-
+		super();
 	}
 	
 	public Contactability(String uri) {

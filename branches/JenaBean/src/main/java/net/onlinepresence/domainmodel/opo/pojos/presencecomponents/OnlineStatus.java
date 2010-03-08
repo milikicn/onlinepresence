@@ -18,7 +18,7 @@ public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatu
 	private String name;
 
 	public OnlineStatus() {
-
+		super();
 	}
 	
 	public OnlineStatus(String uri) {

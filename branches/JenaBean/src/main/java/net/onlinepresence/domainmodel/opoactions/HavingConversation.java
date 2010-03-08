@@ -10,7 +10,7 @@ public class HavingConversation extends BeingWith implements
 		HavingConversationBean {
 
 	public HavingConversation() {
-
+		super();
 	}
 	
 	public HavingConversation(String uri) {

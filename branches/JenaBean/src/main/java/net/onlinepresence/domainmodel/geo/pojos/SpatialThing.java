@@ -14,7 +14,7 @@ public class SpatialThing extends Resource implements SpatialThingBean {
 	private String longitude;
 
 	public SpatialThing() {
-
+		super();
 	}
 	
 	public SpatialThing(String uri) {

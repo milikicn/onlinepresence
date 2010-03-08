@@ -14,7 +14,7 @@ public class OnlineStatusComponent extends Resource implements OnlineStatusCompo
 	private OnlineStatusBean component;
 
 	public OnlineStatusComponent() {
-
+		super();
 	}
 	
 	public OnlineStatusComponent(String uri) {

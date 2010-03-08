@@ -19,7 +19,7 @@ public class Thing extends Resource implements ThingBean {
 	private DocumentBean isPrimaryTopicOf;
 	
 	public Thing() {
-
+		super();
 	}
 
 	public Thing(String uri) {

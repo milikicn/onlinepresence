@@ -12,6 +12,30 @@ public class Activity extends OnlineStatusComponent implements ActivityBean{
 
 	private int inactivityPeriod;
 
+	/**
+	 * The Agent is active on the system.
+	 */
+	public static Activity ACTIVE = new Activity("http://online-presence.net/opo/ns#Active");
+
+	/**
+	 * The Agent is inactive for at least 5 min.
+	 */
+	public static Activity INACTIVE = new Activity("http://online-presence.net/opo/ns#Inactive");
+
+	/**
+	 * The Agent is inactive for at least 20 min.
+	 */
+	public static Activity PROLONGED_INACTIVE = new Activity("http://online-presence.net/opo/ns#ProlongedInactive");
+
+
+	public Activity() {
+		super();
+	}
+	
+	public Activity(String uri) {
+		super(uri);
+	}
+
 	@RdfProperty("http://online-presence.net/opo/ns#inactivityPeriod")
 	public int getInactivityPeriod() {
 		return inactivityPeriod;
@@ -20,39 +44,6 @@ public class Activity extends OnlineStatusComponent implements ActivityBean{
 	public void setInactivityPeriod(int inactivityPeriod) {
 		if(inactivityPeriod > 0)
 			this.inactivityPeriod = inactivityPeriod;
-	}
-	
-	/**
-	 * The Agent is active on the system.
-	 */
-	public static Activity ACTIVE = new Activity();
-
-	/**
-	 * The Agent is inactive for at least 5 min.
-	 */
-	public static Activity INACTIVE = new Activity();
-
-	/**
-	 * The Agent is inactive for at least 20 min.
-	 */
-	public static Activity PROLONGED_INACTIVE = new Activity();
-
-	/**
-	 * Sets URIs for static instances of the class.
-	 */
-	static {
-		ACTIVE.setURI("http://online-presence.net/opo/ns#Active");
-		INACTIVE.setURI("http://online-presence.net/opo/ns#Inactive");
-		PROLONGED_INACTIVE
-				.setURI("http://online-presence.net/opo/ns#ProlongedInactive");
-	}
-
-	public Activity() {
-
-	}
-	
-	public Activity(String uri) {
-		super(uri);
 	}
 	
 }

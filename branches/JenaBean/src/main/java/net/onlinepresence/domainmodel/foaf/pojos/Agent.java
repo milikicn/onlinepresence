@@ -14,7 +14,7 @@ public class Agent extends Thing implements AgentBean{
 	private OnlinePresenceBean onlinePresence;
 
 	public Agent() {
-
+		super();
 	}
 	
 	public Agent(String uri) {

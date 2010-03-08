@@ -13,7 +13,7 @@ public class Watching<T> extends Action implements WatchingBean<T> {
 	private T watching;
 
 	public Watching() {
-
+		super();
 	}
 	
 	public Watching(String uri) {

@@ -22,6 +22,7 @@ public class OPOService {
 		try {
 			Model m = ModelFactory.createDefaultModel();
 			m.setNsPrefix("opo", "http://online-presence.net/opo/ns#");
+			m.setNsPrefix("opo-actions", "http://online-presence.net/opo-actions/ns#");
 			m.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
 			m.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
 			m.setNsPrefix("sioc", "http://rdfs.org/sioc/ns#");

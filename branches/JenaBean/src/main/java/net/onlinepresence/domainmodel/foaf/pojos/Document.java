@@ -9,7 +9,7 @@ import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
 public class Document extends Thing implements DocumentBean {
 
 	public Document() {
-
+		super();
 	}
 	
 	public Document(String uri) {

@@ -12,23 +12,15 @@ public class Visibility extends OnlineStatusComponent implements VisibilityBean{
 	/**
 	 * The Agent's OnlineStatus is visible to other Agents.
 	 */
-	public static Visibility VISIBLE = new Visibility();
+	public static Visibility VISIBLE = new Visibility("http://online-presence.net/opo/ns#Visible");
 
 	/**
 	 * The Agent's OnlineStatus is not visible to other Agents.
 	 */
-	public static Visibility INVISIBLE = new Visibility();
-
-	/**
-	 * Sets URIs for static instances of the class.
-	 */
-	static {
-		VISIBLE.setURI("http://online-presence.net/opo/ns#Visible");
-		INVISIBLE.setURI("http://online-presence.net/opo/ns#Invisible");
-	}
+	public static Visibility INVISIBLE = new Visibility("http://online-presence.net/opo/ns#Invisible");
 	
 	public Visibility(){
-
+		super();
 	}
 	
 	public Visibility(String uri) {

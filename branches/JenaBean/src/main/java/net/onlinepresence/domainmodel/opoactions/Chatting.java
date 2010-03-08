@@ -13,11 +13,21 @@ public class Chatting extends HavingConversation implements ChattingBean {
 	private AgentBean chatBuddy;
 
 	public Chatting() {
-
+		super();
 	}
 	
 	public Chatting(String uri) {
 		super(uri);
+	}
+	
+	public Chatting(AgentBean chatBuddy) {
+		this();
+		setChatBuddy(chatBuddy);
+	}
+	
+	public Chatting(String uri, AgentBean chatBuddy) {
+		this(uri);
+		setChatBuddy(chatBuddy);
 	}
 	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#chatBuddy")

@@ -9,7 +9,7 @@ import net.onlinepresence.domainmodel.foaf.interfaces.GroupBean;
 public class Group extends Thing implements GroupBean {
 
 	public Group() {
-
+		super();
 	}
 
 	public Group(String uri) {
