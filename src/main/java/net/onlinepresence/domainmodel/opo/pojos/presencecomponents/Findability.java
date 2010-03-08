@@ -30,4 +30,12 @@ public class Findability extends OnlinePresenceComponent implements FindabilityB
 				.setURI("http://online-presence.net/opo/ns#PubliclyFindable");
 	}
 
+	public Findability() {
+
+	}
+	
+	public Findability(String uri) {
+		super(uri);
+	}
+	
 }

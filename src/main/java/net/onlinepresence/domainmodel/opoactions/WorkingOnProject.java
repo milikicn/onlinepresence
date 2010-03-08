@@ -12,6 +12,14 @@ public class WorkingOnProject extends Working implements WorkingOnProjectBean {
 
 	private ProjectBean project;
 
+	public WorkingOnProject() {
+
+	}
+	
+	public WorkingOnProject(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#project")
 	public ProjectBean getProject() {
 		return project;

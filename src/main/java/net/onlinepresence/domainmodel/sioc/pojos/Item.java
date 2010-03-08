@@ -12,6 +12,14 @@ public class Item extends Resource implements ItemBean {
 
 	private String content;
 
+	public Item() {
+		
+	}
+	
+	public Item(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://rdfs.org/sioc/ns#content")
 	public String getContent() {
 		return content;

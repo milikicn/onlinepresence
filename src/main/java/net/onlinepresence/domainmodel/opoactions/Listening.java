@@ -12,6 +12,14 @@ public class Listening<T> extends Action implements ListeningBean<T> {
 
 	private T listeningTo;
 
+	public Listening() {
+
+	}
+	
+	public Listening(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#listeningTo")
 	public T getListeningTo() {
 		return listeningTo;

@@ -9,4 +9,12 @@ import net.onlinepresence.domainmodel.sioc.pojos.Item;
 @RdfType("StatusMessage")
 public class StatusMessage extends Item implements StatusMessageBean {
 
+	public StatusMessage() {
+
+	}
+	
+	public StatusMessage(String uri) {
+		super(uri);
+	}
+	
 }

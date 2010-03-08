@@ -15,21 +15,22 @@ import net.onlinepresence.domainmodel.purl.interfaces.EventBean;
 public class SharingSpace extends Group implements SharingSpaceBean{
 
 	private EventBean event;
-	
 	private SpatialThingBean nearLocation;
-	
 	private SpatialThingBean currentLocation;
-	
 	private PersonBean friend;
-	
 	private PersonBean family;
-	
 	private DocumentBean commonInterest;
-	
 	private DocumentBean schoolHomepage;
-	
 	private DocumentBean workplaceHomepage;
 
+	public SharingSpace() {
+
+	}
+	
+	public SharingSpace(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo/ns#attendedOrganisedEvent")
 	public EventBean getEvent() {
 		return event;

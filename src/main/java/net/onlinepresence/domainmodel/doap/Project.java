@@ -5,4 +5,12 @@ import net.onlinepresence.domainmodel.general.Resource;
 
 public class Project extends Resource implements ProjectBean {
 
+	public Project() {
+
+	}
+
+	public Project(String uri) {
+		super(uri);
+	}
+
 }

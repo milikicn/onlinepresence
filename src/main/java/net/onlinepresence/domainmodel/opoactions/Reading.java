@@ -12,6 +12,14 @@ public class Reading<T> extends Action implements ReadingBean<T> {
 
 	private T readingMaterial;
 
+	public Reading() {
+
+	}
+	
+	public Reading(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#readingMaterial")
 	public T getReadingMaterial() {
 		return readingMaterial;

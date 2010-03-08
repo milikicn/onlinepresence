@@ -1,10 +1,12 @@
 package net.onlinepresence.domainmodel.foaf.interfaces;
 
-import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
 
-public interface AgentBean extends ResourceBean{
+public interface AgentBean extends ThingBean{
+	
+	String getNick();
+	void setNick(String nick);
 
-	public void setOnlinePresence(OnlinePresenceBean onlinePresence);
-	public OnlinePresenceBean getOnlinePresence();
+	void setOnlinePresence(OnlinePresenceBean onlinePresence);
+	OnlinePresenceBean getOnlinePresence();
 }

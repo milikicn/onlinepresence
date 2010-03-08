@@ -34,4 +34,12 @@ public class Notifiability extends OnlinePresenceComponent implements Notifiabil
 		NOTIFICATIONS_PROHIBITED.setURI("http://online-presence.net/opo/ns#NotificationsProhibited");
 	}
 
+	public Notifiability() {
+
+	}
+	
+	public Notifiability(String uri) {
+		super(uri);
+	}
+	
 }

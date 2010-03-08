@@ -29,11 +29,12 @@ public class OPOService {
 			m.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
 			m.setNsPrefix("wgs84", "http://www.w3.org/2003/01/geo/wgs84_pos#");
 			m.setNsPrefix("event", "http://purl.org/NET/c4dm/event.owl#");
-			m.setNsPrefix("swc", "http://data.semanticweb.org/ns/swc/ontology#");			
+			m.setNsPrefix("swc", "http://data.semanticweb.org/ns/swc/ontology#");	
+			m.setNsPrefix("jenabean", "http://thewebsemantic.com/");
 
 			Bean2RDF writer = new Bean2RDF(m);
 			
-			writer.save(onlinePresence);
+			writer.saveDeep(onlinePresence);
 			m.write(new FileOutputStream(fileName), syntax);
 			
 		} catch (Exception e) {
@@ -54,7 +55,7 @@ public class OPOService {
 
 			RDF2Bean reader = new RDF2Bean(m);
 			
-			onlinePresence = reader.load(OnlinePresence.class, 0);
+			onlinePresence = reader.loadDeep(OnlinePresence.class, 0);
 						
 		} catch (Exception e) {
 			System.err.println("Error");

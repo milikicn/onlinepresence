@@ -12,6 +12,14 @@ public class Watching<T> extends Action implements WatchingBean<T> {
 
 	private T watching;
 
+	public Watching() {
+
+	}
+	
+	public Watching(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#watching")
 	public T getWatching() {
 		return watching;

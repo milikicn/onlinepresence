@@ -9,4 +9,12 @@ import net.onlinepresence.domainmodel.opoactions.interfaces.BeingWithBean;
 @RdfType("BeingWith")
 public class BeingWith extends Action implements BeingWithBean {
 
+	public BeingWith() {
+
+	}
+	
+	public BeingWith(String uri) {
+		super(uri);
+	}
+	
 }

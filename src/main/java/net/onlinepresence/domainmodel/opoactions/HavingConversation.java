@@ -9,4 +9,12 @@ import net.onlinepresence.domainmodel.opoactions.interfaces.HavingConversationBe
 public class HavingConversation extends BeingWith implements
 		HavingConversationBean {
 
+	public HavingConversation() {
+
+	}
+	
+	public HavingConversation(String uri) {
+		super(uri);
+	}
+	
 }
