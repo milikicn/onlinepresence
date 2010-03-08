@@ -28,4 +28,11 @@ public class Disturbability extends OnlineStatusComponent implements Disturbabil
 		DO_NOT_DISTURB.setURI("http://online-presence.net/opo/ns#DoNotDisturb");
 	}
 
+	public Disturbability() {
+
+	}
+	
+	public Disturbability(String uri) {
+		super(uri);
+	}
 }

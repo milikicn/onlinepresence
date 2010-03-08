@@ -34,6 +34,14 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public String startTime;
 	public ItemBean statusMessage;
 	public UserBean user;
+
+	public OnlinePresence() {
+
+	}
+	
+	public OnlinePresence(String uri) {
+		super(uri);
+	}
 	
 	@RdfProperty("http://online-presence.net/opo/ns#currentAction")
 	public ActionBean getAction() {

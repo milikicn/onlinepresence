@@ -13,6 +13,14 @@ public class SpatialThing extends Resource implements SpatialThingBean {
 	private String latitude;
 	private String longitude;
 
+	public SpatialThing() {
+
+	}
+	
+	public SpatialThing(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://www.w3.org/2003/01/geo/wgs84_pos#lat")
 	public String getLatitude() {
 		return latitude;

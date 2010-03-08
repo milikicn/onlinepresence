@@ -13,9 +13,16 @@ import net.onlinepresence.domainmodel.semweb.interfaces.OrganizedEventBean;
 public class OrganizedEvent extends Resource implements OrganizedEventBean{
 
 	private PersonBean attendee;
-	
 	private SpatialThingBean location;
 
+	public OrganizedEvent() {
+
+	}
+	
+	public OrganizedEvent(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://data.semanticweb.org/ns/swc/ontology#hasAttendee")
 	public PersonBean getAttendee() {
 		return attendee;

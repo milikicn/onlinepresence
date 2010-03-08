@@ -15,9 +15,16 @@ import net.onlinepresence.domainmodel.opo.pojos.OnlinePresenceComponent;
 public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatusBean{
 
 	private Collection<OnlineStatusComponentBean> statusComponents = new LinkedList<OnlineStatusComponentBean>();
-	
 	private String name;
 
+	public OnlineStatus() {
+
+	}
+	
+	public OnlineStatus(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo/ns#hasStatusComponent")
 	public Collection<OnlineStatusComponentBean> getOnlineStatusComponents() {
 		return statusComponents;

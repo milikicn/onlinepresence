@@ -13,6 +13,14 @@ public class User extends Resource implements UserBean {
 
 	private String accountName;
 	private DocumentBean accountServiceHomepage;
+	
+	public User() {
+
+	}
+
+	public User(String uri) {
+		super(uri);
+	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/accountName")
 	public String getAccountName() {

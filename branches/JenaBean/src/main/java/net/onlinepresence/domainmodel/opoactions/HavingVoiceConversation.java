@@ -13,6 +13,14 @@ public class HavingVoiceConversation extends HavingConversation implements
 
 	private AgentBean speaker;
 
+	public HavingVoiceConversation() {
+
+	}
+	
+	public HavingVoiceConversation(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo-actions/ns#speaker")
 	public AgentBean getSpeaker() {
 		return speaker;

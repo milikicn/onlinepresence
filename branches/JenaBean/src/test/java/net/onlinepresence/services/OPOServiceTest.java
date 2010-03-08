@@ -19,15 +19,13 @@ public class OPOServiceTest {
 
 	public static void testExoport(){
 		
-		OnlinePresenceBean onlinePresence = new OnlinePresence();
-		onlinePresence.setURI("http://nekiURIzaOnlinePresence.com");
+		OnlinePresenceBean onlinePresence = new OnlinePresence("http://nekiURIzaOnlinePresence.com");
 		
-		AgentBean agent = new Agent();		
-		agent.setURI("http://nekiURIzaAgenta.com");		
+		AgentBean agent = new Agent("http://someUriForAgent.com");
+		agent.setName("agent name");
 		onlinePresence.setAgent(agent);
 		
-		OnlineStatusBean onlineStatus = new OnlineStatus();
-		onlineStatus.setURI("http://nekiURIzaOnlineStatus.com");
+		OnlineStatusBean onlineStatus = new OnlineStatus("http://someUriForOnlineStatus.com");
 		onlineStatus.addStatusComponent(Activity.ACTIVE);
 		onlineStatus.addStatusComponent(Contactability.FREELY_CONTACTABLE);
 		onlineStatus.addStatusComponent(Disturbability.AVAILABLE);
@@ -37,12 +35,13 @@ public class OPOServiceTest {
 		onlinePresence.addPresenceComponent(Notifiability.ALL_NOTIFICATIONS_PASS);
 		onlinePresence.addPresenceComponent(onlineStatus);
 		
-		ItemBean statusMessage = new StatusMessage();
-		statusMessage.setURI("http://nekiURIzaStatusMessage.com");
-		statusMessage.setContent("Testiramo novu biblioteku");		
+		ItemBean statusMessage = new StatusMessage("http://someUriForStatusMessage.com");
+		statusMessage.setContent("Testing new library");		
 		onlinePresence.setStatusMessage(statusMessage);
 		
-		OPOService.export(onlinePresence, "exported.rdf", "RDF/XML");
+//		OPOService.export(onlinePresence, "exported.rdf", "RDF/XML");
+		
+		OPOService.export(onlinePresence, "exported.rdf", "TURTLE");
 		
 	}
 	

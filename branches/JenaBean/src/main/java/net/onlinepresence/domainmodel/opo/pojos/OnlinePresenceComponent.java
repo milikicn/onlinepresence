@@ -13,6 +13,14 @@ public class OnlinePresenceComponent extends Resource implements OnlinePresenceC
 
 	private OnlinePresenceBean component;
 
+	public OnlinePresenceComponent() {
+
+	}
+	
+	public OnlinePresenceComponent(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo/ns#isPresenceComponentOf")
 	public OnlinePresenceBean getComponent() {
 		return component;

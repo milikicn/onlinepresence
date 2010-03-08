@@ -47,4 +47,12 @@ public class Activity extends OnlineStatusComponent implements ActivityBean{
 				.setURI("http://online-presence.net/opo/ns#ProlongedInactive");
 	}
 
+	public Activity() {
+
+	}
+	
+	public Activity(String uri) {
+		super(uri);
+	}
+	
 }

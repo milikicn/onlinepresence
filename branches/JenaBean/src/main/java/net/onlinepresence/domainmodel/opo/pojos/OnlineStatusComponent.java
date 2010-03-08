@@ -13,6 +13,14 @@ public class OnlineStatusComponent extends Resource implements OnlineStatusCompo
 	
 	private OnlineStatusBean component;
 
+	public OnlineStatusComponent() {
+
+	}
+	
+	public OnlineStatusComponent(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo/ns#isStatusComponentOf")
 	public OnlineStatusBean getComponent() {
 		return component;

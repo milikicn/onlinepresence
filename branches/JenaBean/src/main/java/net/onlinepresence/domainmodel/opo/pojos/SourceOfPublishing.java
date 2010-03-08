@@ -12,6 +12,14 @@ public class SourceOfPublishing extends Resource implements SourceOfPublishingBe
 
 	private String name;
 
+	public SourceOfPublishing() {
+
+	}
+	
+	public SourceOfPublishing(String uri) {
+		super(uri);
+	}
+	
 	@RdfProperty("http://online-presence.net/opo/ns#sourceName")
 	public String getName() {
 		return name;

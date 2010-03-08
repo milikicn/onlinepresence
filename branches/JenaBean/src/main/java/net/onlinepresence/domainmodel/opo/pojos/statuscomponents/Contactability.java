@@ -30,4 +30,12 @@ public class Contactability extends OnlineStatusComponent implements Contactabil
 				.setURI("http://online-presence.net/opo/ns#ConstrainedContactability");
 	}
 
+	public Contactability() {
+
+	}
+	
+	public Contactability(String uri) {
+		super(uri);
+	}
+	
 }

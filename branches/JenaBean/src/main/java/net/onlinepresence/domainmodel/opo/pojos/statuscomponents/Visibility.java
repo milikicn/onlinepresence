@@ -26,5 +26,12 @@ public class Visibility extends OnlineStatusComponent implements VisibilityBean{
 		VISIBLE.setURI("http://online-presence.net/opo/ns#Visible");
 		INVISIBLE.setURI("http://online-presence.net/opo/ns#Invisible");
 	}
+	
+	public Visibility(){
 
+	}
+	
+	public Visibility(String uri) {
+		super(uri);
+	}
 }

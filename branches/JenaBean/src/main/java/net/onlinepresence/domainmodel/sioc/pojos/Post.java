@@ -12,6 +12,14 @@ public class Post extends Item implements PostBean {
 
 	private PostBean replyOf;
 	private DocumentBean primaryTopicOf;
+	
+	public Post() {
+
+	}
+
+	public Post(String uri) {
+		super(uri);
+	}
 
 	@RdfProperty("http://rdfs.org/sioc/ns#reply_of")
 	public PostBean getReplyOf() {

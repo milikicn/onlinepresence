@@ -9,4 +9,12 @@ import net.onlinepresence.domainmodel.opoactions.interfaces.WorkingBean;
 @RdfType("Working")
 public class Working extends Action implements WorkingBean {
 
+	public Working() {
+
+	}
+	
+	public Working(String uri) {
+		super(uri);
+	}
+	
 }
