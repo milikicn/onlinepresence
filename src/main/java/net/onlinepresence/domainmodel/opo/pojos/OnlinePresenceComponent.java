@@ -14,7 +14,7 @@ public class OnlinePresenceComponent extends Resource implements OnlinePresenceC
 	private OnlinePresenceBean component;
 
 	public OnlinePresenceComponent() {
-
+		super();
 	}
 	
 	public OnlinePresenceComponent(String uri) {

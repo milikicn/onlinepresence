@@ -14,7 +14,7 @@ public class HavingVoiceConversation extends HavingConversation implements
 	private AgentBean speaker;
 
 	public HavingVoiceConversation() {
-
+		super();
 	}
 	
 	public HavingVoiceConversation(String uri) {

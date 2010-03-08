@@ -15,7 +15,7 @@ public class User extends Resource implements UserBean {
 	private DocumentBean accountServiceHomepage;
 	
 	public User() {
-
+		super();
 	}
 
 	public User(String uri) {

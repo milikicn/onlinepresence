@@ -13,7 +13,7 @@ public class SourceOfPublishing extends Resource implements SourceOfPublishingBe
 	private String name;
 
 	public SourceOfPublishing() {
-
+		super();
 	}
 	
 	public SourceOfPublishing(String uri) {

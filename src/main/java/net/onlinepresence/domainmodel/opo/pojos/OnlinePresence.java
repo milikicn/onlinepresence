@@ -36,7 +36,7 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public UserBean user;
 
 	public OnlinePresence() {
-
+		super();
 	}
 	
 	public OnlinePresence(String uri) {

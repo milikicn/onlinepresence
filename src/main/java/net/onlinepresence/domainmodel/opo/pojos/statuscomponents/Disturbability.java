@@ -13,23 +13,15 @@ public class Disturbability extends OnlineStatusComponent implements Disturbabil
 	 * The agent is not busy and therefore available for contatct by other
 	 * Agents.
 	 */
-	public static Disturbability AVAILABLE = new Disturbability();
+	public static Disturbability AVAILABLE = new Disturbability("http://online-presence.net/opo/ns#Available");
 
 	/**
 	 * The Agent is busy and does not want to be contacted by other Agents.
 	 */
-	public static Disturbability DO_NOT_DISTURB = new Disturbability();
-
-	/**
-	 * Sets URIs for static instances of the class.
-	 */
-	static {
-		AVAILABLE.setURI("http://online-presence.net/opo/ns#Available");
-		DO_NOT_DISTURB.setURI("http://online-presence.net/opo/ns#DoNotDisturb");
-	}
+	public static Disturbability DO_NOT_DISTURB = new Disturbability("http://online-presence.net/opo/ns#DoNotDisturb");
 
 	public Disturbability() {
-
+		super();
 	}
 	
 	public Disturbability(String uri) {

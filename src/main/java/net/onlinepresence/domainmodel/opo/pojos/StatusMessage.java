@@ -10,7 +10,7 @@ import net.onlinepresence.domainmodel.sioc.pojos.Item;
 public class StatusMessage extends Item implements StatusMessageBean {
 
 	public StatusMessage() {
-
+		super();
 	}
 	
 	public StatusMessage(String uri) {

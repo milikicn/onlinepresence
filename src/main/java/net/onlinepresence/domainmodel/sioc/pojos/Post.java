@@ -14,7 +14,7 @@ public class Post extends Item implements PostBean {
 	private DocumentBean primaryTopicOf;
 	
 	public Post() {
-
+		super();
 	}
 
 	public Post(String uri) {

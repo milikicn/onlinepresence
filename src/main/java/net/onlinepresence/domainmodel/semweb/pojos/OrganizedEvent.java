@@ -16,7 +16,7 @@ public class OrganizedEvent extends Resource implements OrganizedEventBean{
 	private SpatialThingBean location;
 
 	public OrganizedEvent() {
-
+		super();
 	}
 	
 	public OrganizedEvent(String uri) {

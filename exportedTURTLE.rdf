@@ -8,6 +8,47 @@
 @prefix wgs84:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix jenabean:  <http://thewebsemantic.com/> .
 @prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
+@prefix opo-actions:  <http://online-presence.net/opo-actions/ns#> .
+
+<http://java.net/URL>
+      a       rdfs:Class ;
+      jenabean:javaclass "java.net.URL" .
+
+<http://java.net/URL/1180136746>
+      a       <http://java.net/URL> .
+
+opo:Active
+      a       opo:Activity ;
+      opo:inactivityPeriod
+              "0"^^xsd:int .
+
+opo:Findability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability" .
+
+<http://java.net/URL/1250057090>
+      a       <http://java.net/URL> .
+
+opo:Notifiability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability" .
+
+opo:Activity
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Activity" .
+
+<http://online-presence.net/triplestore/store#StatusMessage/1268088045972>
+      a       opo:StatusMessage ;
+      sioc:content "Testing new library."^^xsd:string .
+
+opo:OnlineStatus
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus" .
+
+<http://online-presence.net/triplestore/store#OnlineStatus/1268088045950>
+      a       opo:OnlineStatus ;
+      opo:hasStatusComponent
+              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .
 
 jenabean:javaclass
       a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
@@ -15,13 +56,10 @@ jenabean:javaclass
 opo:FreelyContactable
       a       opo:Contactability .
 
-<http://nekiURIzaOnlinePresence.com>
-      a       opo:OnlinePresence ;
-      opo:customMessage <http://someUriForStatusMessage.com> ;
-      opo:declaredBy <http://someUriForAgent.com> ;
-      opo:duration "0"^^xsd:int ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://someUriForOnlineStatus.com> .
+<http://online-presence.net/triplestore/store#Chatting/1268088045979>
+      a       opo-actions:Chatting ;
+      opo-actions:chatBuddy
+              <http://online-presence.net/triplestore/store#Agent/1268088045973> .
 
 opo:AllNotificationsPass
       a       opo:Notifiability .
@@ -34,27 +72,23 @@ opo:Visibility
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility" .
 
-<http://someUriForAgent.com>
+<http://online-presence.net/triplestore/store#Agent/1268088045973>
       a       opo:Agent ;
-      foaf:name "agent name"^^xsd:string .
-
-<http://someUriForOnlineStatus.com>
-      a       opo:OnlineStatus ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .
-
-opo:Active
-      a       opo:Activity ;
-      opo:inactivityPeriod
-              "0"^^xsd:int .
+      foaf:homepage <http://java.net/URL/1250057090> ;
+      foaf:name "Nikola Milikic"^^xsd:string .
 
 opo:OnlinePresence
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.OnlinePresence" .
 
-opo:Findability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability" .
+<http://online-presence.net/triplestore/store#OnlinePresence/1268088045944>
+      a       opo:OnlinePresence ;
+      opo:currentAction <http://online-presence.net/triplestore/store#Chatting/1268088045979> ;
+      opo:customMessage <http://online-presence.net/triplestore/store#StatusMessage/1268088045972> ;
+      opo:declaredBy <http://online-presence.net/triplestore/store#Agent/1268088045948> ;
+      opo:duration "0"^^xsd:int ;
+      opo:hasPresenceComponent
+              <http://online-presence.net/triplestore/store#OnlineStatus/1268088045950> , opo:AllNotificationsPass , opo:PubliclyFindable .
 
 opo:StatusMessage
       a       rdfs:Class ;
@@ -63,32 +97,25 @@ opo:StatusMessage
 opo:PubliclyFindable
       a       opo:Findability .
 
-opo:Notifiability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability" .
-
 opo:Visible
       a       opo:Visibility .
+
+<http://online-presence.net/triplestore/store#Agent/1268088045948>
+      a       opo:Agent ;
+      foaf:homepage <http://java.net/URL/1180136746> ;
+      foaf:name "Filip Radulovic"^^xsd:string .
 
 opo:Agent
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.foaf.pojos.Agent" .
 
-opo:Activity
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Activity" .
-
 opo:Contactability
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Contactability" .
 
+opo-actions:Chatting
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opoactions.Chatting" .
+
 opo:Available
       a       opo:Disturbability .
-
-opo:OnlineStatus
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus" .
-
-<http://someUriForStatusMessage.com>
-      a       opo:StatusMessage ;
-      sioc:content "Testing new library"^^xsd:string .

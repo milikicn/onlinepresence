@@ -13,25 +13,15 @@ public class Findability extends OnlinePresenceComponent implements FindabilityB
 	 * The Agent's contact details cannot be found by anyone on the Web, but the
 	 * findability is controled by some rules/policies.
 	 */
-	public static Findability CONSTRAINED_FINDABILITY = new Findability();
+	public static Findability CONSTRAINED_FINDABILITY = new Findability("http://online-presence.net/opo/ns#ConstrainedFindability");
 
 	/**
 	 * The Agent's contact details can be found by anyone on the Web.
 	 */
-	public static Findability PUBLICLY_FINDABLE = new Findability();
-
-	/**
-	 * Sets URIs for static instances of the class.
-	 */
-	static {
-		CONSTRAINED_FINDABILITY
-				.setURI("http://online-presence.net/opo/ns#ConstrainedFindability");
-		PUBLICLY_FINDABLE
-				.setURI("http://online-presence.net/opo/ns#PubliclyFindable");
-	}
+	public static Findability PUBLICLY_FINDABLE = new Findability("http://online-presence.net/opo/ns#PubliclyFindable");
 
 	public Findability() {
-
+		super();
 	}
 	
 	public Findability(String uri) {

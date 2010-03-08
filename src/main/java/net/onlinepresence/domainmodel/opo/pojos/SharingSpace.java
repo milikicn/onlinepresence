@@ -24,7 +24,7 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	private DocumentBean workplaceHomepage;
 
 	public SharingSpace() {
-
+		super();
 	}
 	
 	public SharingSpace(String uri) {

@@ -10,7 +10,7 @@ import net.onlinepresence.domainmodel.opoactions.interfaces.BeingWithBean;
 public class BeingWith extends Action implements BeingWithBean {
 
 	public BeingWith() {
-
+		super();
 	}
 	
 	public BeingWith(String uri) {

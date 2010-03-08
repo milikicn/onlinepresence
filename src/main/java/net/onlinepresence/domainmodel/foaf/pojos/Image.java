@@ -8,4 +8,12 @@ import net.onlinepresence.domainmodel.foaf.interfaces.ImageBean;
 @RdfType("Image")
 public class Image extends Thing implements ImageBean {
 
+	public Image() {
+		super();
+	}
+
+	public Image(String uri) {
+		super(uri);
+	}
+
 }

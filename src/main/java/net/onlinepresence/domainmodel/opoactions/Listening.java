@@ -13,7 +13,7 @@ public class Listening<T> extends Action implements ListeningBean<T> {
 	private T listeningTo;
 
 	public Listening() {
-
+		super();
 	}
 	
 	public Listening(String uri) {

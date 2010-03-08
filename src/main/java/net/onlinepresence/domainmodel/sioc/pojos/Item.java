@@ -13,7 +13,7 @@ public class Item extends Resource implements ItemBean {
 	private String content;
 
 	public Item() {
-		
+		super();
 	}
 	
 	public Item(String uri) {
