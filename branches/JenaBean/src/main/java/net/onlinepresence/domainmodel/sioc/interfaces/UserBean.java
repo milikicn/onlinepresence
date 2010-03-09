@@ -1,12 +1,13 @@
 package net.onlinepresence.domainmodel.sioc.interfaces;
 
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import java.net.URI;
+
 import net.onlinepresence.domainmodel.general.ResourceBean;
 
 public interface UserBean extends ResourceBean{
 
-	DocumentBean getAccountServiceHomepage();
-	void setAccountServiceHomepage(DocumentBean accountServiceHomepage);
+	URI getAccountServiceHomepage();
+	void setAccountServiceHomepage(URI accountServiceHomepage);
 	void setAccountServiceHomepage(String accountServiceHomepage);
 	
 	String getAccountName();

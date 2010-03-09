@@ -1,10 +1,11 @@
 package net.onlinepresence.domainmodel.sioc.pojos;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
-import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.sioc.interfaces.PostBean;
 
 @Namespace("http://rdfs.org/sioc/ns#")
@@ -12,7 +13,7 @@ import net.onlinepresence.domainmodel.sioc.interfaces.PostBean;
 public class Post extends Item implements PostBean {
 
 	private PostBean replyOf;
-	private DocumentBean primaryTopicOf;
+	private URI primaryTopicOf;
 	
 	public Post() {
 		super();
@@ -35,17 +36,21 @@ public class Post extends Item implements PostBean {
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/isPrimaryTopicOf")
-	public DocumentBean getPrimaryTopicOf() {
+	public URI getPrimaryTopicOf() {
 		return primaryTopicOf;
 	}
 
-	public void setPrimaryTopicOf(DocumentBean primaryTopicOf) {
+	public void setPrimaryTopicOf(URI primaryTopicOf) {
 		this.primaryTopicOf = primaryTopicOf;
 	}
 	
 	public void setPrimaryTopicOf(String primaryTopicOf) {
 		if(primaryTopicOf != null)
-			setPrimaryTopicOf(new Document(primaryTopicOf));
+			try {
+				setPrimaryTopicOf(new URI(primaryTopicOf));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 
 }

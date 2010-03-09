@@ -1,5 +1,7 @@
 package net.onlinepresence.domainmodel.foaf.interfaces;
 
+import java.net.URI;
+
 import net.onlinepresence.domainmodel.general.ResourceBean;
 
 public interface ThingBean extends ResourceBean{
@@ -7,11 +9,11 @@ public interface ThingBean extends ResourceBean{
 	String getName();
 	void setName(String name);
 	
-	DocumentBean getHomepage();
-	void setHomepage(DocumentBean homepage);
+	URI getHomepage();
+	void setHomepage(URI homepage);
 	void setHomepage(String homepage);
 
-	DocumentBean getIsPrimaryTopicOf();
-	void setIsPrimaryTopicOf(DocumentBean isPrimaryTopicOf);
+	URI getIsPrimaryTopicOf();
+	void setIsPrimaryTopicOf(URI isPrimaryTopicOf);
 	void setIsPrimaryTopicOf(String isPrimaryTopicOf);
 }
