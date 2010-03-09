@@ -40,13 +40,14 @@ public class OPOService {
 			m.write(new FileOutputStream(fileName), syntax);
 			
 		} catch (Exception e) {
-			System.err.println("Error");
+			System.err.println("Error in writting");
+			e.printStackTrace();
 		}
 	}
 	
-	public static OnlinePresenceBean importOP(String fileName, String syntax){
+	public static OnlinePresence importOP(String fileName, String syntax){
 		
-		OnlinePresenceBean onlinePresence = null;
+		OnlinePresence onlinePresence = null;
 		
 		try {	
 			
@@ -60,7 +61,8 @@ public class OPOService {
 			onlinePresence = reader.loadDeep(OnlinePresence.class, 0);
 						
 		} catch (Exception e) {
-			System.err.println("Error");
+			System.err.println("Error in reading");
+			e.printStackTrace();
 		}
 		
 		return onlinePresence;

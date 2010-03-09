@@ -11,27 +11,33 @@
 @prefix doap:    <http://usefulinc.com/ns/doap#> .
 @prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
 
+<http://online-presence.net/triplestore/store#OnlinePresence/1268150060484>
+      a       opo:OnlinePresence ;
+      opo:currentAction <http://online-presence.net/triplestore/store#Chatting/1268150060500> ;
+      opo:customMessage <http://online-presence.net/triplestore/store#Post/1268150060500> ;
+      opo:declaredBy <http://online-presence.net/triplestore/store#Agent/1268150060484> ;
+      opo:duration "0"^^xsd:int ;
+      opo:hasPresenceComponent
+              opo:AllNotificationsPass , opo:PubliclyFindable , <http://online-presence.net/triplestore/store#OnlineStatus/1268150060484> ;
+      opo:startTime "2010-03-09T16:54:20"^^xsd:string .
+
+<http://online-presence.net/triplestore/store#Post/1268150060500>
+      a       sioc:Post ;
+      sioc:content "Moj odgovor na twitter status status"^^xsd:string ;
+      sioc:reply_of <http://online-presence.net/triplestore/store#ReplyPost/1268150060500> .
+
 <http://twitter.com/post/432432>
       a       foaf:Document .
-
-<http://online-presence.net/triplestore/store#ChatBuddy/1268134836224>
-      a       opo:Agent ;
-      foaf:homepage <http://nikola.milikic.info> ;
-      foaf:name "Nikola Milikic"^^xsd:string .
 
 opo:Active
       a       opo:Activity ;
       opo:inactivityPeriod
               "0"^^xsd:int .
 
-<http://online-presence.net/triplestore/store#OnlinePresence/1268134836198>
-      a       opo:OnlinePresence ;
-      opo:currentAction <http://online-presence.net/triplestore/store#Chatting/1268134836232> ;
-      opo:customMessage <http://online-presence.net/triplestore/store#Post/1268134836223> ;
-      opo:declaredBy <http://online-presence.net/triplestore/store#Agent/1268134836201> ;
-      opo:duration "0"^^xsd:int ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://online-presence.net/triplestore/store#OnlineStatus/1268134836205> .
+<http://online-presence.net/triplestore/store#Chatting/1268150060500>
+      a       opo-actions:Chatting ;
+      opo-actions:chatBuddy
+              <http://online-presence.net/triplestore/store#ChatBuddy/1268150060500> .
 
 opo:Findability
       a       rdfs:Class ;
@@ -45,15 +51,20 @@ opo:Activity
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Activity" .
 
-opo:OnlineStatus
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus" .
-
-<http://online-presence.net/triplestore/store#ReplyPost/1268134836223>
+<http://online-presence.net/triplestore/store#ReplyPost/1268150060500>
       a       sioc:Post ;
       sioc:content "Neki twitter status"^^xsd:string ;
       foaf:isPrimaryTopicOf
               <http://twitter.com/post/432432> .
+
+<http://online-presence.net/triplestore/store#ChatBuddy/1268150060500>
+      a       opo:Agent ;
+      foaf:homepage <http://nikola.milikic.info> ;
+      foaf:name "Nikola Milikic"^^xsd:string .
+
+opo:OnlineStatus
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus" .
 
 jenabean:javaclass
       a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
@@ -72,22 +83,22 @@ opo:Visibility
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility" .
 
-<http://online-presence.net/triplestore/store#Post/1268134836223>
-      a       sioc:Post ;
-      sioc:content "Moj odgovor na twitter status status"^^xsd:string ;
-      sioc:reply_of <http://online-presence.net/triplestore/store#ReplyPost/1268134836223> .
-
 <http://filip.milistan.net>
       a       foaf:Document .
 
-<http://online-presence.net/triplestore/store#OnlineStatus/1268134836205>
-      a       opo:OnlineStatus ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .
+<http://online-presence.net/triplestore/store#Agent/1268150060484>
+      a       opo:Agent ;
+      foaf:homepage <http://filip.milistan.net> ;
+      foaf:name "Filip Radulovic"^^xsd:string .
 
 opo:OnlinePresence
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.pojos.OnlinePresence" .
+
+<http://online-presence.net/triplestore/store#OnlineStatus/1268150060484>
+      a       opo:OnlineStatus ;
+      opo:hasStatusComponent
+              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .
 
 sioc:Post
       a       rdfs:Class ;
@@ -97,21 +108,11 @@ foaf:Document
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.foaf.pojos.Document" .
 
-<http://online-presence.net/triplestore/store#Chatting/1268134836232>
-      a       opo-actions:Chatting ;
-      opo-actions:chatBuddy
-              <http://online-presence.net/triplestore/store#ChatBuddy/1268134836224> .
-
 opo:PubliclyFindable
       a       opo:Findability .
 
 opo:Visible
       a       opo:Visibility .
-
-<http://online-presence.net/triplestore/store#Agent/1268134836201>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
 
 opo:Agent
       a       rdfs:Class ;
