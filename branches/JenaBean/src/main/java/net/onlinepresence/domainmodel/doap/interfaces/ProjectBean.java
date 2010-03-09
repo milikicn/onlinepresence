@@ -7,6 +7,7 @@ public interface ProjectBean extends ResourceBean {
 	
 	DocumentBean getHomepage();
 	void setHomepage(DocumentBean homepage);
+	void setHomepage(String homepage);
 
 	String getName();
 	void setName(String name);

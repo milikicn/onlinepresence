@@ -27,7 +27,9 @@ public class HavingVoiceConversation extends HavingConversation implements
 	}
 
 	public void setSpeaker(AgentBean speaker) {
-		if(speaker != null)
+		if(speaker != null){
+			speaker.setURI(speaker.getUri().replaceFirst("Agent", "Speaker"));
 			this.speaker = speaker;
+		}
 	}
 }

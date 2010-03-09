@@ -23,6 +23,7 @@ public interface SharingSpaceBean extends GroupBean{
 	public PersonBean getFriend();
 	
 	public void setCommonInterest(DocumentBean commonInterest);
+	public void setCommonInterest(String commonInterest);
 	public DocumentBean getCommonInterest();
 	
 	public void setCurrentLocation(SpatialThingBean base);
@@ -32,8 +33,10 @@ public interface SharingSpaceBean extends GroupBean{
 	public PersonBean getFamily();
 	
 	public void setSchoolHomepage(DocumentBean schoolHomepage);
+	public void setSchoolHomepage(String schoolHomepage);
 	public DocumentBean getSchoolHomepage();
 	
 	public void setWorkplaceHomepage(DocumentBean workplaceHomepage);
+	public void setWorkplaceHomepage(String workplaceHomepage);
 	public DocumentBean getWorkplaceHomepage();
 }

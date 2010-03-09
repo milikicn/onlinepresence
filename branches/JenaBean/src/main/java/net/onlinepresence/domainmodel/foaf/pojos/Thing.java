@@ -1,7 +1,5 @@
 package net.onlinepresence.domainmodel.foaf.pojos;
 
-import java.net.URL;
-
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
@@ -15,7 +13,7 @@ import net.onlinepresence.domainmodel.general.Resource;
 public class Thing extends Resource implements ThingBean {
 
 	private String name;
-	private URL homepage;
+	private DocumentBean homepage;
 	private DocumentBean isPrimaryTopicOf;
 	
 	public Thing() {
@@ -37,13 +35,18 @@ public class Thing extends Resource implements ThingBean {
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/homepage")
-	public URL getHomepage() {
+	public DocumentBean getHomepage() {
 		return homepage;
 	}
 
-	public void setHomepage(URL homepage) {
+	public void setHomepage(DocumentBean homepage) {
 		if(homepage != null)
 			this.homepage = homepage;
+	}
+	
+	public void setHomepage(String homepage) {
+		if(homepage != null)
+			setHomepage(new Document(homepage));
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/isPrimaryTopicOf")
@@ -54,5 +57,10 @@ public class Thing extends Resource implements ThingBean {
 	public void setIsPrimaryTopicOf(DocumentBean isPrimaryTopicOf) {
 		if(isPrimaryTopicOf != null)
 			this.isPrimaryTopicOf = isPrimaryTopicOf;
+	}
+	
+	public void setIsPrimaryTopicOf(String isPrimaryTopicOf) {
+		if(isPrimaryTopicOf != null)
+			setIsPrimaryTopicOf(new Document(isPrimaryTopicOf));
 	}
 }

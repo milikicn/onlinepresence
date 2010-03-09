@@ -32,6 +32,7 @@ public class OPOService {
 			m.setNsPrefix("event", "http://purl.org/NET/c4dm/event.owl#");
 			m.setNsPrefix("swc", "http://data.semanticweb.org/ns/swc/ontology#");	
 			m.setNsPrefix("jenabean", "http://thewebsemantic.com/");
+			m.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
 
 			Bean2RDF writer = new Bean2RDF(m);
 			

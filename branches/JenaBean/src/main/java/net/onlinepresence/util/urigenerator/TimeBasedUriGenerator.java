@@ -1,7 +1,5 @@
 package net.onlinepresence.util.urigenerator;
 
-
-
 /**
  * This generator is based on a very simple idea:
  * an "unique id" is appended to the given namespace to form the unique URI;
@@ -11,7 +9,7 @@ package net.onlinepresence.util.urigenerator;
  *
  */
 public class TimeBasedUriGenerator extends UriGenerator {
-
+	
 	@Override
 	public String generateInstanceUri(Object instance, String namespace) {
 		long currentTime = System.currentTimeMillis();

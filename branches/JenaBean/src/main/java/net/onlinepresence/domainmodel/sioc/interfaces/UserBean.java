@@ -7,6 +7,7 @@ public interface UserBean extends ResourceBean{
 
 	DocumentBean getAccountServiceHomepage();
 	void setAccountServiceHomepage(DocumentBean accountServiceHomepage);
+	void setAccountServiceHomepage(String accountServiceHomepage);
 	
 	String getAccountName();
 	void setAccountName(String accountName);

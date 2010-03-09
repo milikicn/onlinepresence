@@ -9,4 +9,5 @@ public interface PostBean extends ItemBean {
 	
 	DocumentBean getPrimaryTopicOf();
 	void setPrimaryTopicOf(DocumentBean primaryTopicOf);
+	void setPrimaryTopicOf(String primaryTopicOf);
 }

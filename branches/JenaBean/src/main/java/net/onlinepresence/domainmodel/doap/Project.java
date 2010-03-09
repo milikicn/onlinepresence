@@ -5,6 +5,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.doap.interfaces.ProjectBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.general.Resource;
 
 @Namespace("http://usefulinc.com/ns/doap#")
@@ -32,6 +33,11 @@ public class Project extends Resource implements ProjectBean {
 	public void setHomepage(DocumentBean homepage) {
 		if(homepage != null)
 			this.homepage = homepage;
+	}
+	
+	public void setHomepage(String homepage) {
+		if(homepage != null)
+			setHomepage(new Document(homepage));
 	}
 	
 	@RdfProperty("http://usefulinc.com/ns/doap#name")
