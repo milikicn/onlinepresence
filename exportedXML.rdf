@@ -13,36 +13,38 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:wgs84="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#OnlinePresence/1268150060484">
-    <opo:customMessage rdf:resource="http://online-presence.net/triplestore/store#Post/1268150060500"/>
-    <opo:startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010-03-09T16:54:20</opo:startTime>
-    <opo:hasPresenceComponent rdf:resource="http://online-presence.net/triplestore/store#OnlineStatus/1268150060484"/>
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Chatting/1268157746805">
+    <opo-actions:chatBuddy rdf:resource="http://online-presence.net/triplestore/store#ChatBuddy/1268157746798"/>
+    <rdf:type rdf:resource="http://online-presence.net/opo-actions/ns#Chatting"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#OnlinePresence/1268157746738">
+    <opo:customMessage rdf:resource="http://online-presence.net/triplestore/store#Post/1268157746797"/>
+    <opo:startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010-03-09T19:02:26</opo:startTime>
+    <opo:hasPresenceComponent rdf:resource="http://online-presence.net/triplestore/store#OnlineStatus/1268157746782"/>
     <opo:hasPresenceComponent rdf:resource="http://online-presence.net/opo/ns#AllNotificationsPass"/>
     <opo:hasPresenceComponent rdf:resource="http://online-presence.net/opo/ns#PubliclyFindable"/>
     <opo:duration rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</opo:duration>
-    <opo:declaredBy rdf:resource="http://online-presence.net/triplestore/store#Agent/1268150060484"/>
-    <opo:currentAction rdf:resource="http://online-presence.net/triplestore/store#Chatting/1268150060500"/>
+    <opo:declaredBy rdf:resource="http://online-presence.net/triplestore/store#Agent/1268157746779"/>
+    <opo:currentAction rdf:resource="http://online-presence.net/triplestore/store#Chatting/1268157746805"/>
     <rdf:type rdf:resource="http://online-presence.net/opo/ns#OnlinePresence"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Post/1268150060500">
-    <sioc:reply_of rdf:resource="http://online-presence.net/triplestore/store#ReplyPost/1268150060500"/>
-    <sioc:content rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moj odgovor na twitter status status</sioc:content>
-    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Post"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://twitter.com/post/432432">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Active">
     <opo:inactivityPeriod rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</opo:inactivityPeriod>
     <rdf:type rdf:resource="http://online-presence.net/opo/ns#Activity"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Chatting/1268150060500">
-    <opo-actions:chatBuddy rdf:resource="http://online-presence.net/triplestore/store#ChatBuddy/1268150060500"/>
-    <rdf:type rdf:resource="http://online-presence.net/opo-actions/ns#Chatting"/>
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#ChatBuddy/1268157746798">
+    <foaf:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nikola Milikic</foaf:name>
+    <foaf:homepage rdf:resource="http://nikola.milikic.info"/>
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Agent"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Findability">
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Post/1268157746797">
+    <sioc:reply_of rdf:resource="http://online-presence.net/triplestore/store#ReplyPost/1268157746797"/>
+    <sioc:content rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moj odgovor na twitter status status</sioc:content>
+    <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Post"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Notifiability">
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability</jenabean:javaclass>
@@ -52,15 +54,10 @@
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Activity</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#ReplyPost/1268150060500">
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#ReplyPost/1268157746797">
     <foaf:isPrimaryTopicOf rdf:resource="http://twitter.com/post/432432"/>
     <sioc:content rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neki twitter status</sioc:content>
     <rdf:type rdf:resource="http://rdfs.org/sioc/ns#Post"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#ChatBuddy/1268150060500">
-    <foaf:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nikola Milikic</foaf:name>
-    <foaf:homepage rdf:resource="http://nikola.milikic.info"/>
-    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Agent"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#OnlineStatus">
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus</jenabean:javaclass>
@@ -83,10 +80,7 @@
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://filip.milistan.net">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Agent/1268150060484">
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#Agent/1268157746779">
     <foaf:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filip Radulovic</foaf:name>
     <foaf:homepage rdf:resource="http://filip.milistan.net"/>
     <rdf:type rdf:resource="http://online-presence.net/opo/ns#Agent"/>
@@ -95,43 +89,36 @@
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.OnlinePresence</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#OnlineStatus/1268150060484">
-    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Visible"/>
-    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Available"/>
-    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#FreelyContactable"/>
-    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Active"/>
-    <rdf:type rdf:resource="http://online-presence.net/opo/ns#OnlineStatus"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://rdfs.org/sioc/ns#Post">
     <jenabean:javaclass>net.onlinepresence.domainmodel.sioc.pojos.Post</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document">
-    <jenabean:javaclass>net.onlinepresence.domainmodel.foaf.pojos.Document</jenabean:javaclass>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/opo/ns#PubliclyFindable">
-    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Findability"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Visible">
     <rdf:type rdf:resource="http://online-presence.net/opo/ns#Visibility"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/opo/ns#Agent">
-    <jenabean:javaclass>net.onlinepresence.domainmodel.foaf.pojos.Agent</jenabean:javaclass>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#PubliclyFindable">
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#Findability"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Contactability">
     <jenabean:javaclass>net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Contactability</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://online-presence.net/opo-actions/ns#Chatting">
-    <jenabean:javaclass>net.onlinepresence.domainmodel.opoactions.Chatting</jenabean:javaclass>
+  <rdf:Description rdf:about="http://online-presence.net/opo/ns#Agent">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.foaf.pojos.Agent</jenabean:javaclass>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://online-presence.net/opo/ns#Available">
     <rdf:type rdf:resource="http://online-presence.net/opo/ns#Disturbability"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://nikola.milikic.info">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+  <rdf:Description rdf:about="http://online-presence.net/opo-actions/ns#Chatting">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opoactions.Chatting</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://online-presence.net/triplestore/store#OnlineStatus/1268157746782">
+    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Visible"/>
+    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Available"/>
+    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#FreelyContactable"/>
+    <opo:hasStatusComponent rdf:resource="http://online-presence.net/opo/ns#Active"/>
+    <rdf:type rdf:resource="http://online-presence.net/opo/ns#OnlineStatus"/>
   </rdf:Description>
 </rdf:RDF>

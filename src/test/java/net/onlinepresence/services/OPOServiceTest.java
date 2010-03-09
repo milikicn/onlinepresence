@@ -51,8 +51,6 @@ public class OPOServiceTest {
 		
 		onlinePresence.setStatusMessage(mojStatus);
 		
-		
-		
 		AgentBean agentNikola = new Agent();
 		agentNikola.setName("Nikola Milikic");
 		agentNikola.setHomepage("http://nikola.milikic.info");
@@ -81,6 +79,6 @@ public class OPOServiceTest {
 	
 	public static void main(String[] args) {
 		OPOServiceTest.testExoport();
-		OPOServiceTest.testImport();
+//		OPOServiceTest.testImport();
 	}
 }

@@ -1,11 +1,12 @@
 package net.onlinepresence.domainmodel.opo.pojos;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.PersonBean;
-import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.foaf.pojos.Group;
 import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
 import net.onlinepresence.domainmodel.opo.interfaces.SharingSpaceBean;
@@ -20,9 +21,9 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	private SpatialThingBean currentLocation;
 	private PersonBean friend;
 	private PersonBean family;
-	private DocumentBean commonInterest;
-	private DocumentBean schoolHomepage;
-	private DocumentBean workplaceHomepage;
+	private URI commonInterest;
+	private URI schoolHomepage;
+	private URI workplaceHomepage;
 
 	public SharingSpace() {
 		super();
@@ -83,48 +84,60 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#commonInterest")
-	public DocumentBean getCommonInterest() {
+	public URI getCommonInterest() {
 		return commonInterest;
 	}
 
-	public void setCommonInterest(DocumentBean commonInterest) {
+	public void setCommonInterest(URI commonInterest) {
 		if(commonInterest != null)
 			this.commonInterest = commonInterest;
 	}
 	
 	public void setCommonInterest(String commonInterest) {
 		if(commonInterest != null)
-			setCommonInterest(new Document(commonInterest));
+			try {
+				setCommonInterest(new URI(commonInterest));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#schoolHomepage")
-	public DocumentBean getSchoolHomepage() {
+	public URI getSchoolHomepage() {
 		return schoolHomepage;
 	}
 
-	public void setSchoolHomepage(DocumentBean schoolHomepage) {
+	public void setSchoolHomepage(URI schoolHomepage) {
 		if(schoolHomepage != null)
 			this.schoolHomepage = schoolHomepage;
 	}
 	
 	public void setSchoolHomepage(String schoolHomepage) {
 		if(schoolHomepage != null)
-			setSchoolHomepage(new Document(schoolHomepage));
+			try {
+				setSchoolHomepage(new URI(schoolHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#workplaceHomepage")
-	public DocumentBean getWorkplaceHomepage() {
+	public URI getWorkplaceHomepage() {
 		return workplaceHomepage;
 	}
 
-	public void setWorkplaceHomepage(DocumentBean workplaceHomepage) {
+	public void setWorkplaceHomepage(URI workplaceHomepage) {
 		if(workplaceHomepage != null)
 			this.workplaceHomepage = workplaceHomepage;
 	}
 	
 	public void setWorkplaceHomepage(String workplaceHomepage) {
 		if(workplaceHomepage != null)
-			setWorkplaceHomepage(new Document(workplaceHomepage));
+			try {
+				setWorkplaceHomepage(new URI(workplaceHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 			
 }

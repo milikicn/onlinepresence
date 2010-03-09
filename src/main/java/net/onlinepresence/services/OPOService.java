@@ -57,7 +57,7 @@ public class OPOService {
 			is.close();
 
 			RDF2Bean reader = new RDF2Bean(m);
-			
+			reader.bindAll("OnlinePresence");
 			onlinePresence = reader.loadDeep(OnlinePresence.class, 0);
 						
 		} catch (Exception e) {

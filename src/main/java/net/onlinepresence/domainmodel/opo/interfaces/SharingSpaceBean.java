@@ -1,6 +1,7 @@
 package net.onlinepresence.domainmodel.opo.interfaces;
 
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import java.net.URI;
+
 import net.onlinepresence.domainmodel.foaf.interfaces.GroupBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.PersonBean;
 import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
@@ -22,9 +23,9 @@ public interface SharingSpaceBean extends GroupBean{
 	public void setFriend(PersonBean friend);
 	public PersonBean getFriend();
 	
-	public void setCommonInterest(DocumentBean commonInterest);
+	public void setCommonInterest(URI commonInterest);
 	public void setCommonInterest(String commonInterest);
-	public DocumentBean getCommonInterest();
+	public URI getCommonInterest();
 	
 	public void setCurrentLocation(SpatialThingBean base);
 	public SpatialThingBean getCurrentLocation();
@@ -32,11 +33,11 @@ public interface SharingSpaceBean extends GroupBean{
 	public void setFamily(PersonBean family);
 	public PersonBean getFamily();
 	
-	public void setSchoolHomepage(DocumentBean schoolHomepage);
+	public void setSchoolHomepage(URI schoolHomepage);
 	public void setSchoolHomepage(String schoolHomepage);
-	public DocumentBean getSchoolHomepage();
+	public URI getSchoolHomepage();
 	
-	public void setWorkplaceHomepage(DocumentBean workplaceHomepage);
+	public void setWorkplaceHomepage(URI workplaceHomepage);
 	public void setWorkplaceHomepage(String workplaceHomepage);
-	public DocumentBean getWorkplaceHomepage();
+	public URI getWorkplaceHomepage();
 }

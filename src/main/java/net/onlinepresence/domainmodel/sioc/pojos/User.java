@@ -1,10 +1,12 @@
 package net.onlinepresence.domainmodel.sioc.pojos;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
-import net.onlinepresence.domainmodel.foaf.pojos.Document;
+
 import net.onlinepresence.domainmodel.general.Resource;
 import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
 
@@ -13,7 +15,7 @@ import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
 public class User extends Resource implements UserBean {
 
 	private String accountName;
-	private DocumentBean accountServiceHomepage;
+	private URI accountServiceHomepage;
 	
 	public User() {
 		super();
@@ -34,18 +36,22 @@ public class User extends Resource implements UserBean {
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/accountServiceHomepage")
-	public DocumentBean getAccountServiceHomepage() {
+	public URI getAccountServiceHomepage() {
 		return accountServiceHomepage;
 	}
 
-	public void setAccountServiceHomepage(DocumentBean accountServiceHomepage) {
+	public void setAccountServiceHomepage(URI accountServiceHomepage) {
 		if(accountServiceHomepage != null)
 			this.accountServiceHomepage = accountServiceHomepage;
 	}
 	
 	public void setAccountServiceHomepage(String accountServiceHomepage) {
 		if(accountServiceHomepage != null)
-			setAccountServiceHomepage(new Document(accountServiceHomepage));
+			try {
+				setAccountServiceHomepage(new URI(accountServiceHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 
 }

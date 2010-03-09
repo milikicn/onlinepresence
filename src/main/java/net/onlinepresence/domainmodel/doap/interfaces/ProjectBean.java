@@ -1,12 +1,13 @@
 package net.onlinepresence.domainmodel.doap.interfaces;
 
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import java.net.URI;
+
 import net.onlinepresence.domainmodel.general.ResourceBean;
 
 public interface ProjectBean extends ResourceBean {
 	
-	DocumentBean getHomepage();
-	void setHomepage(DocumentBean homepage);
+	URI getHomepage();
+	void setHomepage(URI homepage);
 	void setHomepage(String homepage);
 
 	String getName();

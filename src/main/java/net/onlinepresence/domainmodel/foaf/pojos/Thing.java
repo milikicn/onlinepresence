@@ -1,10 +1,12 @@
 package net.onlinepresence.domainmodel.foaf.pojos;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.ThingBean;
 import net.onlinepresence.domainmodel.general.Resource;
 
@@ -13,8 +15,8 @@ import net.onlinepresence.domainmodel.general.Resource;
 public class Thing extends Resource implements ThingBean {
 
 	private String name;
-	private DocumentBean homepage;
-	private DocumentBean isPrimaryTopicOf;
+	private URI homepage;
+	private URI isPrimaryTopicOf;
 	
 	public Thing() {
 		super();
@@ -35,32 +37,40 @@ public class Thing extends Resource implements ThingBean {
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/homepage")
-	public DocumentBean getHomepage() {
+	public URI getHomepage() {
 		return homepage;
 	}
 
-	public void setHomepage(DocumentBean homepage) {
+	public void setHomepage(URI homepage) {
 		if(homepage != null)
 			this.homepage = homepage;
 	}
 	
 	public void setHomepage(String homepage) {
 		if(homepage != null)
-			setHomepage(new Document(homepage));
+			try {
+				setHomepage(new URI(homepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/isPrimaryTopicOf")
-	public DocumentBean getIsPrimaryTopicOf() {
+	public URI getIsPrimaryTopicOf() {
 		return isPrimaryTopicOf;
 	}
 
-	public void setIsPrimaryTopicOf(DocumentBean isPrimaryTopicOf) {
+	public void setIsPrimaryTopicOf(URI isPrimaryTopicOf) {
 		if(isPrimaryTopicOf != null)
 			this.isPrimaryTopicOf = isPrimaryTopicOf;
 	}
 	
 	public void setIsPrimaryTopicOf(String isPrimaryTopicOf) {
 		if(isPrimaryTopicOf != null)
-			setIsPrimaryTopicOf(new Document(isPrimaryTopicOf));
+			try {
+				setIsPrimaryTopicOf(new URI(isPrimaryTopicOf));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 	}
 }

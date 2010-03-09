@@ -1,13 +1,13 @@
 package net.onlinepresence.domainmodel.sioc.interfaces;
 
-import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import java.net.URI;
 
 public interface PostBean extends ItemBean {
 
 	PostBean getReplyOf();
 	void setReplyOf(PostBean replyOf);
 	
-	DocumentBean getPrimaryTopicOf();
-	void setPrimaryTopicOf(DocumentBean primaryTopicOf);
+	URI getPrimaryTopicOf();
+	void setPrimaryTopicOf(URI primaryTopicOf);
 	void setPrimaryTopicOf(String primaryTopicOf);
 }
