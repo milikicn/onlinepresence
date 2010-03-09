@@ -4,6 +4,7 @@ import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.general.Resource;
 import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
 
@@ -40,6 +41,11 @@ public class User extends Resource implements UserBean {
 	public void setAccountServiceHomepage(DocumentBean accountServiceHomepage) {
 		if(accountServiceHomepage != null)
 			this.accountServiceHomepage = accountServiceHomepage;
+	}
+	
+	public void setAccountServiceHomepage(String accountServiceHomepage) {
+		if(accountServiceHomepage != null)
+			setAccountServiceHomepage(new Document(accountServiceHomepage));
 	}
 
 }

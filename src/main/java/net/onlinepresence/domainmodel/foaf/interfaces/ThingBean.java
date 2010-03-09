@@ -1,15 +1,17 @@
 package net.onlinepresence.domainmodel.foaf.interfaces;
 
-import java.net.URL;
+import net.onlinepresence.domainmodel.general.ResourceBean;
 
-public interface ThingBean {
+public interface ThingBean extends ResourceBean{
 
 	String getName();
 	void setName(String name);
 	
-	URL getHomepage();
-	void setHomepage(URL homepage);
+	DocumentBean getHomepage();
+	void setHomepage(DocumentBean homepage);
+	void setHomepage(String homepage);
 
 	DocumentBean getIsPrimaryTopicOf();
 	void setIsPrimaryTopicOf(DocumentBean isPrimaryTopicOf);
+	void setIsPrimaryTopicOf(String isPrimaryTopicOf);
 }

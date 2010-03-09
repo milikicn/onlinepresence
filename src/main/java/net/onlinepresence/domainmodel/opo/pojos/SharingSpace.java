@@ -5,6 +5,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.PersonBean;
+import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.foaf.pojos.Group;
 import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
 import net.onlinepresence.domainmodel.opo.interfaces.SharingSpaceBean;
@@ -90,6 +91,11 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 		if(commonInterest != null)
 			this.commonInterest = commonInterest;
 	}
+	
+	public void setCommonInterest(String commonInterest) {
+		if(commonInterest != null)
+			setCommonInterest(new Document(commonInterest));
+	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#schoolHomepage")
 	public DocumentBean getSchoolHomepage() {
@@ -100,6 +106,11 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 		if(schoolHomepage != null)
 			this.schoolHomepage = schoolHomepage;
 	}
+	
+	public void setSchoolHomepage(String schoolHomepage) {
+		if(schoolHomepage != null)
+			setSchoolHomepage(new Document(schoolHomepage));
+	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#workplaceHomepage")
 	public DocumentBean getWorkplaceHomepage() {
@@ -109,6 +120,11 @@ public class SharingSpace extends Group implements SharingSpaceBean{
 	public void setWorkplaceHomepage(DocumentBean workplaceHomepage) {
 		if(workplaceHomepage != null)
 			this.workplaceHomepage = workplaceHomepage;
+	}
+	
+	public void setWorkplaceHomepage(String workplaceHomepage) {
+		if(workplaceHomepage != null)
+			setWorkplaceHomepage(new Document(workplaceHomepage));
 	}
 			
 }

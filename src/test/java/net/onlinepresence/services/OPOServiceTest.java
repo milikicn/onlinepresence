@@ -1,16 +1,13 @@
 package net.onlinepresence.services;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import net.onlinepresence.domainmodel.doap.Project;
+import net.onlinepresence.domainmodel.doap.interfaces.ProjectBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.AgentBean;
 import net.onlinepresence.domainmodel.foaf.pojos.Agent;
 import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
 import net.onlinepresence.domainmodel.opo.interfaces.presencecomponents.OnlineStatusBean;
 import net.onlinepresence.domainmodel.opo.pojos.OnlinePresence;
-import net.onlinepresence.domainmodel.opo.pojos.StatusMessage;
 import net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Findability;
 import net.onlinepresence.domainmodel.opo.pojos.presencecomponents.Notifiability;
 import net.onlinepresence.domainmodel.opo.pojos.presencecomponents.OnlineStatus;
@@ -20,7 +17,8 @@ import net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Disturbability;
 import net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility;
 import net.onlinepresence.domainmodel.opoactions.Chatting;
 import net.onlinepresence.domainmodel.opoactions.WorkingOnProject;
-import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
+import net.onlinepresence.domainmodel.sioc.interfaces.PostBean;
+import net.onlinepresence.domainmodel.sioc.pojos.Post;
 
 public class OPOServiceTest {
 
@@ -30,11 +28,8 @@ public class OPOServiceTest {
 		
 		AgentBean agentFilip = new Agent();
 		agentFilip.setName("Filip Radulovic");
-		try {
-			agentFilip.setHomepage(new URL("http://filip.milstan.net"));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+		agentFilip.setHomepage("http://filip.milistan.net");
+
 		onlinePresence.setAgent(agentFilip);
 		
 		OnlineStatusBean onlineStatus = new OnlineStatus();
@@ -47,26 +42,31 @@ public class OPOServiceTest {
 		onlinePresence.addPresenceComponent(Notifiability.ALL_NOTIFICATIONS_PASS);
 		onlinePresence.addPresenceComponent(onlineStatus);
 		
-		ItemBean statusMessage = new StatusMessage();
-		statusMessage.setContent("Testing new library.");		
-		onlinePresence.setStatusMessage(statusMessage);
+//		ItemBean statusMessage = new StatusMessage();
+//		statusMessage.setContent("Testing new library.");		
+//		onlinePresence.setStatusMessage(statusMessage);
+		
+		PostBean twitterStatus = new Post();
+		twitterStatus.setContent("Neki twitter status");
+		twitterStatus.setPrimaryTopicOf("http://twitter.com/post/432432");
+		PostBean mojStatus = new Post();
+		mojStatus.setContent("Moj odgovor na twitter status status");
+		mojStatus.setReplyOf(twitterStatus);
+		
+		onlinePresence.setStatusMessage(mojStatus);
+		
+		
 		
 		AgentBean agentNikola = new Agent();
 		agentNikola.setName("Nikola Milikic");
-		try {
-			agentNikola.setHomepage(new URL("http://nikola.milikic.info"));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		
+		agentNikola.setHomepage("http://nikola.milikic.info");
 		onlinePresence.setAction(new Chatting(agentNikola));
 		
-//		Project project = new Project();
+//		ProjectBean project = new Project();
 //		project.setDateCreated("2010-03-08");
-//		project.setHomepage(new Document("http://www.online-presence.net/api"));
+//		project.setHomepage("http://www.online-presence.net/api");
 //		project.setName("OPO API");
 //		project.setShortDescription("This is a short descripton of the OPO API project.");
-//
 //		onlinePresence.setAction(new WorkingOnProject(project));
 		
 		OPOService.export(onlinePresence, "exportedXML.rdf", "RDF/XML");

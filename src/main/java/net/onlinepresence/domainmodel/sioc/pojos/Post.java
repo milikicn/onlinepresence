@@ -4,6 +4,7 @@ import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.interfaces.DocumentBean;
+import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.sioc.interfaces.PostBean;
 
 @Namespace("http://rdfs.org/sioc/ns#")
@@ -27,8 +28,10 @@ public class Post extends Item implements PostBean {
 	}
 
 	public void setReplyOf(PostBean replyOf) {
-		if(replyOf != null)
+		if(replyOf != null){
+			replyOf.setURI(replyOf.getUri().replaceFirst("Post", "ReplyPost"));
 			this.replyOf = replyOf;
+		}
 	}
 
 	@RdfProperty("http://xmlns.com/foaf/0.1/isPrimaryTopicOf")
@@ -38,6 +41,11 @@ public class Post extends Item implements PostBean {
 
 	public void setPrimaryTopicOf(DocumentBean primaryTopicOf) {
 		this.primaryTopicOf = primaryTopicOf;
+	}
+	
+	public void setPrimaryTopicOf(String primaryTopicOf) {
+		if(primaryTopicOf != null)
+			setPrimaryTopicOf(new Document(primaryTopicOf));
 	}
 
 }

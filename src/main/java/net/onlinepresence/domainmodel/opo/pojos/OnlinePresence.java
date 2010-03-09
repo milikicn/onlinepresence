@@ -18,6 +18,7 @@ import net.onlinepresence.domainmodel.opo.interfaces.SharingSpaceBean;
 import net.onlinepresence.domainmodel.opo.interfaces.SourceOfPublishingBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
+import net.onlinepresence.util.Util;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("OnlinePresence")
@@ -37,10 +38,12 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 
 	public OnlinePresence() {
 		super();
+		setStartTime(Util.getTime());
 	}
 	
 	public OnlinePresence(String uri) {
 		super(uri);
+		setStartTime(Util.getTime());
 	}
 	
 	@RdfProperty("http://online-presence.net/opo/ns#currentAction")
