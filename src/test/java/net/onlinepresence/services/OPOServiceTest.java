@@ -1,10 +1,7 @@
 package net.onlinepresence.services;
 
-import net.onlinepresence.domainmodel.doap.Project;
-import net.onlinepresence.domainmodel.doap.interfaces.ProjectBean;
 import net.onlinepresence.domainmodel.foaf.interfaces.AgentBean;
 import net.onlinepresence.domainmodel.foaf.pojos.Agent;
-import net.onlinepresence.domainmodel.foaf.pojos.Document;
 import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
 import net.onlinepresence.domainmodel.opo.interfaces.presencecomponents.OnlineStatusBean;
 import net.onlinepresence.domainmodel.opo.pojos.OnlinePresence;
@@ -16,7 +13,6 @@ import net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Contactability;
 import net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Disturbability;
 import net.onlinepresence.domainmodel.opo.pojos.statuscomponents.Visibility;
 import net.onlinepresence.domainmodel.opoactions.Chatting;
-import net.onlinepresence.domainmodel.opoactions.WorkingOnProject;
 import net.onlinepresence.domainmodel.sioc.interfaces.PostBean;
 import net.onlinepresence.domainmodel.sioc.pojos.Post;
 
@@ -77,7 +73,14 @@ public class OPOServiceTest {
 		
 	}
 	
+	public static void testImport(){
+		OnlinePresence op = OPOService.importOP("exportedTURTLE.rdf", "TURTLE");
+		//System.out.println(op.getAgent().getHomepage());
+	//	OPOService.export(op, "ImportedTURTLE.rdf", "TURTLE");
+	}
+	
 	public static void main(String[] args) {
 		OPOServiceTest.testExoport();
+		OPOServiceTest.testImport();
 	}
 }
