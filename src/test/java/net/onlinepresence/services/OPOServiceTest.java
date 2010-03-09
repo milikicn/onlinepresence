@@ -63,6 +63,7 @@ public class OPOServiceTest {
 //		project.setShortDescription("This is a short descripton of the OPO API project.");
 //		onlinePresence.setAction(new WorkingOnProject(project));
 		
+		
 		OPOService.export(onlinePresence, "exportedXML.rdf", "RDF/XML");
 		
 		OPOService.export(onlinePresence, "exportedTURTLE.rdf", "TURTLE");
@@ -72,13 +73,13 @@ public class OPOServiceTest {
 	}
 	
 	public static void testImport(){
-		OnlinePresence op = OPOService.importOP("exportedTURTLE.rdf", "TURTLE");
+		OnlinePresence op = OPOService.importOP("exportedXML.rdf", "RDF/XML");
 		//System.out.println(op.getAgent().getHomepage());
-	//	OPOService.export(op, "ImportedTURTLE.rdf", "TURTLE");
+		OPOService.export(op, "ImportedTURTLE.rdf", "TURTLE");
 	}
 	
 	public static void main(String[] args) {
 		OPOServiceTest.testExoport();
-//		OPOServiceTest.testImport();
+		OPOServiceTest.testImport();
 	}
 }

@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
+import java.util.Iterator;
 
 import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
 import net.onlinepresence.domainmodel.opo.pojos.OnlinePresence;
@@ -14,6 +16,9 @@ import thewebsemantic.RDF2Bean;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class OPOService {
 
@@ -55,10 +60,13 @@ public class OPOService {
 			Model m  = ModelFactory.createDefaultModel().
 				read(new InputStreamReader(is), "http://online-presence.net/opo/ns#", syntax);
 			is.close();
-
+			
 			RDF2Bean reader = new RDF2Bean(m);
-			reader.bindAll("OnlinePresence");
-			onlinePresence = reader.loadDeep(OnlinePresence.class, 0);
+		//	reader.bindAll("OnlinePresence");
+			
+			Collection<OnlinePresence> cop  = reader.loadDeep(OnlinePresence.class);			
+			Iterator<OnlinePresence> iter = cop.iterator();			
+			onlinePresence = iter.next();
 						
 		} catch (Exception e) {
 			System.err.println("Error in reading");
