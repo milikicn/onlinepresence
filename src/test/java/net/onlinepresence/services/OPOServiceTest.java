@@ -74,7 +74,6 @@ public class OPOServiceTest {
 	
 	public static void testImport(){
 		OnlinePresence op = OPOService.importOP("exportedXML.rdf", "RDF/XML");
-		//System.out.println(op.getAgent().getHomepage());
 		OPOService.export(op, "ImportedTURTLE.rdf", "TURTLE");
 	}
 	
