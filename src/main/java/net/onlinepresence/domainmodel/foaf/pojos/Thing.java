@@ -77,7 +77,7 @@ public class Thing extends Resource implements ThingBean {
 			}
 	}
 
-	@RdfProperty("http://www.w3.org/2000/01/rdf-schema#")
+	@RdfProperty("http://www.w3.org/2000/01/rdf-schema#seeAlso")
 	public URI getSeeAlso() {
 		return seeAlso;
 	}
