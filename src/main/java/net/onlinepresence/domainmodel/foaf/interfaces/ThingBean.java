@@ -16,4 +16,8 @@ public interface ThingBean extends ResourceBean{
 	URI getIsPrimaryTopicOf();
 	void setIsPrimaryTopicOf(URI isPrimaryTopicOf);
 	void setIsPrimaryTopicOf(String isPrimaryTopicOf);
+	
+	URI getSeeAlso();
+	void setSeeAlso(URI seeAlso);
+	void setSeeAlso(String seeAlso);
 }
