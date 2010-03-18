@@ -17,6 +17,7 @@ public class Thing extends Resource implements ThingBean {
 	private String name;
 	private URI homepage;
 	private URI isPrimaryTopicOf;
+	private URI seeAlso;
 	
 	public Thing() {
 		super();
@@ -65,10 +66,30 @@ public class Thing extends Resource implements ThingBean {
 			this.isPrimaryTopicOf = isPrimaryTopicOf;
 	}
 	
+	
+	
 	public void setIsPrimaryTopicOf(String isPrimaryTopicOf) {
 		if(isPrimaryTopicOf != null)
 			try {
 				setIsPrimaryTopicOf(new URI(isPrimaryTopicOf));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	public URI getSeeAlso() {
+		return seeAlso;
+	}
+
+	public void setSeeAlso(URI seeAlso) {
+		if (seeAlso != null)
+			this.seeAlso = seeAlso;
+	}
+	
+	public void setSeeAlso(String seeAlso) {
+		if (seeAlso != null)
+			try {
+				setSeeAlso(new URI(seeAlso));
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
