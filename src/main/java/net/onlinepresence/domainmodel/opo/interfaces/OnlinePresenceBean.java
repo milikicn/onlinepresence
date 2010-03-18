@@ -45,8 +45,8 @@ public interface OnlinePresenceBean extends ResourceBean{
 	public void setSource(SourceOfPublishingBean source);
 	public SourceOfPublishingBean getSource();
 	
-	public void setDuration(int duration);
-	public int getDuration();
+	public void setDuration(String duration);
+	public String getDuration();
 	
 	public void setStartTime(String startTime);
 	public String getStartTime();

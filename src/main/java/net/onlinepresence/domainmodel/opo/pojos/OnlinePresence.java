@@ -27,7 +27,7 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public ActionBean action;
 	public AgentBean agent;
 	public ImageBean avatar;
-	public int duration;
+	public String duration;
 	public SharingSpaceBean intendentFor;
 	public SpatialThingBean location;
 	public Collection<OnlinePresenceComponentBean> presenceComponents = new LinkedList<OnlinePresenceComponentBean>();
@@ -77,12 +77,12 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#duration")
-	public int getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
-		if(duration > 0)
+	public void setDuration(String duration) {
+		if(duration != null)
 			this.duration = duration;
 	}
 

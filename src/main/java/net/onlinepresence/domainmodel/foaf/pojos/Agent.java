@@ -1,5 +1,7 @@
 package net.onlinepresence.domainmodel.foaf.pojos;
 
+import java.net.URI;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
@@ -12,6 +14,7 @@ public class Agent extends Thing implements AgentBean{
 
 	private String nick;
 	private OnlinePresenceBean onlinePresence;
+	private URI mbox;
 
 	public Agent() {
 		super();
@@ -38,6 +41,15 @@ public class Agent extends Thing implements AgentBean{
 	public void setOnlinePresence(OnlinePresenceBean onlinePresence) {
 		if(onlinePresence != null)
 			this.onlinePresence = onlinePresence;
+	}
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/mbox")
+	public URI getMbox() {
+		return mbox;
+	}
+
+	public void setMbox(URI mbox) {
+		this.mbox = mbox;
 	}
 
 }
