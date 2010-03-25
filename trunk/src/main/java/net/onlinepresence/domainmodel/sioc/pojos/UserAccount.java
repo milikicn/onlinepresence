@@ -29,20 +29,20 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 
 import net.onlinepresence.domainmodel.general.Resource;
-import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
+import net.onlinepresence.domainmodel.sioc.interfaces.UserAccountBean;
 
 @Namespace("http://rdfs.org/sioc/ns#")
-@RdfType("User")
-public class User extends Resource implements UserBean {
+@RdfType("UserAccount")
+public class UserAccount extends Resource implements UserAccountBean {
 
 	private String accountName;
 	private URI accountServiceHomepage;
 	
-	public User() {
+	public UserAccount() {
 		super();
 	}
 
-	public User(String uri) {
+	public UserAccount(String uri) {
 		super(uri);
 	}
 

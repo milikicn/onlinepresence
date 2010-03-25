@@ -28,7 +28,7 @@ import net.onlinepresence.domainmodel.foaf.interfaces.ImageBean;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.geo.interfaces.SpatialThingBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
-import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
+import net.onlinepresence.domainmodel.sioc.interfaces.UserAccountBean;
 
 /**
  * OnlinePresence, described in termes of various OnlinePresenceComponents to 
@@ -53,8 +53,8 @@ public interface OnlinePresenceBean extends ResourceBean{
 	public void setStatusMessage(ItemBean statusMessage);
 	public ItemBean getStatusMessage();
 	
-	public void setUser(UserBean user);
-	public UserBean getUser();
+	public void setUserAccount(UserAccountBean user);
+	public UserAccountBean getUserAccount();
 	
 	public void setPresenceComponents(Collection<OnlinePresenceComponentBean> presenceComponents);
 	public Collection<OnlinePresenceComponentBean> getPresenceComponents();

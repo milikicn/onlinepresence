@@ -38,7 +38,7 @@ import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceComponentBean
 import net.onlinepresence.domainmodel.opo.interfaces.SharingSpaceBean;
 import net.onlinepresence.domainmodel.opo.interfaces.SourceOfPublishingBean;
 import net.onlinepresence.domainmodel.sioc.interfaces.ItemBean;
-import net.onlinepresence.domainmodel.sioc.interfaces.UserBean;
+import net.onlinepresence.domainmodel.sioc.interfaces.UserAccountBean;
 import net.onlinepresence.util.Util;
 
 @Namespace("http://online-presence.net/opo/ns#")
@@ -55,7 +55,7 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public SourceOfPublishingBean source;
 	public String startTime;
 	public ItemBean statusMessage;
-	public UserBean user;
+	public UserAccountBean userAccount;
 
 	public OnlinePresence() {
 		super();
@@ -175,12 +175,12 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	}
 
 	@RdfProperty("http://rdfs.org/sioc/ns#has_creator")
-	public UserBean getUser() {
-		return user;
+	public UserAccountBean getUserAccount() {
+		return userAccount;
 	}
 
-	public void setUser(UserBean user) {
+	public void setUserAccount(UserAccountBean user) {
 		if(user != null)
-			this.user = user;
+			this.userAccount = user;
 	}
 }

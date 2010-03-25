@@ -25,7 +25,7 @@ import java.net.URI;
 
 import net.onlinepresence.domainmodel.general.ResourceBean;
 
-public interface UserBean extends ResourceBean{
+public interface UserAccountBean extends ResourceBean{
 
 	URI getAccountServiceHomepage();
 	void setAccountServiceHomepage(URI accountServiceHomepage);
