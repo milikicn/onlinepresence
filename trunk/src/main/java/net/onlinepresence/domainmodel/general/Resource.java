@@ -22,6 +22,8 @@ implements ResourceBean{
 	
 	@Uri
 	public String getUri() {
+		if ( uri == null )
+			uri = URIBuilder.instance().generateURI(this);
 		return uri;
 	}
 	
