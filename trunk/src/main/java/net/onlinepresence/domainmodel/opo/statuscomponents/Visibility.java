@@ -19,23 +19,32 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.opo.statuscomponents;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import net.onlinepresence.domainmodel.opo.OnlineStatusComponent;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Visibility")
+public class Visibility extends OnlineStatusComponent implements VisibilityBean{
 
-	public BeingWith() {
+	/**
+	 * The Agent's OnlineStatus is visible to other Agents.
+	 */
+	public static Visibility VISIBLE = new Visibility("http://online-presence.net/opo/ns#Visible");
+
+	/**
+	 * The Agent's OnlineStatus is not visible to other Agents.
+	 */
+	public static Visibility INVISIBLE = new Visibility("http://online-presence.net/opo/ns#Invisible");
+	
+	public Visibility(){
 		super();
 	}
 	
-	public BeingWith(String uri) {
+	public Visibility(String uri) {
 		super(uri);
 	}
-	
 }

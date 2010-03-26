@@ -19,23 +19,25 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.opo.beans.presencecomponents;
 
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import java.util.Collection;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
+import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
 
-	public BeingWith() {
-		super();
-	}
+/**
+ * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
+ * the possibility of communication with other Agents. The OnlineStatus is defined 
+ * by its components.
+ *
+ */
+public interface OnlineStatusBean extends OnlinePresenceComponentBean{
+
+	public void setOnlineStatusComponents(Collection<OnlineStatusComponentBean> statusComponents);
+	public Collection<OnlineStatusComponentBean> getOnlineStatusComponents();
+	public void addStatusComponent(OnlineStatusComponentBean statusComponent);
 	
-	public BeingWith(String uri) {
-		super(uri);
-	}
-	
+	public void setName(String statusName);
+	public String getName();
 }

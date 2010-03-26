@@ -23,8 +23,8 @@ package net.onlinepresence.services;
 
 import java.util.Collection;
 
-import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
-import net.onlinepresence.domainmodel.opo.pojos.OnlinePresence;
+import net.onlinepresence.domainmodel.opo.OnlinePresence;
+import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
 
 import thewebsemantic.Bean2RDF;
 import thewebsemantic.RDF2Bean;

@@ -23,8 +23,8 @@ package net.onlinepresence.domainmodel.opoactions;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.pojos.Action;
-import net.onlinepresence.domainmodel.opoactions.interfaces.WorkingBean;
+import net.onlinepresence.domainmodel.opo.Action;
+import net.onlinepresence.domainmodel.opoactions.beans.WorkingBean;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("Working")

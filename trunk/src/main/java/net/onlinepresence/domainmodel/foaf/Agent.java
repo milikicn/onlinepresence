@@ -19,48 +19,58 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.foaf;
+
+import java.net.URI;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
-import net.onlinepresence.domainmodel.opoactions.beans.ChattingBean;
+import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("Chatting")
-public class Chatting extends HavingConversation implements ChattingBean {
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Agent")
+public class Agent extends Thing implements AgentBean{
 
-	private AgentBean chatBuddy;
+	private String nick;
+	private OnlinePresenceBean onlinePresence;
+	private URI mbox;
 
-	public Chatting() {
+	public Agent() {
 		super();
 	}
 	
-	public Chatting(String uri) {
+	public Agent(String uri) {
 		super(uri);
 	}
-	
-	public Chatting(AgentBean chatBuddy) {
-		this();
-		setChatBuddy(chatBuddy);
-	}
-	
-	public Chatting(String uri, AgentBean chatBuddy) {
-		this(uri);
-		setChatBuddy(chatBuddy);
-	}
-	
-	@RdfProperty("http://online-presence.net/opo-actions/ns#chatBuddy")
-	public AgentBean getChatBuddy() {
-		return chatBuddy;
+
+	public String getNick() {
+		return nick;
 	}
 
-	public void setChatBuddy(AgentBean chatBuddy) {
-		if(chatBuddy != null){
-			chatBuddy.setURI(chatBuddy.getUri().replaceFirst("Agent", "ChatBuddy"));
-			this.chatBuddy = chatBuddy;
-		}
+	public void setNick(String nick) {
+		if(nick != null)
+			this.nick = nick;
 	}
-	
+
+	@RdfProperty("http://online-presence.net/opo/ns#declaresOnlinePresence")
+	public OnlinePresenceBean getOnlinePresence() {
+		return onlinePresence;
+	}
+
+	public void setOnlinePresence(OnlinePresenceBean onlinePresence) {
+		if(onlinePresence != null)
+			this.onlinePresence = onlinePresence;
+	}
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/mbox")
+	public URI getMbox() {
+		return mbox;
+	}
+
+	public void setMbox(URI mbox) {
+		this.mbox = mbox;
+	}
+
 }

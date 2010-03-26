@@ -34,8 +34,8 @@ import java.util.Iterator;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-import net.onlinepresence.domainmodel.opo.interfaces.OnlinePresenceBean;
-import net.onlinepresence.domainmodel.opo.pojos.OnlinePresence;
+import net.onlinepresence.domainmodel.opo.OnlinePresence;
+import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
 
 public class FileOPOService extends DefaultOPOService {
 

@@ -19,22 +19,33 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.opo.presencecomponents;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import net.onlinepresence.domainmodel.opo.OnlinePresenceComponent;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Findability")
+public class Findability extends OnlinePresenceComponent implements FindabilityBean{
 
-	public BeingWith() {
+	/**
+	 * The Agent's contact details cannot be found by anyone on the Web, but the
+	 * findability is controled by some rules/policies.
+	 */
+	public static Findability CONSTRAINED_FINDABILITY = new Findability("http://online-presence.net/opo/ns#ConstrainedFindability");
+
+	/**
+	 * The Agent's contact details can be found by anyone on the Web.
+	 */
+	public static Findability PUBLICLY_FINDABLE = new Findability("http://online-presence.net/opo/ns#PubliclyFindable");
+
+	public Findability() {
 		super();
 	}
 	
-	public BeingWith(String uri) {
+	public Findability(String uri) {
 		super(uri);
 	}
 	

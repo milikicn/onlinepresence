@@ -19,23 +19,16 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.opo.beans.presencecomponents;
 
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+/**
+ * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
+ * interaction with applications i.e., the possibility of applications to show 
+ * notifications.
+ *
+ */
+public interface NotifiabilityBean extends OnlinePresenceComponentBean{
 
-	public BeingWith() {
-		super();
-	}
-	
-	public BeingWith(String uri) {
-		super(uri);
-	}
-	
 }

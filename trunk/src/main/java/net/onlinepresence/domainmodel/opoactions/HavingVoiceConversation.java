@@ -24,8 +24,8 @@ package net.onlinepresence.domainmodel.opoactions;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.foaf.interfaces.AgentBean;
-import net.onlinepresence.domainmodel.opoactions.interfaces.HavingVoiceConversationBean;
+import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
+import net.onlinepresence.domainmodel.opoactions.beans.HavingVoiceConversationBean;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("HavingVoiceConversation")

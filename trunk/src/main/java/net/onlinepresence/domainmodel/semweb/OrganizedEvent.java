@@ -19,48 +19,47 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.semweb;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
-import net.onlinepresence.domainmodel.opoactions.beans.ChattingBean;
+import net.onlinepresence.domainmodel.foaf.beans.PersonBean;
+import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.domainmodel.geo.beans.SpatialThingBean;
+import net.onlinepresence.domainmodel.semweb.beans.OrganizedEventBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("Chatting")
-public class Chatting extends HavingConversation implements ChattingBean {
+@Namespace("http://data.semanticweb.org/ns/swc/ontology#")
+@RdfType("OrganizedEvent")
+public class OrganizedEvent extends Resource implements OrganizedEventBean{
 
-	private AgentBean chatBuddy;
+	private PersonBean attendee;
+	private SpatialThingBean location;
 
-	public Chatting() {
+	public OrganizedEvent() {
 		super();
 	}
 	
-	public Chatting(String uri) {
+	public OrganizedEvent(String uri) {
 		super(uri);
 	}
 	
-	public Chatting(AgentBean chatBuddy) {
-		this();
-		setChatBuddy(chatBuddy);
-	}
-	
-	public Chatting(String uri, AgentBean chatBuddy) {
-		this(uri);
-		setChatBuddy(chatBuddy);
-	}
-	
-	@RdfProperty("http://online-presence.net/opo-actions/ns#chatBuddy")
-	public AgentBean getChatBuddy() {
-		return chatBuddy;
+	@RdfProperty("http://data.semanticweb.org/ns/swc/ontology#hasAttendee")
+	public PersonBean getAttendee() {
+		return attendee;
 	}
 
-	public void setChatBuddy(AgentBean chatBuddy) {
-		if(chatBuddy != null){
-			chatBuddy.setURI(chatBuddy.getUri().replaceFirst("Agent", "ChatBuddy"));
-			this.chatBuddy = chatBuddy;
-		}
+	public void setAttendee(PersonBean attendee) {
+		this.attendee = attendee;
+	}
+
+	@RdfProperty("http://data.semanticweb.org/ns/swc/ontology#hasLocation")
+	public SpatialThingBean getLocation() {
+		return location;
+	}
+
+	public void setLocation(SpatialThingBean location) {
+		this.location = location;
 	}
 	
 }

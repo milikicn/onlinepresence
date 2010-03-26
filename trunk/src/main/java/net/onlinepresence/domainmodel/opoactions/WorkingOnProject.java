@@ -24,8 +24,8 @@ package net.onlinepresence.domainmodel.opoactions;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.doap.interfaces.ProjectBean;
-import net.onlinepresence.domainmodel.opoactions.interfaces.WorkingOnProjectBean;
+import net.onlinepresence.domainmodel.doap.beans.ProjectBean;
+import net.onlinepresence.domainmodel.opoactions.beans.WorkingOnProjectBean;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("WorkingOnProject")

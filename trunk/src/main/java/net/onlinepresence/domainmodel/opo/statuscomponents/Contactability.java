@@ -19,22 +19,33 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.opo.statuscomponents;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import net.onlinepresence.domainmodel.opo.OnlineStatusComponent;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Contactability")
+public class Contactability extends OnlineStatusComponent implements ContactabilityBean{
 
-	public BeingWith() {
+	/**
+	 * The Agent can be contacted by anyone on the Web.
+	 */
+	public static Contactability FREELY_CONTACTABLE = new Contactability("http://online-presence.net/opo/ns#FreelyContactable");
+
+	/**
+	 * The Agent cannot be contated by anyone on the Web, but the contactability
+	 * is controled by some rules/policies.
+	 */
+	public static Contactability CONSTRAINED_CONTACTABILITY = new Contactability("http://online-presence.net/opo/ns#ConstrainedContactability");
+
+	public Contactability() {
 		super();
 	}
 	
-	public BeingWith(String uri) {
+	public Contactability(String uri) {
 		super(uri);
 	}
 	

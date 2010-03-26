@@ -19,23 +19,16 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.sioc.beans;
 
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import java.net.URI;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+public interface PostBean extends ItemBean {
 
-	public BeingWith() {
-		super();
-	}
+	PostBean getReplyOf();
+	void setReplyOf(PostBean replyOf);
 	
-	public BeingWith(String uri) {
-		super(uri);
-	}
-	
+	URI getPrimaryTopicOf();
+	void setPrimaryTopicOf(URI primaryTopicOf);
+	void setPrimaryTopicOf(String primaryTopicOf);
 }

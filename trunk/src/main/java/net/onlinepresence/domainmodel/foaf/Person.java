@@ -19,23 +19,36 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.opoactions;
+package net.onlinepresence.domainmodel.foaf;
 
 import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.Action;
-import net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean;
+import net.onlinepresence.domainmodel.foaf.beans.ImageBean;
+import net.onlinepresence.domainmodel.foaf.beans.PersonBean;
 
-@Namespace("http://online-presence.net/opo-actions/ns#")
-@RdfType("BeingWith")
-public class BeingWith extends Action implements BeingWithBean {
+@Namespace("http://xmlns.com/foaf/0.1/")
+@RdfType("Person")
+public class Person extends Agent implements PersonBean {
 
-	public BeingWith() {
+	private ImageBean img;
+
+	public Person() {
 		super();
 	}
-	
-	public BeingWith(String uri) {
+
+	public Person(String uri) {
 		super(uri);
 	}
-	
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/img")
+	public ImageBean getImg() {
+		return img;
+	}
+
+	public void setImg(ImageBean img) {
+		if(img != null)
+			this.img = img;
+	}
+
 }
