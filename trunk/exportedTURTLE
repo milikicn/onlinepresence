@@ -1,0 +1,126 @@
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix opo:     <http://online-presence.net/opo/ns#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix opo-actions:  <http://online-presence.net/opo-actions/ns#> .
+@prefix sioc:    <http://rdfs.org/sioc/ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wgs84:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix jenabean:  <http://thewebsemantic.com/> .
+@prefix doap:    <http://usefulinc.com/ns/doap#> .
+@prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
+
+<http://online-presence.net/triplestore/store#Project/4f6593c7-eef2-4e53-8c56-81e3734bc24c>
+      a       doap:Project ;
+      doap:created "2010-03-08"^^xsd:string ;
+      doap:homepage <http://www.online-presence.net/api> ;
+      doap:name "OPO API"^^xsd:string ;
+      doap:shortdesc "This is a short descripton of the OPO API project."^^xsd:string .
+
+<http://online-presence.net/triplestore/store#OnlinePresence/67435069-f676-4f98-874d-b74315f5c6a8>
+      a       opo:OnlinePresence ;
+      opo:currentAction <http://online-presence.net/triplestore/store#WorkingOnProject/782ad606-54f5-41e7-98e1-780f4491c1a8> ;
+      opo:customMessage <http://online-presence.net/triplestore/store#Post/97779e79-3502-451d-a0b9-e129f5bb2d6f> ;
+      opo:declaredBy <http://online-presence.net/triplestore/store#Agent/ed91936f-6d38-4c52-9f61-f365b16452d8> ;
+      opo:hasPresenceComponent
+              opo:AllNotificationsPass , opo:PubliclyFindable , <http://online-presence.net/triplestore/store#OnlineStatus/7cbe357f-86fe-4048-b78b-c76df2e1b822> ;
+      opo:startTime "2010-03-29T01:02:04"^^xsd:string .
+
+<http://online-presence.net/triplestore/store#Agent/ed91936f-6d38-4c52-9f61-f365b16452d8>
+      a       opo:Agent ;
+      foaf:homepage <http://filip.milistan.net> ;
+      foaf:name "Filip Radulovic"^^xsd:string .
+
+doap:Project
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.doap.Project" .
+
+opo:Active
+      a       opo:Activity ;
+      opo:inactivityPeriod
+              "0"^^xsd:int .
+
+opo:Findability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.presencecomponents.Findability" .
+
+opo:Notifiability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.presencecomponents.Notifiability" .
+
+opo:Activity
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.statuscomponents.Activity" .
+
+opo:OnlineStatus
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus" .
+
+<http://online-presence.net/triplestore/store#ReplyPost/2dff11a8-fcee-4f8b-8a91-2c15105b9d9e>
+      a       sioc:Post ;
+      sioc:content "Neki twitter status"^^xsd:string ;
+      foaf:isPrimaryTopicOf
+              <http://twitter.com/post/432432> .
+
+jenabean:javaclass
+      a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+
+opo:FreelyContactable
+      a       opo:Contactability .
+
+opo:AllNotificationsPass
+      a       opo:Notifiability .
+
+opo:Disturbability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.statuscomponents.Disturbability" .
+
+opo:Visibility
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.statuscomponents.Visibility" .
+
+opo:OnlinePresence
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.OnlinePresence" .
+
+opo-actions:WorkingOnProject
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opoactions.WorkingOnProject" .
+
+sioc:Post
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.sioc.Post" .
+
+<http://online-presence.net/triplestore/store#Post/97779e79-3502-451d-a0b9-e129f5bb2d6f>
+      a       sioc:Post ;
+      sioc:content "Moj odgovor na twitter status status"^^xsd:string ;
+      sioc:reply_of <http://online-presence.net/triplestore/store#ReplyPost/2dff11a8-fcee-4f8b-8a91-2c15105b9d9e> .
+
+<http://online-presence.net/triplestore/store#WorkingOnProject/782ad606-54f5-41e7-98e1-780f4491c1a8>
+      a       opo-actions:WorkingOnProject ;
+      opo-actions:project <http://online-presence.net/triplestore/store#Project/4f6593c7-eef2-4e53-8c56-81e3734bc24c> .
+
+opo:Visible
+      a       opo:Visibility .
+
+opo:PubliclyFindable
+      a       opo:Findability .
+
+opo:Contactability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.statuscomponents.Contactability" .
+
+opo:Agent
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.foaf.Agent" .
+
+opo:Available
+      a       opo:Disturbability .
+
+<http://online-presence.net/triplestore/store#OnlineStatus/7cbe357f-86fe-4048-b78b-c76df2e1b822>
+      a       opo:OnlineStatus ;
+      opo:hasStatusComponent
+              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
+      opo:statusComponents
+              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active .

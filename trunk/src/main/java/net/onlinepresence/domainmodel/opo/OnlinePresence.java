@@ -37,6 +37,9 @@ import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
 import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
 import net.onlinepresence.domainmodel.opo.beans.SharingSpaceBean;
 import net.onlinepresence.domainmodel.opo.beans.SourceOfPublishingBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
 import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
 import net.onlinepresence.domainmodel.sioc.beans.UserAccountBean;
 import net.onlinepresence.util.Util;
@@ -56,6 +59,12 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 	public String startTime;
 	public ItemBean statusMessage;
 	public UserAccountBean userAccount;
+	
+	protected FindabilityBean findability;
+	protected NotifiabilityBean notifiability;
+	protected OnlineStatusBean onlineStatus;
+	
+	
 
 	public OnlinePresence() {
 		super();
@@ -183,4 +192,32 @@ public class OnlinePresence extends Resource implements OnlinePresenceBean {
 		if(user != null)
 			this.userAccount = user;
 	}
+	
+	public void setFindability(FindabilityBean findability){
+		this.findability = findability;
+		getPresenceComponents().add(findability);
+	}
+	
+	public void setNotifiability(NotifiabilityBean notifiability){
+		this.notifiability = notifiability;
+		getPresenceComponents().add(notifiability);
+	}
+		
+	public void setOnlineStatus(OnlineStatusBean onlineStatus){
+		this.onlineStatus = onlineStatus;
+		getPresenceComponents().add(onlineStatus);
+	}
+
+	public FindabilityBean getFindability() {
+		return findability;
+	}
+
+	public NotifiabilityBean getNotifiability() {
+		return notifiability;
+	}
+
+	public OnlineStatusBean getOnlineStatus() {
+		return onlineStatus;
+	}
+	
 }

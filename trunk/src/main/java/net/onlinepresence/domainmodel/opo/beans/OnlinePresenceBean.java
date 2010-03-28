@@ -27,6 +27,9 @@ import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
 import net.onlinepresence.domainmodel.foaf.beans.ImageBean;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.geo.beans.SpatialThingBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
 import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
 import net.onlinepresence.domainmodel.sioc.beans.UserAccountBean;
 
@@ -71,4 +74,12 @@ public interface OnlinePresenceBean extends ResourceBean{
 	
 	public void setStartTime(String startTime);
 	public String getStartTime();
+	
+	public FindabilityBean getFindability();
+	public NotifiabilityBean getNotifiability();
+	public OnlineStatusBean getOnlineStatus();
+	
+	public void setFindability(FindabilityBean findability);
+	public void setNotifiability(NotifiabilityBean notifiability);
+	public void setOnlineStatus(OnlineStatusBean onlineStatus);
 }

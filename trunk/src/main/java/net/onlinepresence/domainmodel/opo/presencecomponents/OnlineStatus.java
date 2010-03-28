@@ -30,6 +30,10 @@ import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.OnlinePresenceComponent;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
 import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("OnlineStatus")
@@ -37,6 +41,11 @@ public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatu
 
 	private Collection<OnlineStatusComponentBean> statusComponents = new LinkedList<OnlineStatusComponentBean>();
 	private String name;
+	
+	protected VisibilityBean visibility;
+	protected DisturbabilityBean disturbability;
+	protected ActivityBean activity;
+	protected ContactabilityBean contactability;
 
 	public OnlineStatus() {
 		super();
@@ -70,6 +79,51 @@ public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatu
 	public void setName(String name) {
 		if(name != null)
 			this.name = name;
+	}
+
+	public Collection<OnlineStatusComponentBean> getStatusComponents() {
+		return statusComponents;
+	}
+
+	public void setStatusComponents(
+			Collection<OnlineStatusComponentBean> statusComponents) {
+		this.statusComponents = statusComponents;
+	}
+
+	public VisibilityBean getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(VisibilityBean visibility) {
+		this.visibility = visibility;
+		getOnlineStatusComponents().add(visibility);
+	}
+
+	public DisturbabilityBean getDisturbability() {
+		return disturbability;
+	}
+
+	public void setDisturbability(DisturbabilityBean disturbability) {
+		this.disturbability = disturbability;
+		getOnlineStatusComponents().add(disturbability);
+	}
+
+	public ActivityBean getActivity() {
+		return activity;
+	}
+
+	public void setActivity(ActivityBean activity) {
+		this.activity = activity;
+		getOnlineStatusComponents().add(activity);
+	}
+
+	public ContactabilityBean getContactability() {
+		return contactability;
+	}
+
+	public void setContactability(ContactabilityBean contactability) {
+		this.contactability = contactability;
+		getOnlineStatusComponents().add(contactability);
 	}
 	
 }

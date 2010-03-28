@@ -25,6 +25,10 @@ import java.util.Collection;
 
 import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean;
+import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
 
 /**
  * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
@@ -36,8 +40,18 @@ public interface OnlineStatusBean extends OnlinePresenceComponentBean{
 
 	public void setOnlineStatusComponents(Collection<OnlineStatusComponentBean> statusComponents);
 	public Collection<OnlineStatusComponentBean> getOnlineStatusComponents();
-	public void addStatusComponent(OnlineStatusComponentBean statusComponent);
+	void addStatusComponent(OnlineStatusComponentBean statusComponent);
 	
 	public void setName(String statusName);
 	public String getName();
+	
+	public VisibilityBean getVisibility();
+	public DisturbabilityBean getDisturbability();
+	public ActivityBean getActivity();
+	public ContactabilityBean getContactability();
+	
+	public  void setVisibility(VisibilityBean visibility);
+	public  void setDisturbability(DisturbabilityBean disturbability);
+	public  void setActivity(ActivityBean activity);
+	public  void setContactability(ContactabilityBean contactability);
 }
