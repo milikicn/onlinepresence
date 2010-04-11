@@ -21,21 +21,12 @@
  */
 package net.onlinepresence.domainmodel.opo;
 
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfType;
-import net.onlinepresence.domainmodel.opo.beans.StatusMessageBean;
 import net.onlinepresence.domainmodel.sioc.Item;
 
-@Namespace("http://online-presence.net/opo/ns#")
-@RdfType("StatusMessage")
-public class StatusMessage extends Item implements StatusMessageBean {
+/**
+ * A status message that cannot be commented on.
+ *
+ */
+public interface StatusMessage extends Item {
 
-	public StatusMessage() {
-		super();
-	}
-	
-	public StatusMessage(String uri) {
-		super(uri);
-	}
-	
 }

@@ -21,15 +21,35 @@
  */
 package net.onlinepresence.domainmodel.opo.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
+import net.onlinepresence.domainmodel.opo.OnlineStatusComponent;
+import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
 
-/**
- * The component of the OnlineStatus representing one of its dimensions.
- *
- */
-public interface OnlineStatusComponentBean extends ResourceBean {
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("OnlineStatusComponent")
+public class OnlineStatusComponentBean extends ResourceBean implements OnlineStatusComponent{
+	
+	private OnlineStatus component;
 
-	public void setComponent(OnlineStatusBean component);
-	public OnlineStatusBean getComponent();
+	public OnlineStatusComponentBean() {
+		super();
+	}
+	
+	public OnlineStatusComponentBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo/ns#isStatusComponentOf")
+	public OnlineStatus getComponent() {
+		return component;
+	}
+
+	public void setComponent(OnlineStatus component) {
+		if(component != null)
+			this.component = component;
+	}
+
 }

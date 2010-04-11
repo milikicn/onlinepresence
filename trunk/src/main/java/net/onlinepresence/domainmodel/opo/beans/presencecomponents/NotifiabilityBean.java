@@ -21,14 +21,37 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.presencecomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
+import net.onlinepresence.domainmodel.opo.presencecomponents.Notifiability;
 
-/**
- * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
- * interaction with applications i.e., the possibility of applications to show 
- * notifications.
- *
- */
-public interface NotifiabilityBean extends OnlinePresenceComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Notifiability")
+public class NotifiabilityBean extends OnlinePresenceComponentBean implements Notifiability{
 
+	/**
+	 * Agent can receive notifications from applications.
+	 */
+	public static NotifiabilityBean ALL_NOTIFICATIONS_PASS = new NotifiabilityBean("http://online-presence.net/opo/ns#AllNotificationsPass");
+
+	/**
+	 * The acceptance of notifications from applications is somehow constrained
+	 * (by using some rules or policies).
+	 */
+	public static NotifiabilityBean NOTIFICATIONS_CONSTRAINED = new NotifiabilityBean("http://online-presence.net/opo/ns#NotificationsConstrained");
+
+	/**
+	 * Agent cannot receive any notification from applications.
+	 */
+	public static NotifiabilityBean NOTIFICATIONS_PROHIBITED = new NotifiabilityBean("http://online-presence.net/opo/ns#NotificationsProhibited");
+
+	public NotifiabilityBean() {
+		super();
+	}
+	
+	public NotifiabilityBean(String uri) {
+		super(uri);
+	}
+	
 }

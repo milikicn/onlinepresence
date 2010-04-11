@@ -22,14 +22,33 @@
 package net.onlinepresence.domainmodel.opoactions.beans;
 
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
+import net.onlinepresence.domainmodel.opoactions.Listening;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
-/**
- * The action of listening to music.
- *
- * @param <T>
- */
-public interface ListeningBean<T> extends ActionBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("Listening")
+public class ListeningBean<T> extends ActionBean implements Listening<T> {
 
-	T getListeningTo();
-	void setListeningTo(T listeningTo);
+	private T listeningTo;
+
+	public ListeningBean() {
+		super();
+	}
+	
+	public ListeningBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#listeningTo")
+	public T getListeningTo() {
+		return listeningTo;
+	}
+
+	public void setListeningTo(T listeningTo) {
+		if(listeningTo != null)
+			this.listeningTo = listeningTo;
+	}
+
 }

@@ -21,10 +21,21 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
-/**
- * An action of having a conversation with somebody.
- *
- */
-public interface HavingConversationBean extends BeingWithBean {
+import net.onlinepresence.domainmodel.opoactions.HavingConversation;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("HavingConversation")
+public class HavingConversationBean extends BeingWithBean implements
+		HavingConversation {
+
+	public HavingConversationBean() {
+		super();
+	}
+	
+	public HavingConversationBean(String uri) {
+		super(uri);
+	}
+	
 }

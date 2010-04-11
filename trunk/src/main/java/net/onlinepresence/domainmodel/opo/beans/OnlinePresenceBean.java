@@ -22,64 +22,202 @@
 package net.onlinepresence.domainmodel.opo.beans;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
-import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
-import net.onlinepresence.domainmodel.foaf.beans.ImageBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+import net.onlinepresence.domainmodel.foaf.Agent;
+import net.onlinepresence.domainmodel.foaf.Image;
 import net.onlinepresence.domainmodel.general.ResourceBean;
-import net.onlinepresence.domainmodel.geo.beans.SpatialThingBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
-import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
-import net.onlinepresence.domainmodel.sioc.beans.UserAccountBean;
+import net.onlinepresence.domainmodel.geo.SpatialThing;
+import net.onlinepresence.domainmodel.opo.Action;
+import net.onlinepresence.domainmodel.opo.OnlinePresence;
+import net.onlinepresence.domainmodel.opo.OnlinePresenceComponent;
+import net.onlinepresence.domainmodel.opo.SharingSpace;
+import net.onlinepresence.domainmodel.opo.SourceOfPublishing;
+import net.onlinepresence.domainmodel.opo.presencecomponents.Findability;
+import net.onlinepresence.domainmodel.opo.presencecomponents.Notifiability;
+import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.domainmodel.sioc.Item;
+import net.onlinepresence.domainmodel.sioc.UserAccount;
+import net.onlinepresence.util.Util;
 
-/**
- * OnlinePresence, described in termes of various OnlinePresenceComponents to 
- * represent the attitude of an Agent towards interaction with other Agents and 
- * Applications.
- *
- */
-public interface OnlinePresenceBean extends ResourceBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("OnlinePresence")
+public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 
-	public void setAgent(AgentBean agent);
-	public AgentBean getAgent();
+	public Action action;
+	public Agent agent;
+	public Image avatar;
+	public String duration;
+	public SharingSpace intendentFor;
+	public SpatialThing location;
+	public Collection<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
+	public SourceOfPublishing source;
+	public String startTime;
+	public Item statusMessage;
+	public UserAccount userAccount;
 	
-	public void setAvatar(ImageBean avatar);
-	public ImageBean getAvatar();
+	protected Findability findability;
+	protected Notifiability notifiability;
+	protected OnlineStatus onlineStatus;
 	
-	public void setAction(ActionBean action);
-	public ActionBean getAction();
 	
-	public void setLocation(SpatialThingBean location);
-	public SpatialThingBean getLocation();
+
+	public OnlinePresenceBean() {
+		super();
+		setStartTime(Util.getTime());
+	}
 	
-	public void setStatusMessage(ItemBean statusMessage);
-	public ItemBean getStatusMessage();
+	public OnlinePresenceBean(String uri) {
+		super(uri);
+		setStartTime(Util.getTime());
+	}
 	
-	public void setUserAccount(UserAccountBean user);
-	public UserAccountBean getUserAccount();
+	@RdfProperty("http://online-presence.net/opo/ns#currentAction")
+	public Action getAction() {
+		return action;
+	}
 	
-	public void setPresenceComponents(Collection<OnlinePresenceComponentBean> presenceComponents);
-	public Collection<OnlinePresenceComponentBean> getPresenceComponents();
-	public void addPresenceComponent(OnlinePresenceComponentBean presenceComponent);
+	public void setAction(Action action) {
+		if(action != null)
+			this.action = action;
+	}
 	
-	public void setIntendentFor(SharingSpaceBean intendentFor);
-	public SharingSpaceBean getIntendentFor();
+	@RdfProperty("http://online-presence.net/opo/ns#declaredBy")
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		if(agent != null)
+			this.agent = agent;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#avatar")
+	public Image getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Image avatar) {
+		if(avatar != null)
+			this.avatar = avatar;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#duration")
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		if(duration != null)
+			this.duration = duration;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#intendedFor")
+	public SharingSpace getIntendentFor() {
+		return intendentFor;
+	}
+
+	public void setIntendentFor(SharingSpace intendentFor) {
+		if(intendentFor != null)
+			this.intendentFor = intendentFor;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#currentLocation")
+	public SpatialThing getLocation() {
+		return location;
+	}
+
+	public void setLocation(SpatialThing location) {
+		if(location != null)
+			this.location = location;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#hasPresenceComponent")
+	public Collection<OnlinePresenceComponent> getPresenceComponents() {
+		return presenceComponents;
+	}
+
+	public void setPresenceComponents(
+			Collection<OnlinePresenceComponent> presenceComponents) {
+		if(presenceComponents != null)
+			this.presenceComponents = presenceComponents;
+	}
+
+	public void addPresenceComponent(
+			OnlinePresenceComponent presenceComponent) {
+		if(presenceComponent != null)
+			getPresenceComponents().add(presenceComponent);
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#publishedFrom")
+	public SourceOfPublishing getSource() {
+		return source;
+	}
+
+	public void setSource(SourceOfPublishing source) {
+		if(source != null)
+			this.source = source;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#startTime")
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		if(startTime != null)
+			this.startTime = startTime;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#customMessage")
+	public Item getStatusMessage() {
+		return statusMessage;
+	}
+
+	public void setStatusMessage(Item statusMessage) {
+		if(statusMessage != null)
+			this.statusMessage = statusMessage;
+	}
+
+	@RdfProperty("http://rdfs.org/sioc/ns#has_creator")
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(UserAccount user) {
+		if(user != null)
+			this.userAccount = user;
+	}
 	
-	public void setSource(SourceOfPublishingBean source);
-	public SourceOfPublishingBean getSource();
+	public void setFindability(Findability findability){
+		this.findability = findability;
+		getPresenceComponents().add(findability);
+	}
 	
-	public void setDuration(String duration);
-	public String getDuration();
+	public void setNotifiability(Notifiability notifiability){
+		this.notifiability = notifiability;
+		getPresenceComponents().add(notifiability);
+	}
+		
+	public void setOnlineStatus(OnlineStatus onlineStatus){
+		this.onlineStatus = onlineStatus;
+		getPresenceComponents().add(onlineStatus);
+	}
+
+	public Findability getFindability() {
+		return findability;
+	}
+
+	public Notifiability getNotifiability() {
+		return notifiability;
+	}
+
+	public OnlineStatus getOnlineStatus() {
+		return onlineStatus;
+	}
 	
-	public void setStartTime(String startTime);
-	public String getStartTime();
-	
-	public FindabilityBean getFindability();
-	public NotifiabilityBean getNotifiability();
-	public OnlineStatusBean getOnlineStatus();
-	
-	public void setFindability(FindabilityBean findability);
-	public void setNotifiability(NotifiabilityBean notifiability);
-	public void setOnlineStatus(OnlineStatusBean onlineStatus);
 }

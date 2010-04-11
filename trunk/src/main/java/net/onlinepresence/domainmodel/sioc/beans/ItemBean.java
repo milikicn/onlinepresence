@@ -21,10 +21,34 @@
  */
 package net.onlinepresence.domainmodel.sioc.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.domainmodel.sioc.Item;
 
-public interface ItemBean extends ResourceBean{
+@Namespace("http://rdfs.org/sioc/ns#")
+@RdfType("Item")
+public class ItemBean extends ResourceBean implements Item {
 
-	String getContent();
-	void setContent(String content);
+	private String content;
+
+	public ItemBean() {
+		super();
+	}
+	
+	public ItemBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://rdfs.org/sioc/ns#content")
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		if(content != null)
+			this.content = content;
+	}
+
 }

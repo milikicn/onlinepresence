@@ -21,12 +21,21 @@
  */
 package net.onlinepresence.domainmodel.opo.beans;
 
-import net.onlinepresence.domainmodel.purl.beans.EventBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.domainmodel.opo.Action;
 
-/**
- * An action currently performed by the Agent (e.g., listening to music, reading a book).
- *
- */
-public interface ActionBean extends EventBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Action")
+public class ActionBean extends ResourceBean implements Action {
 
+	public ActionBean() {
+		super();
+	}
+	
+	public ActionBean(String uri) {
+		super(uri);
+	}
+	
 }

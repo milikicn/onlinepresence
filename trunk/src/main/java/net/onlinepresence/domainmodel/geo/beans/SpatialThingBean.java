@@ -21,13 +21,45 @@
  */
 package net.onlinepresence.domainmodel.geo.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.domainmodel.geo.SpatialThing;
 
-public interface SpatialThingBean extends ResourceBean{
+@Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
+@RdfType("SpatialThing")
+public class SpatialThingBean extends ResourceBean implements SpatialThing {
 
-	String getLatitude();
-	void setLatitude(String latitude);
+	private String latitude;
+	private String longitude;
+
+	public SpatialThingBean() {
+		super();
+	}
 	
-	String getLongitude();
-	void setLongitude(String longitude);
+	public SpatialThingBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://www.w3.org/2003/01/geo/wgs84_pos#lat")
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		if(latitude != null)
+			this.latitude = latitude;
+	}
+
+	@RdfProperty("http://www.w3.org/2003/01/geo/wgs84_pos#long")
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		if(longitude != null)
+			this.longitude = longitude;
+	}
+
 }

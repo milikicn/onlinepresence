@@ -21,13 +21,32 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.presencecomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean;
+import net.onlinepresence.domainmodel.opo.presencecomponents.Findability;
 
-/**
- * The OnlinePresenceComponent used to represent the possibility to find contact 
- * details of an Agent in a public listing.
- *
- */
-public interface FindabilityBean extends OnlinePresenceComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Findability")
+public class FindabilityBean extends OnlinePresenceComponentBean implements Findability{
 
+	/**
+	 * The Agent's contact details cannot be found by anyone on the Web, but the
+	 * findability is controled by some rules/policies.
+	 */
+	public static FindabilityBean CONSTRAINED_FINDABILITY = new FindabilityBean("http://online-presence.net/opo/ns#ConstrainedFindability");
+
+	/**
+	 * The Agent's contact details can be found by anyone on the Web.
+	 */
+	public static FindabilityBean PUBLICLY_FINDABLE = new FindabilityBean("http://online-presence.net/opo/ns#PubliclyFindable");
+
+	public FindabilityBean() {
+		super();
+	}
+	
+	public FindabilityBean(String uri) {
+		super(uri);
+	}
+	
 }

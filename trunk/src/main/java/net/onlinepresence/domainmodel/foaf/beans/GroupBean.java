@@ -21,6 +21,20 @@
  */
 package net.onlinepresence.domainmodel.foaf.beans;
 
-public interface GroupBean extends ThingBean{
+import net.onlinepresence.domainmodel.foaf.Group;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
+
+@Namespace("http://xmlns.com/foaf/0.1/")
+@RdfType("Group")
+public class GroupBean extends ThingBean implements Group {
+
+	public GroupBean() {
+		super();
+	}
+
+	public GroupBean(String uri) {
+		super(uri);
+	}
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean"
+		class="net.onlinepresence.domainmodel.opo.OnlinePresence"
+		scope="prototype">
+		<property name="agent" ref="net.onlinepresence.domainmodel.foaf.beans.AgentBean" />
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.foaf.beans.AgentBean"
+		class="net.onlinepresence.domainmodel.foaf.Agent"
+		scope="prototype">
+	</bean>
+	
+
+	<bean id="businesslogicbean"
+        class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>javabeat.net.spring.aop.BusinessInterface</value>
+        </property>
+        <property name="target">
+            <ref local="beanTarget" />
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>theTracingBeforeAdvisor</value>
+                <value>theTracingAfterAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Bean Classes -->
+    <bean id="beanTarget" class="javabeat.net.spring.aop.BusinessInterfaceImpl" />
+
+    <!-- Advisor pointcut definition for before advice -->
+    <bean id="theTracingBeforeAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="theTracingBeforeAdvice" />
+        </property>
+        <property name="pattern">
+            <value>.*</value>
+        </property>
+    </bean>
+
+    <!-- Advisor pointcut definition for before advice -->
+    <bean id="theTracingAfterAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="theTracingAfterAdvice" />
+        </property>
+        <property name="pattern">
+            <value>.*</value>
+        </property>
+    </bean>
+
+    <!-- Advice classes -->
+    <bean id="theTracingBeforeAdvice"
+        class="javabeat.net.spring.aop.BeforeAdviceExample" />
+    <bean id="theTracingAfterAdvice"
+        class="javabeat.net.spring.aop.AfterAdviceExample" />
+
+</beans>

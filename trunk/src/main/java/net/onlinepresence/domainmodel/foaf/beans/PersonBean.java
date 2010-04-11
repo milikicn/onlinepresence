@@ -21,8 +21,34 @@
  */
 package net.onlinepresence.domainmodel.foaf.beans;
 
-public interface PersonBean extends AgentBean{
-	
-	ImageBean getImg();
-	void setImg(ImageBean img);
+import net.onlinepresence.domainmodel.foaf.Image;
+import net.onlinepresence.domainmodel.foaf.Person;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+@Namespace("http://xmlns.com/foaf/0.1/")
+@RdfType("Person")
+public class PersonBean extends AgentBean implements Person {
+
+	private Image img;
+
+	public PersonBean() {
+		super();
+	}
+
+	public PersonBean(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/img")
+	public Image getImg() {
+		return img;
+	}
+
+	public void setImg(Image img) {
+		if(img != null)
+			this.img = img;
+	}
+
 }

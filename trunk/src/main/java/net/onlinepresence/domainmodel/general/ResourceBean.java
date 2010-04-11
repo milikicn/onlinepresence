@@ -21,9 +21,43 @@
  */
 package net.onlinepresence.domainmodel.general;
 
-public interface ResourceBean {
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
+import thewebsemantic.Uri;
 
-	public String getUri();
+@Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+@RdfType("Resource")
+public class ResourceBean
+implements Resource{
+
+	protected String uri;
 	
-	public void setURI(String uri);
+	public ResourceBean() {	}
+	
+	public ResourceBean(String uri) {
+		this.uri = uri;
+	}
+	
+	@Uri
+	public String getUri() {
+//		if ( uri == null )
+//			uri = URIBuilder.instance().generateURI(this);
+		return uri;
+	}
+	
+	public void setURI(String uri){
+		this.uri = uri;
+	}
+	
+	public boolean equals(Object o) {
+		if ( !(o instanceof Resource) )
+			return false;
+		Resource r = (Resource)o;
+		return r.getUri().equals(this.getUri());
+	}
+	
+	public String toString() {
+		return getUri();
+	}
+
 }

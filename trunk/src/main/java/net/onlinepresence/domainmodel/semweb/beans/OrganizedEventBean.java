@@ -21,15 +21,45 @@
  */
 package net.onlinepresence.domainmodel.semweb.beans;
 
-import net.onlinepresence.domainmodel.foaf.beans.PersonBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.foaf.Person;
 import net.onlinepresence.domainmodel.general.ResourceBean;
-import net.onlinepresence.domainmodel.geo.beans.SpatialThingBean;
+import net.onlinepresence.domainmodel.geo.SpatialThing;
+import net.onlinepresence.domainmodel.semweb.OrganizedEvent;
 
-public interface OrganizedEventBean extends ResourceBean{
+@Namespace("http://data.semanticweb.org/ns/swc/ontology#")
+@RdfType("OrganizedEvent")
+public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 
-	public PersonBean getAttendee();
-	public void setAttendee(PersonBean attendee);
+	private Person attendee;
+	private SpatialThing location;
+
+	public OrganizedEventBean() {
+		super();
+	}
 	
-	public SpatialThingBean getLocation();
-	public void setLocation(SpatialThingBean location);
+	public OrganizedEventBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://data.semanticweb.org/ns/swc/ontology#hasAttendee")
+	public Person getAttendee() {
+		return attendee;
+	}
+
+	public void setAttendee(Person attendee) {
+		this.attendee = attendee;
+	}
+
+	@RdfProperty("http://data.semanticweb.org/ns/swc/ontology#hasLocation")
+	public SpatialThing getLocation() {
+		return location;
+	}
+
+	public void setLocation(SpatialThing location) {
+		this.location = location;
+	}
+	
 }

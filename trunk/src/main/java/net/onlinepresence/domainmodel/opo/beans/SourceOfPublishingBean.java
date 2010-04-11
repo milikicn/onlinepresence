@@ -21,14 +21,34 @@
  */
 package net.onlinepresence.domainmodel.opo.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.domainmodel.opo.SourceOfPublishing;
 
-/**
- * The source that can publish Online Presence data.
- *
- */
-public interface SourceOfPublishingBean extends ResourceBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("SourceOfPublishing")
+public class SourceOfPublishingBean extends ResourceBean implements SourceOfPublishing{
 
-	public void setName(String sourceName);
-	public String getName();
+	private String name;
+
+	public SourceOfPublishingBean() {
+		super();
+	}
+	
+	public SourceOfPublishingBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo/ns#sourceName")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String sourceName) {
+		if(sourceName != null)
+			this.name = sourceName;
+	}
+	
 }

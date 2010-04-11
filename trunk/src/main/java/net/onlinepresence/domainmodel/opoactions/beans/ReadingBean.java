@@ -21,15 +21,33 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
+import net.onlinepresence.domainmodel.opoactions.Reading;
 
-/**
- * An action of reading (e.g., reading a book).
- *
- * @param <T>
- */
-public interface ReadingBean<T> extends ActionBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("Reading")
+public class ReadingBean<T> extends ActionBean implements Reading<T> {
 
-	T getReadingMaterial();
-	void setReadingMaterial(T readingMaterial);
+	private T readingMaterial;
+
+	public ReadingBean() {
+		super();
+	}
+	
+	public ReadingBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#readingMaterial")
+	public T getReadingMaterial() {
+		return readingMaterial;
+	}
+
+	public void setReadingMaterial(T readingMaterial) {
+		if(readingMaterial != null)
+			this.readingMaterial = readingMaterial;
+	}
 }

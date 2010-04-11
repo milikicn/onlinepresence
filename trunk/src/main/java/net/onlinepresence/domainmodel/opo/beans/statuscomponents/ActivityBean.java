@@ -21,15 +21,50 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.statuscomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Activity;
 
-/**
- * OnlineStatusComponent used to represent the state of Activity of the Agent 
- * (e.g., Active, Inactive,	ProlongedInactive).
- *
- */
-public interface ActivityBean extends OnlineStatusComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Activity")
+public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 
-	public void setInactivityPeriod(int inactivityPeriod);
-	public int getInactivityPeriod();
+	private int inactivityPeriod;
+
+	/**
+	 * The Agent is active on the system.
+	 */
+	public static ActivityBean ACTIVE = new ActivityBean("http://online-presence.net/opo/ns#Active");
+
+	/**
+	 * The Agent is inactive for at least 5 min.
+	 */
+	public static ActivityBean INACTIVE = new ActivityBean("http://online-presence.net/opo/ns#Inactive");
+
+	/**
+	 * The Agent is inactive for at least 20 min.
+	 */
+	public static ActivityBean PROLONGED_INACTIVE = new ActivityBean("http://online-presence.net/opo/ns#ProlongedInactive");
+
+
+	public ActivityBean() {
+		super();
+	}
+	
+	public ActivityBean(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#inactivityPeriod")
+	public int getInactivityPeriod() {
+		return inactivityPeriod;
+	}
+
+	public void setInactivityPeriod(int inactivityPeriod) {
+		if(inactivityPeriod > 0)
+			this.inactivityPeriod = inactivityPeriod;
+	}
+	
 }

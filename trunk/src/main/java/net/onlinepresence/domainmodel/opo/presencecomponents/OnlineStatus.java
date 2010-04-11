@@ -22,108 +22,36 @@
 package net.onlinepresence.domainmodel.opo.presencecomponents;
 
 import java.util.Collection;
-import java.util.LinkedList;
 
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfProperty;
-import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.OnlinePresenceComponent;
-import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
+import net.onlinepresence.domainmodel.opo.OnlineStatusComponent;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Activity;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Contactability;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Disturbability;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Visibility;
 
-@Namespace("http://online-presence.net/opo/ns#")
-@RdfType("OnlineStatus")
-public class OnlineStatus extends OnlinePresenceComponent implements OnlineStatusBean{
+/**
+ * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
+ * the possibility of communication with other Agents. The OnlineStatus is defined 
+ * by its components.
+ *
+ */
+public interface OnlineStatus extends OnlinePresenceComponent{
 
-	private Collection<OnlineStatusComponentBean> statusComponents = new LinkedList<OnlineStatusComponentBean>();
-	private String name;
+	public void setOnlineStatusComponents(Collection<OnlineStatusComponent> statusComponents);
+	public Collection<OnlineStatusComponent> getOnlineStatusComponents();
+	void addStatusComponent(OnlineStatusComponent statusComponent);
 	
-	protected VisibilityBean visibility;
-	protected DisturbabilityBean disturbability;
-	protected ActivityBean activity;
-	protected ContactabilityBean contactability;
-
-	public OnlineStatus() {
-		super();
-	}
+	public void setName(String statusName);
+	public String getName();
 	
-	public OnlineStatus(String uri) {
-		super(uri);
-	}
+	public Visibility getVisibility();
+	public Disturbability getDisturbability();
+	public Activity getActivity();
+	public Contactability getContactability();
 	
-	@RdfProperty("http://online-presence.net/opo/ns#hasStatusComponent")
-	public Collection<OnlineStatusComponentBean> getOnlineStatusComponents() {
-		return statusComponents;
-	}
-
-	public void setOnlineStatusComponents(
-			Collection<OnlineStatusComponentBean> statusComponents) {
-		if(statusComponents != null)
-			this.statusComponents = statusComponents;
-	}
-	
-	public void addStatusComponent(OnlineStatusComponentBean statusComponent){
-		if(statusComponent != null)
-			getOnlineStatusComponents().add(statusComponent);
-	}
-
-	@RdfProperty("http://online-presence.net/opo/ns#onlineStatusName")
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		if(name != null)
-			this.name = name;
-	}
-
-	public Collection<OnlineStatusComponentBean> getStatusComponents() {
-		return statusComponents;
-	}
-
-	public void setStatusComponents(
-			Collection<OnlineStatusComponentBean> statusComponents) {
-		this.statusComponents = statusComponents;
-	}
-
-	public VisibilityBean getVisibility() {
-		return visibility;
-	}
-
-	public void setVisibility(VisibilityBean visibility) {
-		this.visibility = visibility;
-		getOnlineStatusComponents().add(visibility);
-	}
-
-	public DisturbabilityBean getDisturbability() {
-		return disturbability;
-	}
-
-	public void setDisturbability(DisturbabilityBean disturbability) {
-		this.disturbability = disturbability;
-		getOnlineStatusComponents().add(disturbability);
-	}
-
-	public ActivityBean getActivity() {
-		return activity;
-	}
-
-	public void setActivity(ActivityBean activity) {
-		this.activity = activity;
-		getOnlineStatusComponents().add(activity);
-	}
-
-	public ContactabilityBean getContactability() {
-		return contactability;
-	}
-
-	public void setContactability(ContactabilityBean contactability) {
-		this.contactability = contactability;
-		getOnlineStatusComponents().add(contactability);
-	}
-	
+	public  void setVisibility(Visibility visibility);
+	public  void setDisturbability(Disturbability disturbability);
+	public  void setActivity(Activity activity);
+	public  void setContactability(Contactability contactability);
 }

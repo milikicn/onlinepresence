@@ -21,14 +21,32 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.statuscomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Contactability;
 
-/**
- * OnlineStatusComponent used to represent the state of contactability of an Agent. 
- * Contatctability relates to the possiblity of other Agents to conatct the Agent 
- * freely or only with regard to some conditions.
- *
- */
-public interface ContactabilityBean extends OnlineStatusComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Contactability")
+public class ContactabilityBean extends OnlineStatusComponentBean implements Contactability{
 
+	/**
+	 * The Agent can be contacted by anyone on the Web.
+	 */
+	public static ContactabilityBean FREELY_CONTACTABLE = new ContactabilityBean("http://online-presence.net/opo/ns#FreelyContactable");
+
+	/**
+	 * The Agent cannot be contated by anyone on the Web, but the contactability
+	 * is controled by some rules/policies.
+	 */
+	public static ContactabilityBean CONSTRAINED_CONTACTABILITY = new ContactabilityBean("http://online-presence.net/opo/ns#ConstrainedContactability");
+
+	public ContactabilityBean() {
+		super();
+	}
+	
+	public ContactabilityBean(String uri) {
+		super(uri);
+	}
+	
 }

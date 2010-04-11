@@ -22,14 +22,32 @@
 package net.onlinepresence.domainmodel.opoactions.beans;
 
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
+import net.onlinepresence.domainmodel.opoactions.Watching;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
-/**
- * An action of watching something (e.g., a movie).
- *
- * @param <T>
- */
-public interface WatchingBean<T> extends ActionBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("Watching")
+public class WatchingBean<T> extends ActionBean implements Watching<T> {
 
-	T getWatching();
-	void setWatching(T watching);
+	private T watching;
+
+	public WatchingBean() {
+		super();
+	}
+	
+	public WatchingBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#watching")
+	public T getWatching() {
+		return watching;
+	}
+
+	public void setWatching(T watching) {
+		if(watching != null)
+			this.watching = watching;
+	}
 }

@@ -40,7 +40,7 @@ import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
 public class FileOPOService extends DefaultOPOService {
 
 
-	public void saveOnlinePresenceToFile(OnlinePresenceBean onlinePresence,
+	public void saveOnlinePresenceToFile(OnlinePresence onlinePresence,
 			String fileName, String syntax) {
 
 		Model model = ModelFactory.createDefaultModel();
@@ -69,7 +69,7 @@ public class FileOPOService extends DefaultOPOService {
 		}
 	}
 
-	public OnlinePresence loadOnlinePresenceFromFile(String fileName, String syntax) {
+	public OnlinePresenceBean loadOnlinePresenceFromFile(String fileName, String syntax) {
 		InputStream is;
 		Model model = null;
 		try {
@@ -84,9 +84,9 @@ public class FileOPOService extends DefaultOPOService {
 			e.printStackTrace();
 		}
 
-		Collection<OnlinePresence> cop = super.load(model);
+		Collection<OnlinePresenceBean> cop = super.load(model);
 		
-		Iterator<OnlinePresence> iter = cop.iterator();
+		Iterator<OnlinePresenceBean> iter = cop.iterator();
 		return iter.next();
 	}
 

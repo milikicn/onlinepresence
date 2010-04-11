@@ -21,13 +21,31 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.statuscomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Disturbability;
 
-/**
- * OnlineStatusComponent used to represent the wish of an Agent to be or not to 
- * be disturbed.
- *
- */
-public interface DisturbabilityBean extends OnlineStatusComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Disturbability")
+public class DisturbabilityBean extends OnlineStatusComponentBean implements Disturbability{
 
+	/**
+	 * The agent is not busy and therefore available for contatct by other
+	 * Agents.
+	 */
+	public static DisturbabilityBean AVAILABLE = new DisturbabilityBean("http://online-presence.net/opo/ns#Available");
+
+	/**
+	 * The Agent is busy and does not want to be contacted by other Agents.
+	 */
+	public static DisturbabilityBean DO_NOT_DISTURB = new DisturbabilityBean("http://online-presence.net/opo/ns#DoNotDisturb");
+
+	public DisturbabilityBean() {
+		super();
+	}
+	
+	public DisturbabilityBean(String uri) {
+		super(uri);
+	}
 }

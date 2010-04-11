@@ -21,12 +21,21 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
+import net.onlinepresence.domainmodel.opoactions.Working;
 
-/**
- * The action of working on something (e.g., a project, a task, etc.).
- *
- */
-public interface WorkingBean extends ActionBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("Working")
+public class WorkingBean extends ActionBean implements Working {
 
+	public WorkingBean() {
+		super();
+	}
+	
+	public WorkingBean(String uri) {
+		super(uri);
+	}
+	
 }

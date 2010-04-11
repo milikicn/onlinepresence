@@ -21,14 +21,44 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
-import net.onlinepresence.domainmodel.doap.beans.ProjectBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.doap.Project;
+import net.onlinepresence.domainmodel.opoactions.WorkingOnProject;
 
-/**
- * The action of working on a project.
- *
- */
-public interface WorkingOnProjectBean extends WorkingBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("WorkingOnProject")
+public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProject {
 
-	ProjectBean getProject();
-	void setProject(ProjectBean project);
+	private Project project;
+
+	public WorkingOnProjectBean() {
+		super();
+	}
+	
+	public WorkingOnProjectBean(String uri) {
+		super(uri);
+	}
+	
+	public WorkingOnProjectBean(Project project) {
+		super();
+		setProject(project);
+	}
+	
+	public WorkingOnProjectBean(String uri, Project project) {
+		super(uri);
+		setProject(project);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#project")
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		if(project != null)
+			this.project = project;
+	}
+	
 }

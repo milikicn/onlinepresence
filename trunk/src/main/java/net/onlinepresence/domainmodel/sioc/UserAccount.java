@@ -22,57 +22,15 @@
 package net.onlinepresence.domainmodel.sioc;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-
-import thewebsemantic.Namespace;
-import thewebsemantic.RdfProperty;
-import thewebsemantic.RdfType;
 
 import net.onlinepresence.domainmodel.general.Resource;
-import net.onlinepresence.domainmodel.sioc.beans.UserAccountBean;
 
-@Namespace("http://rdfs.org/sioc/ns#")
-@RdfType("UserAccount")
-public class UserAccount extends Resource implements UserAccountBean {
+public interface UserAccount extends Resource{
 
-	private String accountName;
-	private URI accountServiceHomepage;
+	URI getAccountServiceHomepage();
+	void setAccountServiceHomepage(URI accountServiceHomepage);
+	void setAccountServiceHomepage(String accountServiceHomepage);
 	
-	public UserAccount() {
-		super();
-	}
-
-	public UserAccount(String uri) {
-		super(uri);
-	}
-
-	@RdfProperty("http://xmlns.com/foaf/0.1/accountName")
-	public String getAccountName() {
-		return accountName;
-	}
-
-	public void setAccountName(String accountName) {
-		if(accountName != null)
-			this.accountName = accountName;
-	}
-
-	@RdfProperty("http://xmlns.com/foaf/0.1/accountServiceHomepage")
-	public URI getAccountServiceHomepage() {
-		return accountServiceHomepage;
-	}
-
-	public void setAccountServiceHomepage(URI accountServiceHomepage) {
-		if(accountServiceHomepage != null)
-			this.accountServiceHomepage = accountServiceHomepage;
-	}
-	
-	public void setAccountServiceHomepage(String accountServiceHomepage) {
-		if(accountServiceHomepage != null)
-			try {
-				setAccountServiceHomepage(new URI(accountServiceHomepage));
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-	}
-
+	String getAccountName();
+	void setAccountName(String accountName);
 }

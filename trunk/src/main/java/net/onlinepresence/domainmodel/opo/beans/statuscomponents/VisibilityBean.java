@@ -21,13 +21,30 @@
  */
 package net.onlinepresence.domainmodel.opo.beans.statuscomponents;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
+import net.onlinepresence.domainmodel.opo.statuscomponents.Visibility;
 
-/**
- * OnlineStatusComponent used to represent the possiblity of others to see the 
- * OnlineStatus of the Agent.
- *
- */
-public interface VisibilityBean extends OnlineStatusComponentBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Visibility")
+public class VisibilityBean extends OnlineStatusComponentBean implements Visibility{
 
+	/**
+	 * The Agent's OnlineStatus is visible to other Agents.
+	 */
+	public static VisibilityBean VISIBLE = new VisibilityBean("http://online-presence.net/opo/ns#Visible");
+
+	/**
+	 * The Agent's OnlineStatus is not visible to other Agents.
+	 */
+	public static VisibilityBean INVISIBLE = new VisibilityBean("http://online-presence.net/opo/ns#Invisible");
+	
+	public VisibilityBean(){
+		super();
+	}
+	
+	public VisibilityBean(String uri) {
+		super(uri);
+	}
 }

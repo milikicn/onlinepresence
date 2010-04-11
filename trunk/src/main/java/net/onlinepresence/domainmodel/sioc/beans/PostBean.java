@@ -22,13 +22,57 @@
 package net.onlinepresence.domainmodel.sioc.beans;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
-public interface PostBean extends ItemBean {
+import net.onlinepresence.domainmodel.sioc.Post;
 
-	PostBean getReplyOf();
-	void setReplyOf(PostBean replyOf);
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+@Namespace("http://rdfs.org/sioc/ns#")
+@RdfType("Post")
+public class PostBean extends ItemBean implements Post {
+
+	private Post replyOf;
+	private URI primaryTopicOf;
 	
-	URI getPrimaryTopicOf();
-	void setPrimaryTopicOf(URI primaryTopicOf);
-	void setPrimaryTopicOf(String primaryTopicOf);
+	public PostBean() {
+		super();
+	}
+
+	public PostBean(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty("http://rdfs.org/sioc/ns#reply_of")
+	public Post getReplyOf() {
+		return replyOf;
+	}
+
+	public void setReplyOf(Post replyOf) {
+		if(replyOf != null){
+			replyOf.setURI(replyOf.getUri().replaceFirst("Post", "ReplyPost"));
+			this.replyOf = replyOf;
+		}
+	}
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/isPrimaryTopicOf")
+	public URI getPrimaryTopicOf() {
+		return primaryTopicOf;
+	}
+
+	public void setPrimaryTopicOf(URI primaryTopicOf) {
+		this.primaryTopicOf = primaryTopicOf;
+	}
+	
+	public void setPrimaryTopicOf(String primaryTopicOf) {
+		if(primaryTopicOf != null)
+			try {
+				setPrimaryTopicOf(new URI(primaryTopicOf));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
 }

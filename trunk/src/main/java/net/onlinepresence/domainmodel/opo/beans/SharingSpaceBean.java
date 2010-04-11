@@ -22,43 +22,143 @@
 package net.onlinepresence.domainmodel.opo.beans;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.foaf.Person;
 import net.onlinepresence.domainmodel.foaf.beans.GroupBean;
-import net.onlinepresence.domainmodel.foaf.beans.PersonBean;
-import net.onlinepresence.domainmodel.geo.beans.SpatialThingBean;
-import net.onlinepresence.domainmodel.purl.beans.EventBean;
+import net.onlinepresence.domainmodel.geo.SpatialThing;
+import net.onlinepresence.domainmodel.opo.SharingSpace;
+import net.onlinepresence.domainmodel.purl.Event;
 
-/**
- * A group of people belonging to a space for sharing online psresence data - 
- * the intended audience of data.
- *
- */
-public interface SharingSpaceBean extends GroupBean{
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("SharingSpace")
+public class SharingSpaceBean extends GroupBean implements SharingSpace{
 
-	public void setEvent(EventBean event);
-	public EventBean getEvent();
+	private Event event;
+	private SpatialThing nearLocation;
+	private SpatialThing currentLocation;
+	private Person friend;
+	private Person family;
+	private URI commonInterest;
+	private URI schoolHomepage;
+	private URI workplaceHomepage;
+
+	public SharingSpaceBean() {
+		super();
+	}
 	
-	public void setNearLocation(SpatialThingBean base);
-	public SpatialThingBean getNearLocation();
+	public SharingSpaceBean(String uri) {
+		super(uri);
+	}
 	
-	public void setFriend(PersonBean friend);
-	public PersonBean getFriend();
+	@RdfProperty("http://online-presence.net/opo/ns#attendedOrganisedEvent")
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		if(event != null)
+			this.event = event;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#basedNear")
+	public SpatialThing getNearLocation() {
+		return nearLocation;
+	}
+
+	public void setNearLocation(SpatialThing nearLocation) {
+		if(nearLocation != null)
+			this.nearLocation = nearLocation;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#currentlyIn")
+	public SpatialThing getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(SpatialThing currentLocation) {
+		if(currentLocation != null)
+			this.currentLocation = currentLocation;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#closestFriendsOf")
+	public Person getFriend() {
+		return friend;
+	}
+
+	public void setFriend(Person friend) {
+		if(friend != null)
+			this.friend = friend;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#familyOf")
+	public Person getFamily() {
+		return family;
+	}
+
+	public void setFamily(Person family) {
+		if(family != null)
+			this.family = family;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#commonInterest")
+	public URI getCommonInterest() {
+		return commonInterest;
+	}
+
+	public void setCommonInterest(URI commonInterest) {
+		if(commonInterest != null)
+			this.commonInterest = commonInterest;
+	}
 	
-	public void setCommonInterest(URI commonInterest);
-	public void setCommonInterest(String commonInterest);
-	public URI getCommonInterest();
+	public void setCommonInterest(String commonInterest) {
+		if(commonInterest != null)
+			try {
+				setCommonInterest(new URI(commonInterest));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#schoolHomepage")
+	public URI getSchoolHomepage() {
+		return schoolHomepage;
+	}
+
+	public void setSchoolHomepage(URI schoolHomepage) {
+		if(schoolHomepage != null)
+			this.schoolHomepage = schoolHomepage;
+	}
 	
-	public void setCurrentLocation(SpatialThingBean base);
-	public SpatialThingBean getCurrentLocation();
+	public void setSchoolHomepage(String schoolHomepage) {
+		if(schoolHomepage != null)
+			try {
+				setSchoolHomepage(new URI(schoolHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#workplaceHomepage")
+	public URI getWorkplaceHomepage() {
+		return workplaceHomepage;
+	}
+
+	public void setWorkplaceHomepage(URI workplaceHomepage) {
+		if(workplaceHomepage != null)
+			this.workplaceHomepage = workplaceHomepage;
+	}
 	
-	public void setFamily(PersonBean family);
-	public PersonBean getFamily();
-	
-	public void setSchoolHomepage(URI schoolHomepage);
-	public void setSchoolHomepage(String schoolHomepage);
-	public URI getSchoolHomepage();
-	
-	public void setWorkplaceHomepage(URI workplaceHomepage);
-	public void setWorkplaceHomepage(String workplaceHomepage);
-	public URI getWorkplaceHomepage();
+	public void setWorkplaceHomepage(String workplaceHomepage) {
+		if(workplaceHomepage != null)
+			try {
+				setWorkplaceHomepage(new URI(workplaceHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+			
 }

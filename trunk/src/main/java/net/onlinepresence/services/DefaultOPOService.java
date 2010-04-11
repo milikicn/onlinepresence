@@ -37,7 +37,7 @@ public class DefaultOPOService {
 	protected RDF2Bean reader;
 	
 
-	public Model save(Model model, OnlinePresenceBean onlinePresence) {
+	public Model save(Model model, OnlinePresence onlinePresence) {
 
 		writer = new Bean2RDF(model);
 		writer.saveDeep(onlinePresence);
@@ -45,10 +45,10 @@ public class DefaultOPOService {
 		return model;
 	}
 
-	public Collection<OnlinePresence> load(Model model) {
+	public Collection<OnlinePresenceBean> load(Model model) {
 
 		reader = new RDF2Bean(model);
 
-		return reader.loadDeep(OnlinePresence.class);
+		return reader.loadDeep(OnlinePresenceBean.class);
 	}
 }

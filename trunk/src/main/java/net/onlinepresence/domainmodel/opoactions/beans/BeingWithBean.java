@@ -21,12 +21,21 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
+import net.onlinepresence.domainmodel.opoactions.BeingWith;
 
-/**
- * Being in a company of somebody.
- *
- */
-public interface BeingWithBean extends ActionBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("BeingWith")
+public class BeingWithBean extends ActionBean implements BeingWith {
 
+	public BeingWithBean() {
+		super();
+	}
+	
+	public BeingWithBean(String uri) {
+		super(uri);
+	}
+	
 }

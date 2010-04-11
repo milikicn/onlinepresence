@@ -21,6 +21,20 @@
  */
 package net.onlinepresence.domainmodel.foaf.beans;
 
-public interface ImageBean extends ThingBean{
+import net.onlinepresence.domainmodel.foaf.Image;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
+
+@Namespace("http://xmlns.com/foaf/0.1/")
+@RdfType("Image")
+public class ImageBean extends ThingBean implements Image {
+
+	public ImageBean() {
+		super();
+	}
+
+	public ImageBean(String uri) {
+		super(uri);
+	}
 
 }

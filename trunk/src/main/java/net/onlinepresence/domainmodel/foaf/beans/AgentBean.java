@@ -23,16 +23,54 @@ package net.onlinepresence.domainmodel.foaf.beans;
 
 import java.net.URI;
 
-import net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.foaf.Agent;
+import net.onlinepresence.domainmodel.opo.OnlinePresence;
 
-public interface AgentBean extends ThingBean{
-	
-	String getNick();
-	void setNick(String nick);
+@Namespace("http://online-presence.net/opo/ns#")
+@RdfType("Agent")
+public class AgentBean extends ThingBean implements Agent{
 
-	void setOnlinePresence(OnlinePresenceBean onlinePresence);
-	OnlinePresenceBean getOnlinePresence();
+	private String nick;
+	private OnlinePresence onlinePresence;
+	private URI mbox;
+
+	public AgentBean() {
+		super();
+	}
 	
-	URI getMbox();
-	void setMbox(URI mbox);
+	public AgentBean(String uri) {
+		super(uri);
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		if(nick != null)
+			this.nick = nick;
+	}
+
+	@RdfProperty("http://online-presence.net/opo/ns#declaresOnlinePresence")
+	public OnlinePresence getOnlinePresence() {
+		return onlinePresence;
+	}
+
+	public void setOnlinePresence(OnlinePresence onlinePresence) {
+		if(onlinePresence != null)
+			this.onlinePresence = onlinePresence;
+	}
+
+	@RdfProperty("http://xmlns.com/foaf/0.1/mbox")
+	public URI getMbox() {
+		return mbox;
+	}
+
+	public void setMbox(URI mbox) {
+		this.mbox = mbox;
+	}
+
 }

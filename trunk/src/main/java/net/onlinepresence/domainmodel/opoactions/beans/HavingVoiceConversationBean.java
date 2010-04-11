@@ -21,14 +21,36 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
-import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.foaf.Agent;
+import net.onlinepresence.domainmodel.opoactions.HavingVoiceConversation;
 
-/**
- * An action of voice talking with somebody.
- *
- */
-public interface HavingVoiceConversationBean extends HavingConversationBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("HavingVoiceConversation")
+public class HavingVoiceConversationBean extends HavingConversationBean implements
+		HavingVoiceConversation {
 
-	AgentBean getSpeaker();
-	void setSpeaker(AgentBean speaker);
+	private Agent speaker;
+
+	public HavingVoiceConversationBean() {
+		super();
+	}
+	
+	public HavingVoiceConversationBean(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#speaker")
+	public Agent getSpeaker() {
+		return speaker;
+	}
+
+	public void setSpeaker(Agent speaker) {
+		if(speaker != null){
+			speaker.setURI(speaker.getUri().replaceFirst("Agent", "Speaker"));
+			this.speaker = speaker;
+		}
+	}
 }

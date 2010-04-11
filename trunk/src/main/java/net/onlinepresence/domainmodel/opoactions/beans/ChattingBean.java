@@ -21,14 +21,46 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
-import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+import net.onlinepresence.domainmodel.foaf.Agent;
+import net.onlinepresence.domainmodel.opoactions.Chatting;
 
-/**
- * An action of chatting (exchanging instant messages) with somebody.
- *
- */
-public interface ChattingBean extends HavingConversationBean {
+@Namespace("http://online-presence.net/opo-actions/ns#")
+@RdfType("Chatting")
+public class ChattingBean extends HavingConversationBean implements Chatting {
 
-	AgentBean getChatBuddy();
-	void setChatBuddy(AgentBean chatBuddy);
+	private Agent chatBuddy;
+
+	public ChattingBean() {
+		super();
+	}
+	
+	public ChattingBean(String uri) {
+		super(uri);
+	}
+	
+	public ChattingBean(Agent chatBuddy) {
+		this();
+		setChatBuddy(chatBuddy);
+	}
+	
+	public ChattingBean(String uri, Agent chatBuddy) {
+		this(uri);
+		setChatBuddy(chatBuddy);
+	}
+	
+	@RdfProperty("http://online-presence.net/opo-actions/ns#chatBuddy")
+	public Agent getChatBuddy() {
+		return chatBuddy;
+	}
+
+	public void setChatBuddy(Agent chatBuddy) {
+		if(chatBuddy != null){
+			chatBuddy.setURI(chatBuddy.getUri().replaceFirst("Agent", "ChatBuddy"));
+			this.chatBuddy = chatBuddy;
+		}
+	}
+	
 }

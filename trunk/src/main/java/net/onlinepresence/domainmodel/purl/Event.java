@@ -19,10 +19,10 @@
  *  find appropriate contacts on the OPO Prject website 
  *  http://online-presence.net.
  */
-package net.onlinepresence.domainmodel.purl.beans;
+package net.onlinepresence.domainmodel.purl;
 
-import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.domainmodel.general.Resource;
 
-public interface EventBean extends ResourceBean{
+public interface Event extends Resource{
 
 }
