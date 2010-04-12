@@ -40,7 +40,8 @@ public class URIBuilder implements MiscConstants {
 		uriGenerator = new UUIDBasedUriGenerator();
 	}
 	public String generateURI(Object instance, String namespace) {
-		return uriGenerator.generateInstanceUri(instance, namespace);
+		String a = uriGenerator.generateInstanceUri(instance, namespace);
+		return a;
 	}
 
 	public String generateURI(Object instance) {

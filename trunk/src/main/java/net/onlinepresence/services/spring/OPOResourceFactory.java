@@ -1,5 +1,8 @@
 package net.onlinepresence.services.spring;
 
+import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.util.urigenerator.URIBuilder;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -7,10 +10,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class OPOResourceFactory {
 
 	private static ApplicationContext context;
-	public static String namespace;
+	private String namespace;
 	
-	public OPOResourceFactory(String namespace){
+	public OPOResourceFactory(String ns){
+		if(!ns.endsWith("/")){
+			ns = ns + "/";
+		}
 		context = createContext();
+		namespace = ns;
 	}
 
 	public ApplicationContext createContext() {
@@ -21,10 +28,23 @@ public class OPOResourceFactory {
 	}
 
 	public String[] getContextLocations() {
-		String[] contextLocations = {
-			"META-INF/net/onlinepresence/services/spring/context.xml"
+		String[] mappings = new String[]{
+			"META-INF/net/onlinepresence/domainmodel/doap.xml", 
+			"META-INF/net/onlinepresence/domainmodel/foaf.xml", 
+			"META-INF/net/onlinepresence/domainmodel/general.xml", 
+			"META-INF/net/onlinepresence/domainmodel/geo.xml", 
+			"META-INF/net/onlinepresence/domainmodel/opo-presencecomponents.xml", 
+			"META-INF/net/onlinepresence/domainmodel/opo-statuscomponents.xml", 
+			"META-INF/net/onlinepresence/domainmodel/opo.xml", 
+			"META-INF/net/onlinepresence/domainmodel/opoactions.xml", 
+			"META-INF/net/onlinepresence/domainmodel/purl.xml", 
+			"META-INF/net/onlinepresence/domainmodel/semweb.xml", 
+			"META-INF/net/onlinepresence/domainmodel/sioc.xml" 
 		};
-		return contextLocations;
+		return mappings;
+//		File mappings = new File("META-INF/net/onlinepresence/domainmodel/aaa.txt");
+//		System.out.println(mappings.getAbsolutePath());
+//		return mappings.list();
 	}
 
 	public ApplicationContext getContext() {
@@ -34,6 +54,8 @@ public class OPOResourceFactory {
 	
 	@SuppressWarnings("unchecked")
 	public Object getResource(Class clazz ){
-		return context.getBean(clazz.getName());
+		Resource res = (Resource) context.getBean(clazz.getName());
+		res.setURI(URIBuilder.instance().generateURI(res, namespace));
+		return res;
 	}
 }
