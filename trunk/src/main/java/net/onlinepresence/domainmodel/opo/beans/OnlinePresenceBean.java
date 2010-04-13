@@ -65,12 +65,13 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 	protected OnlineStatus onlineStatus;
 	
 	
-
+	@Deprecated
 	public OnlinePresenceBean() {
 		super();
 		setStartTime(Util.getTime());
 	}
 	
+	@Deprecated
 	public OnlinePresenceBean(String uri) {
 		super(uri);
 		setStartTime(Util.getTime());

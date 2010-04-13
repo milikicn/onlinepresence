@@ -32,8 +32,10 @@ implements Resource{
 
 	protected String uri;
 	
+	@Deprecated
 	public ResourceBean() {	}
 	
+	@Deprecated
 	public ResourceBean(String uri) {
 		this.uri = uri;
 	}

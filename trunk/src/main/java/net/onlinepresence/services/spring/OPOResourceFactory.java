@@ -12,9 +12,14 @@ public class OPOResourceFactory {
 	private static ApplicationContext context;
 	private String namespace;
 	
+	public OPOResourceFactory(){
+		context = createContext();
+		namespace = "http://online-presence.net/triplestore#";
+	}
+	
 	public OPOResourceFactory(String ns){
-		if(!ns.endsWith("/")){
-			ns = ns + "/";
+		if(!ns.endsWith("/") && !ns.endsWith("#")){
+			ns = ns + "#";
 		}
 		context = createContext();
 		namespace = ns;
@@ -53,9 +58,14 @@ public class OPOResourceFactory {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Object getResource(Class clazz ){
+	public Object createResource(Class clazz ){
 		Resource res = (Resource) context.getBean(clazz.getName());
 		res.setURI(URIBuilder.instance().generateURI(res, namespace));
 		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Class getBeanImplementationClass(Class clazz) {
+		return context.getBean(clazz.getName()).getClass();
 	}
 }

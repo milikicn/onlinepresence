@@ -21,10 +21,7 @@
  */
 package net.onlinepresence.util.urigenerator;
 
-import net.onlinepresence.util.MiscConstants;
-import net.onlinepresence.util.PropertiesManager;
-
-public class URIBuilder implements MiscConstants {
+public class URIBuilder {
 
 	private UriGenerator uriGenerator;
 
@@ -39,14 +36,9 @@ public class URIBuilder implements MiscConstants {
 	private URIBuilder() {
 		uriGenerator = new UUIDBasedUriGenerator();
 	}
+	
 	public String generateURI(Object instance, String namespace) {
-		String a = uriGenerator.generateInstanceUri(instance, namespace);
-		return a;
-	}
-
-	public String generateURI(Object instance) {
-		return generateURI(instance, PropertiesManager.instance().getProperty(
-				TRIPLE_STORE_NAMESPACE));
+		return uriGenerator.generateInstanceUri(instance, namespace);
 	}
 
 }
