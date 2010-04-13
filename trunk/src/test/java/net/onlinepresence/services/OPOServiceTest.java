@@ -63,13 +63,13 @@ public class OPOServiceTest {
 		
 		
 		FileOPOService foe = new FileOPOService("exportedTURTLE.rdf", "TURTLE");
-		foe.saveOnlinePresenceToFile(onlinePresence);
+		foe.saveResourceToFile(onlinePresence);
 		
 	}
 	
 	public static void testImport(){
 		FileOPOService foe = new FileOPOService("exportedTURTLE.rdf", "TURTLE");
-		OnlinePresence op = foe.loadOnlinePresenceFromFile();
+		OnlinePresence op = foe.loadResourceFromFile(OnlinePresence.class);
 		System.out.println(op.getUri());
 	}
 	

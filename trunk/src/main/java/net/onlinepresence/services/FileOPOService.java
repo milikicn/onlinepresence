@@ -24,7 +24,7 @@ package net.onlinepresence.services;
 import java.util.Collection;
 import java.util.Iterator;
 
-import net.onlinepresence.domainmodel.opo.OnlinePresence;
+import net.onlinepresence.domainmodel.general.Resource;
 import net.onlinepresence.services.datacentral.FileDataProvider;
 import net.onlinepresence.services.spring.OPOResourceFactory;
 
@@ -35,19 +35,19 @@ public class FileOPOService extends DefaultOPOManager {
 		initialize();
 	}
 
-	public void saveOnlinePresenceToFile(OnlinePresence onlinePresence) {
+	public <T extends Resource> void saveResourceToFile(T resource) {
 		
-		saveResource(onlinePresence, true);
+		saveResource(resource, true);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public OnlinePresence loadOnlinePresenceFromFile() {
+	public <T extends Resource> T loadResourceFromFile(Class<T> clazz) {
 		
 		OPOResourceFactory factory = new OPOResourceFactory();
 
-		Collection<OnlinePresence> cop = (Collection<OnlinePresence>) loadAllResources(factory.getBeanImplementationClass(OnlinePresence.class), true);
+		Collection<T> cop = (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
 		
-		Iterator<OnlinePresence> iter = cop.iterator();
+		Iterator<T> iter = cop.iterator();
 		
 		return iter.next();
 	}

@@ -11,61 +11,7 @@
 @prefix doap:    <http://usefulinc.com/ns/doap#> .
 @prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
 
-<http://fdfd.com/OnlinePresenceBean/8c136396-9ccc-4df9-b112-6b06dfc3d2ff>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/d2965a6e-1589-4f17-a29f-24291c2060cb> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/c9d2161c-fc7c-4fd0-84af-f2f14972c0ab> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/c9d2161c-fc7c-4fd0-84af-f2f14972c0ab> ;
-      opo:startTime "2010-04-13T16:32:28"^^xsd:string .
-
-<http://fdfd.com/OnlinePresenceBean/4474f298-408c-48d2-90f1-0294c208d0b5>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/b9c7c452-779e-4cee-9770-97856c996f9c> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/6b2b61a2-1a63-482b-bd82-5ee3448abea6> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/6b2b61a2-1a63-482b-bd82-5ee3448abea6> ;
-      opo:startTime "2010-04-13T16:28:26"^^xsd:string .
-
-<http://fdfd.com/AgentBean/dc78962a-784e-40d6-bc78-80543a7772cf>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-opo:Active
-      a       opo:Activity ;
-      opo:inactivityPeriod
-              "0"^^xsd:int .
-
-<http://fdfd.com/AgentBean/b9c7c452-779e-4cee-9770-97856c996f9c>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/AgentBean/fe08aa3c-da19-4db4-9bb3-36388e72a7a3>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/OnlinePresenceBean/a15503c8-8500-44ab-81fd-d4be39718d10>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/c4f77ee6-d28a-47bd-97f7-ca62cf33e878> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/304b280d-e42a-4b9b-befc-c934ab3a3ec4> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/304b280d-e42a-4b9b-befc-c934ab3a3ec4> ;
-      opo:startTime "2010-04-13T16:27:33"^^xsd:string .
-
-opo:Findability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean" .
-
-<http://fdfd.com/#OnlineStatusBean/889a99c5-4e77-432e-b043-5086fd8f656e>
+<http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318>
       a       opo:OnlineStatus ;
       opo:activity opo:Active ;
       opo:contactability opo:FreelyContactable ;
@@ -75,79 +21,9 @@ opo:Findability
       opo:statusComponents
               opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
       opo:visibility opo:Visible .
-
-opo:Notifiability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean" .
-
-<http://fdfd.com/OnlineStatusBean/6b2b61a2-1a63-482b-bd82-5ee3448abea6>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-opo:Activity
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean" .
-
-<http://fdfd.com/AgentBean/142e8fa7-49bc-4bd4-9116-4657b2e8f6f6>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/OnlineStatusBean/a1c6f7f2-81ca-445f-9c1e-63d473f08806>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-opo:OnlineStatus
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean" .
-
-<http://fdfd.com/OnlineStatusBean/02f69e7a-9d00-4448-b484-b0e23977b6e0>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-<http://fdfd.com/#OnlinePresenceBean/d54448cf-25db-47d3-8272-e18707e14ef6>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/#AgentBean/36b32a6b-3e2e-4521-8b2c-5283c0177446> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , <http://fdfd.com/#OnlineStatusBean/889a99c5-4e77-432e-b043-5086fd8f656e> , opo:PubliclyFindable ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/#OnlineStatusBean/889a99c5-4e77-432e-b043-5086fd8f656e> ;
-      opo:startTime "2010-04-13T16:22:08"^^xsd:string .
 
 jenabean:javaclass
       a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
-
-<http://fdfd.com/OnlinePresenceBean/e4546a33-3d5c-4240-9589-58b3e6044ee5>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/142e8fa7-49bc-4bd4-9116-4657b2e8f6f6> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/ac645800-cd75-44e1-81a4-00376458add2> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/ac645800-cd75-44e1-81a4-00376458add2> ;
-      opo:startTime "2010-04-13T16:30:50"^^xsd:string .
 
 opo:FreelyContactable
       a       opo:Contactability .
@@ -163,86 +39,41 @@ opo:Visibility
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean" .
 
-<http://fdfd.com/OnlinePresenceBean/fb014eaf-4396-4556-acb2-ba6073be4b53>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/fe08aa3c-da19-4db4-9bb3-36388e72a7a3> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/02f69e7a-9d00-4448-b484-b0e23977b6e0> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/02f69e7a-9d00-4448-b484-b0e23977b6e0> ;
-      opo:startTime "2010-04-13T16:29:45"^^xsd:string .
+opo:Active
+      a       opo:Activity ;
+      opo:inactivityPeriod
+              "0"^^xsd:int .
 
 opo:OnlinePresence
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean" .
 
-<http://fdfd.com/#AgentBean/36b32a6b-3e2e-4521-8b2c-5283c0177446>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/AgentBean/d2965a6e-1589-4f17-a29f-24291c2060cb>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/OnlineStatusBean/51a99b28-6ef0-4b9a-b8a2-b5fbe85cb072>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-<http://fdfd.com/OnlinePresenceBean/9c18bca7-753d-4b6b-8f27-69937bd910ba>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/87683ff1-84ad-4bff-a802-5dadcea789fc> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/a1c6f7f2-81ca-445f-9c1e-63d473f08806> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/a1c6f7f2-81ca-445f-9c1e-63d473f08806> ;
-      opo:startTime "2010-04-13T16:36:53"^^xsd:string .
-
-<http://fdfd.com/OnlineStatusBean/304b280d-e42a-4b9b-befc-c934ab3a3ec4>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-opo:Visible
-      a       opo:Visibility .
+opo:Findability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean" .
 
 opo:PubliclyFindable
       a       opo:Findability .
 
-<http://fdfd.com/AgentBean/87683ff1-84ad-4bff-a802-5dadcea789fc>
+opo:Notifiability
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean" .
+
+opo:Visible
+      a       opo:Visibility .
+
+<http://fdfd.com/AgentBean/539bdc07-5542-4b0e-af6a-83e41d57de74>
       a       opo:Agent ;
       foaf:homepage <http://filip.milistan.net> ;
       foaf:name "Filip Radulovic"^^xsd:string .
 
-<http://fdfd.com/OnlinePresenceBean/3d3a39fe-b8b2-4b01-828e-6450c2aab195>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/dc78962a-784e-40d6-bc78-80543a7772cf> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              opo:AllNotificationsPass , opo:PubliclyFindable , <http://fdfd.com/OnlineStatusBean/51a99b28-6ef0-4b9a-b8a2-b5fbe85cb072> ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/51a99b28-6ef0-4b9a-b8a2-b5fbe85cb072> ;
-      opo:startTime "2010-04-13T16:31:41"^^xsd:string .
-
 opo:Agent
       a       rdfs:Class ;
       jenabean:javaclass "net.onlinepresence.domainmodel.foaf.beans.AgentBean" .
+
+opo:Activity
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean" .
 
 opo:Contactability
       a       rdfs:Class ;
@@ -251,29 +82,16 @@ opo:Contactability
 opo:Available
       a       opo:Disturbability .
 
-<http://fdfd.com/OnlineStatusBean/ac645800-cd75-44e1-81a4-00376458add2>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
+opo:OnlineStatus
+      a       rdfs:Class ;
+      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean" .
 
-<http://fdfd.com/AgentBean/c4f77ee6-d28a-47bd-97f7-ca62cf33e878>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-<http://fdfd.com/OnlineStatusBean/c9d2161c-fc7c-4fd0-84af-f2f14972c0ab>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
+<http://fdfd.com/OnlinePresenceBean/47a41630-fc1d-4f62-bd9e-8eee5bb606f8>
+      a       opo:OnlinePresence ;
+      opo:declaredBy <http://fdfd.com/AgentBean/539bdc07-5542-4b0e-af6a-83e41d57de74> ;
+      opo:findability opo:PubliclyFindable ;
+      opo:hasPresenceComponent
+              <http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318> , opo:AllNotificationsPass , opo:PubliclyFindable ;
+      opo:notifiability opo:AllNotificationsPass ;
+      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318> ;
+      opo:startTime "2010-04-13T17:01:46"^^xsd:string .

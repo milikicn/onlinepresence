@@ -47,32 +47,29 @@ public class DefaultOPOManager implements OPOManager {
 		this.reader = new RDF2Bean(dataSource);
 	}
 
-//	public Model save(Model model, OnlinePresence onlinePresence) {
-//
-//		writer = new Bean2RDF(model);
-//		writer.saveDeep(onlinePresence);
-//
-//		return model;
-//	}
-//
-//	public Collection<OnlinePresenceBean> load(Model model) {
-//
-//		reader = new RDF2Bean(model);
-//
-//		return reader.loadDeep(OnlinePresenceBean.class);
-//	}
-
 	@Override
 	public <T extends Resource> void deleteResource(Class<T> clazz,
-			String resourceURI, boolean deep) {
-		// TODO Auto-generated method stub
+			String resourceURI, boolean loadDeep) {
+
+		LinkedList<T> resList = (LinkedList<T>) loadAllResources(clazz, loadDeep);
 		
+		Iterator<T> iterator = resList.iterator();
+		
+		while (iterator.hasNext()) {
+			T t = (T) iterator.next();
+			
+			if(((Resource) t).getUri().equals(resourceURI)){
+				deleteResource(t);
+				break;
+			}
+		}
 	}
 
 	@Override
 	public <T extends Resource> void deleteResource(T t) {
-		// TODO Auto-generated method stub
+		writer.delete(t);
 		
+		dataProvider.updateDataSource(dataSource);
 	}
 
 	@Override
