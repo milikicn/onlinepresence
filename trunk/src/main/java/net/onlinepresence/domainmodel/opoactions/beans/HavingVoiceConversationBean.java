@@ -34,10 +34,12 @@ public class HavingVoiceConversationBean extends HavingConversationBean implemen
 
 	private Agent speaker;
 
+	@Deprecated
 	public HavingVoiceConversationBean() {
 		super();
 	}
 	
+	@Deprecated
 	public HavingVoiceConversationBean(String uri) {
 		super(uri);
 	}

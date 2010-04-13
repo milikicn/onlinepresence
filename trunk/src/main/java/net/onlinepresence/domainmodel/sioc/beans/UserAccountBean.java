@@ -38,10 +38,12 @@ public class UserAccountBean extends ResourceBean implements UserAccount {
 	private String accountName;
 	private URI accountServiceHomepage;
 	
+	@Deprecated
 	public UserAccountBean() {
 		super();
 	}
 
+	@Deprecated
 	public UserAccountBean(String uri) {
 		super(uri);
 	}

@@ -37,10 +37,12 @@ public class AgentBean extends ThingBean implements Agent{
 	private OnlinePresence onlinePresence;
 	private URI mbox;
 
+	@Deprecated
 	public AgentBean() {
 		super();
 	}
 	
+	@Deprecated
 	public AgentBean(String uri) {
 		super(uri);
 	}

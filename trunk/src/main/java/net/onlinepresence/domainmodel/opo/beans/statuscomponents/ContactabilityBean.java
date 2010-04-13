@@ -41,10 +41,12 @@ public class ContactabilityBean extends OnlineStatusComponentBean implements Con
 	 */
 	public static ContactabilityBean CONSTRAINED_CONTACTABILITY = new ContactabilityBean("http://online-presence.net/opo/ns#ConstrainedContactability");
 
+	@Deprecated
 	public ContactabilityBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ContactabilityBean(String uri) {
 		super(uri);
 	}

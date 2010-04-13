@@ -33,10 +33,12 @@ public class ListeningBean<T> extends ActionBean implements Listening<T> {
 
 	private T listeningTo;
 
+	@Deprecated
 	public ListeningBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ListeningBean(String uri) {
 		super(uri);
 	}

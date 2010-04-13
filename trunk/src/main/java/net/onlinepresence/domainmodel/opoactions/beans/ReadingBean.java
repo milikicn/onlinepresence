@@ -33,10 +33,12 @@ public class ReadingBean<T> extends ActionBean implements Reading<T> {
 
 	private T readingMaterial;
 
+	@Deprecated
 	public ReadingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ReadingBean(String uri) {
 		super(uri);
 	}

@@ -40,10 +40,12 @@ public class ThingBean extends ResourceBean implements Thing {
 	private URI isPrimaryTopicOf;
 	private URI seeAlso;
 	
+	@Deprecated
 	public ThingBean() {
 		super();
 	}
 
+	@Deprecated
 	public ThingBean(String uri) {
 		super(uri);
 	}

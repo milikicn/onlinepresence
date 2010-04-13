@@ -33,10 +33,12 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 
 	private Agent chatBuddy;
 
+	@Deprecated
 	public ChattingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ChattingBean(String uri) {
 		super(uri);
 	}

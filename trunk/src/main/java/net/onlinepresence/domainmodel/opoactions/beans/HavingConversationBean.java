@@ -30,10 +30,12 @@ import thewebsemantic.RdfType;
 public class HavingConversationBean extends BeingWithBean implements
 		HavingConversation {
 
+	@Deprecated
 	public HavingConversationBean() {
 		super();
 	}
 	
+	@Deprecated
 	public HavingConversationBean(String uri) {
 		super(uri);
 	}

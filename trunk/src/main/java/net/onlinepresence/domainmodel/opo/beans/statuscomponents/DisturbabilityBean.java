@@ -41,10 +41,12 @@ public class DisturbabilityBean extends OnlineStatusComponentBean implements Dis
 	 */
 	public static DisturbabilityBean DO_NOT_DISTURB = new DisturbabilityBean("http://online-presence.net/opo/ns#DoNotDisturb");
 
+	@Deprecated
 	public DisturbabilityBean() {
 		super();
 	}
 	
+	@Deprecated
 	public DisturbabilityBean(String uri) {
 		super(uri);
 	}

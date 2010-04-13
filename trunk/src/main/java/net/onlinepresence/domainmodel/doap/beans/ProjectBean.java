@@ -39,10 +39,12 @@ public class ProjectBean extends ResourceBean implements Project {
 	private String dateCreated;
 	private String shortDescription;
 	
+	@Deprecated
 	public ProjectBean() {
 		super();
 	}
 
+	@Deprecated
 	public ProjectBean(String uri) {
 		super(uri);
 	}

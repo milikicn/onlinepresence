@@ -41,10 +41,12 @@ public class FindabilityBean extends OnlinePresenceComponentBean implements Find
 	 */
 	public static FindabilityBean PUBLICLY_FINDABLE = new FindabilityBean("http://online-presence.net/opo/ns#PubliclyFindable");
 
+	@Deprecated
 	public FindabilityBean() {
 		super();
 	}
 	
+	@Deprecated
 	public FindabilityBean(String uri) {
 		super(uri);
 	}

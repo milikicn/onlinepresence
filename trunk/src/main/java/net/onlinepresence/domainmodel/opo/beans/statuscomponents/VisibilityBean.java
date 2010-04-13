@@ -40,10 +40,12 @@ public class VisibilityBean extends OnlineStatusComponentBean implements Visibil
 	 */
 	public static VisibilityBean INVISIBLE = new VisibilityBean("http://online-presence.net/opo/ns#Invisible");
 	
+	@Deprecated
 	public VisibilityBean(){
 		super();
 	}
 	
+	@Deprecated
 	public VisibilityBean(String uri) {
 		super(uri);
 	}

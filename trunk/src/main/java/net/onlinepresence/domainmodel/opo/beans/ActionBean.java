@@ -30,10 +30,12 @@ import net.onlinepresence.domainmodel.opo.Action;
 @RdfType("Action")
 public class ActionBean extends ResourceBean implements Action {
 
+	@Deprecated
 	public ActionBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ActionBean(String uri) {
 		super(uri);
 	}

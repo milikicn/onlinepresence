@@ -29,10 +29,12 @@ import thewebsemantic.RdfType;
 @RdfType("Image")
 public class ImageBean extends ThingBean implements Image {
 
+	@Deprecated
 	public ImageBean() {
 		super();
 	}
 
+	@Deprecated
 	public ImageBean(String uri) {
 		super(uri);
 	}

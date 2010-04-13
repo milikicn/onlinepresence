@@ -47,10 +47,12 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 	protected Activity activity;
 	protected Contactability contactability;
 
+	@Deprecated
 	public OnlineStatusBean() {
 		super();
 	}
 	
+	@Deprecated
 	public OnlineStatusBean(String uri) {
 		super(uri);
 	}

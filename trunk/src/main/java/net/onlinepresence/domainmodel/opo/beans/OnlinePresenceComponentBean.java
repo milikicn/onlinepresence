@@ -34,10 +34,12 @@ public class OnlinePresenceComponentBean extends ResourceBean implements OnlineP
 
 	private OnlinePresence component;
 
+	@Deprecated
 	public OnlinePresenceComponentBean() {
 		super();
 	}
 	
+	@Deprecated
 	public OnlinePresenceComponentBean(String uri) {
 		super(uri);
 	}

@@ -33,10 +33,12 @@ public class SourceOfPublishingBean extends ResourceBean implements SourceOfPubl
 
 	private String name;
 
+	@Deprecated
 	public SourceOfPublishingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public SourceOfPublishingBean(String uri) {
 		super(uri);
 	}

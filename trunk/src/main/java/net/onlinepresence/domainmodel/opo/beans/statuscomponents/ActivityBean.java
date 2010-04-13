@@ -49,10 +49,12 @@ public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 	public static ActivityBean PROLONGED_INACTIVE = new ActivityBean("http://online-presence.net/opo/ns#ProlongedInactive");
 
 
+	@Deprecated
 	public ActivityBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ActivityBean(String uri) {
 		super(uri);
 	}

@@ -46,10 +46,12 @@ public class SharingSpaceBean extends GroupBean implements SharingSpace{
 	private URI schoolHomepage;
 	private URI workplaceHomepage;
 
+	@Deprecated
 	public SharingSpaceBean() {
 		super();
 	}
 	
+	@Deprecated
 	public SharingSpaceBean(String uri) {
 		super(uri);
 	}

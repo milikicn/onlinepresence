@@ -29,10 +29,12 @@ import thewebsemantic.RdfType;
 @RdfType("Group")
 public class GroupBean extends ThingBean implements Group {
 
+	@Deprecated
 	public GroupBean() {
 		super();
 	}
 
+	@Deprecated
 	public GroupBean(String uri) {
 		super(uri);
 	}

@@ -34,10 +34,12 @@ public class OnlineStatusComponentBean extends ResourceBean implements OnlineSta
 	
 	private OnlineStatus component;
 
+	@Deprecated
 	public OnlineStatusComponentBean() {
 		super();
 	}
 	
+	@Deprecated
 	public OnlineStatusComponentBean(String uri) {
 		super(uri);
 	}

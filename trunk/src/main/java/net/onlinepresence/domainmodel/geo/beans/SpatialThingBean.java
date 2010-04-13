@@ -34,10 +34,12 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 	private String latitude;
 	private String longitude;
 
+	@Deprecated
 	public SpatialThingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public SpatialThingBean(String uri) {
 		super(uri);
 	}

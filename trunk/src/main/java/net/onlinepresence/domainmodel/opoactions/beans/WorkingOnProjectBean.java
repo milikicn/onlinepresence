@@ -33,19 +33,23 @@ public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProjec
 
 	private Project project;
 
+	@Deprecated
 	public WorkingOnProjectBean() {
 		super();
 	}
 	
+	@Deprecated
 	public WorkingOnProjectBean(String uri) {
 		super(uri);
 	}
 	
+	@Deprecated
 	public WorkingOnProjectBean(Project project) {
 		super();
 		setProject(project);
 	}
 	
+	@Deprecated
 	public WorkingOnProjectBean(String uri, Project project) {
 		super(uri);
 		setProject(project);

@@ -30,10 +30,12 @@ import net.onlinepresence.domainmodel.opoactions.Working;
 @RdfType("Working")
 public class WorkingBean extends ActionBean implements Working {
 
+	@Deprecated
 	public WorkingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public WorkingBean(String uri) {
 		super(uri);
 	}

@@ -33,10 +33,12 @@ public class ItemBean extends ResourceBean implements Item {
 
 	private String content;
 
+	@Deprecated
 	public ItemBean() {
 		super();
 	}
 	
+	@Deprecated
 	public ItemBean(String uri) {
 		super(uri);
 	}

@@ -33,10 +33,12 @@ public class WatchingBean<T> extends ActionBean implements Watching<T> {
 
 	private T watching;
 
+	@Deprecated
 	public WatchingBean() {
 		super();
 	}
 	
+	@Deprecated
 	public WatchingBean(String uri) {
 		super(uri);
 	}

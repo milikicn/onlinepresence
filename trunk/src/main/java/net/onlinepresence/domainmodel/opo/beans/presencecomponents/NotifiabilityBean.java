@@ -46,10 +46,12 @@ public class NotifiabilityBean extends OnlinePresenceComponentBean implements No
 	 */
 	public static NotifiabilityBean NOTIFICATIONS_PROHIBITED = new NotifiabilityBean("http://online-presence.net/opo/ns#NotificationsProhibited");
 
+	@Deprecated
 	public NotifiabilityBean() {
 		super();
 	}
 	
+	@Deprecated
 	public NotifiabilityBean(String uri) {
 		super(uri);
 	}

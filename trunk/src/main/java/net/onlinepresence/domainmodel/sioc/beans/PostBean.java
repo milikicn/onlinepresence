@@ -37,10 +37,12 @@ public class PostBean extends ItemBean implements Post {
 	private Post replyOf;
 	private URI primaryTopicOf;
 	
+	@Deprecated
 	public PostBean() {
 		super();
 	}
 
+	@Deprecated
 	public PostBean(String uri) {
 		super(uri);
 	}

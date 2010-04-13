@@ -30,10 +30,12 @@ import net.onlinepresence.domainmodel.opoactions.BeingWith;
 @RdfType("BeingWith")
 public class BeingWithBean extends ActionBean implements BeingWith {
 
+	@Deprecated
 	public BeingWithBean() {
 		super();
 	}
 	
+	@Deprecated
 	public BeingWithBean(String uri) {
 		super(uri);
 	}

@@ -33,10 +33,12 @@ public class PersonBean extends AgentBean implements Person {
 
 	private Image img;
 
+	@Deprecated
 	public PersonBean() {
 		super();
 	}
 
+	@Deprecated
 	public PersonBean(String uri) {
 		super(uri);
 	}

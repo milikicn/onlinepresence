@@ -30,10 +30,12 @@ import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
 @RdfType("StatusMessage")
 public class StatusMessageBean extends ItemBean implements StatusMessage {
 
+	@Deprecated
 	public StatusMessageBean() {
 		super();
 	}
 	
+	@Deprecated
 	public StatusMessageBean(String uri) {
 		super(uri);
 	}

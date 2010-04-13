@@ -36,10 +36,12 @@ public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 	private Person attendee;
 	private SpatialThing location;
 
+	@Deprecated
 	public OrganizedEventBean() {
 		super();
 	}
 	
+	@Deprecated
 	public OrganizedEventBean(String uri) {
 		super(uri);
 	}
