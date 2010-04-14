@@ -1,0 +1,23 @@
+<html t:type="layout" title="Try twitt2opo"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<h1 style="text-align: center">Try twitt2opo</h1>
+	<br />
+	
+	<p id="text">
+		By clicking the button "Allow me access!" bellow, you will give twitt2opo access to your Twitter 
+		profile data. Your data is being accessed via <a href="http://oauth.net/" target="_blank">oAuth protocol</a>, which is completely 
+		secure for the user. 
+	</p>
+	<br/>
+	
+	<a href="#" t:type="ActionLink" target="_blank" t:id="oAuthLogin"><img src="layout/images/allow_me_access.gif" alt="Allow me access!"/></a>
+	<br/><br/>
+	
+	<p id="text">
+		After clicking <b>"Allow me access!"</b> button, another window will pop up and by clicking 
+		<b>"Allow"</b> you will allow twitt2opo to read your Twitter profile data, needed for this 
+		conversion.
+	</p>
+</html>
