@@ -29,7 +29,7 @@ import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.Agent;
 import net.onlinepresence.domainmodel.opo.OnlinePresence;
 
-@Namespace("http://online-presence.net/opo/ns#")
+@Namespace("http://xmlns.com/foaf/0.1/")
 @RdfType("Agent")
 public class AgentBean extends ThingBean implements Agent{
 
