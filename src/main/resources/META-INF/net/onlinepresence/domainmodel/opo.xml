@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="net.onlinepresence.domainmodel.opo.Action"
+		class="net.onlinepresence.domainmodel.opo.beans.ActionBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.OnlinePresence"
+		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.OnlinePresenceComponent"
+		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.OnlineStatusComponent"
+		class="net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.SharingSpace"
+		class="net.onlinepresence.domainmodel.opo.beans.SharingSpaceBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.SourceOfPublishing"
+		class="net.onlinepresence.domainmodel.opo.beans.SourceOfPublishingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.domainmodel.opo.StatusMessage"
+		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean"
+		scope="prototype" >
+	</bean>
+	
+</beans>

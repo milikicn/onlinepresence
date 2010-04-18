@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.online-presence.opo</groupId>
+  <artifactId>opo-lib</artifactId>
+  <name>Java library for OPO data</name>
+  <version>1.0</version>
+  <description>Java library for importing and exporting data in form of Online Presence Ontology (OPO)</description>
+  <url>http://online-presence.net</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.hp.hpl.jena</groupId>
+      <artifactId>jena</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+	<dependency>
+		<groupId>org.testng</groupId>
+		<artifactId>testng</artifactId>
+		<version>5.8</version>
+		<classifier>jdk15</classifier>
+		<scope>test</scope>
+	</dependency>
+	<dependency> 
+  		<groupId>thewebsemantic</groupId> 
+  		<artifactId>jenabean</artifactId> 
+  		<version>1.0.3</version> 
+  	</dependency>
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+  </dependencies>
+  
+  
+  <properties>
+	<jenabean-version>1.0.3</jenabean-version>
+	<spring.version>2.5.6</spring.version>
+  </properties>
+</project>
