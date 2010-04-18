@@ -10,13 +10,13 @@ import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityB
 import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
 import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.domainmodel.sioc.Post;
-import net.onlinepresence.services.spring.OPOResourceFactory;
+import net.onlinepresence.services.spring.ResourceFactory;
 
 public class OPOServiceTest {
 
 	public static void testExoport(){
 		
-		OPOResourceFactory factory = new OPOResourceFactory("http://fdfd.com/");
+		ResourceFactory factory = new ResourceFactory("http://fdfd.com/");
 		
 		OnlinePresence onlinePresence = (OnlinePresence) factory.createResource(OnlinePresence.class);
 		

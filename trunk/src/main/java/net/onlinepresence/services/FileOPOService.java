@@ -26,7 +26,7 @@ import java.util.Iterator;
 
 import net.onlinepresence.domainmodel.general.Resource;
 import net.onlinepresence.services.datacentral.FileDataProvider;
-import net.onlinepresence.services.spring.OPOResourceFactory;
+import net.onlinepresence.services.spring.ResourceFactory;
 
 public class FileOPOService extends DefaultOPOManager {
 	
@@ -43,7 +43,7 @@ public class FileOPOService extends DefaultOPOManager {
 	@SuppressWarnings("unchecked")
 	public <T extends Resource> T loadResourceFromFile(Class<T> clazz) {
 		
-		OPOResourceFactory factory = new OPOResourceFactory();
+		ResourceFactory factory = new ResourceFactory();
 
 		Collection<T> cop = (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
 		

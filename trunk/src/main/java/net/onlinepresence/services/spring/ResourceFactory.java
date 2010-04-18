@@ -7,17 +7,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class OPOResourceFactory {
+public class ResourceFactory {
 
 	private static ApplicationContext context;
 	private String namespace;
 	
-	public OPOResourceFactory(){
+	public ResourceFactory(){
 		context = createContext();
 		namespace = "http://online-presence.net/triplestore#";
 	}
 	
-	public OPOResourceFactory(String ns){
+	public ResourceFactory(String ns){
 		if(!ns.endsWith("/") && !ns.endsWith("#")){
 			ns = ns + "#";
 		}

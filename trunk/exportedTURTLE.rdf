@@ -1,97 +1,136 @@
-@prefix dc:      <http://purl.org/dc/elements/1.1/> .
-@prefix opo:     <http://online-presence.net/opo/ns#> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix opo-actions:  <http://online-presence.net/opo-actions/ns#> .
-@prefix sioc:    <http://rdfs.org/sioc/ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix wgs84:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
-@prefix jenabean:  <http://thewebsemantic.com/> .
-@prefix doap:    <http://usefulinc.com/ns/doap#> .
-@prefix swc:     <http://data.semanticweb.org/ns/swc/ontology#> .
-
-<http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318>
-      a       opo:OnlineStatus ;
-      opo:activity opo:Active ;
-      opo:contactability opo:FreelyContactable ;
-      opo:disturbability opo:Available ;
-      opo:hasStatusComponent
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:statusComponents
-              opo:FreelyContactable , opo:Visible , opo:Available , opo:Active ;
-      opo:visibility opo:Visible .
-
-jenabean:javaclass
-      a       <http://www.w3.org/2002/07/owl#AnnotationProperty> .
-
-opo:FreelyContactable
-      a       opo:Contactability .
-
-opo:AllNotificationsPass
-      a       opo:Notifiability .
-
-opo:Disturbability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean" .
-
-opo:Visibility
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean" .
-
-opo:Active
-      a       opo:Activity ;
-      opo:inactivityPeriod
-              "0"^^xsd:int .
-
-opo:OnlinePresence
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean" .
-
-opo:Findability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean" .
-
-opo:PubliclyFindable
-      a       opo:Findability .
-
-opo:Notifiability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean" .
-
-opo:Visible
-      a       opo:Visibility .
-
-<http://fdfd.com/AgentBean/539bdc07-5542-4b0e-af6a-83e41d57de74>
-      a       opo:Agent ;
-      foaf:homepage <http://filip.milistan.net> ;
-      foaf:name "Filip Radulovic"^^xsd:string .
-
-opo:Agent
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.foaf.beans.AgentBean" .
-
-opo:Activity
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean" .
-
-opo:Contactability
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean" .
-
-opo:Available
-      a       opo:Disturbability .
-
-opo:OnlineStatus
-      a       rdfs:Class ;
-      jenabean:javaclass "net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean" .
-
-<http://fdfd.com/OnlinePresenceBean/47a41630-fc1d-4f62-bd9e-8eee5bb606f8>
-      a       opo:OnlinePresence ;
-      opo:declaredBy <http://fdfd.com/AgentBean/539bdc07-5542-4b0e-af6a-83e41d57de74> ;
-      opo:findability opo:PubliclyFindable ;
-      opo:hasPresenceComponent
-              <http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318> , opo:AllNotificationsPass , opo:PubliclyFindable ;
-      opo:notifiability opo:AllNotificationsPass ;
-      opo:onlineStatus <http://fdfd.com/OnlineStatusBean/0efddc68-152a-4ec5-a252-2ff3c3856318> ;
-      opo:startTime "2010-04-13T17:01:46"^^xsd:string .
+<rdf:RDF
+    xmlns:event="http://purl.org/NET/c4dm/event.owl#"
+    xmlns:jenabean="http://thewebsemantic.com/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sioc="http://rdfs.org/sioc/ns#"
+    xmlns:opo-actions="http://online-presence.net/opo-actions/ns#"
+    xmlns:opo="http://online-presence.net/opo/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:swc="http://data.semanticweb.org/ns/swc/ontology#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:doap="http://usefulinc.com/ns/doap#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:wgs84="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+  <rdf:Description rdf:about="http://thewebsemantic.com/javaclass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/OnlinePresenceBean/5ad8daca-1055-4e25-bb91-dc96989f4d47">
+    <opo:startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010-04-16T00:26:27</opo:startTime>
+    <opo:hasPresenceComponent rdf:resource="http://fdfd.com/OnlineStatusBean/6a446352-cd6d-4b70-bc8b-0e3e6b390f1f"/>
+    <opo:hasPresenceComponent rdf:resource="#AllNotificationsPass"/>
+    <opo:hasPresenceComponent rdf:resource="#PubliclyFindable"/>
+    <opo:onlineStatus rdf:resource="http://fdfd.com/OnlineStatusBean/6a446352-cd6d-4b70-bc8b-0e3e6b390f1f"/>
+    <opo:notifiability rdf:resource="#AllNotificationsPass"/>
+    <opo:findability rdf:resource="#PubliclyFindable"/>
+    <opo:declaredBy rdf:resource="http://fdfd.com/AgentBean/b76a1902-bab5-4c19-b669-1bf1100f70a3"/>
+    <rdf:type rdf:resource="#OnlinePresence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FreelyContactable">
+    <rdf:type rdf:resource="#Contactability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AllNotificationsPass">
+    <rdf:type rdf:resource="#Notifiability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Disturbability">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Visibility">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/AgentBean/b76a1902-bab5-4c19-b669-1bf1100f70a3">
+    <foaf:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filip Radulovic</foaf:name>
+    <foaf:homepage rdf:resource="http://filip.milistan.net"/>
+    <rdf:type rdf:resource="#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/OnlinePresenceBean/7878e5c6-077a-4c0c-b0fb-7eb2d70d890e">
+    <opo:declaredBy rdf:resource="http://fdfd.com/AgentBean/8170914c-39ec-42b2-858a-88ffa97ecb52"/>
+    <opo:findability rdf:resource="#PubliclyFindable"/>
+    <opo:notifiability rdf:resource="#AllNotificationsPass"/>
+    <opo:onlineStatus rdf:resource="http://fdfd.com/OnlineStatusBean/595944f4-1d66-40ac-82c8-a078eb21d196"/>
+    <opo:hasPresenceComponent rdf:resource="#PubliclyFindable"/>
+    <opo:hasPresenceComponent rdf:resource="#AllNotificationsPass"/>
+    <opo:hasPresenceComponent rdf:resource="http://fdfd.com/OnlineStatusBean/595944f4-1d66-40ac-82c8-a078eb21d196"/>
+    <opo:startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010-04-16T00:26:00</opo:startTime>
+    <rdf:type rdf:resource="#OnlinePresence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Active">
+    <opo:inactivityPeriod rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</opo:inactivityPeriod>
+    <rdf:type rdf:resource="#Activity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/AgentBean/8170914c-39ec-42b2-858a-88ffa97ecb52">
+    <foaf:homepage rdf:resource="http://filip.milistan.net"/>
+    <foaf:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filip Radulovic</foaf:name>
+    <rdf:type rdf:resource="#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OnlinePresence">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Findability">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PubliclyFindable">
+    <rdf:type rdf:resource="#Findability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Notifiability">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Visible">
+    <rdf:type rdf:resource="#Visibility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/OnlineStatusBean/6a446352-cd6d-4b70-bc8b-0e3e6b390f1f">
+    <opo:hasStatusComponent rdf:resource="#Available"/>
+    <opo:visibility rdf:resource="#Visible"/>
+    <opo:disturbability rdf:resource="#Available"/>
+    <opo:hasStatusComponent rdf:resource="#Visible"/>
+    <opo:hasStatusComponent rdf:resource="#Active"/>
+    <opo:statusComponents rdf:resource="#Visible"/>
+    <opo:statusComponents rdf:resource="#Active"/>
+    <opo:contactability rdf:resource="#FreelyContactable"/>
+    <opo:activity rdf:resource="#Active"/>
+    <rdf:type rdf:resource="#OnlineStatus"/>
+    <opo:statusComponents rdf:resource="#Available"/>
+    <opo:statusComponents rdf:resource="#FreelyContactable"/>
+    <opo:hasStatusComponent rdf:resource="#FreelyContactable"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Agent">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.foaf.beans.AgentBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Activity">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Contactability">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Available">
+    <rdf:type rdf:resource="#Disturbability"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OnlineStatus">
+    <jenabean:javaclass>net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean</jenabean:javaclass>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://fdfd.com/OnlineStatusBean/595944f4-1d66-40ac-82c8-a078eb21d196">
+    <opo:statusComponents rdf:resource="#Visible"/>
+    <opo:disturbability rdf:resource="#Available"/>
+    <opo:visibility rdf:resource="#Visible"/>
+    <opo:contactability rdf:resource="#FreelyContactable"/>
+    <opo:statusComponents rdf:resource="#Available"/>
+    <opo:statusComponents rdf:resource="#FreelyContactable"/>
+    <rdf:type rdf:resource="#OnlineStatus"/>
+    <opo:hasStatusComponent rdf:resource="#Visible"/>
+    <opo:hasStatusComponent rdf:resource="#Active"/>
+    <opo:activity rdf:resource="#Active"/>
+    <opo:hasStatusComponent rdf:resource="#Available"/>
+    <opo:hasStatusComponent rdf:resource="#FreelyContactable"/>
+    <opo:statusComponents rdf:resource="#Active"/>
+  </rdf:Description>
+</rdf:RDF>
