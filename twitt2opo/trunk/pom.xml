@@ -70,11 +70,20 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
            <version>1.0</version>
        </dependency>
        
+       <!-- log4j library. -->
        <dependency>
            <groupId>log4j</groupId>
            <artifactId>log4j</artifactId>
            <version>1.2.15</version>
        </dependency>  
+       
+       <!-- dom4j library. -->
+       <dependency>
+           <groupId>dom4j</groupId>
+           <artifactId>dom4j</artifactId>
+           <version>1.6.1</version>
+       </dependency>
+       
 
     </dependencies>
     <build>

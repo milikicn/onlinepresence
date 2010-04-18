@@ -1,34 +1,50 @@
 package org.goodoldai.demo.twitt2opo.pages;
 
-import java.io.IOException;
-import java.net.URL;
-
-import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.goodoldai.demo.twitt2opo.converter.Converter;
+import org.goodoldai.demo.twitt2opo.converter.exceptions.Twitt2opoException;
 
 public class Show {
 
 	@SessionState
 	private Converter twitt;
 
+	@InjectPage
+	private Error errorPage;
+
+	@Property
+	private String username;
+
 	@SetupRender
-	void initialize(){
-		twitt = new Converter();
-	}
-	
-	@OnEvent(component = "oAuthLogin")
-	Object onAuthLogin() {
-
-		String linkString = twitt.getOAuthAuthorizationURL();
-
-		URL link = null;
+	Object initialize() {
 		try {
-			link = new URL(linkString);
-		} catch (IOException e) {
-
+			twitt = new Converter();
+			return null;
+		} catch (Twitt2opoException e) {
+			errorPage.setErrorMessage(e.getMessage());
+			return errorPage;
 		}
-		return link;
 	}
+
+	Object onSubmitFromConvertForm() {
+		twitt.setScreenName(username.trim());
+
+		try {
+			if (twitt.userExists()) {
+				return twitt.checkIfProtectedAndReturnUrl();
+			} else {
+				errorPage
+						.setErrorMessage("The user you have requested the conversion for doesn't exist. Please check the profile name.");
+				return errorPage;
+			}
+		} catch (Twitt2opoException e) {
+			errorPage.setErrorMessage(e.getMessage());
+			return errorPage;
+		}
+
+	}
+
 }

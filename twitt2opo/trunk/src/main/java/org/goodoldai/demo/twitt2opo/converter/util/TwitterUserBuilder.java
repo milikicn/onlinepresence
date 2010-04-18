@@ -1,13 +1,5 @@
 package org.goodoldai.demo.twitt2opo.converter.util;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
-import org.geonames.Toponym;
-import org.geonames.ToponymSearchCriteria;
-import org.geonames.ToponymSearchResult;
-import org.geonames.WebService;
 import org.goodoldai.demo.twitt2opo.converter.model.TwitterUser;
 
 import twitter4j.Twitter;
@@ -16,67 +8,32 @@ import twitter4j.User;
 
 public class TwitterUserBuilder {
 
-	public static TwitterUser buildUser(Twitter twitter) throws TwitterException {
-		User user = twitter.verifyCredentials();
+	private Twitter twitter;
+	private User user;
+	
+	public TwitterUserBuilder(Twitter twitter, User user){
+		this.twitter = twitter;
+		this.user = user;
+	}
+	
+	public TwitterUser buildUser() throws TwitterException {
+		
+		Twitter4jUserWrapper userWrapper = new Twitter4jUserWrapper(user);
+		
 		TwitterUser twitterUser = new TwitterUser();
-
-		twitterUser.setId(String.valueOf(user.getId()));
 		
-//		twitterUser.setLocationUrl(extractUserLocation(user.getLocation()));
+		twitterUser.setId(userWrapper.getId());		
+		twitterUser.setLocationUrl(userWrapper.getUserLocation());		
+		twitterUser.setName(userWrapper.getName());		
+		twitterUser.setTwitterAccountName(userWrapper.getScreenName());		
+		twitterUser.setImgUrl(userWrapper.getProfileImageURL());		
+		twitterUser.setHomepage(userWrapper.getURL());
 		
-		twitterUser.setName(user.getName());
+		TwitterStatusBuilder statusBuider = new TwitterStatusBuilder(twitter, user);
 		
-		twitterUser.setNickname(user.getScreenName());
-		
-		twitterUser.setImgUrl(user.getProfileImageURL());
-		
-//		twitterUser.setHomepage(user.getextractUserHomepage(sourceDoc));
-		
-		twitterUser.setCurrentStatus(TwitterStatusBuilder.buildCurrentStatus(twitter));
+		twitterUser.setCurrentStatus(statusBuider.buildStatus());
 
 		return twitterUser;
 	}
 
-//	public static URL extractUserHomepage(Document sourceDoc) {
-//		URL homepage = null;
-//		try {
-//			String url = sourceDoc.getRootElement().elementText("url");
-//			if(url != null)
-//				homepage = new URL(url);
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//		}
-//		return homepage;
-//	}
-
-	public static URL extractUserLocation(String location) {
-		int geoID = getGeoNameID(location);
-
-		URL url = null;
-		if (geoID != 0) {
-			try {
-				url = new URL("http://sws.geonames.org/" + geoID + "/");
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return url;
-	}
-
-	private static int getGeoNameID(String location) {
-		ToponymSearchCriteria searchCriteria = new ToponymSearchCriteria();
-		searchCriteria.setQ(location);
-		ToponymSearchResult searchResult;
-		try {
-			searchResult = WebService.search(searchCriteria);
-			for (Toponym toponym : searchResult.getToponyms()) {
-				return toponym.getGeoNameId();
-			}
-			return 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
 }

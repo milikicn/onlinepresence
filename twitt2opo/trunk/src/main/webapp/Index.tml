@@ -2,22 +2,24 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
 	xmlns:p="tapestry:parameter">
 
-	<h1 style="text-align: center">Welcome to twitt2opo demo site!</h1>
+	<h1 style="text-align: center">Welcome to twitt2opo!</h1>
 	<br />
 	<p id="text"><b>twitt2opo</b> is a part of <a
 		href="http://online-presence.net/" target="_blank">Online
 	Presence Ontology Project (OPO)</a> and is used for demonstration of exporting 
-	<b>Twitter</b> user data into the form of rdf using OPO ontology.</p> 
-	
-	<p id="text">twitt2opo is just a
-	<b>demo application</b>, so it's not completely bug free.</p> 
+	<b>Twitter</b> user data into the form of 
+	<a href="http://www.w3.org/RDF/" target="_blank">RDF</a> using OPO ontology.</p>  
 	
 	<p id="text">You can see how it
 	works by clicking the button below.</p>
-	<br />
-	<br />
+	<br/><br/>
 	
 	
-	<t:pagelink page="show"><img src="layout/images/try_me.gif" alt="Try me!"/></t:pagelink>
-
+	<div style="text-align: center;">
+		<t:pagelink page="show"><img src="layout/images/try_me.gif" alt="Try me!"/></t:pagelink>
+	</div>
+	<br/><br/>
+	
+	<p id="text">NB: twitt2opo is just a
+	<b>demo application</b>, so it's not completely bug free.</p>
 </html>

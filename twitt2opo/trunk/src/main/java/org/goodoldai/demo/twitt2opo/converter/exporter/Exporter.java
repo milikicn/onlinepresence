@@ -39,27 +39,31 @@ public class Exporter {
 		this.model = model;
 	}
 
-	public Model export2OPO(TwitterUser user) throws Exception {
+	public Model export2OPO() {
 		addTriples();
 
 		return model;
 	}
 
-	private void addTriples() throws Exception{
-		model.createResource(baseUrl + user.getNickname()).addProperty(
+	private void addTriples() {
+		model.createResource(baseUrl + user.getTwitterAccountName()).addProperty(
 				model.createProperty(OPO_NS + "declaresOnlinePresence"),
 				getOnlinePresenceRes());
 	}
 
 	private Resource getOnlinePresenceRes() {
-		Resource onlinePresenceRes = model.createResource(baseUrl
-				+ "OnlinePresence");
+		Resource onlinePresenceRes = model.createResource(baseUrl + "OnlinePresence");
 
 		onlinePresenceRes.addProperty(RDF.type, model.createResource(OPO_NS + "OnlinePresence"));
-		onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "avatar"),user.getImgUrl().toString());
+		
+		if(user.getImgUrl() != null)
+			onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "avatar"),user.getImgUrl().toString());
+		
 		onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "startTime"), time);
 
-		onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "declaredBy"), getAgent());
+		if(user.getName() != null || user.getHomepage() != null)
+			onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "declaredBy"), getAgent());
+		
 		onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "customMessage"), getSiocPost());
 		onlinePresenceRes.addProperty(model.createProperty(OPO_NS + "declaredOn"), getUser());
 		if(user.getLocationUrl() != null){
@@ -72,10 +76,11 @@ public class Exporter {
 	private Resource getAgent() {
 		Resource agentRes = model.createResource(baseUrl + "FoafAgent");
 
-		agentRes.addProperty(RDF.type, model.createResource(FOAF_NS + "Agent"));
+		agentRes.addProperty(RDF.type, model.createResource(FOAF_NS + "Person"));
+		
 		if(user.getName() != null)
 			agentRes.addProperty(model.createProperty(FOAF_NS + "name"), user.getName());
-		agentRes.addProperty(model.createProperty(FOAF_NS + "nick"), user.getNickname());
+		
 		if(user.getHomepage() != null)
 			agentRes.addProperty(model.createProperty(FOAF_NS + "homepage"), model.createResource(user.getHomepage().toString()));
 
@@ -83,15 +88,15 @@ public class Exporter {
 	}
 
 	private Resource getSiocPost() {
-		Resource statusMessageRes = model.createResource(baseUrl
-				+ "SiocPost");
+		Resource statusMessageRes = model.createResource(baseUrl + "SiocPost");
 
 		statusMessageRes.addProperty(RDF.type, model.createResource(SIOC_NS + "Post"));
+		
 		statusMessageRes.addProperty(model.createProperty(SIOC_NS + "content"), user.getCurrentStatus().getText());
 		statusMessageRes.addProperty(model.createProperty(FOAF_NS + "primaryTopicOf"), model.createResource(user.getCurrentStatus().getStatusUrl().toString()));
 
 		if(user.getCurrentStatus().getReplyOfStatusUrl() != null){
-			statusMessageRes.addProperty(model.createProperty(SIOC_NS + "reply_of"),	getReplyStatus());
+			statusMessageRes.addProperty(model.createProperty(SIOC_NS + "reply_of"), getReplyStatus());
 		}
 		
 		return statusMessageRes;
@@ -109,9 +114,9 @@ public class Exporter {
 	private Resource getUser() {
 		Resource userRes = model.createResource(baseUrl + "SiocUser");
 
-		userRes.addProperty(RDF.type, model.createResource(SIOC_NS + "User"));
+		userRes.addProperty(RDF.type, model.createResource(SIOC_NS + "UserAccount"));
 		userRes.addProperty(model.createProperty(FOAF_NS + "accountServiceHomepage"), model.createResource("http://www.twitter.com/"));
-		userRes.addProperty(model.createProperty(FOAF_NS + "accountName"), user.getNickname());
+		userRes.addProperty(model.createProperty(FOAF_NS + "accountName"), user.getTwitterAccountName());
 
 		return userRes;
 	}

@@ -1,17 +1,19 @@
 package org.goodoldai.demo.twitt2opo.converter;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
+import org.goodoldai.demo.twitt2opo.converter.exceptions.Twitt2opoException;
 import org.goodoldai.demo.twitt2opo.converter.exporter.Exporter;
 import org.goodoldai.demo.twitt2opo.converter.model.TwitterUser;
 import org.goodoldai.demo.twitt2opo.converter.util.FileWriter;
 import org.goodoldai.demo.twitt2opo.converter.util.Service;
 import org.goodoldai.demo.twitt2opo.converter.util.TwitterUserBuilder;
+import org.goodoldai.demo.twitt2opo.pages.Redirection;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
@@ -25,26 +27,27 @@ import twitter4j.http.RequestToken;
 public class Converter {
 
 	private Twitter twitter = null;
+	private User user = null;
 	private RequestToken requestToken = null;
 	private AccessToken accessToken = null;
-	private String pin = null;
 	private TwitterUser twitterUser = null;
 	private Properties prop;
 	private String absoluteUrl;
+	private String screenName;
+	private boolean userIsPrivate;
+	private boolean userIsPrivateChecked;
+	private boolean userExists;
+	private boolean userExistsChecked;
 
-	public Converter() {
+	public Converter() throws Twitt2opoException {
 		TwitterFactory twf = new TwitterFactory();
 		twitter = twf.getInstance();
 		this.prop = loadPropertyFile("parameters.properties");
 
-		try {
-			initializeApp();
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
+		initializeApp();
 	}
 
-	private void initializeApp() throws TwitterException {
+	private void initializeApp() throws Twitt2opoException {
 		Properties appProp = loadPropertyFile("app-parameters.properties");
 		twitter.setOAuthConsumer(appProp.getProperty("consumerKey"), appProp
 				.getProperty("consumerSecret"));
@@ -58,109 +61,89 @@ public class Converter {
 		return requestToken;
 	}
 
-	public String getPin() {
-		return pin;
+	public String getScreenName() {
+		return screenName;
 	}
 
-	public void setPin(String pin) {
-		this.pin = pin;
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
 	}
 
-	public String getOAuthAuthorizationURL() {
+	public String getOAuthAuthorizationURL() throws Twitt2opoException {
 		try {
 			requestToken = twitter.getOAuthRequestToken();
-		} catch (TwitterException e1) {
-			e1.printStackTrace();
+		} catch (TwitterException e) {
+			throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
 		}
 
 		return requestToken.getAuthorizationURL();
 	}
 
-	public void convert() {
-		Service service = new Service();
-		getAccessToken();
+	public Object checkIfProtectedAndReturnUrl() throws Twitt2opoException {
+		if (userIsPrivate()) {
+			String oAuthUrlString = null;
 
-		try {
-			twitterUser = TwitterUserBuilder.buildUser(twitter);
-		} catch (TwitterException e1) {
-			e1.printStackTrace();
-		}
+			oAuthUrlString = getOAuthAuthorizationURL();
 
-		User user = null;
-		try {
-			user = twitter.verifyCredentials();
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
-		
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(new File("/var/lib/tomcat6/webapps/twitt2opo/tmp/user.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		pw.write(user.getScreenName());
-		pw.close();
-
-		// persist to the accessToken for future reference.
-		// storeAccessToken(user.getId(), accessToken);
-
-		absoluteUrl = service.constructBaseUrl(user.getScreenName(), prop);
-
-		Model model = null;
-		try {
-			model = new Exporter(twitterUser, absoluteUrl, service.getTime())
-					.export2OPO(twitterUser);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
-		FileWriter writer = new FileWriter(model);
-		try {
-			String savingPath = service.constructSavingPath(user.getScreenName(), prop);
-			writer.write(savingPath);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			URL oAuthUrl = null;
+			try {
+				oAuthUrl = new URL(oAuthUrlString);
+			} catch (MalformedURLException e) {
+				throw new Twitt2opoException("There was an error in forming the address for Twitter oAuth authentication. Please try again.");
+			}
+				return oAuthUrl;
+		} else
+			return Redirection.class;
 	}
 
-	private void getAccessToken() {
-		try {
-			if (pin != null && pin.length() > 0) {
-				accessToken = twitter.getOAuthAccessToken(requestToken, pin);
-			} else {
-				accessToken = twitter.getOAuthAccessToken();
-			}
-			
-			PrintWriter pw = null;
+	public void convert() throws Twitt2opoException {
+
+		if(userIsPrivate){
+			getAccessToken();
 			try {
-				pw = new PrintWriter(new File("/var/lib/tomcat6/webapps/twitt2opo/tmp/token.txt"));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				user = twitter.verifyCredentials();
+			} catch (TwitterException e) {
+				throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
 			}
-			pw.write(accessToken.getToken());
-			pw.close();
+		}
+		
+		Service service = new Service(user.getScreenName(), prop);
+
+		TwitterUserBuilder userBuilder = new TwitterUserBuilder(twitter, user);
+
+		try {
+			twitterUser = userBuilder.buildUser();
+		} catch (TwitterException e1) {
+			throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
+		}
+
+		Model model = new Exporter(twitterUser, service.getServerUrl(), service.getTime())
+				.export2OPO();
+
+		FileWriter writer = new FileWriter(model);
+
+		try {
+			writer.write(service.getSavingPath());
+		} catch (FileNotFoundException e) {
+			throw new Twitt2opoException("There was an error in writing to the file on the server. Please try again.");
+		} catch (IOException e) {
+			throw new Twitt2opoException("There was an error in writing to the file on the server. Please try again.");
+		}
+		absoluteUrl = service.getServerUrl();
+	}
+
+	@SuppressWarnings("deprecation")
+	private void getAccessToken() throws Twitt2opoException {
+		try {
+			accessToken = twitter.getOAuthAccessToken();
 
 			twitter.setOAuthAccessToken(accessToken);
 		} catch (TwitterException te) {
-			if (401 == te.getStatusCode()) {
-				System.out.println("Unable to get the access token.");
-			} else {
-				te.printStackTrace();
-			}
+			throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
 		}
 	}
 
-//	private void storeAccessToken(int useId, AccessToken at) {
-//		// store at.getToken()
-//		// store at.getTokenSecret()
-//	}
-
-	private Properties loadPropertyFile(String propertyName) {
+	private Properties loadPropertyFile(String propertyName) throws Twitt2opoException {
 		InputStream stream = null;
 		Properties prop = new Properties();
 		String propertyFile = propertyName;
@@ -170,8 +153,52 @@ public class Converter {
 		try {
 			prop.load(stream);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new Twitt2opoException("An error occured on the server. Please try again.");
 		}
 		return prop;
+	}
+
+	public boolean userExists() throws Twitt2opoException {
+		if(!userExistsChecked){
+			try {
+				user = twitter.showUser(screenName);
+			} catch (TwitterException e) {
+				String errorMessage = "";
+				
+				if(e.getStatusCode() == 404)
+					errorMessage = "The user you have requested the conversion for doesn't exist. Please check the profile name and try again.";
+				else
+					errorMessage = "There was an error in making connection to the Twitter API. Please try again later.";
+				throw new Twitt2opoException(errorMessage);
+			}
+			userExists = user.getId() > 0;
+		}
+		return userExists;
+	}
+
+	public boolean userIsPrivate() throws Twitt2opoException {
+		if(!userIsPrivateChecked){
+			try {
+				user = twitter.showUser(screenName);
+			} catch (TwitterException e) {
+				throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
+			}
+			userIsPrivate = user.isProtected();
+		}
+		return userIsPrivate;
+	}
+	
+	public boolean checkIfRateLimitExceeded() throws Twitt2opoException{
+		int remainingHits;
+		try {
+			remainingHits = twitter.getRateLimitStatus().getRemainingHits();
+		} catch (TwitterException e) {
+			throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
+		}
+		
+		if(remainingHits > 0)
+			return false;
+		
+		return true;
 	}
 }

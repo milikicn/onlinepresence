@@ -1,7 +1,5 @@
 package org.goodoldai.demo.twitt2opo.converter.util;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -9,14 +7,22 @@ import java.util.Properties;
 
 public class Service {
 
-	public String time;;
-	
-	public void setTime(String time) {
-		this.time = time;
-	}
+	public String time;
+	private String screenName;
+	private Properties prop;
+	private String serverUrl;
+	private String savingPath;
 
-	public Service(){
-		time = getTime();
+	public Service(String screenName, Properties prop){
+		this.screenName = screenName;
+		this.time = getTime();
+		this.prop = prop;
+		initialize();
+	}
+	
+	private void initialize(){
+		serverUrl = constructRelativeUrl(prop.getProperty("server_url")) + "#";
+		savingPath = constructRelativeUrl(prop.getProperty("path_on_server_for_saving_files"));
 	}
 	
 	public String getTime(){
@@ -25,25 +31,20 @@ public class Service {
 		return formater.format(new GregorianCalendar().getTime());
 	}
 	
-	public URL initializeXmlPath(String user) {
-		try {
-			return new URL("http", "www.twitter.com", -1, "/users/show/" + user
-					+ ".xml");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public String constructBaseUrl(String username, Properties prop) {
-		return prop.getProperty("server_path") + constructRelativeUrl(username, "/");
+	public String getServerUrl() {
+		return serverUrl;
 	}
 	
-	public String constructSavingPath(String username, Properties prop) {
-		return prop.getProperty("path_for_saving_files") + constructRelativeUrl(username, "/");
+	public String getSavingPath() {
+		return savingPath;
 	}
 	
-	private String constructRelativeUrl(String username, String slash) {
+	private String constructRelativeUrl(String base) {
+		String beginingUrl = base;
+		
+		if(!beginingUrl.endsWith("/"))
+			beginingUrl = beginingUrl + "/";
+			
 		String yearStr = time.substring(0, 4);
 		String monthStr = time.substring(5, 7);
 		String dayStr = time.substring(8, 10);
@@ -51,6 +52,6 @@ public class Service {
 		String minuteStr = time.substring(14, 16);
 		String secondStr = time.substring(17, 19);
 		
-		return slash + "repository" + slash + yearStr + slash + monthStr + slash + dayStr + slash + username + "-" + hourStr + "-" + minuteStr + "-" + secondStr + ".rdf#";
+		return beginingUrl + "repository" + "/" + yearStr + "/" + monthStr + "/" + dayStr + "/" + screenName + "-" + hourStr + "-" + minuteStr + "-" + secondStr + ".rdf";
 	}
 }

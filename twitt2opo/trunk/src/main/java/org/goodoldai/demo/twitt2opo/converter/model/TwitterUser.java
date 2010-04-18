@@ -8,7 +8,7 @@ public class TwitterUser {
 
 	private String id;
 	private String name;
-	private String nickname;
+	private String twitterAccountName;
 	private URL locationUrl;
 	private URL imgUrl;
 	private URL homepage;
@@ -24,7 +24,7 @@ public class TwitterUser {
 		super();
 		this.id = id;
 		this.name = name;
-		this.nickname = nickname;
+		this.twitterAccountName = nickname;
 		this.locationUrl = locationUrl;
 		this.imgUrl = imgUrl;
 		this.homepage = homepage;
@@ -35,7 +35,7 @@ public class TwitterUser {
 		super();
 		this.id = id;
 		this.name = name;
-		this.nickname = nickname;
+		this.twitterAccountName = nickname;
 		this.locationUrl = locationUrl;
 		this.imgUrl = imgUrl;
 		this.homepage = homepage;
@@ -58,12 +58,12 @@ public class TwitterUser {
 		this.name = name;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getTwitterAccountName() {
+		return twitterAccountName;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setTwitterAccountName(String twitterAccountName) {
+		this.twitterAccountName = twitterAccountName;
 	}
 
 	public URL getLocationUrl() {

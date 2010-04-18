@@ -6,18 +6,29 @@
 	<br />
 	
 	<p id="text">
-		By clicking the button "Allow me access!" bellow, you will give twitt2opo access to your Twitter 
-		profile data. Your data is being accessed via <a href="http://oauth.net/" target="_blank">oAuth protocol</a>, which is completely 
-		secure for the user. 
+		Bellow you have a field where you can type in a Twitter profile name for which you want the 
+		OPO representation to be made. In case that user's twitts are protected, you'll need to 
+		explicitly grant this application permissions to access your twitts. But don't worry, that 
+		access is completely safe and secure for you because it is made via 
+		<a href="http://oauth.net/" target="_blank">oAuth protocol</a> protocol.
 	</p>
-	<br/>
+	<br/><br/>
 	
-	<a href="#" t:type="ActionLink" target="_blank" t:id="oAuthLogin"><img src="layout/images/allow_me_access.gif" alt="Allow me access!"/></a>
+	<div style="text-align: center">
+			<form t:type="Form" t:id="convertForm"><t:errors />
+				<t:label t:for="userName"></t:label>: <input t:id="userName" t:type="TextField" 
+								t:value="username" t:validate="required"/>
+					
+				<br/><br/>		
+				<input id="convert_submit_button" type="submit" value=""/>
+			</form>
+	</div>
+	
 	<br/><br/>
 	
 	<p id="text">
-		After clicking <b>"Allow me access!"</b> button, another window will pop up and by clicking 
-		<b>"Allow"</b> you will allow twitt2opo to read your Twitter profile data, needed for this 
-		conversion.
+		After clicking <b>"Allow me access!"</b> button, if the account has protected twitts, 
+		another window will pop up and by clicking <b>"Allow"</b> you will allow twitt2opo to 
+		read your Twitter profile data, needed for this conversion.
 	</p>
 </html>

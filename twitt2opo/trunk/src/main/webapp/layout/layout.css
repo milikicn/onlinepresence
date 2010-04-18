@@ -146,3 +146,11 @@ a.nav:hover {
 	font-variant:normal;
 	line-height:1.88889;
 }
+
+/*----form-submit-button----*/
+#convert_submit_button{
+	width: 186px;
+	height: 52px;
+	background:url(images/convert_btn.gif);
+	border: 0;
+}
