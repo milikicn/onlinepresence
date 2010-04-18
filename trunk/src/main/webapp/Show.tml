@@ -1,0 +1,34 @@
+<html t:type="layout" title="Try twitt2opo"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<h1 style="text-align: center">Try twitt2opo</h1>
+	<br />
+	
+	<p id="text">
+		Bellow you have a field where you can type in a Twitter profile name for which you want the 
+		OPO representation to be made. In case that user's twitts are protected, you'll need to 
+		explicitly grant this application permissions to access your twitts. But don't worry, that 
+		access is completely safe and secure for you because it is made via 
+		<a href="http://oauth.net/" target="_blank">oAuth protocol</a> protocol.
+	</p>
+	<br/><br/>
+	
+	<div style="text-align: center">
+			<form t:type="Form" t:id="convertForm"><t:errors />
+				<t:label t:for="userName"></t:label>: <input t:id="userName" t:type="TextField" 
+								t:value="username" t:validate="required"/>
+					
+				<br/><br/>		
+				<input id="convert_submit_button" type="submit" value=""/>
+			</form>
+	</div>
+	
+	<br/><br/>
+	
+	<p id="text">
+		After clicking <b>"Allow me access!"</b> button, if the account has protected twitts, 
+		another window will pop up and by clicking <b>"Allow"</b> you will allow twitt2opo to 
+		read your Twitter profile data, needed for this conversion.
+	</p>
+</html>
