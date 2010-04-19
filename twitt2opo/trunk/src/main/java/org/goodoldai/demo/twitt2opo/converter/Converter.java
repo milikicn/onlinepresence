@@ -109,6 +109,8 @@ public class Converter {
 		
 		Service service = new Service(user.getScreenName(), prop);
 
+		absoluteUrl = service.getServerUrl();
+		
 		TwitterUserBuilder userBuilder = new TwitterUserBuilder(twitter, user);
 
 		try {
@@ -117,7 +119,7 @@ public class Converter {
 			throw new Twitt2opoException("There was an error in making connection to the Twitter API. Please try again later.");
 		}
 
-		Model model = new Exporter(twitterUser, service.getServerUrl(), service.getTime())
+		Model model = new Exporter(twitterUser, absoluteUrl, service.getTime())
 				.export2OPO();
 
 		FileWriter writer = new FileWriter(model);
@@ -129,7 +131,7 @@ public class Converter {
 		} catch (IOException e) {
 			throw new Twitt2opoException("There was an error in writing to the file on the server. Please try again.");
 		}
-		absoluteUrl = service.getServerUrl();
+		
 	}
 
 	@SuppressWarnings("deprecation")

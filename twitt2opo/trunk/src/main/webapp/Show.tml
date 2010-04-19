@@ -10,7 +10,7 @@
 		OPO representation to be made. In case that user's twitts are protected, you'll need to 
 		explicitly grant this application permissions to access your twitts. But don't worry, that 
 		access is completely safe and secure for you because it is made via 
-		<a href="http://oauth.net/" target="_blank">oAuth protocol</a> protocol.
+		<a href="http://oauth.net/" target="_blank">oAuth protocol</a>.
 	</p>
 	<br/><br/>
 	
