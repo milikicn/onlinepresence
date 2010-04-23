@@ -21,6 +21,8 @@
  */
 package net.onlinepresence.domainmodel.general;
 
+import java.io.Serializable;
+
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
 import thewebsemantic.Uri;
@@ -28,7 +30,7 @@ import thewebsemantic.Uri;
 @Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 @RdfType("Resource")
 public class ResourceBean
-implements Resource{
+implements Resource, Serializable{
 
 	protected String uri;
 	
