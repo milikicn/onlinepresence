@@ -43,13 +43,15 @@ public class ImageBean extends ThingBean implements Image {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ImageBean))
-			throw new RuntimeException("Equals exception");
+		if ((o instanceof ImageBean)){
 
-//		ImageBean im = (ImageBean) (o);
 
+	//		ImageBean im = (ImageBean) (o);
+	
 			return true;
-//		else
-//			return false;
+	//		else
+	//			return false;
+		}
+		return false;
 	}
 }

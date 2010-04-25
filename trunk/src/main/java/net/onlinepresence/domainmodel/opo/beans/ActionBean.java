@@ -44,13 +44,14 @@ public class ActionBean extends ResourceBean implements Action {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ActionBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ActionBean){
 
 //		ActionBean act = (ActionBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

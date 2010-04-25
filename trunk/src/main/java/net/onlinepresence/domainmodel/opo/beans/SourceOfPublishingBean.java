@@ -56,15 +56,16 @@ public class SourceOfPublishingBean extends ResourceBean implements SourceOfPubl
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof SourceOfPublishingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof SourceOfPublishingBean){
 
-		SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);
-
-		if (getName().equals(sourceOfPub.getName()))
-
-			return true;
-		else
-			return false;
+			SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);
+	
+			if (getName().equals(sourceOfPub.getName()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

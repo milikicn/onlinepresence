@@ -44,13 +44,14 @@ public class WorkingBean extends ActionBean implements Working {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof WorkingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof WorkingBean){
 
 //		WorkingBean work = (WorkingBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

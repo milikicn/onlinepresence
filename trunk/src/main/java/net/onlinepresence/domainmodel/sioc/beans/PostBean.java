@@ -80,16 +80,17 @@ public class PostBean extends ItemBean implements Post {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof PostBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof PostBean){
 
-		PostBean post = (PostBean) (o);
-
-		if (getReplyOf().equals(post.getReplyOf()) &&
-				getPrimaryTopicOf().equals(post.getPrimaryTopicOf()))
-
-			return true;
-		else
-			return false;
+			PostBean post = (PostBean) (o);
+	
+			if (getReplyOf().equals(post.getReplyOf()) &&
+					getPrimaryTopicOf().equals(post.getPrimaryTopicOf()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

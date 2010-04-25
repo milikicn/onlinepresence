@@ -67,16 +67,17 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof SpatialThingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof SpatialThingBean){
 
-		SpatialThingBean st = (SpatialThingBean) (o);
-
-		if (getLatitude().equals(st.getLatitude())
-				&& getLongitude().equals(st.getLongitude()))
-
-			return true;
-		else
-			return false;
+			SpatialThingBean st = (SpatialThingBean) (o);
+	
+			if (getLatitude().equals(st.getLatitude())
+					&& getLongitude().equals(st.getLongitude()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

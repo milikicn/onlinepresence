@@ -101,8 +101,7 @@ public class ProjectBean extends ResourceBean implements Project {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ProjectBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ProjectBean){
 		
 			ProjectBean pr = (ProjectBean)(o);
 			
@@ -114,5 +113,7 @@ public class ProjectBean extends ResourceBean implements Project {
 				return true;
 			else 
 				return false;
+		}
+		return false;
 	}
 }

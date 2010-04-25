@@ -44,13 +44,14 @@ public class StatusMessageBean extends ItemBean implements StatusMessage {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof StatusMessageBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof StatusMessageBean){
 
 //		StatusMessageBean statusMes = (StatusMessageBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

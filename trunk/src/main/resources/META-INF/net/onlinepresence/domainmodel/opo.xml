@@ -35,7 +35,7 @@
 	</bean>
 	
 	<bean id="net.onlinepresence.domainmodel.opo.StatusMessage"
-		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean"
+		class="net.onlinepresence.domainmodel.opo.beans.StatusMessage"
 		scope="prototype" >
 	</bean>
 	

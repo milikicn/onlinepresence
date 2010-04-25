@@ -70,15 +70,16 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ChattingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ChattingBean){
 
-		ChattingBean chat = (ChattingBean) (o);
-
-		if (getChatBuddy().equals(chat.getChatBuddy()))
-
-			return true;
-		else
-			return false;
+			ChattingBean chat = (ChattingBean) (o);
+	
+			if (getChatBuddy().equals(chat.getChatBuddy()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

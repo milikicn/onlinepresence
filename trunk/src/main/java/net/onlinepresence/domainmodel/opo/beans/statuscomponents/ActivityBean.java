@@ -73,13 +73,14 @@ public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ActivityBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ActivityBean){
 
 //		ActivityBean act = (ActivityBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

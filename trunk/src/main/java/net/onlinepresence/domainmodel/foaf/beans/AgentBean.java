@@ -78,17 +78,18 @@ public class AgentBean extends ThingBean implements Agent {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof AgentBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof AgentBean){
 
-		AgentBean ag = (AgentBean) (o);
-
-		if (getNick().equals(ag.getName()) &&
-				getOnlinePresence().equals(ag.getOnlinePresence()) &&
-				getMbox().equals(ag.getMbox()))
-
-			return true;
-		else
-			return false;
+			AgentBean ag = (AgentBean) (o);
+	
+			if (getNick().equals(ag.getName()) &&
+					getOnlinePresence().equals(ag.getOnlinePresence()) &&
+					getMbox().equals(ag.getMbox()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

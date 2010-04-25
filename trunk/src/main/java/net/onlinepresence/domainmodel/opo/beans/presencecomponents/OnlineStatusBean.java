@@ -131,20 +131,21 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof OnlineStatusBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof OnlineStatusBean){
 
-		OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
-
-		if (getStatusComponents().equals(onlineStatus.getStatusComponents()) &&
-				getName().equals(onlineStatus.getName()) &&
-				getVisibility().equals(onlineStatus.getVisibility()) &&
-				getDisturbability().equals(onlineStatus.getDisturbability()) &&
-				getActivity().equals(onlineStatus.getActivity()) &&
-				getContactability().equals(onlineStatus.getContactability()))
-
-			return true;
-		else
-			return false;
+			OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
+	
+			if (getStatusComponents().equals(onlineStatus.getStatusComponents()) &&
+					getName().equals(onlineStatus.getName()) &&
+					getVisibility().equals(onlineStatus.getVisibility()) &&
+					getDisturbability().equals(onlineStatus.getDisturbability()) &&
+					getActivity().equals(onlineStatus.getActivity()) &&
+					getContactability().equals(onlineStatus.getContactability()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }
