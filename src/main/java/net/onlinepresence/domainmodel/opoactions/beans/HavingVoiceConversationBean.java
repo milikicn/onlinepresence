@@ -59,15 +59,16 @@ public class HavingVoiceConversationBean extends HavingConversationBean implemen
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof HavingVoiceConversationBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof HavingVoiceConversationBean){
 
-		HavingVoiceConversationBean hvc = (HavingVoiceConversationBean) (o);
-
-		if (getSpeaker().equals(hvc.getSpeaker()))
-
-			return true;
-		else
-			return false;
+			HavingVoiceConversationBean hvc = (HavingVoiceConversationBean) (o);
+	
+			if (getSpeaker().equals(hvc.getSpeaker()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

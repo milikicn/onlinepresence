@@ -54,13 +54,14 @@ public class VisibilityBean extends OnlineStatusComponentBean implements Visibil
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof VisibilityBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof VisibilityBean){
 
 //		VisibilityBean vis = (VisibilityBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

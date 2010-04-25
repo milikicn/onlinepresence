@@ -68,15 +68,16 @@ public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProjec
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof WorkingOnProjectBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof WorkingOnProjectBean){
 
-		WorkingOnProjectBean wop = (WorkingOnProjectBean) (o);
-
-		if (getProject().equals(wop.getProject()))
-
-			return true;
-		else
-			return false;
+			WorkingOnProjectBean wop = (WorkingOnProjectBean) (o);
+	
+			if (getProject().equals(wop.getProject()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

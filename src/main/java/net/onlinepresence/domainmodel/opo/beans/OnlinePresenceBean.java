@@ -224,25 +224,26 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof OnlinePresenceBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof OnlinePresenceBean){
 
-		OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
-
-		if (getAction().equals(onlinePresence.getAction()) &&
-				getAgent().equals(onlinePresence.getAgent()) &&
-				getAvatar().equals(onlinePresence.getAvatar()) &&
-				getDuration().equals(onlinePresence.getDuration()) &&
-				getIntendentFor().equals(onlinePresence.getIntendentFor()) &&
-				getLocation().equals(onlinePresence.getLocation()) &&
-				getPresenceComponents().equals(getPresenceComponents()) &&
-				getSource().equals(onlinePresence.getSource()) &&
-				getStartTime().equals(onlinePresence.getStartTime()) &&
-				getStatusMessage().equals(onlinePresence.getStatusMessage()) &&
-				getUserAccount().equals(onlinePresence.getUserAccount()))
-
-			return true;
-		else
-			return false;
+			OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
+	
+			if (getAction().equals(onlinePresence.getAction()) &&
+					getAgent().equals(onlinePresence.getAgent()) &&
+					getAvatar().equals(onlinePresence.getAvatar()) &&
+					getDuration().equals(onlinePresence.getDuration()) &&
+					getIntendentFor().equals(onlinePresence.getIntendentFor()) &&
+					getLocation().equals(onlinePresence.getLocation()) &&
+					getPresenceComponents().equals(getPresenceComponents()) &&
+					getSource().equals(onlinePresence.getSource()) &&
+					getStartTime().equals(onlinePresence.getStartTime()) &&
+					getStatusMessage().equals(onlinePresence.getStatusMessage()) &&
+					getUserAccount().equals(onlinePresence.getUserAccount()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

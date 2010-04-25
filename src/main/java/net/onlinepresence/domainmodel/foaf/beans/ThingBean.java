@@ -120,18 +120,19 @@ public class ThingBean extends ResourceBean implements Thing {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ThingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ThingBean){
 
-		ThingBean t = (ThingBean) (o);
-
-		if (getName().equals(t.getName()) && 
-				getHomepage().equals(t.getHomepage()) && 
-				getIsPrimaryTopicOf().equals(t.getIsPrimaryTopicOf()) &&
-				getSeeAlso().equals(t.getSeeAlso()))
-
-			return true;
-		else
-			return false;
+			ThingBean t = (ThingBean) (o);
+	
+			if (getName().equals(t.getName()) && 
+					getHomepage().equals(t.getHomepage()) && 
+					getIsPrimaryTopicOf().equals(t.getIsPrimaryTopicOf()) &&
+					getSeeAlso().equals(t.getSeeAlso()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

@@ -166,22 +166,23 @@ public class SharingSpaceBean extends GroupBean implements SharingSpace{
 		
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof SharingSpaceBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof SharingSpaceBean){
 
-		SharingSpaceBean sharSpace = (SharingSpaceBean) (o);
-
-		if (getEvent().equals(sharSpace.getEvent()) &&
-				getNearLocation().equals(sharSpace.getNearLocation()) &&
-				getCurrentLocation().equals(sharSpace.getCurrentLocation()) &&
-				getFriend().equals(sharSpace.getFriend()) &&
-				getFamily().equals(sharSpace.getFamily()) &&
-				getCommonInterest().equals(sharSpace.getCommonInterest()) &&
-				getSchoolHomepage().equals(sharSpace.getSchoolHomepage()) &&
-				getWorkplaceHomepage().equals(sharSpace.getWorkplaceHomepage()))
-
-			return true;
-		else
-			return false;
+			SharingSpaceBean sharSpace = (SharingSpaceBean) (o);
+	
+			if (getEvent().equals(sharSpace.getEvent()) &&
+					getNearLocation().equals(sharSpace.getNearLocation()) &&
+					getCurrentLocation().equals(sharSpace.getCurrentLocation()) &&
+					getFriend().equals(sharSpace.getFriend()) &&
+					getFamily().equals(sharSpace.getFamily()) &&
+					getCommonInterest().equals(sharSpace.getCommonInterest()) &&
+					getSchoolHomepage().equals(sharSpace.getSchoolHomepage()) &&
+					getWorkplaceHomepage().equals(sharSpace.getWorkplaceHomepage()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

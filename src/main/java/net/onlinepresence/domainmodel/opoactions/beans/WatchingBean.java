@@ -57,15 +57,16 @@ public class WatchingBean<T> extends ActionBean implements Watching<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof WatchingBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof WatchingBean){
 
-		WatchingBean watc = (WatchingBean) (o);
-
-		if (getWatching().equals(watc.getWatching()))
-
-			return true;
-		else
-			return false;
+			WatchingBean watc = (WatchingBean) (o);
+	
+			if (getWatching().equals(watc.getWatching()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

@@ -55,13 +55,14 @@ public class ContactabilityBean extends OnlineStatusComponentBean implements Con
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ContactabilityBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ContactabilityBean){
 
 //		ContactabilityBean cont = (ContactabilityBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

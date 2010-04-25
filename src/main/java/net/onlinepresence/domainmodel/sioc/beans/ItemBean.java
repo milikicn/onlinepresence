@@ -56,15 +56,16 @@ public class ItemBean extends ResourceBean implements Item {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ItemBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ItemBean){
 
-		ItemBean item = (ItemBean) (o);
-
-		if (getContent().equals(item.getContent()))
-
-			return true;
-		else
-			return false;
+			ItemBean item = (ItemBean) (o);
+	
+			if (getContent().equals(item.getContent()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

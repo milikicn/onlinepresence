@@ -56,15 +56,16 @@ public class PersonBean extends AgentBean implements Person {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof PersonBean))
-			throw new RuntimeException("Equals exception");
+		if ((o instanceof Person)){
 
-		PersonBean per = (PersonBean) (o);
-
-		if (getImg().equals(per.getImg()))
-
-			return true;
-		else
-			return false;
+			PersonBean per = (PersonBean) (o);
+	
+			if (getImg().equals(per.getImg()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

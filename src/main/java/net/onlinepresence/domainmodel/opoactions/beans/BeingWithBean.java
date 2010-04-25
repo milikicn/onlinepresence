@@ -44,13 +44,14 @@ public class BeingWithBean extends ActionBean implements BeingWith {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof BeingWithBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof BeingWithBean){
 
 //		BeingWithBean bw = (BeingWithBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }

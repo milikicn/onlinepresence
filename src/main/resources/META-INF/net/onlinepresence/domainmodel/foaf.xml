@@ -15,7 +15,7 @@
 	</bean>
 	
 	<bean id="net.onlinepresence.domainmodel.foaf.Image"
-		class="net.onlinepresence.domainmodel.foaf.beans.ImageBeanBean"
+		class="net.onlinepresence.domainmodel.foaf.beans.ImageBean"
 		scope="prototype" >
 	</bean>
 	
@@ -25,7 +25,7 @@
 	</bean>
 	
 	<bean id="net.onlinepresence.domainmodel.foaf.Thing"
-		class="net.onlinepresence.domainmodel.foaf.beans.ThingBeanBean"
+		class="net.onlinepresence.domainmodel.foaf.beans.ThingBean"
 		scope="prototype" >
 	</bean>
 	

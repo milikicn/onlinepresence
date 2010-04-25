@@ -57,15 +57,16 @@ public class ListeningBean<T> extends ActionBean implements Listening<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ListeningBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof ListeningBean){
 
-		ListeningBean listen = (ListeningBean) (o);
-
-		if (getListeningTo().equals(listen.getListeningTo()))
-
-			return true;
-		else
-			return false;
+			ListeningBean listen = (ListeningBean) (o);
+	
+			if (getListeningTo().equals(listen.getListeningTo()))
+	
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 }

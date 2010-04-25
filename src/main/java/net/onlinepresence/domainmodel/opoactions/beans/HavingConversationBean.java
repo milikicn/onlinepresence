@@ -45,13 +45,14 @@ public class HavingConversationBean extends BeingWithBean implements
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof AgentBean))
-			throw new RuntimeException("Equals exception");
+		if (o instanceof AgentBean){
 
 //		AgentBean ag = (AgentBean) (o);
 
 			return true;
 //		else
 //			return false;
+		}
+		return false;
 	}
 }
