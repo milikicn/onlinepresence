@@ -35,6 +35,7 @@ import net.onlinepresence.domainmodel.sioc.UserAccount;
 @RdfType("UserAccount")
 public class UserAccountBean extends ResourceBean implements UserAccount {
 
+	private static final long serialVersionUID = 5001849648664311372L;
 	private String accountName;
 	private URI accountServiceHomepage;
 	
@@ -77,4 +78,18 @@ public class UserAccountBean extends ResourceBean implements UserAccount {
 			}
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof UserAccountBean))
+			throw new RuntimeException("Equals exception");
+
+		UserAccountBean userAccount = (UserAccountBean) (o);
+
+		if (getAccountName().equals(userAccount.getAccountName()) &&
+				getAccountServiceHomepage().equals(userAccount.getAccountServiceHomepage()))
+
+			return true;
+		else
+			return false;
+	}
 }

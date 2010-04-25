@@ -29,6 +29,8 @@ import thewebsemantic.RdfType;
 @RdfType("Image")
 public class ImageBean extends ThingBean implements Image {
 
+	private static final long serialVersionUID = -6825031811259519554L;
+
 	@Deprecated
 	public ImageBean() {
 		super();
@@ -39,4 +41,15 @@ public class ImageBean extends ThingBean implements Image {
 		super(uri);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ImageBean))
+			throw new RuntimeException("Equals exception");
+
+//		ImageBean im = (ImageBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

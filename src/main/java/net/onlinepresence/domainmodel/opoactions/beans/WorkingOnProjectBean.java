@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.opoactions.WorkingOnProject;
 @RdfType("WorkingOnProject")
 public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProject {
 
+	private static final long serialVersionUID = -4310932998681221925L;
 	private Project project;
 
 	@Deprecated
@@ -65,4 +66,17 @@ public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProjec
 			this.project = project;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof WorkingOnProjectBean))
+			throw new RuntimeException("Equals exception");
+
+		WorkingOnProjectBean wop = (WorkingOnProjectBean) (o);
+
+		if (getProject().equals(wop.getProject()))
+
+			return true;
+		else
+			return false;
+	}
 }

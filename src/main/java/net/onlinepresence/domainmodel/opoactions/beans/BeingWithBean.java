@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opoactions.BeingWith;
 @RdfType("BeingWith")
 public class BeingWithBean extends ActionBean implements BeingWith {
 
+	private static final long serialVersionUID = 3980308207920040002L;
+
 	@Deprecated
 	public BeingWithBean() {
 		super();
@@ -40,4 +42,15 @@ public class BeingWithBean extends ActionBean implements BeingWith {
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof BeingWithBean))
+			throw new RuntimeException("Equals exception");
+
+//		BeingWithBean bw = (BeingWithBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

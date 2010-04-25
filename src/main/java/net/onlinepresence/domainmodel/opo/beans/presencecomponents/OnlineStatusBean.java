@@ -39,6 +39,7 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Visibility;
 @RdfType("OnlineStatus")
 public class OnlineStatusBean extends OnlinePresenceComponentBean implements OnlineStatus{
 
+	private static final long serialVersionUID = -7394557327354492826L;
 	private Collection<OnlineStatusComponent> statusComponents = new LinkedList<OnlineStatusComponent>();
 	private String name;
 	
@@ -128,4 +129,22 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 		getOnlineStatusComponents().add(contactability);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof OnlineStatusBean))
+			throw new RuntimeException("Equals exception");
+
+		OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
+
+		if (getStatusComponents().equals(onlineStatus.getStatusComponents()) &&
+				getName().equals(onlineStatus.getName()) &&
+				getVisibility().equals(onlineStatus.getVisibility()) &&
+				getDisturbability().equals(onlineStatus.getDisturbability()) &&
+				getActivity().equals(onlineStatus.getActivity()) &&
+				getContactability().equals(onlineStatus.getContactability()))
+
+			return true;
+		else
+			return false;
+	}
 }

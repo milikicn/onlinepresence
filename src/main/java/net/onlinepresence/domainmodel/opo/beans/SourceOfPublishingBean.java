@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.opo.SourceOfPublishing;
 @RdfType("SourceOfPublishing")
 public class SourceOfPublishingBean extends ResourceBean implements SourceOfPublishing{
 
+	private static final long serialVersionUID = -1775769547311907246L;
 	private String name;
 
 	@Deprecated
@@ -53,4 +54,17 @@ public class SourceOfPublishingBean extends ResourceBean implements SourceOfPubl
 			this.name = sourceName;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof SourceOfPublishingBean))
+			throw new RuntimeException("Equals exception");
+
+		SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);
+
+		if (getName().equals(sourceOfPub.getName()))
+
+			return true;
+		else
+			return false;
+	}
 }

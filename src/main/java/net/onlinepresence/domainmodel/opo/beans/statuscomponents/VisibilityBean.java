@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Visibility;
 @RdfType("Visibility")
 public class VisibilityBean extends OnlineStatusComponentBean implements Visibility{
 
+	private static final long serialVersionUID = 2636377129612139629L;
+
 	/**
 	 * The Agent's OnlineStatus is visible to other Agents.
 	 */
@@ -48,5 +50,17 @@ public class VisibilityBean extends OnlineStatusComponentBean implements Visibil
 	@Deprecated
 	public VisibilityBean(String uri) {
 		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof VisibilityBean))
+			throw new RuntimeException("Equals exception");
+
+//		VisibilityBean vis = (VisibilityBean) (o);
+
+			return true;
+//		else
+//			return false;
 	}
 }

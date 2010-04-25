@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Disturbability;
 @RdfType("Disturbability")
 public class DisturbabilityBean extends OnlineStatusComponentBean implements Disturbability{
 
+	private static final long serialVersionUID = 4037280413218081014L;
+
 	/**
 	 * The agent is not busy and therefore available for contatct by other
 	 * Agents.
@@ -49,5 +51,17 @@ public class DisturbabilityBean extends OnlineStatusComponentBean implements Dis
 	@Deprecated
 	public DisturbabilityBean(String uri) {
 		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof DisturbabilityBean))
+			throw new RuntimeException("Equals exception");
+
+//		DisturbabilityBean aist = (DisturbabilityBean) (o);
+
+			return true;
+//		else
+//			return false;
 	}
 }

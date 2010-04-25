@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opoactions.Working;
 @RdfType("Working")
 public class WorkingBean extends ActionBean implements Working {
 
+	private static final long serialVersionUID = 5044220142463486049L;
+
 	@Deprecated
 	public WorkingBean() {
 		super();
@@ -40,4 +42,15 @@ public class WorkingBean extends ActionBean implements Working {
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof WorkingBean))
+			throw new RuntimeException("Equals exception");
+
+//		WorkingBean work = (WorkingBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

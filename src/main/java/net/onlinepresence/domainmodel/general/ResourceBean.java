@@ -32,6 +32,7 @@ import thewebsemantic.Uri;
 public class ResourceBean
 implements Resource, Serializable{
 
+	private static final long serialVersionUID = -2234520192109835808L;
 	protected String uri;
 	
 	@Deprecated

@@ -31,8 +31,9 @@ import net.onlinepresence.domainmodel.opo.OnlinePresence;
 
 @Namespace("http://xmlns.com/foaf/0.1/")
 @RdfType("Agent")
-public class AgentBean extends ThingBean implements Agent{
+public class AgentBean extends ThingBean implements Agent {
 
+	private static final long serialVersionUID = 4248456427067038592L;
 	private String nick;
 	private OnlinePresence onlinePresence;
 	private URI mbox;
@@ -41,7 +42,7 @@ public class AgentBean extends ThingBean implements Agent{
 	public AgentBean() {
 		super();
 	}
-	
+
 	@Deprecated
 	public AgentBean(String uri) {
 		super(uri);
@@ -52,7 +53,7 @@ public class AgentBean extends ThingBean implements Agent{
 	}
 
 	public void setNick(String nick) {
-		if(nick != null)
+		if (nick != null)
 			this.nick = nick;
 	}
 
@@ -62,7 +63,7 @@ public class AgentBean extends ThingBean implements Agent{
 	}
 
 	public void setOnlinePresence(OnlinePresence onlinePresence) {
-		if(onlinePresence != null)
+		if (onlinePresence != null)
 			this.onlinePresence = onlinePresence;
 	}
 
@@ -75,4 +76,19 @@ public class AgentBean extends ThingBean implements Agent{
 		this.mbox = mbox;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof AgentBean))
+			throw new RuntimeException("Equals exception");
+
+		AgentBean ag = (AgentBean) (o);
+
+		if (getNick().equals(ag.getName()) &&
+				getOnlinePresence().equals(ag.getOnlinePresence()) &&
+				getMbox().equals(ag.getMbox()))
+
+			return true;
+		else
+			return false;
+	}
 }

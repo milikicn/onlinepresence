@@ -31,6 +31,7 @@ import thewebsemantic.RdfType;
 @RdfType("Watching")
 public class WatchingBean<T> extends ActionBean implements Watching<T> {
 
+	private static final long serialVersionUID = -5896058348004113174L;
 	private T watching;
 
 	@Deprecated
@@ -51,5 +52,20 @@ public class WatchingBean<T> extends ActionBean implements Watching<T> {
 	public void setWatching(T watching) {
 		if(watching != null)
 			this.watching = watching;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof WatchingBean))
+			throw new RuntimeException("Equals exception");
+
+		WatchingBean watc = (WatchingBean) (o);
+
+		if (getWatching().equals(watc.getWatching()))
+
+			return true;
+		else
+			return false;
 	}
 }

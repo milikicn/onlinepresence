@@ -34,6 +34,7 @@ import thewebsemantic.RdfType;
 @RdfType("Post")
 public class PostBean extends ItemBean implements Post {
 
+	private static final long serialVersionUID = 3408687529954231482L;
 	private Post replyOf;
 	private URI primaryTopicOf;
 	
@@ -77,4 +78,18 @@ public class PostBean extends ItemBean implements Post {
 			}
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof PostBean))
+			throw new RuntimeException("Equals exception");
+
+		PostBean post = (PostBean) (o);
+
+		if (getReplyOf().equals(post.getReplyOf()) &&
+				getPrimaryTopicOf().equals(post.getPrimaryTopicOf()))
+
+			return true;
+		else
+			return false;
+	}
 }

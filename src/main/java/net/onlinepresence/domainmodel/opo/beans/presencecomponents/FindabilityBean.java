@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.presencecomponents.Findability;
 @RdfType("Findability")
 public class FindabilityBean extends OnlinePresenceComponentBean implements Findability{
 
+	private static final long serialVersionUID = 581378566485291228L;
+
 	/**
 	 * The Agent's contact details cannot be found by anyone on the Web, but the
 	 * findability is controled by some rules/policies.
@@ -51,4 +53,15 @@ public class FindabilityBean extends OnlinePresenceComponentBean implements Find
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof FindabilityBean))
+			throw new RuntimeException("Equals exception");
+
+//		FindabilityBean find = (FindabilityBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

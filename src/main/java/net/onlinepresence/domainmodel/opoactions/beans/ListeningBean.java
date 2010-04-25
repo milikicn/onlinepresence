@@ -31,6 +31,7 @@ import thewebsemantic.RdfType;
 @RdfType("Listening")
 public class ListeningBean<T> extends ActionBean implements Listening<T> {
 
+	private static final long serialVersionUID = -1119964731771453365L;
 	private T listeningTo;
 
 	@Deprecated
@@ -53,4 +54,18 @@ public class ListeningBean<T> extends ActionBean implements Listening<T> {
 			this.listeningTo = listeningTo;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ListeningBean))
+			throw new RuntimeException("Equals exception");
+
+		ListeningBean listen = (ListeningBean) (o);
+
+		if (getListeningTo().equals(listen.getListeningTo()))
+
+			return true;
+		else
+			return false;
+	}
 }

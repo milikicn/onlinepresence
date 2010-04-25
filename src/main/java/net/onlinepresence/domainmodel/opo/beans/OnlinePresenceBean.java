@@ -48,6 +48,7 @@ import net.onlinepresence.util.Util;
 @RdfType("OnlinePresence")
 public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 
+	private static final long serialVersionUID = -377623284014131162L;
 	public Action action;
 	public Agent agent;
 	public Image avatar;
@@ -221,4 +222,27 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 		return onlineStatus;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof OnlinePresenceBean))
+			throw new RuntimeException("Equals exception");
+
+		OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
+
+		if (getAction().equals(onlinePresence.getAction()) &&
+				getAgent().equals(onlinePresence.getAgent()) &&
+				getAvatar().equals(onlinePresence.getAvatar()) &&
+				getDuration().equals(onlinePresence.getDuration()) &&
+				getIntendentFor().equals(onlinePresence.getIntendentFor()) &&
+				getLocation().equals(onlinePresence.getLocation()) &&
+				getPresenceComponents().equals(getPresenceComponents()) &&
+				getSource().equals(onlinePresence.getSource()) &&
+				getStartTime().equals(onlinePresence.getStartTime()) &&
+				getStatusMessage().equals(onlinePresence.getStatusMessage()) &&
+				getUserAccount().equals(onlinePresence.getUserAccount()))
+
+			return true;
+		else
+			return false;
+	}
 }

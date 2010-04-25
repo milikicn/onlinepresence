@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.presencecomponents.Notifiability;
 @RdfType("Notifiability")
 public class NotifiabilityBean extends OnlinePresenceComponentBean implements Notifiability{
 
+	private static final long serialVersionUID = 7965121524681069212L;
+
 	/**
 	 * Agent can receive notifications from applications.
 	 */
@@ -56,4 +58,15 @@ public class NotifiabilityBean extends OnlinePresenceComponentBean implements No
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof NotifiabilityBean))
+			throw new RuntimeException("Equals exception");
+
+//		NotifiabilityBean not = (NotifiabilityBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }
