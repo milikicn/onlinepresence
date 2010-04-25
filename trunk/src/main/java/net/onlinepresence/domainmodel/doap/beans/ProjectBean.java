@@ -34,6 +34,7 @@ import net.onlinepresence.domainmodel.general.ResourceBean;
 @RdfType("Project")
 public class ProjectBean extends ResourceBean implements Project {
 
+	private static final long serialVersionUID = -8108929907073854002L;
 	private URI homepage;
 	private String name;
 	private String dateCreated;
@@ -98,4 +99,20 @@ public class ProjectBean extends ResourceBean implements Project {
 			this.shortDescription = shortDescription;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ProjectBean))
+			throw new RuntimeException("Equals exception");
+		
+			ProjectBean pr = (ProjectBean)(o);
+			
+			if(getHomepage().equals(pr.getHomepage()) && 
+					getName().equals(pr.getName()) &&
+					getDateCreated().equals(pr.getDateCreated()) &&
+					getShortDescription().equals(pr.getShortDescription()))
+			
+				return true;
+			else 
+				return false;
+	}
 }

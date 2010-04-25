@@ -32,6 +32,7 @@ import net.onlinepresence.domainmodel.opo.OnlinePresenceComponent;
 @RdfType("OnlinePresenceComponent")
 public class OnlinePresenceComponentBean extends ResourceBean implements OnlinePresenceComponent {
 
+	private static final long serialVersionUID = -4683853452711452930L;
 	private OnlinePresence component;
 
 	@Deprecated
@@ -54,4 +55,17 @@ public class OnlinePresenceComponentBean extends ResourceBean implements OnlineP
 			this.component = component;
 	}	
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof OnlinePresenceComponentBean))
+			throw new RuntimeException("Equals exception");
+
+		OnlinePresenceComponentBean opComp = (OnlinePresenceComponentBean) (o);
+
+		if (getComponent().equals(opComp.getComponent()))
+
+			return true;
+		else
+			return false;
+	}
 }

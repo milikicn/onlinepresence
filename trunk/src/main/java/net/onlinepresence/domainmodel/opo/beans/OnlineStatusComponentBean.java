@@ -31,7 +31,8 @@ import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("OnlineStatusComponent")
 public class OnlineStatusComponentBean extends ResourceBean implements OnlineStatusComponent{
-	
+
+	private static final long serialVersionUID = 7830921848384682441L;
 	private OnlineStatus component;
 
 	@Deprecated
@@ -54,4 +55,17 @@ public class OnlineStatusComponentBean extends ResourceBean implements OnlineSta
 			this.component = component;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof OnlineStatusComponentBean))
+			throw new RuntimeException("Equals exception");
+
+		OnlineStatusComponentBean osComp = (OnlineStatusComponentBean) (o);
+
+		if (getComponent().equals(osComp.getComponent()))
+
+			return true;
+		else
+			return false;
+	}
 }

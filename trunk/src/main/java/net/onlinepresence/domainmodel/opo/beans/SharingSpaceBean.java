@@ -37,6 +37,7 @@ import net.onlinepresence.domainmodel.purl.Event;
 @RdfType("SharingSpace")
 public class SharingSpaceBean extends GroupBean implements SharingSpace{
 
+	private static final long serialVersionUID = 1445987656012017340L;
 	private Event event;
 	private SpatialThing nearLocation;
 	private SpatialThing currentLocation;
@@ -162,5 +163,25 @@ public class SharingSpaceBean extends GroupBean implements SharingSpace{
 				e.printStackTrace();
 			}
 	}
-			
+		
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof SharingSpaceBean))
+			throw new RuntimeException("Equals exception");
+
+		SharingSpaceBean sharSpace = (SharingSpaceBean) (o);
+
+		if (getEvent().equals(sharSpace.getEvent()) &&
+				getNearLocation().equals(sharSpace.getNearLocation()) &&
+				getCurrentLocation().equals(sharSpace.getCurrentLocation()) &&
+				getFriend().equals(sharSpace.getFriend()) &&
+				getFamily().equals(sharSpace.getFamily()) &&
+				getCommonInterest().equals(sharSpace.getCommonInterest()) &&
+				getSchoolHomepage().equals(sharSpace.getSchoolHomepage()) &&
+				getWorkplaceHomepage().equals(sharSpace.getWorkplaceHomepage()))
+
+			return true;
+		else
+			return false;
+	}
 }

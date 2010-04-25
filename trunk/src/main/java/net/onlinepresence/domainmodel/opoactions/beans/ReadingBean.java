@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.opoactions.Reading;
 @RdfType("Reading")
 public class ReadingBean<T> extends ActionBean implements Reading<T> {
 
+	private static final long serialVersionUID = -5314424168742022037L;
 	private T readingMaterial;
 
 	@Deprecated
@@ -51,5 +52,20 @@ public class ReadingBean<T> extends ActionBean implements Reading<T> {
 	public void setReadingMaterial(T readingMaterial) {
 		if(readingMaterial != null)
 			this.readingMaterial = readingMaterial;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ReadingBean))
+			throw new RuntimeException("Equals exception");
+
+		ReadingBean read = (ReadingBean) (o);
+
+		if (getReadingMaterial().equals(read.getReadingMaterial()))
+
+			return true;
+		else
+			return false;
 	}
 }

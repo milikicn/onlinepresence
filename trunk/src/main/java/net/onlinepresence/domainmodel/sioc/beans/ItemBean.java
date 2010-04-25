@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.sioc.Item;
 @RdfType("Item")
 public class ItemBean extends ResourceBean implements Item {
 
+	private static final long serialVersionUID = 3472817818726592420L;
 	private String content;
 
 	@Deprecated
@@ -53,4 +54,17 @@ public class ItemBean extends ResourceBean implements Item {
 			this.content = content;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ItemBean))
+			throw new RuntimeException("Equals exception");
+
+		ItemBean item = (ItemBean) (o);
+
+		if (getContent().equals(item.getContent()))
+
+			return true;
+		else
+			return false;
+	}
 }

@@ -29,6 +29,8 @@ import thewebsemantic.RdfType;
 @RdfType("Group")
 public class GroupBean extends ThingBean implements Group {
 
+	private static final long serialVersionUID = -6661802367888286003L;
+
 	@Deprecated
 	public GroupBean() {
 		super();
@@ -39,4 +41,15 @@ public class GroupBean extends ThingBean implements Group {
 		super(uri);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof GroupBean))
+			throw new RuntimeException("Equals exception");
+		
+//		GroupBean group = (GroupBean)(o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

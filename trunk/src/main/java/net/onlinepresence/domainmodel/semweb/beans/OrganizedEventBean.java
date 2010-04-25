@@ -33,6 +33,7 @@ import net.onlinepresence.domainmodel.semweb.OrganizedEvent;
 @RdfType("OrganizedEvent")
 public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 
+	private static final long serialVersionUID = 6426836405445334449L;
 	private Person attendee;
 	private SpatialThing location;
 
@@ -64,4 +65,18 @@ public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 		this.location = location;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof OrganizedEventBean))
+			throw new RuntimeException("Equals exception");
+
+		OrganizedEventBean orgEvent = (OrganizedEventBean) (o);
+
+		if (getAttendee().equals(orgEvent.getAttendee()) &&
+				getLocation().equals(orgEvent.getLocation()))
+
+			return true;
+		else
+			return false;
+	}
 }

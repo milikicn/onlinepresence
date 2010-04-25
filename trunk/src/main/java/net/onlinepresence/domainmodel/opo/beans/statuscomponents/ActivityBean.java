@@ -31,6 +31,8 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Activity;
 @RdfType("Activity")
 public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 
+	private static final long serialVersionUID = 5150629630646563079L;
+
 	private int inactivityPeriod;
 
 	/**
@@ -69,4 +71,15 @@ public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 			this.inactivityPeriod = inactivityPeriod;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ActivityBean))
+			throw new RuntimeException("Equals exception");
+
+//		ActivityBean act = (ActivityBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.Action;
 @RdfType("Action")
 public class ActionBean extends ResourceBean implements Action {
 
+	private static final long serialVersionUID = -8270286515825418854L;
+
 	@Deprecated
 	public ActionBean() {
 		super();
@@ -40,4 +42,15 @@ public class ActionBean extends ResourceBean implements Action {
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ActionBean))
+			throw new RuntimeException("Equals exception");
+
+//		ActionBean act = (ActionBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

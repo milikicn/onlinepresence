@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
 @RdfType("StatusMessage")
 public class StatusMessageBean extends ItemBean implements StatusMessage {
 
+	private static final long serialVersionUID = 3619444485077014132L;
+
 	@Deprecated
 	public StatusMessageBean() {
 		super();
@@ -40,4 +42,15 @@ public class StatusMessageBean extends ItemBean implements StatusMessage {
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof StatusMessageBean))
+			throw new RuntimeException("Equals exception");
+
+//		StatusMessageBean statusMes = (StatusMessageBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

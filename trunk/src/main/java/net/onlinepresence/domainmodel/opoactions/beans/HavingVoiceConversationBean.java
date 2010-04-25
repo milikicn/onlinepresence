@@ -32,6 +32,7 @@ import net.onlinepresence.domainmodel.opoactions.HavingVoiceConversation;
 public class HavingVoiceConversationBean extends HavingConversationBean implements
 		HavingVoiceConversation {
 
+	private static final long serialVersionUID = 4759904896863266051L;
 	private Agent speaker;
 
 	@Deprecated
@@ -54,5 +55,19 @@ public class HavingVoiceConversationBean extends HavingConversationBean implemen
 			speaker.setURI(speaker.getUri().replaceFirst("Agent", "Speaker"));
 			this.speaker = speaker;
 		}
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof HavingVoiceConversationBean))
+			throw new RuntimeException("Equals exception");
+
+		HavingVoiceConversationBean hvc = (HavingVoiceConversationBean) (o);
+
+		if (getSpeaker().equals(hvc.getSpeaker()))
+
+			return true;
+		else
+			return false;
 	}
 }

@@ -31,6 +31,7 @@ import thewebsemantic.RdfType;
 @RdfType("Person")
 public class PersonBean extends AgentBean implements Person {
 
+	private static final long serialVersionUID = 1862465439415539L;
 	private Image img;
 
 	@Deprecated
@@ -49,8 +50,21 @@ public class PersonBean extends AgentBean implements Person {
 	}
 
 	public void setImg(Image img) {
-		if(img != null)
+		if (img != null)
 			this.img = img;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof PersonBean))
+			throw new RuntimeException("Equals exception");
+
+		PersonBean per = (PersonBean) (o);
+
+		if (getImg().equals(per.getImg()))
+
+			return true;
+		else
+			return false;
+	}
 }

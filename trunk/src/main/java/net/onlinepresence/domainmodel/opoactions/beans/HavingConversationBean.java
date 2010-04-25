@@ -21,6 +21,7 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
+import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
 import net.onlinepresence.domainmodel.opoactions.HavingConversation;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
@@ -29,6 +30,8 @@ import thewebsemantic.RdfType;
 @RdfType("HavingConversation")
 public class HavingConversationBean extends BeingWithBean implements
 		HavingConversation {
+
+	private static final long serialVersionUID = 4958089431080869021L;
 
 	@Deprecated
 	public HavingConversationBean() {
@@ -40,4 +43,15 @@ public class HavingConversationBean extends BeingWithBean implements
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof AgentBean))
+			throw new RuntimeException("Equals exception");
+
+//		AgentBean ag = (AgentBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

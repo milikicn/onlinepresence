@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.opoactions.Chatting;
 @RdfType("Chatting")
 public class ChattingBean extends HavingConversationBean implements Chatting {
 
+	private static final long serialVersionUID = 1008649956975198556L;
 	private Agent chatBuddy;
 
 	@Deprecated
@@ -43,11 +44,13 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 		super(uri);
 	}
 	
+	@Deprecated
 	public ChattingBean(Agent chatBuddy) {
 		this();
 		setChatBuddy(chatBuddy);
 	}
 	
+	@Deprecated
 	public ChattingBean(String uri, Agent chatBuddy) {
 		this(uri);
 		setChatBuddy(chatBuddy);
@@ -65,4 +68,17 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 		}
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ChattingBean))
+			throw new RuntimeException("Equals exception");
+
+		ChattingBean chat = (ChattingBean) (o);
+
+		if (getChatBuddy().equals(chat.getChatBuddy()))
+
+			return true;
+		else
+			return false;
+	}
 }

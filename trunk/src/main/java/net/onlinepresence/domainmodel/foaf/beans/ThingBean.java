@@ -35,11 +35,12 @@ import net.onlinepresence.domainmodel.general.ResourceBean;
 @RdfType("Thing")
 public class ThingBean extends ResourceBean implements Thing {
 
+	private static final long serialVersionUID = -1945236390412793441L;
 	private String name;
 	private URI homepage;
 	private URI isPrimaryTopicOf;
 	private URI seeAlso;
-	
+
 	@Deprecated
 	public ThingBean() {
 		super();
@@ -56,7 +57,7 @@ public class ThingBean extends ResourceBean implements Thing {
 	}
 
 	public void setName(String name) {
-		if(name != null)
+		if (name != null)
 			this.name = name;
 	}
 
@@ -66,12 +67,12 @@ public class ThingBean extends ResourceBean implements Thing {
 	}
 
 	public void setHomepage(URI homepage) {
-		if(homepage != null)
+		if (homepage != null)
 			this.homepage = homepage;
 	}
-	
+
 	public void setHomepage(String homepage) {
-		if(homepage != null)
+		if (homepage != null)
 			try {
 				setHomepage(new URI(homepage));
 			} catch (URISyntaxException e) {
@@ -85,14 +86,12 @@ public class ThingBean extends ResourceBean implements Thing {
 	}
 
 	public void setIsPrimaryTopicOf(URI isPrimaryTopicOf) {
-		if(isPrimaryTopicOf != null)
+		if (isPrimaryTopicOf != null)
 			this.isPrimaryTopicOf = isPrimaryTopicOf;
 	}
-	
-	
-	
+
 	public void setIsPrimaryTopicOf(String isPrimaryTopicOf) {
-		if(isPrimaryTopicOf != null)
+		if (isPrimaryTopicOf != null)
 			try {
 				setIsPrimaryTopicOf(new URI(isPrimaryTopicOf));
 			} catch (URISyntaxException e) {
@@ -109,7 +108,7 @@ public class ThingBean extends ResourceBean implements Thing {
 		if (seeAlso != null)
 			this.seeAlso = seeAlso;
 	}
-	
+
 	public void setSeeAlso(String seeAlso) {
 		if (seeAlso != null)
 			try {
@@ -117,5 +116,22 @@ public class ThingBean extends ResourceBean implements Thing {
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ThingBean))
+			throw new RuntimeException("Equals exception");
+
+		ThingBean t = (ThingBean) (o);
+
+		if (getName().equals(t.getName()) && 
+				getHomepage().equals(t.getHomepage()) && 
+				getIsPrimaryTopicOf().equals(t.getIsPrimaryTopicOf()) &&
+				getSeeAlso().equals(t.getSeeAlso()))
+
+			return true;
+		else
+			return false;
 	}
 }

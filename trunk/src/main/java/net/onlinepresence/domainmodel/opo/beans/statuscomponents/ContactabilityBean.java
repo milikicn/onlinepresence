@@ -30,6 +30,8 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Contactability;
 @RdfType("Contactability")
 public class ContactabilityBean extends OnlineStatusComponentBean implements Contactability{
 
+	private static final long serialVersionUID = -984851302164133674L;
+
 	/**
 	 * The Agent can be contacted by anyone on the Web.
 	 */
@@ -51,4 +53,15 @@ public class ContactabilityBean extends OnlineStatusComponentBean implements Con
 		super(uri);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ContactabilityBean))
+			throw new RuntimeException("Equals exception");
+
+//		ContactabilityBean cont = (ContactabilityBean) (o);
+
+			return true;
+//		else
+//			return false;
+	}
 }

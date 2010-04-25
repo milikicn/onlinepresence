@@ -31,6 +31,7 @@ import net.onlinepresence.domainmodel.geo.SpatialThing;
 @RdfType("SpatialThing")
 public class SpatialThingBean extends ResourceBean implements SpatialThing {
 
+	private static final long serialVersionUID = -8705685396142943896L;
 	private String latitude;
 	private String longitude;
 
@@ -38,19 +39,19 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 	public SpatialThingBean() {
 		super();
 	}
-	
+
 	@Deprecated
 	public SpatialThingBean(String uri) {
 		super(uri);
 	}
-	
+
 	@RdfProperty("http://www.w3.org/2003/01/geo/wgs84_pos#lat")
 	public String getLatitude() {
 		return latitude;
 	}
 
 	public void setLatitude(String latitude) {
-		if(latitude != null)
+		if (latitude != null)
 			this.latitude = latitude;
 	}
 
@@ -60,8 +61,22 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 	}
 
 	public void setLongitude(String longitude) {
-		if(longitude != null)
+		if (longitude != null)
 			this.longitude = longitude;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof SpatialThingBean))
+			throw new RuntimeException("Equals exception");
+
+		SpatialThingBean st = (SpatialThingBean) (o);
+
+		if (getLatitude().equals(st.getLatitude())
+				&& getLongitude().equals(st.getLongitude()))
+
+			return true;
+		else
+			return false;
+	}
 }
