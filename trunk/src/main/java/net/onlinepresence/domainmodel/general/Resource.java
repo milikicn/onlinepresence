@@ -25,5 +25,5 @@ public interface Resource {
 
 	public String getUri();
 	
-	public void setURI(String uri);
+	public void setUri(String uri);
 }

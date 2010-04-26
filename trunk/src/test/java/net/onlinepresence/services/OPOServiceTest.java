@@ -32,7 +32,7 @@ public class OPOServiceTest {
 		//OnlineStatus onlineStatus = (OnlineStatus) factory.createResource(OnlineStatus.class);
 		
 		OnlineStatus onlineStatus = new OnlineStatusBean();
-		onlineStatus.setURI("http://www.123.com");
+		onlineStatus.setUri("http://www.123.com");
 		onlineStatus.setActivity(ActivityBean.ACTIVE);
 		onlineStatus.setContactability(ContactabilityBean.FREELY_CONTACTABLE);
 		onlineStatus.setDisturbability(DisturbabilityBean.AVAILABLE);

@@ -55,7 +55,7 @@ public class PostBean extends ItemBean implements Post {
 
 	public void setReplyOf(Post replyOf) {
 		if(replyOf != null){
-			replyOf.setURI(replyOf.getUri().replaceFirst("Post", "ReplyPost"));
+			replyOf.setUri(replyOf.getUri().replaceFirst("Post", "ReplyPost"));
 			this.replyOf = replyOf;
 		}
 	}

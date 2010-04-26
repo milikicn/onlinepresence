@@ -60,7 +60,7 @@ public class ResourceFactory {
 	@SuppressWarnings("unchecked")
 	public Object createResource(Class clazz ){
 		Resource res = (Resource) context.getBean(clazz.getName());
-		res.setURI(URIBuilder.instance().generateURI(res, namespace));
+		res.setUri(URIBuilder.instance().generateURI(res, namespace));
 		return res;
 	}
 
