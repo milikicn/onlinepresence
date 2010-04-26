@@ -48,7 +48,7 @@ implements Resource, Serializable{
 		return uri;
 	}
 	
-	public void setURI(String uri){
+	public void setUri(String uri){
 		this.uri = uri;
 	}
 	

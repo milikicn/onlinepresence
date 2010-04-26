@@ -52,7 +52,7 @@ public class HavingVoiceConversationBean extends HavingConversationBean implemen
 
 	public void setSpeaker(Agent speaker) {
 		if(speaker != null){
-			speaker.setURI(speaker.getUri().replaceFirst("Agent", "Speaker"));
+			speaker.setUri(speaker.getUri().replaceFirst("Agent", "Speaker"));
 			this.speaker = speaker;
 		}
 	}
