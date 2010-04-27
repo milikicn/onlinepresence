@@ -45,6 +45,9 @@ public class HavingConversationBean extends BeingWithBean implements
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof AgentBean){
 
 //		AgentBean ag = (AgentBean) (o);

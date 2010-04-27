@@ -56,9 +56,15 @@ public class PersonBean extends AgentBean implements Person {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if ((o instanceof Person)){
 
 			PersonBean per = (PersonBean) (o);
+			
+			if(getImg() == null || per.getImg() == null)
+				return false;
 	
 			if (getImg().equals(per.getImg()))
 	

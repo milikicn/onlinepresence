@@ -57,10 +57,16 @@ public class ReadingBean<T> extends ActionBean implements Reading<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ReadingBean){
 
 			ReadingBean read = (ReadingBean) (o);
 	
+			if(getReadingMaterial() == null || read.getReadingMaterial() == null)
+				return false;
+			
 			if (getReadingMaterial().equals(read.getReadingMaterial()))
 	
 				return true;

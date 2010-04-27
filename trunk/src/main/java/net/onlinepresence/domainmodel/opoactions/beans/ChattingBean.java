@@ -70,9 +70,15 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ChattingBean){
 
 			ChattingBean chat = (ChattingBean) (o);
+			
+			if(getChatBuddy() == null || chat.getChatBuddy() == null)
+				return false;
 	
 			if (getChatBuddy().equals(chat.getChatBuddy()))
 	

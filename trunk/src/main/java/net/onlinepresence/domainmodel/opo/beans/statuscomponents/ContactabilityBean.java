@@ -55,6 +55,9 @@ public class ContactabilityBean extends OnlineStatusComponentBean implements Con
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ContactabilityBean){
 
 //		ContactabilityBean cont = (ContactabilityBean) (o);

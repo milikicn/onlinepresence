@@ -57,9 +57,15 @@ public class OnlinePresenceComponentBean extends ResourceBean implements OnlineP
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof OnlinePresenceComponentBean){
 
 			OnlinePresenceComponentBean opComp = (OnlinePresenceComponentBean) (o);
+			
+			if(getComponent() == null || opComp.getComponent() == null)
+				return false;
 	
 			if (getComponent().equals(opComp.getComponent()))
 	

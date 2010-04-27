@@ -67,10 +67,19 @@ public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof OrganizedEventBean){
 
 			OrganizedEventBean orgEvent = (OrganizedEventBean) (o);
+			
+			if(getAttendee() == null || orgEvent.getAttendee() == null)
+				return false;
 	
+			if(getLocation() == null || orgEvent.getLocation() == null)
+				return false;
+			
 			if (getAttendee().equals(orgEvent.getAttendee()) &&
 					getLocation().equals(orgEvent.getLocation()))
 	

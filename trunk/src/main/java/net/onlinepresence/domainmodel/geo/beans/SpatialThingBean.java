@@ -67,6 +67,9 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof SpatialThingBean){
 
 			SpatialThingBean st = (SpatialThingBean) (o);

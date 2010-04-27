@@ -44,6 +44,9 @@ public class StatusMessageBean extends ItemBean implements StatusMessage {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof StatusMessageBean){
 
 //		StatusMessageBean statusMes = (StatusMessageBean) (o);

@@ -56,6 +56,9 @@ public class ItemBean extends ResourceBean implements Item {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ItemBean){
 
 			ItemBean item = (ItemBean) (o);

@@ -55,6 +55,9 @@ public class FindabilityBean extends OnlinePresenceComponentBean implements Find
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof FindabilityBean){
 
 //		FindabilityBean find = (FindabilityBean) (o);

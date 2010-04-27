@@ -80,9 +80,15 @@ public class PostBean extends ItemBean implements Post {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof PostBean){
 
 			PostBean post = (PostBean) (o);
+			
+			if(getReplyOf() == null || post.getReplyOf() == null)
+				return false;
 	
 			if (getReplyOf().equals(post.getReplyOf()) &&
 					getPrimaryTopicOf().equals(post.getPrimaryTopicOf()))

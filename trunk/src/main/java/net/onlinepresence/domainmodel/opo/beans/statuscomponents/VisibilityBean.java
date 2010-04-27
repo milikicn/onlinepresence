@@ -54,6 +54,9 @@ public class VisibilityBean extends OnlineStatusComponentBean implements Visibil
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof VisibilityBean){
 
 //		VisibilityBean vis = (VisibilityBean) (o);

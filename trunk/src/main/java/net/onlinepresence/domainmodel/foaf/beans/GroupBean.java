@@ -43,6 +43,9 @@ public class GroupBean extends ThingBean implements Group {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof GroupBean){
 		
 //		GroupBean group = (GroupBean)(o);

@@ -44,6 +44,9 @@ public class WorkingBean extends ActionBean implements Working {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof WorkingBean){
 
 //		WorkingBean work = (WorkingBean) (o);
