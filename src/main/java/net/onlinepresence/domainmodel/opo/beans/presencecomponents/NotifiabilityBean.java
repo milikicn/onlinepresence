@@ -60,6 +60,9 @@ public class NotifiabilityBean extends OnlinePresenceComponentBean implements No
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof NotifiabilityBean){
 
 //		NotifiabilityBean not = (NotifiabilityBean) (o);

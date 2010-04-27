@@ -224,9 +224,48 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof OnlinePresenceBean){
 
 			OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
+			
+			if(getAction() == null || onlinePresence.getAction() == null)
+				return false;
+			
+			if(getAgent() == null || onlinePresence.getAgent() == null)
+				return false;
+			
+			if(getAvatar() == null || onlinePresence.getAvatar() == null)
+				return false;
+			
+			if(getIntendentFor() == null || onlinePresence.getIntendentFor() == null)
+				return false;
+			
+			if(getLocation() == null || onlinePresence.getLocation() == null)
+				return false;
+			
+			if(getPresenceComponents() == null || onlinePresence.getPresenceComponents() == null)
+				return false;
+			
+			if(getSource() == null || onlinePresence.getSource() == null)
+				return false;
+			
+			if(getStatusMessage() == null || onlinePresence.getStatusMessage() == null)
+				return false;
+
+			if(getUserAccount() == null || onlinePresence.getUserAccount() == null)
+				return false;
+			
+			if(getFindability() == null || onlinePresence.getFindability() == null)
+				return false;
+			
+			if(getNotifiability() == null || onlinePresence.getNotifiability() == null)
+				return false;
+			
+			if(getOnlineStatus() == null || onlinePresence.getOnlineStatus() == null)
+				return false;
 	
 			if (getAction().equals(onlinePresence.getAction()) &&
 					getAgent().equals(onlinePresence.getAgent()) &&
@@ -238,7 +277,10 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 					getSource().equals(onlinePresence.getSource()) &&
 					getStartTime().equals(onlinePresence.getStartTime()) &&
 					getStatusMessage().equals(onlinePresence.getStatusMessage()) &&
-					getUserAccount().equals(onlinePresence.getUserAccount()))
+					getUserAccount().equals(onlinePresence.getUserAccount()) &&
+					getFindability().equals(onlinePresence.getFindability()) &&
+					getNotifiability().equals(onlinePresence.getNotifiability()) &&
+					getOnlineStatus().equals(onlinePresence.getOnlineStatus()))
 	
 				return true;
 			else

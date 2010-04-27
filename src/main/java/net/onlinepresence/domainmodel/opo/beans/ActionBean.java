@@ -44,6 +44,9 @@ public class ActionBean extends ResourceBean implements Action {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ActionBean){
 
 //		ActionBean act = (ActionBean) (o);

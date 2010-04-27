@@ -44,6 +44,9 @@ public class BeingWithBean extends ActionBean implements BeingWith {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof BeingWithBean){
 
 //		BeingWithBean bw = (BeingWithBean) (o);

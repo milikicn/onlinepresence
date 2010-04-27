@@ -78,9 +78,15 @@ public class AgentBean extends ThingBean implements Agent {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof AgentBean){
 
 			AgentBean ag = (AgentBean) (o);
+			
+			if(getOnlinePresence() == null || ag.getOnlinePresence() == null)
+				return false;
 	
 			if (getNick().equals(ag.getName()) &&
 					getOnlinePresence().equals(ag.getOnlinePresence()) &&

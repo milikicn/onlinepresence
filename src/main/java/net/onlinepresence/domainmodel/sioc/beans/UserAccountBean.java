@@ -80,9 +80,15 @@ public class UserAccountBean extends ResourceBean implements UserAccount {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof UserAccountBean){
 
 			UserAccountBean userAccount = (UserAccountBean) (o);
+			
+			if(getAccountServiceHomepage() == null || userAccount.getAccountServiceHomepage() == null)
+				return false;
 	
 			if (getAccountName().equals(userAccount.getAccountName()) &&
 					getAccountServiceHomepage().equals(userAccount.getAccountServiceHomepage()))

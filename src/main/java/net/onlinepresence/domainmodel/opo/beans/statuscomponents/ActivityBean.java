@@ -73,13 +73,17 @@ public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ActivityBean){
 
-//		ActivityBean act = (ActivityBean) (o);
+		ActivityBean act = (ActivityBean) (o);
 
+		if(getInactivityPeriod() == act.getInactivityPeriod())
 			return true;
-//		else
-//			return false;
+		else
+			return false;
 		}
 		return false;
 	}

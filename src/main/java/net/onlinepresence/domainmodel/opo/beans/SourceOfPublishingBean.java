@@ -56,6 +56,9 @@ public class SourceOfPublishingBean extends ResourceBean implements SourceOfPubl
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof SourceOfPublishingBean){
 
 			SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);

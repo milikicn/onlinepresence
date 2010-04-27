@@ -131,9 +131,27 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof OnlineStatusBean){
 
 			OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
+			
+			if(getStatusComponents() == null || onlineStatus.getStatusComponents() == null)
+				return false;
+			
+			if(getVisibility() == null || onlineStatus.getVisibility() == null)
+				return false;
+			
+			if(getDisturbability() == null || onlineStatus.getDisturbability() == null)
+				return false;
+			
+			if(getActivity() == null || onlineStatus.getActivity() == null)
+				return false;
+			
+			if(getContactability() == null || onlineStatus.getContactability() == null)
+				return false;
 	
 			if (getStatusComponents().equals(onlineStatus.getStatusComponents()) &&
 					getName().equals(onlineStatus.getName()) &&

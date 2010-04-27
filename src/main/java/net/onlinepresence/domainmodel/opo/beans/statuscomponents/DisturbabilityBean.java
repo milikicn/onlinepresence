@@ -55,6 +55,9 @@ public class DisturbabilityBean extends OnlineStatusComponentBean implements Dis
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof DisturbabilityBean){
 
 //		DisturbabilityBean aist = (DisturbabilityBean) (o);

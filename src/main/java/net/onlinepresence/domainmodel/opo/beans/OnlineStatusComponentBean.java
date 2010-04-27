@@ -57,9 +57,15 @@ public class OnlineStatusComponentBean extends ResourceBean implements OnlineSta
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof OnlineStatusComponentBean){
 
 			OnlineStatusComponentBean osComp = (OnlineStatusComponentBean) (o);
+			
+			if(getComponent() == null || osComp.getComponent() == null)
+				return false;
 	
 			if (getComponent().equals(osComp.getComponent()))
 	

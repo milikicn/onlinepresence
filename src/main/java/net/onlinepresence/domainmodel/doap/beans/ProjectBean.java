@@ -101,9 +101,15 @@ public class ProjectBean extends ResourceBean implements Project {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if (o instanceof ProjectBean){
 		
 			ProjectBean pr = (ProjectBean)(o);
+			
+			if(getHomepage() == null || pr.getHomepage() == null)
+				return false;
 			
 			if(getHomepage().equals(pr.getHomepage()) && 
 					getName().equals(pr.getName()) &&

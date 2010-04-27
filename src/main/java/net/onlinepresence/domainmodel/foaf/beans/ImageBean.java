@@ -43,6 +43,9 @@ public class ImageBean extends ThingBean implements Image {
 
 	@Override
 	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
 		if ((o instanceof ImageBean)){
 
 
