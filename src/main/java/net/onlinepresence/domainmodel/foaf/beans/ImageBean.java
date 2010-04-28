@@ -46,15 +46,11 @@ public class ImageBean extends ThingBean implements Image {
 		if(this == o)
 			return true;
 		
-		if ((o instanceof ImageBean)){
+		if (!(o instanceof ImageBean))
+			return false;
 
-
-	//		ImageBean im = (ImageBean) (o);
-	
-			return true;
-	//		else
-	//			return false;
-		}
-		return false;
+		ImageBean image = (ImageBean) o;
+		
+		return super.equals(image);
 	}
 }

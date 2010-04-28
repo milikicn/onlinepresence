@@ -58,14 +58,11 @@ public class DisturbabilityBean extends OnlineStatusComponentBean implements Dis
 		if(this == o)
 			return true;
 		
-		if (o instanceof DisturbabilityBean){
+		if (!(o instanceof DisturbabilityBean))
+			return false;
 
-//		DisturbabilityBean aist = (DisturbabilityBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		DisturbabilityBean dist = (DisturbabilityBean) o;
+		
+		return super.equals(dist);
 	}
 }

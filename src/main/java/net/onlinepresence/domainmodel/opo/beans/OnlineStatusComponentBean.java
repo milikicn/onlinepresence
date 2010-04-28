@@ -27,6 +27,7 @@ import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.opo.OnlineStatusComponent;
 import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("OnlineStatusComponent")
@@ -60,19 +61,12 @@ public class OnlineStatusComponentBean extends ResourceBean implements OnlineSta
 		if(this == o)
 			return true;
 		
-		if (o instanceof OnlineStatusComponentBean){
+		if (!(o instanceof OnlineStatusComponentBean))
+			return false;
 
-			OnlineStatusComponentBean osComp = (OnlineStatusComponentBean) (o);
+		OnlineStatusComponentBean osComp = (OnlineStatusComponentBean) (o);
 			
-			if(getComponent() == null || osComp.getComponent() == null)
-				return false;
-	
-			if (getComponent().equals(osComp.getComponent()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getComponent(), osComp.getComponent());
 	}
 }

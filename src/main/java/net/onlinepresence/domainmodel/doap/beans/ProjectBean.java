@@ -29,6 +29,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.doap.Project;
 import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://usefulinc.com/ns/doap#")
 @RdfType("Project")
@@ -104,22 +105,15 @@ public class ProjectBean extends ResourceBean implements Project {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ProjectBean){
+		if (!(o instanceof ProjectBean))
+			return false;
 		
-			ProjectBean pr = (ProjectBean)(o);
+		ProjectBean project = (ProjectBean)(o);
 			
-			if(getHomepage() == null || pr.getHomepage() == null)
-				return false;
-			
-			if(getHomepage().equals(pr.getHomepage()) && 
-					getName().equals(pr.getName()) &&
-					getDateCreated().equals(pr.getDateCreated()) &&
-					getShortDescription().equals(pr.getShortDescription()))
-			
-				return true;
-			else 
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getHomepage(), project.getHomepage()) &&
+			EqualsUtil.areEqual(getName(), project.getName()) &&
+			EqualsUtil.areEqual(getDateCreated(), project.getDateCreated()) &&
+			EqualsUtil.areEqual(getShortDescription(), project.getShortDescription());
 	}
 }

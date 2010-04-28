@@ -32,6 +32,7 @@ import net.onlinepresence.domainmodel.foaf.beans.GroupBean;
 import net.onlinepresence.domainmodel.geo.SpatialThing;
 import net.onlinepresence.domainmodel.opo.SharingSpace;
 import net.onlinepresence.domainmodel.purl.Event;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("SharingSpace")
@@ -169,47 +170,21 @@ public class SharingSpaceBean extends GroupBean implements SharingSpace{
 		if(this == o)
 			return true;
 		
-		if (o instanceof SharingSpaceBean){
+		if (!(o instanceof SharingSpaceBean))
+			return false;
 
-			SharingSpaceBean sharSpace = (SharingSpaceBean) (o);
+		SharingSpaceBean sharSpace = (SharingSpaceBean) (o);
+		
+		return
+			EqualsUtil.areEqual(getEvent(), sharSpace.getEvent()) &&
+			EqualsUtil.areEqual(getNearLocation(), sharSpace.getNearLocation()) &&
+			EqualsUtil.areEqual(getCurrentLocation(), sharSpace.getCurrentLocation()) &&
+			EqualsUtil.areEqual(getFriend(), sharSpace.getFriend()) &&
+			EqualsUtil.areEqual(getFamily(), sharSpace.getFamily()) &&
+			EqualsUtil.areEqual(getCommonInterest(), sharSpace.getCommonInterest()) &&
+			EqualsUtil.areEqual(getSchoolHomepage(), sharSpace.getSchoolHomepage()) &&
+			EqualsUtil.areEqual(getWorkplaceHomepage(), sharSpace.getWorkplaceHomepage()) &&
+			super.equals(sharSpace);
 
-			if(getEvent() == null || sharSpace.getEvent() == null)
-				return false;
-			
-			if(getNearLocation() == null || sharSpace.getNearLocation() == null)
-				return false;
-			
-			if(getCurrentLocation() == null || sharSpace.getCurrentLocation() == null)
-				return false;
-			
-			if(getFriend() == null || sharSpace.getFriend() == null)
-				return false;
-			
-			if(getFamily() == null || sharSpace.getFamily() == null)
-				return false;
-			
-			if(getCommonInterest() == null || sharSpace.getCommonInterest() == null)
-				return false;
-	
-			if(getSchoolHomepage() == null || sharSpace.getSchoolHomepage() == null)
-				return false;
-			
-			if(getWorkplaceHomepage() == null || sharSpace.getWorkplaceHomepage() == null)
-				return false;
-			
-			if (getEvent().equals(sharSpace.getEvent()) &&
-					getNearLocation().equals(sharSpace.getNearLocation()) &&
-					getCurrentLocation().equals(sharSpace.getCurrentLocation()) &&
-					getFriend().equals(sharSpace.getFriend()) &&
-					getFamily().equals(sharSpace.getFamily()) &&
-					getCommonInterest().equals(sharSpace.getCommonInterest()) &&
-					getSchoolHomepage().equals(sharSpace.getSchoolHomepage()) &&
-					getWorkplaceHomepage().equals(sharSpace.getWorkplaceHomepage()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
 	}
 }

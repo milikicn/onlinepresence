@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
 import net.onlinepresence.domainmodel.opoactions.Reading;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("Reading")
@@ -60,19 +61,13 @@ public class ReadingBean<T> extends ActionBean implements Reading<T> {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ReadingBean){
+		if (!(o instanceof ReadingBean))
+			return false;
 
-			ReadingBean read = (ReadingBean) (o);
-	
-			if(getReadingMaterial() == null || read.getReadingMaterial() == null)
-				return false;
+		ReadingBean read = (ReadingBean) (o);
 			
-			if (getReadingMaterial().equals(read.getReadingMaterial()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getReadingMaterial(), read.getReadingMaterial()) &&
+			super.equals(read);
 	}
 }

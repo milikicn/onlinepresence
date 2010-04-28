@@ -42,6 +42,7 @@ import net.onlinepresence.domainmodel.opo.presencecomponents.Notifiability;
 import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.domainmodel.sioc.Item;
 import net.onlinepresence.domainmodel.sioc.UserAccount;
+import net.onlinepresence.util.EqualsUtil;
 import net.onlinepresence.util.Util;
 
 @Namespace("http://online-presence.net/opo/ns#")
@@ -227,65 +228,24 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 		if(this == o)
 			return true;
 		
-		if (o instanceof OnlinePresenceBean){
+		if (!(o instanceof OnlinePresenceBean))
+			return false;
 
-			OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
+		OnlinePresenceBean onlinePresence = (OnlinePresenceBean) (o);
 			
-			if(getAction() == null || onlinePresence.getAction() == null)
-				return false;
-			
-			if(getAgent() == null || onlinePresence.getAgent() == null)
-				return false;
-			
-			if(getAvatar() == null || onlinePresence.getAvatar() == null)
-				return false;
-			
-			if(getIntendentFor() == null || onlinePresence.getIntendentFor() == null)
-				return false;
-			
-			if(getLocation() == null || onlinePresence.getLocation() == null)
-				return false;
-			
-			if(getPresenceComponents() == null || onlinePresence.getPresenceComponents() == null)
-				return false;
-			
-			if(getSource() == null || onlinePresence.getSource() == null)
-				return false;
-			
-			if(getStatusMessage() == null || onlinePresence.getStatusMessage() == null)
-				return false;
-
-			if(getUserAccount() == null || onlinePresence.getUserAccount() == null)
-				return false;
-			
-			if(getFindability() == null || onlinePresence.getFindability() == null)
-				return false;
-			
-			if(getNotifiability() == null || onlinePresence.getNotifiability() == null)
-				return false;
-			
-			if(getOnlineStatus() == null || onlinePresence.getOnlineStatus() == null)
-				return false;
-	
-			if (getAction().equals(onlinePresence.getAction()) &&
-					getAgent().equals(onlinePresence.getAgent()) &&
-					getAvatar().equals(onlinePresence.getAvatar()) &&
-					getDuration().equals(onlinePresence.getDuration()) &&
-					getIntendentFor().equals(onlinePresence.getIntendentFor()) &&
-					getLocation().equals(onlinePresence.getLocation()) &&
-					getPresenceComponents().equals(getPresenceComponents()) &&
-					getSource().equals(onlinePresence.getSource()) &&
-					getStartTime().equals(onlinePresence.getStartTime()) &&
-					getStatusMessage().equals(onlinePresence.getStatusMessage()) &&
-					getUserAccount().equals(onlinePresence.getUserAccount()) &&
-					getFindability().equals(onlinePresence.getFindability()) &&
-					getNotifiability().equals(onlinePresence.getNotifiability()) &&
-					getOnlineStatus().equals(onlinePresence.getOnlineStatus()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getAction(), onlinePresence.getAction()) &&
+			EqualsUtil.areEqual(getAgent(), onlinePresence.getAgent()) &&
+			EqualsUtil.areEqual(getAvatar(), onlinePresence.getAvatar()) &&
+			EqualsUtil.areEqual(getDuration(), onlinePresence.getDuration()) &&
+			EqualsUtil.areEqual(getIntendentFor(), onlinePresence.getIntendentFor()) &&
+			EqualsUtil.areEqual(getLocation(), onlinePresence.getLocation()) &&
+			EqualsUtil.areEqual(getPresenceComponents(), onlinePresence.getPresenceComponents()) &&
+			EqualsUtil.areEqual(getSource(), onlinePresence.getSource()) &&
+			EqualsUtil.areEqual(getStatusMessage(), onlinePresence.getStatusMessage()) &&
+			EqualsUtil.areEqual(getUserAccount(), onlinePresence.getUserAccount()) &&
+			EqualsUtil.areEqual(getFindability(), onlinePresence.getFindability()) &&
+			EqualsUtil.areEqual(getNotifiability(), onlinePresence.getNotifiability()) &&
+			EqualsUtil.areEqual(getOnlineStatus(), onlinePresence.getOnlineStatus());		
 	}
 }

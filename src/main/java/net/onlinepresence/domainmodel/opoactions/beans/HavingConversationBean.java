@@ -21,7 +21,6 @@
  */
 package net.onlinepresence.domainmodel.opoactions.beans;
 
-import net.onlinepresence.domainmodel.foaf.beans.AgentBean;
 import net.onlinepresence.domainmodel.opoactions.HavingConversation;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
@@ -48,14 +47,11 @@ public class HavingConversationBean extends BeingWithBean implements
 		if(this == o)
 			return true;
 		
-		if (o instanceof AgentBean){
+		if (!(o instanceof HavingConversationBean))
+			return false;
 
-//		AgentBean ag = (AgentBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		HavingConversationBean havingCon = (HavingConversationBean) o;
+		
+		return super.equals(havingCon);
 	}
 }

@@ -23,6 +23,7 @@ package net.onlinepresence.domainmodel.opoactions.beans;
 
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
 import net.onlinepresence.domainmodel.opoactions.Listening;
+import net.onlinepresence.util.EqualsUtil;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
@@ -60,19 +61,13 @@ public class ListeningBean<T> extends ActionBean implements Listening<T> {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ListeningBean){
+		if (!(o instanceof ListeningBean))
+			return false;
 
-			ListeningBean listen = (ListeningBean) (o);
+		ListeningBean listen = (ListeningBean) (o);
 			
-			if(getListeningTo() == null || listen.getListeningTo() == null)
-				return false;
-	
-			if (getListeningTo().equals(listen.getListeningTo()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getListeningTo(), listen.getListeningTo()) &&
+			super.equals(listen);
 	}
 }

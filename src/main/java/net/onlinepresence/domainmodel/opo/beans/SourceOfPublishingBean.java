@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.opo.SourceOfPublishing;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("SourceOfPublishing")
@@ -59,16 +60,13 @@ public class SourceOfPublishingBean extends ResourceBean implements SourceOfPubl
 		if(this == o)
 			return true;
 		
-		if (o instanceof SourceOfPublishingBean){
-
-			SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);
+		if (!(o instanceof SourceOfPublishingBean))
+			return false;
+			
+		SourceOfPublishingBean sourceOfPub = (SourceOfPublishingBean) (o);
 	
-			if (getName().equals(sourceOfPub.getName()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getName(), sourceOfPub.getName()) &&
+			super.equals(sourceOfPub);
 	}
 }

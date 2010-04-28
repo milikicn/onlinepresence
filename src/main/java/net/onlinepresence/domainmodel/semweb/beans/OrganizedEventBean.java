@@ -28,6 +28,7 @@ import net.onlinepresence.domainmodel.foaf.Person;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.geo.SpatialThing;
 import net.onlinepresence.domainmodel.semweb.OrganizedEvent;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://data.semanticweb.org/ns/swc/ontology#")
 @RdfType("OrganizedEvent")
@@ -70,23 +71,13 @@ public class OrganizedEventBean extends ResourceBean implements OrganizedEvent{
 		if(this == o)
 			return true;
 		
-		if (o instanceof OrganizedEventBean){
+		if (!(o instanceof OrganizedEventBean))
+			return false;
 
-			OrganizedEventBean orgEvent = (OrganizedEventBean) (o);
+		OrganizedEventBean orgEvent = (OrganizedEventBean) (o);
 			
-			if(getAttendee() == null || orgEvent.getAttendee() == null)
-				return false;
-	
-			if(getLocation() == null || orgEvent.getLocation() == null)
-				return false;
-			
-			if (getAttendee().equals(orgEvent.getAttendee()) &&
-					getLocation().equals(orgEvent.getLocation()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getAttendee(), orgEvent.getAttendee()) &&
+			EqualsUtil.areEqual(getLocation(), orgEvent.getLocation());
 	}
 }

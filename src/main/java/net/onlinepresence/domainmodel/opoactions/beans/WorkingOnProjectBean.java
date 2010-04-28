@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.doap.Project;
 import net.onlinepresence.domainmodel.opoactions.WorkingOnProject;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("WorkingOnProject")
@@ -71,19 +72,13 @@ public class WorkingOnProjectBean extends WorkingBean implements WorkingOnProjec
 		if(this == o)
 			return true;
 		
-		if (o instanceof WorkingOnProjectBean){
+		if (!(o instanceof WorkingOnProjectBean))
+			return false;
 
-			WorkingOnProjectBean wop = (WorkingOnProjectBean) (o);
+		WorkingOnProjectBean wop = (WorkingOnProjectBean) (o);
 			
-			if(getProject() == null || wop.getProject() == null)
-				return false;
-	
-			if (getProject().equals(wop.getProject()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getProject(), wop.getProject()) &&
+			super.equals(wop);
 	}
 }

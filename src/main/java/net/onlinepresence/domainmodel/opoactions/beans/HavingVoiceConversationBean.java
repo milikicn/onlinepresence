@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.Agent;
 import net.onlinepresence.domainmodel.opoactions.HavingVoiceConversation;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("HavingVoiceConversation")
@@ -62,19 +63,13 @@ public class HavingVoiceConversationBean extends HavingConversationBean implemen
 		if(this == o)
 			return true;
 		
-		if (o instanceof HavingVoiceConversationBean){
+		if (!(o instanceof HavingVoiceConversationBean))
+			return false;
 
-			HavingVoiceConversationBean hvc = (HavingVoiceConversationBean) (o);
+		HavingVoiceConversationBean hvc = (HavingVoiceConversationBean) (o);
 			
-			if(getSpeaker() == null || hvc.getSpeaker() == null)
-				return false;
-	
-			if (getSpeaker().equals(hvc.getSpeaker()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getSpeaker(), hvc.getSpeaker()) &&
+			super.equals(hvc);
 	}
 }

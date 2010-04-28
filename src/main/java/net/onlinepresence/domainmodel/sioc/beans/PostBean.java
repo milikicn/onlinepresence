@@ -25,6 +25,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import net.onlinepresence.domainmodel.sioc.Post;
+import net.onlinepresence.util.EqualsUtil;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
@@ -83,20 +84,14 @@ public class PostBean extends ItemBean implements Post {
 		if(this == o)
 			return true;
 		
-		if (o instanceof PostBean){
+		if (!(o instanceof PostBean))
+			return false;
 
-			PostBean post = (PostBean) (o);
-			
-			if(getReplyOf() == null || post.getReplyOf() == null)
-				return false;
-	
-			if (getReplyOf().equals(post.getReplyOf()) &&
-					getPrimaryTopicOf().equals(post.getPrimaryTopicOf()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		PostBean post = (PostBean) (o);
+		
+		return
+			EqualsUtil.areEqual(getReplyOf(), post.getReplyOf()) &&
+			EqualsUtil.areEqual(getPrimaryTopicOf(), post.getPrimaryTopicOf()) &&
+			super.equals(post);
 	}
 }

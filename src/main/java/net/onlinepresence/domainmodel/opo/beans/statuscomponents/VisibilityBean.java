@@ -57,14 +57,11 @@ public class VisibilityBean extends OnlineStatusComponentBean implements Visibil
 		if(this == o)
 			return true;
 		
-		if (o instanceof VisibilityBean){
+		if (!(o instanceof VisibilityBean))
+			return false;
+		
+		VisibilityBean visib = (VisibilityBean) o;
 
-//		VisibilityBean vis = (VisibilityBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		return super.equals(visib);
 	}
 }

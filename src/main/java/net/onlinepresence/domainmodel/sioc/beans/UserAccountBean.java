@@ -30,6 +30,7 @@ import thewebsemantic.RdfType;
 
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.sioc.UserAccount;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://rdfs.org/sioc/ns#")
 @RdfType("UserAccount")
@@ -83,20 +84,13 @@ public class UserAccountBean extends ResourceBean implements UserAccount {
 		if(this == o)
 			return true;
 		
-		if (o instanceof UserAccountBean){
+		if (!(o instanceof UserAccountBean))
+			return false;
 
-			UserAccountBean userAccount = (UserAccountBean) (o);
+		UserAccountBean userAccount = (UserAccountBean) (o);
 			
-			if(getAccountServiceHomepage() == null || userAccount.getAccountServiceHomepage() == null)
-				return false;
-	
-			if (getAccountName().equals(userAccount.getAccountName()) &&
-					getAccountServiceHomepage().equals(userAccount.getAccountServiceHomepage()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return 
+			EqualsUtil.areEqual(getAccountName(), userAccount.getAccountName()) &&
+			EqualsUtil.areEqual(getAccountServiceHomepage(), userAccount.getAccountServiceHomepage());
 	}
 }
