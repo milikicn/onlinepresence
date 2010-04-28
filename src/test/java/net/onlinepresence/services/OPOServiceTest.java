@@ -2,24 +2,21 @@ package net.onlinepresence.services;
 
 import net.onlinepresence.domainmodel.foaf.Agent;
 import net.onlinepresence.domainmodel.opo.OnlinePresence;
-import net.onlinepresence.domainmodel.opo.beans.StatusMessageBean;
+import net.onlinepresence.domainmodel.opo.StatusMessage;
 import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
 import net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.OnlineStatusBean;
 import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean;
 import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
 import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean;
 import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
 import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
-import net.onlinepresence.domainmodel.sioc.Post;
-import net.onlinepresence.domainmodel.sioc.beans.ItemBean;
 import net.onlinepresence.services.spring.ResourceFactory;
 
 public class OPOServiceTest {
 
 	public static void testExoport(){
 		
-		ResourceFactory factory = new ResourceFactory("http://fdfd.com/");
+		ResourceFactory factory = new ResourceFactory("http://namespace.com/");
 		
 		OnlinePresence onlinePresence = (OnlinePresence) factory.createResource(OnlinePresence.class);
 		
@@ -28,10 +25,8 @@ public class OPOServiceTest {
 		agentFilip.setHomepage("http://filip.milistan.net");
 
 		onlinePresence.setAgent(agentFilip);
-		
-		//OnlineStatus onlineStatus = (OnlineStatus) factory.createResource(OnlineStatus.class);
-		
-		OnlineStatus onlineStatus = new OnlineStatusBean();
+				
+		OnlineStatus onlineStatus = (OnlineStatus) factory.createResource(OnlineStatus.class);
 		onlineStatus.setUri("http://www.123.com");
 		onlineStatus.setActivity(ActivityBean.ACTIVE);
 		onlineStatus.setContactability(ContactabilityBean.FREELY_CONTACTABLE);
@@ -42,7 +37,8 @@ public class OPOServiceTest {
 		onlinePresence.setNotifiability(NotifiabilityBean.ALL_NOTIFICATIONS_PASS);
 		onlinePresence.setOnlineStatus(onlineStatus);
 		
-		ItemBean statusMessage = new StatusMessageBean("http://www.status.com");
+		StatusMessage statusMessage = (StatusMessage) factory.createResource(StatusMessage.class);
+		statusMessage.setUri("http://www.status.com");
 		statusMessage.setContent("Testing new library.");		
 		onlinePresence.setStatusMessage(statusMessage);
 		
