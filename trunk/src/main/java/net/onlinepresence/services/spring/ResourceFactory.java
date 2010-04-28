@@ -10,29 +10,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ResourceFactory {
 
 	private static ApplicationContext context;
-	private String namespace;
+	private String namespace = "http://online-presence.net/triplestore#";
 	
 	public ResourceFactory(){
-		context = createContext();
-		namespace = "http://online-presence.net/triplestore#";
+		context = getContext();
 	}
 	
 	public ResourceFactory(String ns){
 		if(!ns.endsWith("/") && !ns.endsWith("#")){
 			ns = ns + "#";
 		}
-		context = createContext();
+		context = getContext();
 		namespace = ns;
 	}
 
-	public ApplicationContext createContext() {
+	protected ApplicationContext createContext() {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				getContextLocations());
     	context.registerShutdownHook();
     	return context;
 	}
 
-	public String[] getContextLocations() {
+	protected String[] getContextLocations() {
 		String[] mappings = new String[]{
 			"META-INF/net/onlinepresence/domainmodel/doap.xml", 
 			"META-INF/net/onlinepresence/domainmodel/foaf.xml", 
@@ -47,9 +46,6 @@ public class ResourceFactory {
 			"META-INF/net/onlinepresence/domainmodel/sioc.xml" 
 		};
 		return mappings;
-//		File mappings = new File("META-INF/net/onlinepresence/domainmodel/aaa.txt");
-//		System.out.println(mappings.getAbsolutePath());
-//		return mappings.list();
 	}
 
 	public ApplicationContext getContext() {
