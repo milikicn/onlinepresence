@@ -46,14 +46,11 @@ public class GroupBean extends ThingBean implements Group {
 		if(this == o)
 			return true;
 		
-		if (o instanceof GroupBean){
+		if (!(o instanceof GroupBean))
+			return false;
 		
-//		GroupBean group = (GroupBean)(o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		GroupBean group = (GroupBean) o;
+		
+		return super.equals(group);
 	}
 }

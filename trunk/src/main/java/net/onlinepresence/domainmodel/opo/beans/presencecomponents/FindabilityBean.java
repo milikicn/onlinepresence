@@ -58,14 +58,11 @@ public class FindabilityBean extends OnlinePresenceComponentBean implements Find
 		if(this == o)
 			return true;
 		
-		if (o instanceof FindabilityBean){
-
-//		FindabilityBean find = (FindabilityBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		if (!(o instanceof FindabilityBean))
+			return false;
+		
+		FindabilityBean find = (FindabilityBean) o;
+		
+		return super.equals(find);
 	}
 }

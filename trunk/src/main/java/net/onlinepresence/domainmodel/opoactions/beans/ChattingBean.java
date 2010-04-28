@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.Agent;
 import net.onlinepresence.domainmodel.opoactions.Chatting;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo-actions/ns#")
 @RdfType("Chatting")
@@ -73,19 +74,13 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ChattingBean){
-
-			ChattingBean chat = (ChattingBean) (o);
+		if (!(o instanceof ChattingBean))
+			return  false;
 			
-			if(getChatBuddy() == null || chat.getChatBuddy() == null)
-				return false;
-	
-			if (getChatBuddy().equals(chat.getChatBuddy()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		ChattingBean chat = (ChattingBean) (o);
+			
+		return
+			EqualsUtil.areEqual(getChatBuddy(), chat.getChatBuddy()) &&
+			super.equals(chat);
 	}
 }

@@ -30,6 +30,7 @@ import thewebsemantic.RdfType;
 
 import net.onlinepresence.domainmodel.foaf.Thing;
 import net.onlinepresence.domainmodel.general.ResourceBean;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://www.w3.org/2002/07/owl")
 @RdfType("Thing")
@@ -122,29 +123,16 @@ public class ThingBean extends ResourceBean implements Thing {
 	public boolean equals(Object o) {
 		if(this == o)
 			return true;
+				
+		if (!(o instanceof ThingBean))
+			return false;
 		
-		if (o instanceof ThingBean){
-
-			ThingBean t = (ThingBean) (o);
-			
-			if(getHomepage() == null || t.getHomepage() == null)
-				return false;
-			
-			if(getIsPrimaryTopicOf() == null || t.getIsPrimaryTopicOf() == null)
-				return false;
-	
-			if(getSeeAlso() == null || t.getSeeAlso() == null)
-				return false;
-			
-			if (getName().equals(t.getName()) && 
-					getHomepage().equals(t.getHomepage()) && 
-					getIsPrimaryTopicOf().equals(t.getIsPrimaryTopicOf()) &&
-					getSeeAlso().equals(t.getSeeAlso()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		ThingBean thing = (ThingBean) (o);
+				
+		return
+			EqualsUtil.areEqual(getName(), thing.getName()) &&
+			EqualsUtil.areEqual(getHomepage(), thing.getHomepage()) &&
+			EqualsUtil.areEqual(getIsPrimaryTopicOf(), thing.getIsPrimaryTopicOf()) &&
+			EqualsUtil.areEqual(getSeeAlso(), thing.getSeeAlso());
 	}
 }

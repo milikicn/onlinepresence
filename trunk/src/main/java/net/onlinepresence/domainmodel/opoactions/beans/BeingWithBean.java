@@ -47,14 +47,11 @@ public class BeingWithBean extends ActionBean implements BeingWith {
 		if(this == o)
 			return true;
 		
-		if (o instanceof BeingWithBean){
+		if (!(o instanceof BeingWithBean))
+			return false;
 
-//		BeingWithBean bw = (BeingWithBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		BeingWithBean beingWith = (BeingWithBean) o;
+		
+		return super.equals(beingWith);
 	}
 }

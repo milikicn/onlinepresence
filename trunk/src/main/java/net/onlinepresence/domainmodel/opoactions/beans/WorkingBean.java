@@ -47,14 +47,11 @@ public class WorkingBean extends ActionBean implements Working {
 		if(this == o)
 			return true;
 		
-		if (o instanceof WorkingBean){
+		if (!(o instanceof WorkingBean))
+			return false;
+		
+		WorkingBean work = (WorkingBean) o;
 
-//		WorkingBean work = (WorkingBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		return super.equals(work);
 	}
 }

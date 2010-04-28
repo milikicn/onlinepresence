@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.sioc.Item;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://rdfs.org/sioc/ns#")
 @RdfType("Item")
@@ -59,16 +60,12 @@ public class ItemBean extends ResourceBean implements Item {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ItemBean){
+		if (!(o instanceof ItemBean))
+			return false;
 
-			ItemBean item = (ItemBean) (o);
-	
-			if (getContent().equals(item.getContent()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		ItemBean item = (ItemBean) (o);
+		
+		return
+			EqualsUtil.areEqual(getContent(), item.getContent());
 	}
 }

@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.general.ResourceBean;
 import net.onlinepresence.domainmodel.geo.SpatialThing;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 @RdfType("SpatialThing")
@@ -70,17 +71,13 @@ public class SpatialThingBean extends ResourceBean implements SpatialThing {
 		if(this == o)
 			return true;
 		
-		if (o instanceof SpatialThingBean){
+		if (!(o instanceof SpatialThingBean))
+			return false;
 
-			SpatialThingBean st = (SpatialThingBean) (o);
+		SpatialThingBean st = (SpatialThingBean) (o);
 	
-			if (getLatitude().equals(st.getLatitude())
-					&& getLongitude().equals(st.getLongitude()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return 
+			EqualsUtil.areEqual(getLatitude(), st.getLatitude()) &&
+			EqualsUtil.areEqual(getLongitude(), st.getLongitude());
 	}
 }

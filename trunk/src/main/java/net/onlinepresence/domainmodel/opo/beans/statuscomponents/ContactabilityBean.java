@@ -58,14 +58,11 @@ public class ContactabilityBean extends OnlineStatusComponentBean implements Con
 		if(this == o)
 			return true;
 		
-		if (o instanceof ContactabilityBean){
+		if (!(o instanceof ContactabilityBean))
+			return false;
+		
+		ContactabilityBean cont = (ContactabilityBean) o;
 
-//		ContactabilityBean cont = (ContactabilityBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		return super.equals(cont);
 	}
 }

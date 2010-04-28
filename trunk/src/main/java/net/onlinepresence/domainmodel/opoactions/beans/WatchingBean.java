@@ -23,6 +23,7 @@ package net.onlinepresence.domainmodel.opoactions.beans;
 
 import net.onlinepresence.domainmodel.opo.beans.ActionBean;
 import net.onlinepresence.domainmodel.opoactions.Watching;
+import net.onlinepresence.util.EqualsUtil;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
@@ -60,19 +61,13 @@ public class WatchingBean<T> extends ActionBean implements Watching<T> {
 		if(this == o)
 			return true;
 		
-		if (o instanceof WatchingBean){
+		if (!(o instanceof WatchingBean))
+			return false;
 
-			WatchingBean watc = (WatchingBean) (o);
+		WatchingBean watc = (WatchingBean) (o);
 			
-			if(getWatching() == null || watc.getWatching() == null)
-				return false;
-	
-			if (getWatching().equals(watc.getWatching()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getWatching(), watc.getWatching()) &&
+			super.equals(watc);
 	}
 }

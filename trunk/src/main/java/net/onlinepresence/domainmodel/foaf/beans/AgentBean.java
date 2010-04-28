@@ -28,6 +28,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.foaf.Agent;
 import net.onlinepresence.domainmodel.opo.OnlinePresence;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://xmlns.com/foaf/0.1/")
 @RdfType("Agent")
@@ -81,21 +82,15 @@ public class AgentBean extends ThingBean implements Agent {
 		if(this == o)
 			return true;
 		
-		if (o instanceof AgentBean){
+		if (!(o instanceof AgentBean))
+			return false;
 
-			AgentBean ag = (AgentBean) (o);
+		AgentBean ag = (AgentBean) (o);
 			
-			if(getOnlinePresence() == null || ag.getOnlinePresence() == null)
-				return false;
-	
-			if (getNick().equals(ag.getName()) &&
-					getOnlinePresence().equals(ag.getOnlinePresence()) &&
-					getMbox().equals(ag.getMbox()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return 
+			EqualsUtil.areEqual(getNick(), ag.getNick()) &&
+			EqualsUtil.areEqual(getOnlinePresence(), ag.getOnlinePresence()) &&
+			EqualsUtil.areEqual(getMbox(), ag.getMbox()) &&
+			super.equals(ag);
 	}
 }

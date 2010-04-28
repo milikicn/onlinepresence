@@ -34,6 +34,7 @@ import net.onlinepresence.domainmodel.opo.statuscomponents.Activity;
 import net.onlinepresence.domainmodel.opo.statuscomponents.Contactability;
 import net.onlinepresence.domainmodel.opo.statuscomponents.Disturbability;
 import net.onlinepresence.domainmodel.opo.statuscomponents.Visibility;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("OnlineStatus")
@@ -134,36 +135,18 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 		if(this == o)
 			return true;
 		
-		if (o instanceof OnlineStatusBean){
+		if (!(o instanceof OnlineStatusBean))
+			return false;
 
-			OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
+		OnlineStatusBean onlineStatus = (OnlineStatusBean) (o);
 			
-			if(getStatusComponents() == null || onlineStatus.getStatusComponents() == null)
-				return false;
-			
-			if(getVisibility() == null || onlineStatus.getVisibility() == null)
-				return false;
-			
-			if(getDisturbability() == null || onlineStatus.getDisturbability() == null)
-				return false;
-			
-			if(getActivity() == null || onlineStatus.getActivity() == null)
-				return false;
-			
-			if(getContactability() == null || onlineStatus.getContactability() == null)
-				return false;
-	
-			if (getStatusComponents().equals(onlineStatus.getStatusComponents()) &&
-					getName().equals(onlineStatus.getName()) &&
-					getVisibility().equals(onlineStatus.getVisibility()) &&
-					getDisturbability().equals(onlineStatus.getDisturbability()) &&
-					getActivity().equals(onlineStatus.getActivity()) &&
-					getContactability().equals(onlineStatus.getContactability()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getStatusComponents(), onlineStatus.getStatusComponents()) &&
+			EqualsUtil.areEqual(getName(), onlineStatus.getName()) &&
+			EqualsUtil.areEqual(getVisibility(), onlineStatus.getVisibility()) &&
+			EqualsUtil.areEqual(getDisturbability(), onlineStatus.getDisturbability()) &&
+			EqualsUtil.areEqual(getActivity(), onlineStatus.getActivity()) &&
+			EqualsUtil.areEqual(getContactability(), onlineStatus.getContactability()) &&
+			super.equals(onlineStatus);
 	}
 }

@@ -26,6 +26,7 @@ import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean;
 import net.onlinepresence.domainmodel.opo.statuscomponents.Activity;
+import net.onlinepresence.util.EqualsUtil;
 
 @Namespace("http://online-presence.net/opo/ns#")
 @RdfType("Activity")
@@ -76,15 +77,13 @@ public class ActivityBean extends OnlineStatusComponentBean implements Activity{
 		if(this == o)
 			return true;
 		
-		if (o instanceof ActivityBean){
+		if (!(o instanceof ActivityBean))
+			return false;
 
 		ActivityBean act = (ActivityBean) (o);
 
-		if(getInactivityPeriod() == act.getInactivityPeriod())
-			return true;
-		else
-			return false;
-		}
-		return false;
+		return
+			EqualsUtil.areEqual(getInactivityPeriod(), act.getInactivityPeriod()) &&
+			super.equals(act);
 	}
 }

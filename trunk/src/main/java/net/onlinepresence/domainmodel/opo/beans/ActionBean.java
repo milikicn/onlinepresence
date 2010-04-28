@@ -47,14 +47,9 @@ public class ActionBean extends ResourceBean implements Action {
 		if(this == o)
 			return true;
 		
-		if (o instanceof ActionBean){
+		if (!(o instanceof ActionBean))
+			return false;
 
-//		ActionBean act = (ActionBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		return true;
 	}
 }

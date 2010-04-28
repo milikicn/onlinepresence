@@ -47,14 +47,11 @@ public class StatusMessageBean extends ItemBean implements StatusMessage {
 		if(this == o)
 			return true;
 		
-		if (o instanceof StatusMessageBean){
-
-//		StatusMessageBean statusMes = (StatusMessageBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		if (!(o instanceof StatusMessageBean))
+			return false;
+		
+		StatusMessageBean status = (StatusMessageBean) o;
+		
+		return super.equals(status);
 	}
 }

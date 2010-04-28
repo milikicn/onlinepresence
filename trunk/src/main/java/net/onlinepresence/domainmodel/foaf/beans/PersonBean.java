@@ -23,6 +23,7 @@ package net.onlinepresence.domainmodel.foaf.beans;
 
 import net.onlinepresence.domainmodel.foaf.Image;
 import net.onlinepresence.domainmodel.foaf.Person;
+import net.onlinepresence.util.EqualsUtil;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
@@ -59,19 +60,13 @@ public class PersonBean extends AgentBean implements Person {
 		if(this == o)
 			return true;
 		
-		if ((o instanceof Person)){
+		if (!(o instanceof Person))
+			return false;
 
-			PersonBean per = (PersonBean) (o);
+		PersonBean per = (PersonBean) (o);
 			
-			if(getImg() == null || per.getImg() == null)
-				return false;
-	
-			if (getImg().equals(per.getImg()))
-	
-				return true;
-			else
-				return false;
-		}
-		return false;
+		return 
+			EqualsUtil.areEqual(getImg(), per.getImg()) &&
+			super.equals(per);
 	}
 }

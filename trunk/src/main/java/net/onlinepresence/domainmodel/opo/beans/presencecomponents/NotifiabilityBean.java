@@ -63,14 +63,11 @@ public class NotifiabilityBean extends OnlinePresenceComponentBean implements No
 		if(this == o)
 			return true;
 		
-		if (o instanceof NotifiabilityBean){
-
-//		NotifiabilityBean not = (NotifiabilityBean) (o);
-
-			return true;
-//		else
-//			return false;
-		}
-		return false;
+		if (!(o instanceof NotifiabilityBean))
+			return false;
+		
+		NotifiabilityBean notifiability = (NotifiabilityBean) o;
+		
+		return super.equals(notifiability);
 	}
 }
