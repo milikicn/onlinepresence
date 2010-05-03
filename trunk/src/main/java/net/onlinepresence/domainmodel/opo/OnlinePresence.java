@@ -63,8 +63,8 @@ public interface OnlinePresence extends Resource{
 	public Collection<OnlinePresenceComponent> getPresenceComponents();
 	public void addPresenceComponent(OnlinePresenceComponent presenceComponent);
 	
-	public void setIntendentFor(SharingSpace intendentFor);
-	public SharingSpace getIntendentFor();
+	public void setIntendedFor(SharingSpace intendedFor);
+	public SharingSpace getIntendedFor();
 	
 	public void setSource(SourceOfPublishing source);
 	public SourceOfPublishing getSource();

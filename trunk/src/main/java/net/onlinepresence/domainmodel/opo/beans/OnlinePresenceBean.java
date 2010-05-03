@@ -54,7 +54,7 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 	public Agent agent;
 	public Image avatar;
 	public String duration;
-	public SharingSpace intendentFor;
+	public SharingSpace intendedFor;
 	public SpatialThing location;
 	public Collection<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
 	public SourceOfPublishing source;
@@ -120,13 +120,13 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#intendedFor")
-	public SharingSpace getIntendentFor() {
-		return intendentFor;
+	public SharingSpace getIntendedFor() {
+		return intendedFor;
 	}
 
-	public void setIntendentFor(SharingSpace intendentFor) {
-		if(intendentFor != null)
-			this.intendentFor = intendentFor;
+	public void setIntendedFor(SharingSpace intendedFor) {
+		if(intendedFor != null)
+			this.intendedFor = intendedFor;
 	}
 
 	@RdfProperty("http://online-presence.net/opo/ns#currentLocation")
@@ -238,7 +238,7 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 			EqualsUtil.areEqual(getAgent(), onlinePresence.getAgent()) &&
 			EqualsUtil.areEqual(getAvatar(), onlinePresence.getAvatar()) &&
 			EqualsUtil.areEqual(getDuration(), onlinePresence.getDuration()) &&
-			EqualsUtil.areEqual(getIntendentFor(), onlinePresence.getIntendentFor()) &&
+			EqualsUtil.areEqual(getIntendedFor(), onlinePresence.getIntendedFor()) &&
 			EqualsUtil.areEqual(getLocation(), onlinePresence.getLocation()) &&
 			EqualsUtil.areEqual(getPresenceComponents(), onlinePresence.getPresenceComponents()) &&
 			EqualsUtil.areEqual(getSource(), onlinePresence.getSource()) &&
