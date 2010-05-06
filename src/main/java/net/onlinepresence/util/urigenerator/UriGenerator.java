@@ -29,6 +29,7 @@ public abstract class UriGenerator {
 	 * @param namespace 
 	 * @return the generated URI as string value  
 	 */
-	public abstract String generateInstanceUri(Object instance, String namespace);
+	@SuppressWarnings("unchecked")
+	public abstract String generateInstanceUri(Class clazz, String namespace);
 
 }

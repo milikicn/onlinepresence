@@ -37,8 +37,9 @@ public class URIBuilder {
 		uriGenerator = new UUIDBasedUriGenerator();
 	}
 	
-	public String generateURI(Object instance, String namespace) {
-		return uriGenerator.generateInstanceUri(instance, namespace);
+	@SuppressWarnings("unchecked")
+	public String generateURI(Class clazz, String namespace) {
+		return uriGenerator.generateInstanceUri(clazz, namespace);
 	}
 
 }
