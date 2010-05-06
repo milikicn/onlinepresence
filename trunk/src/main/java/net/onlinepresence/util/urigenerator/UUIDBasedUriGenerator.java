@@ -31,10 +31,11 @@ import java.util.UUID;
  */
 public class UUIDBasedUriGenerator extends UriGenerator {
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public String generateInstanceUri(Object instance, String namespace) {
+	public String generateInstanceUri(Class clazz, String namespace) {
 		return namespace +
-				instance.getClass().getSimpleName() +
+				clazz.getSimpleName() +
 				"/" +
 				UUID.randomUUID();
 	}
