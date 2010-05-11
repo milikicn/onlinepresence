@@ -23,7 +23,7 @@
 	<dependency> 
   		<groupId>thewebsemantic</groupId> 
   		<artifactId>jenabean</artifactId> 
-  		<version>1.0.3</version> 
+  		<version>1.0.7</version> 
   	</dependency>
   	<dependency>
 		<groupId>org.springframework</groupId>

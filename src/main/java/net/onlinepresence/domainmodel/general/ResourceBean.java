@@ -22,10 +22,11 @@
 package net.onlinepresence.domainmodel.general;
 
 import java.io.Serializable;
+import java.net.URI;
 
+import thewebsemantic.Id;
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfType;
-import thewebsemantic.Uri;
 
 @Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 @RdfType("Resource")
@@ -33,23 +34,32 @@ public class ResourceBean
 implements Resource, Serializable{
 
 	private static final long serialVersionUID = -2234520192109835808L;
-	protected String uri;
+	protected URI uri;
 	
 	@Deprecated
 	public ResourceBean() {	}
 	
 	@Deprecated
-	public ResourceBean(String uri) {
+	public ResourceBean(URI uri) {
 		this.uri = uri;
 	}
 	
-	@Uri
-	public String getUri() {
+	@Deprecated
+	public ResourceBean(String uri) {
+		this.uri = URI.create(uri);
+	}
+	
+	@Id
+	public URI getUri() {
 		return uri;
 	}
 	
-	public void setUri(String uri){
+	public void setUri(URI uri){
 		this.uri = uri;
+	}
+	
+	public void setUri(String uri){
+		this.uri = URI.create(uri);
 	}
 	
 	public boolean equals(Object o) {
@@ -60,7 +70,7 @@ implements Resource, Serializable{
 	}
 	
 	public String toString() {
-		return getUri();
+		return getUri().toString();
 	}
 
 }

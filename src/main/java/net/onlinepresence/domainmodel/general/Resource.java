@@ -21,9 +21,13 @@
  */
 package net.onlinepresence.domainmodel.general;
 
+import java.net.URI;
+
 public interface Resource {
 
-	public String getUri();
+	public URI getUri();
+	
+	public void setUri(URI uri);
 	
 	public void setUri(String uri);
 }
