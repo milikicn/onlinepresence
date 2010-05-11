@@ -64,7 +64,7 @@ public class ChattingBean extends HavingConversationBean implements Chatting {
 
 	public void setChatBuddy(Agent chatBuddy) {
 		if(chatBuddy != null){
-			chatBuddy.setUri(chatBuddy.getUri().replaceFirst("Agent", "ChatBuddy"));
+			chatBuddy.setUri(chatBuddy.getUri().toString().replaceFirst("Agent", "ChatBuddy"));
 			this.chatBuddy = chatBuddy;
 		}
 	}
