@@ -5,7 +5,7 @@ public class Constants {
 	public static final String OPO_NS = "http://online-presence.net/opo/ns#";
 	public static final String OPO_ACTIONS_NS = "http://online-presence.net/opo-actions/ns#";
 	public static final String SIOC_NS = "http://rdfs.org/sioc/ns#";
-	public static final String DOAP_NS = "";
+	public static final String DOAP_NS = "http://usefulinc.com/ns/doap#";
 	public static final String FOAF_NS = "http://xmlns.com/foaf/0.1/";
 	public static final String WSG84_POS_NS = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	public static final String SWC_NS = "http://data.semanticweb.org/ns/swc/ontology#";
