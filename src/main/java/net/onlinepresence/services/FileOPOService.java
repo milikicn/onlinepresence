@@ -24,7 +24,7 @@ package net.onlinepresence.services;
 import java.util.Collection;
 import java.util.Iterator;
 
-import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.services.datacentral.FileDataProvider;
 import net.onlinepresence.services.spring.ResourceFactory;
 

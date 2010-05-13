@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean id="net.onlinepresence.domainmodel.doap.Project"
-		class="net.onlinepresence.domainmodel.doap.beans.ProjectBean"
+	<bean id="net.onlinepresence.ontmodel.doap.Project"
+		class="net.onlinepresence.ontmodel.doap.beans.ProjectBean"
 		scope="prototype" >
 	</bean>
 	

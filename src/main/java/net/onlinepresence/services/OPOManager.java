@@ -2,7 +2,7 @@ package net.onlinepresence.services;
 
 import java.util.Collection;
 
-import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.ontmodel.general.Resource;
 
 public interface OPOManager {
 

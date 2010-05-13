@@ -26,7 +26,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.services.datacentral.DataProvider;
 
 import thewebsemantic.Bean2RDF;

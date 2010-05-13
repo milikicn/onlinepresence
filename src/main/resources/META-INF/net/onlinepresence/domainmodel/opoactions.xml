@@ -4,48 +4,48 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.BeingWith"
-		class="net.onlinepresence.domainmodel.opoactions.beans.BeingWithBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.BeingWith"
+		class="net.onlinepresence.ontmodel.opoactions.beans.BeingWithBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.Chatting"
-		class="net.onlinepresence.domainmodel.opoactions.beans.ChattingBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.Chatting"
+		class="net.onlinepresence.ontmodel.opoactions.beans.ChattingBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.HavingConversation"
-		class="net.onlinepresence.domainmodel.opoactions.beans.HavingConversationBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.HavingConversation"
+		class="net.onlinepresence.ontmodel.opoactions.beans.HavingConversationBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.HavingVoiceConversation"
-		class="net.onlinepresence.domainmodel.opoactions.beans.HavingVoiceConversationBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.HavingVoiceConversation"
+		class="net.onlinepresence.ontmodel.opoactions.beans.HavingVoiceConversationBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.Listening"
-		class="net.onlinepresence.domainmodel.opoactions.beans.ListeningBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.Listening"
+		class="net.onlinepresence.ontmodel.opoactions.beans.ListeningBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.Reading"
-		class="net.onlinepresence.domainmodel.opoactions.beans.ReadingBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.Reading"
+		class="net.onlinepresence.ontmodel.opoactions.beans.ReadingBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.Watching"
-		class="net.onlinepresence.domainmodel.opoactions.beans.WatchingBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.Watching"
+		class="net.onlinepresence.ontmodel.opoactions.beans.WatchingBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.Working"
-		class="net.onlinepresence.domainmodel.opoactions.beans.WorkingBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.Working"
+		class="net.onlinepresence.ontmodel.opoactions.beans.WorkingBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opoactions.WorkingOnProject"
-		class="net.onlinepresence.domainmodel.opoactions.beans.WorkingOnProjectBean"
+	<bean id="net.onlinepresence.ontmodel.opoactions.WorkingOnProject"
+		class="net.onlinepresence.ontmodel.opoactions.beans.WorkingOnProjectBean"
 		scope="prototype" >
 	</bean>
 	
