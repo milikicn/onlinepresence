@@ -4,38 +4,38 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean id="net.onlinepresence.domainmodel.opo.Action"
-		class="net.onlinepresence.domainmodel.opo.beans.ActionBean"
+	<bean id="net.onlinepresence.ontmodel.opo.Action"
+		class="net.onlinepresence.ontmodel.opo.beans.ActionBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.OnlinePresence"
-		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceBean"
+	<bean id="net.onlinepresence.ontmodel.opo.OnlinePresence"
+		class="net.onlinepresence.ontmodel.opo.beans.OnlinePresenceBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.OnlinePresenceComponent"
-		class="net.onlinepresence.domainmodel.opo.beans.OnlinePresenceComponentBean"
+	<bean id="net.onlinepresence.ontmodel.opo.OnlinePresenceComponent"
+		class="net.onlinepresence.ontmodel.opo.beans.OnlinePresenceComponentBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.OnlineStatusComponent"
-		class="net.onlinepresence.domainmodel.opo.beans.OnlineStatusComponentBean"
+	<bean id="net.onlinepresence.ontmodel.opo.OnlineStatusComponent"
+		class="net.onlinepresence.ontmodel.opo.beans.OnlineStatusComponentBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.SharingSpace"
-		class="net.onlinepresence.domainmodel.opo.beans.SharingSpaceBean"
+	<bean id="net.onlinepresence.ontmodel.opo.SharingSpace"
+		class="net.onlinepresence.ontmodel.opo.beans.SharingSpaceBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.SourceOfPublishing"
-		class="net.onlinepresence.domainmodel.opo.beans.SourceOfPublishingBean"
+	<bean id="net.onlinepresence.ontmodel.opo.SourceOfPublishing"
+		class="net.onlinepresence.ontmodel.opo.beans.SourceOfPublishingBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.domainmodel.opo.StatusMessage"
-		class="net.onlinepresence.domainmodel.opo.beans.StatusMessageBean"
+	<bean id="net.onlinepresence.ontmodel.opo.StatusMessage"
+		class="net.onlinepresence.ontmodel.opo.beans.StatusMessageBean"
 		scope="prototype" >
 	</bean>
 	

@@ -1,6 +1,6 @@
 package net.onlinepresence.services.spring;
 
-import net.onlinepresence.domainmodel.general.Resource;
+import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.util.urigenerator.URIBuilder;
 
 import org.springframework.context.ApplicationContext;

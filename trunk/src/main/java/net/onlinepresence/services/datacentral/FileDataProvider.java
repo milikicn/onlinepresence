@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import net.onlinepresence.util.Constants;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -28,26 +30,24 @@ public class FileDataProvider implements DataProvider {
 	public Model getData() {
 
 		Model model = ModelFactory.createDefaultModel();
-		model.setNsPrefix("opo", "http://online-presence.net/opo/ns#");
-		model.setNsPrefix("opo-actions",
-				"http://online-presence.net/opo-actions/ns#");
-		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
-		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-		model.setNsPrefix("sioc", "http://rdfs.org/sioc/ns#");
-		model.setNsPrefix("dc", "http://purl.org/dc/elements/1.1/");
-		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
-		model.setNsPrefix("wgs84", "http://www.w3.org/2003/01/geo/wgs84_pos#");
-		model.setNsPrefix("event", "http://purl.org/NET/c4dm/event.owl#");
-		model.setNsPrefix("swc", "http://data.semanticweb.org/ns/swc/ontology#");
-		model.setNsPrefix("jenabean", "http://thewebsemantic.com/");
-		model.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
+		model.setNsPrefix("opo", Constants.OPO_NS);
+		model.setNsPrefix("opo-actions", Constants.OPO_ACTIONS_NS);
+		model.setNsPrefix("foaf", Constants.FOAF_NS);
+		model.setNsPrefix("rdfs", Constants.RDFS_NS);
+		model.setNsPrefix("sioc", Constants.SIOC_NS);
+		model.setNsPrefix("dc", Constants.DC_NS);
+		model.setNsPrefix("xsd", Constants.XSD_NS);
+		model.setNsPrefix("wgs84", Constants.WSG84_POS_NS);
+		model.setNsPrefix("event", Constants.EVENT_NS);
+		model.setNsPrefix("swc", Constants.SWC_NS);
+		model.setNsPrefix("jenabean", Constants.JENABEAN_NS);
+		model.setNsPrefix("doap", Constants.DOAP_NS);
 		
 		File dataFile = new File(dataSourceUrl);
 		
 		if(dataFile.exists()){
 			try {
-				model.read(new FileInputStream(dataSourceUrl),
-						"http://online-presence.net/opo/ns#", rdfLang);
+				model.read(new FileInputStream(dataSourceUrl), Constants.OPO_NS, rdfLang);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -59,8 +59,7 @@ public class FileDataProvider implements DataProvider {
 	@Override
 	public void updateDataSource(Model m) {
 		try {
-			m.write(new FileOutputStream(dataSourceUrl), rdfLang,
-					"http://online-presence.net/opo/ns#");
+			m.write(new FileOutputStream(dataSourceUrl), rdfLang, Constants.OPO_NS);
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

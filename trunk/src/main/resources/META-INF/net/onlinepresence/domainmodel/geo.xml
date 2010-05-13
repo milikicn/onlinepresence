@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean id="net.onlinepresence.domainmodel.geo.SpatialThing"
-		class="net.onlinepresence.domainmodel.geo.beans.SpatialThingBean"
+	<bean id="net.onlinepresence.ontmodel.geo.SpatialThing"
+		class="net.onlinepresence.ontmodel.geo.beans.SpatialThingBean"
 		scope="prototype" >
 	</bean>
 	
