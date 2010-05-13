@@ -35,30 +35,30 @@ import net.onlinepresence.ontmodel.purl.Event;
  */
 public interface SharingSpace extends Group{
 
-	public void setEvent(Event event);
-	public Event getEvent();
+	void setEvent(Event event);
+	Event getEvent();
 	
-	public void setNearLocation(SpatialThing base);
-	public SpatialThing getNearLocation();
+	void setNearLocation(SpatialThing base);
+	SpatialThing getNearLocation();
 	
-	public void setFriend(Person friend);
-	public Person getFriend();
+	void setFriend(Person friend);
+	Person getFriend();
 	
-	public void setCommonInterest(URI commonInterest);
-	public void setCommonInterest(String commonInterest);
-	public URI getCommonInterest();
+	void setCommonInterest(URI commonInterest);
+	void setCommonInterest(String commonInterest);
+	URI getCommonInterest();
 	
-	public void setCurrentLocation(SpatialThing base);
-	public SpatialThing getCurrentLocation();
+	void setCurrentLocation(SpatialThing base);
+	SpatialThing getCurrentLocation();
 	
-	public void setFamily(Person family);
-	public Person getFamily();
+	void setFamily(Person family);
+	Person getFamily();
 	
-	public void setSchoolHomepage(URI schoolHomepage);
-	public void setSchoolHomepage(String schoolHomepage);
-	public URI getSchoolHomepage();
+	void setSchoolHomepage(URI schoolHomepage);
+	void setSchoolHomepage(String schoolHomepage);
+	URI getSchoolHomepage();
 	
-	public void setWorkplaceHomepage(URI workplaceHomepage);
-	public void setWorkplaceHomepage(String workplaceHomepage);
-	public URI getWorkplaceHomepage();
+	void setWorkplaceHomepage(URI workplaceHomepage);
+	void setWorkplaceHomepage(String workplaceHomepage);
+	URI getWorkplaceHomepage();
 }

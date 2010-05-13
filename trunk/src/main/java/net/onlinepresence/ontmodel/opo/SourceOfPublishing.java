@@ -29,6 +29,6 @@ import net.onlinepresence.ontmodel.general.Resource;
  */
 public interface SourceOfPublishing extends Resource{
 
-	public void setName(String sourceName);
-	public String getName();
+	void setName(String sourceName);
+	String getName();
 }

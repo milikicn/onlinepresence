@@ -25,9 +25,9 @@ import java.net.URI;
 
 public interface Resource {
 
-	public URI getUri();
+	URI getUri();
 	
-	public void setUri(URI uri);
+	void setUri(URI uri);
 	
-	public void setUri(String uri);
+	void setUri(String uri);
 }

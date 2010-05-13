@@ -30,6 +30,6 @@ import net.onlinepresence.ontmodel.opo.presencecomponents.OnlineStatus;
  */
 public interface OnlineStatusComponent extends Resource {
 
-	public void setComponent(OnlineStatus component);
-	public OnlineStatus getComponent();
+	void setComponent(OnlineStatus component);
+	OnlineStatus getComponent();
 }

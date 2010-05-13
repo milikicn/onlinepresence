@@ -57,11 +57,11 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 	}
 	
 	@RdfProperty(Constants.OPO_NS + "hasStatusComponent")
-	public Collection<OnlineStatusComponent> getOnlineStatusComponents() {
+	public Collection<OnlineStatusComponent> getStatusComponents() {
 		return statusComponents;
 	}
 
-	public void setOnlineStatusComponents(
+	public void setStatusComponents(
 			Collection<OnlineStatusComponent> statusComponents) {
 		if(statusComponents != null)
 			this.statusComponents = statusComponents;
@@ -87,15 +87,6 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 	public void setName(String name) {
 		if(name != null)
 			this.name = name;
-	}
-
-	public Collection<OnlineStatusComponent> getStatusComponents() {
-		return statusComponents;
-	}
-
-	public void setStatusComponents(
-			Collection<OnlineStatusComponent> statusComponents) {
-		this.statusComponents = statusComponents;
 	}
 
 	public Visibility retrieveVisibility() {

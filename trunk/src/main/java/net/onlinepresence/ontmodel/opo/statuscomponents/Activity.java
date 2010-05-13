@@ -30,6 +30,6 @@ import net.onlinepresence.ontmodel.opo.OnlineStatusComponent;
  */
 public interface Activity extends OnlineStatusComponent{
 
-	public void setInactivityPeriod(int inactivityPeriod);
-	public int getInactivityPeriod();
+	void setInactivityPeriod(int inactivityPeriod);
+	int getInactivityPeriod();
 }
