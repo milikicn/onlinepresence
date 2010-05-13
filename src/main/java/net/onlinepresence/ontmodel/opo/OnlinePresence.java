@@ -27,6 +27,9 @@ import net.onlinepresence.ontmodel.foaf.Agent;
 import net.onlinepresence.ontmodel.foaf.Image;
 import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.ontmodel.geo.SpatialThing;
+import net.onlinepresence.ontmodel.opo.presencecomponents.Findability;
+import net.onlinepresence.ontmodel.opo.presencecomponents.Notifiability;
+import net.onlinepresence.ontmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.ontmodel.sioc.Item;
 import net.onlinepresence.ontmodel.sioc.UserAccount;
 
@@ -71,4 +74,13 @@ public interface OnlinePresence extends Resource{
 	
 	void setStartTime(String startTime);
 	String getStartTime();
+	
+	Findability retrieveFindability();
+	void setFindability(Findability findability);
+	
+	Notifiability retrieveNotifiability();
+	void setNotifiability(Notifiability notifiability);
+
+	OnlineStatus retrieveOnlineStatus();
+	void setOnlineStatus(OnlineStatus onlineStatus);
 }

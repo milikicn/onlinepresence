@@ -29,6 +29,6 @@ import net.onlinepresence.ontmodel.general.Resource;
  */
 public interface OnlinePresenceComponent extends Resource{
 
-	public void setComponent(OnlinePresence component);
-	public OnlinePresence getComponent();
+	void setComponent(OnlinePresence component);
+	OnlinePresence getComponent();
 }

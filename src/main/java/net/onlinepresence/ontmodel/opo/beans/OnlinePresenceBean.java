@@ -200,18 +200,6 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 			this.userAccount = user;
 	}
 	
-	public void setFindability(Findability findability){
-		addPresenceComponent(findability);
-	}
-
-	public void setNotifiability(Notifiability notifiability){
-		addPresenceComponent(notifiability);
-	}
-		
-	public void setOnlineStatus(OnlineStatus onlineStatus){
-		addPresenceComponent(onlineStatus);
-	}
-
 	public Findability retrieveFindability() {
 		OnlinePresenceComponent find = findPresenceComponent(Findability.class);
 		if(find != null)
@@ -220,6 +208,10 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 		return null;
 	}
 
+	public void setFindability(Findability findability){
+		addPresenceComponent(findability);
+	}
+	
 	public Notifiability retrieveNotifiability() {
 		OnlinePresenceComponent not = findPresenceComponent(Notifiability.class);
 		if(not != null)
@@ -228,12 +220,20 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 		return null;
 	}
 
+	public void setNotifiability(Notifiability notifiability){
+		addPresenceComponent(notifiability);
+	}
+
 	public OnlineStatus retrieveOnlineStatus() {
 		OnlinePresenceComponent onlineStatus = findPresenceComponent(OnlineStatus.class);
 		if(onlineStatus != null)
 			return (OnlineStatus) onlineStatus;
 		
 		return null;
+	}
+
+	public void setOnlineStatus(OnlineStatus onlineStatus){
+		addPresenceComponent(onlineStatus);
 	}
 	
 	private OnlinePresenceComponent findPresenceComponent(

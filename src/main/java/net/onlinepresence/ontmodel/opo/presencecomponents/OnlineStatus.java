@@ -25,6 +25,10 @@ import java.util.Collection;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresenceComponent;
 import net.onlinepresence.ontmodel.opo.OnlineStatusComponent;
+import net.onlinepresence.ontmodel.opo.statuscomponents.Activity;
+import net.onlinepresence.ontmodel.opo.statuscomponents.Contactability;
+import net.onlinepresence.ontmodel.opo.statuscomponents.Disturbability;
+import net.onlinepresence.ontmodel.opo.statuscomponents.Visibility;
 
 /**
  * The OnlinePresenceComponent used to represent the attitude of an Agent towards 
@@ -34,10 +38,22 @@ import net.onlinepresence.ontmodel.opo.OnlineStatusComponent;
  */
 public interface OnlineStatus extends OnlinePresenceComponent{
 
-	void setOnlineStatusComponents(Collection<OnlineStatusComponent> statusComponents);
-	Collection<OnlineStatusComponent> getOnlineStatusComponents();
+	void setStatusComponents(Collection<OnlineStatusComponent> statusComponents);
+	Collection<OnlineStatusComponent> getStatusComponents();
 	void addStatusComponent(OnlineStatusComponent statusComponent);
 	
 	void setName(String statusName);
 	String getName();
+	
+	Visibility retrieveVisibility();
+	void setVisibility(Visibility visibility);
+
+	Disturbability retrieveDisturbability();
+	void setDisturbability(Disturbability disturbability);
+	
+	Activity retrieveActivity();
+	void setActivity(Activity activity);
+
+	Contactability retrieveContactability();
+	void setContactability(Contactability contactability);
 }
