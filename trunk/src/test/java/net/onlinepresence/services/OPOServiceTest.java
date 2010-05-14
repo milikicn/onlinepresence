@@ -1,15 +1,15 @@
 package net.onlinepresence.services;
 
-import net.onlinepresence.domainmodel.foaf.Agent;
-import net.onlinepresence.domainmodel.opo.OnlinePresence;
-import net.onlinepresence.domainmodel.opo.StatusMessage;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.FindabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.presencecomponents.NotifiabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ActivityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.ContactabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.DisturbabilityBean;
-import net.onlinepresence.domainmodel.opo.beans.statuscomponents.VisibilityBean;
-import net.onlinepresence.domainmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.ontmodel.foaf.Agent;
+import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.ontmodel.opo.StatusMessage;
+import net.onlinepresence.ontmodel.opo.beans.presencecomponents.FindabilityBean;
+import net.onlinepresence.ontmodel.opo.beans.presencecomponents.NotifiabilityBean;
+import net.onlinepresence.ontmodel.opo.beans.statuscomponents.ActivityBean;
+import net.onlinepresence.ontmodel.opo.beans.statuscomponents.ContactabilityBean;
+import net.onlinepresence.ontmodel.opo.beans.statuscomponents.DisturbabilityBean;
+import net.onlinepresence.ontmodel.opo.beans.statuscomponents.VisibilityBean;
+import net.onlinepresence.ontmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.services.spring.ResourceFactory;
 
 public class OPOServiceTest {
