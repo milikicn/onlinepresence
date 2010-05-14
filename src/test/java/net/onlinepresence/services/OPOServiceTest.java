@@ -1,5 +1,7 @@
 package net.onlinepresence.services;
 
+import java.util.List;
+
 import net.onlinepresence.ontmodel.foaf.Agent;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.opo.StatusMessage;
@@ -65,13 +67,13 @@ public class OPOServiceTest {
 		
 		
 		FileOPOService foe = new FileOPOService("exportedTURTLE.rdf", "TURTLE");
-		foe.saveResourceToFile(onlinePresence);
+		foe.saveResource(onlinePresence, true);
 		
 	}
 	
 	public static void testImport(){
 		FileOPOService foe = new FileOPOService("exportedTURTLE.rdf", "TURTLE");
-		OnlinePresence op = foe.loadResourceFromFile(OnlinePresence.class);
+		OnlinePresence op = ((List<OnlinePresence>)foe.loadAllResources(OnlinePresence.class, true)).get(0);
 		System.out.println(op.getUri());
 	}
 	

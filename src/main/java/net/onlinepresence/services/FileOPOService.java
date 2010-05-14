@@ -22,7 +22,6 @@
 package net.onlinepresence.services;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.services.datacentral.FileDataProvider;
@@ -34,22 +33,14 @@ public class FileOPOService extends DefaultOPOManager {
 		dataProvider = new FileDataProvider(fileName, rdfLang);
 		initialize();
 	}
-
-	public <T extends Resource> void saveResourceToFile(T resource) {
-		
-		saveResource(resource, true);
-	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends Resource> T loadResourceFromFile(Class<T> clazz) {
+	public <T extends Resource> Collection<T> loadAllResources(Class<T> clazz, boolean loadDeep) {
 		
 		ResourceFactory factory = new ResourceFactory();
 
-		Collection<T> cop = (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
-		
-		Iterator<T> iter = cop.iterator();
-		
-		return iter.next();
+		return (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
 	}
 
 }
