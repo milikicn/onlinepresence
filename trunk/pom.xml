@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.online-presence.opo</groupId>
   <artifactId>opo-lib</artifactId>
@@ -15,7 +15,7 @@
     </license>
   </licenses>
   <scm>
-    <url>http://jenabean.googlecode.com/svn</url>
+    <url>http://onlinepresence.googlecode.com/svn</url>
   </scm>
   
   <dependencies>
@@ -83,7 +83,7 @@
   <distributionManagement>
   	<repository>
       <id>opo-lib</id>
-      <url>svn:https://onlinepresence.googlecode.com/svn/trunk/repo</url>
+      <url>svn:https://onlinepresence.googlecode.com/svn/repo</url>
   	</repository>
   </distributionManagement>
   
