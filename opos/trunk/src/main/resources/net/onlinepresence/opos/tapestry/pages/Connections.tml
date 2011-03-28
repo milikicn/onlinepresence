@@ -1,0 +1,108 @@
+<html t:type="layout" title="Application Selection"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+      
+	<h2 class="fontface">Settings</h2>
+                        
+	<ul class="miniMenu">
+		<li><t:pagelink t:page="Account" class="btnAccDet">Account details</t:pagelink></li>
+		<li><t:pagelink id="selected" t:page="Connections" class="btnConn">Connections</t:pagelink></li>
+	</ul>
+	
+	<t:if t:test="twitterExists">
+		<a id="inline" href="#data1"><img class="icon" src="${asset:context:images/applications/icon-Twitter-on.png}" width="70" height="70" alt="" /></a>
+		<p:else>
+			<a id="inline" href="#data1"><img class="icon" src="${asset:context:images/applications/icon-Twitter-off.png}" width="70" height="70" alt="" /></a>
+		</p:else>
+	</t:if>
+	
+	<div style="display: none;">
+		<div id="data1">
+			<div class="popupDiv">
+				<h3 class="fontface">Connect with Twitter</h3>
+								    
+				<div class="form">
+					<form t:type="Form" t:id="twitterForm">
+						<div class="formRow">
+							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpTwitter">Sign Up</t:ActionLink></label>
+							
+							<div class="inputWrapper">
+								
+							</div>
+						</div>
+
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" />
+			                <span class="withShadow">Send data to Twitter</span>
+			            </div>
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox"/>
+			                <span class="withShadow">Receive data from Twitter</span>
+			            </div>	            
+						
+						<t:if t:test="twitterExists">
+							<t:ActionLink t:id="deleteTwitter" class="btnDisconnect">Disconnect</t:ActionLink>
+							<p:else>
+								 <input type="submit" class="btnConnect" value="Connect" />
+							</p:else>
+						</t:if>
+					</form>
+				</div>
+			</div>    
+		</div>
+	</div>
+          
+            
+    <t:if t:test="sparkExists">
+		<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Spark-on.png}" width="70" height="70" alt="" /></a>
+		<p:else>
+			<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Spark-off.png}" width="70" height="70" alt="" /></a>
+		</p:else>
+	</t:if>            
+	
+	<div style="display: none;">
+		<div id="data2">		
+			<div class="popupDiv">
+			
+				<h3 class="fontface">Connect with Spark</h3>
+							    
+				<div class="form">
+					<form t:type="Form" t:id="sparkForm">
+						<div class="formRow">
+							<label class="label">Username</label>
+							
+							<div class="inputWrapper">
+								<div class="inputLeft"></div>
+								<div class="inputCenter">
+									<input class="input" t:id="sparkUsername" t:type="TextField" 
+													t:value="sparkUsername" title="Spark username" tabindex="5" />
+								</div>
+								<div class="inputRight"></div>
+							</div>
+						</div>
+
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkSendTo" />
+			                <span class="withShadow">Send data to Spark</span>
+			            </div>
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkReceiveFrom"/>
+			                <span class="withShadow">Receive data from Spark</span>
+			            </div>
+											
+						<t:if t:test="sparkExists">
+							<input type="submit" class="btnUpdate" value="Update" /> 
+							<t:ActionLink t:id="deleteSpark" class="btnDisconnect">Disconnect</t:ActionLink>
+							<p:else>
+								<input type="submit" class="btnConnect" value="Connect" /> 
+							</p:else>
+						</t:if>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="hr"></div>
+</html>

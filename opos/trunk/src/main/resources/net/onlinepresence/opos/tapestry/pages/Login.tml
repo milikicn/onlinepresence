@@ -1,0 +1,51 @@
+<html t:type="layout" title="Sign in"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<h2 class="fontface">Sign in</h2>
+				
+    <div class="form">
+        <form t:type="Form" t:id="loginForm"><t:errors />
+        	<div class="formRow">
+                <label class="label">Username or email</label>
+                <div class="inputWrapper">
+                    <div class="inputLeft"></div>
+                    <div class="inputCenter">
+                        <input class="input" id="usernameOrEmail" name="username" title="username" tabindex="4" type="text"
+					                t:id="usernameOrEmail" t:validate="required" t:type="TextField" t:value="usernameOrEmail"/>
+                    </div>
+                    <div class="inputRight"></div>
+                </div>
+            </div>
+            
+            <div class="formRow">
+                <label class="label">Password</label>
+                <div class="inputWrapper">
+                    <div class="inputLeft"></div>
+                    <div class="inputCenter">
+                         <input class="input" id="password" name="password" t:id="password" t:type="PasswordField" 
+								t:value="password" t:validate="required" title="password" tabindex="5" />
+                    </div>
+                    <div class="inputRight"></div>
+                </div>
+            </div>
+            
+            <div class="formRowSmall">
+                <span class="small">Forgot password? <t:pagelink t:page="PassRecovery">Click here</t:pagelink>.</span>
+            </div>
+            
+            <div class="formRowSmall">
+                <input class="checkBox" type="checkbox" value="Remember me"/><span class="withShadow">Remember me</span>
+            </div>
+            
+        	<input id="submit" class="btnSignIn" type="submit" value="Sign in" />
+        </form>
+    </div>
+    
+    <div class="contentRight">
+    	<p>Not a member?<br />
+    	<t:pagelink t:page="SignUp">Register here</t:pagelink>.</p>
+    </div>
+
+<div class="hr"></div>
+</html>

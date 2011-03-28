@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="net.onlinepresence.opos.domain.User" 
+class="net.onlinepresence.opos.domain.beans.UserBean" scope="prototype">
+	<property name="applicationMemberships">
+		<ref bean="java.util.Set"/>
+	</property>
+	
+</bean>
+
+<bean id="net.onlinepresence.opos.domain.Application" 
+class="net.onlinepresence.opos.domain.beans.ApplicationBean"  scope="prototype">
+	<property name="userMemberships">
+		<ref bean="java.util.Set"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.domain.Key" 
+class="net.onlinepresence.opos.domain.beans.KeyBean" scope="prototype">
+</bean>
+
+<bean id="net.onlinepresence.opos.domain.Administrator" 
+class="net.onlinepresence.opos.domain.beans.AdministratorBean" scope="prototype">
+</bean>
+
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.onlinepresence.opos.domain.beans">
+<class name="UserBean" table="USERS">
+
+<id name="username" column="USERNAME" type="string">
+
+</id>
+<property name="name"/>
+<property name="email"/>
+<property name="password"/>
+<property name="activated"/>
+
+<set name="applicationMemberships" cascade="all" inverse="true">
+           <key column="user"/>
+           <one-to-many class="MembershipBean"/>
+</set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="net.onlinepresence.opos.service.crud.impl.ReadCommand" class="net.onlinepresence.opos.service.crud.impl.ReadCommand" scope="prototype"  >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.service.crud.impl.UpdateCommand" class="net.onlinepresence.opos.service.crud.impl.UpdateCommand" scope="prototype"  >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.service.crud.impl.PetSearchCommand" class="net.onlinepresence.opos.service.crud.impl.PetSearchCommand" scope="prototype"  >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.service.crud.impl.ExampleSearchCommand" class="net.onlinepresence.opos.service.crud.impl.ExampleSearchCommand" scope="prototype"  >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.service.crud.impl.WriteCommand" class="net.onlinepresence.opos.service.crud.impl.WriteCommand" scope="prototype" >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+<bean id="net.onlinepresence.opos.service.crud.impl.DeleteCommand" class="net.onlinepresence.opos.service.crud.impl.DeleteCommand" scope="prototype" >
+	<property name="manager"> 
+		<ref bean="net.onlinepresence.opos.core.persistance.PersistenceManager"/>
+	</property>
+</bean>
+
+</beans>
