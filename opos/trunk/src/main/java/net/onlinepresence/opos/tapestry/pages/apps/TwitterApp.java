@@ -1,16 +1,16 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.dataManager.MediatorManager;
-import net.onlinepresence.opos.dataManager.mediators.Mediator;
-import net.onlinepresence.opos.dataManager.mediators.MediatorNames;
-import net.onlinepresence.opos.dataManager.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.mediators.MediatorManager;
+import net.onlinepresence.opos.mediators.mediators.Mediator;
+import net.onlinepresence.opos.mediators.mediators.MediatorNames;
+import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 

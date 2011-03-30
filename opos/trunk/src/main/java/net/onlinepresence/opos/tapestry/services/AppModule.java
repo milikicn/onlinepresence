@@ -4,12 +4,12 @@ package net.onlinepresence.opos.tapestry.services;
 import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.dataManager.MediatorManager;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
 import net.onlinepresence.opos.domain.service.beans.ApplicationsBean;
 import net.onlinepresence.opos.domain.service.beans.UsersBean;
+import net.onlinepresence.opos.mediators.MediatorManager;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.ioc.MappedConfiguration;
