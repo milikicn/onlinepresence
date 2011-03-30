@@ -11,6 +11,7 @@ import net.onlinepresence.opos.dataManager.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.dataManager.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.dataManager.util.properties.OPOSConstants;
 import net.onlinepresence.opos.dataManager.util.properties.PropertiesManager;
+import net.onlinepresence.opos.datacentral.rdfpersistance.DefaultRdfPersistanceService;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
@@ -23,7 +24,7 @@ public class MediatorManager {
 	
 	private Users personsService;
 	private Applications applicationsService;
-	private FileOPOService opoRepository;	
+	private DefaultRdfPersistanceService rdfPersistance;	
 	private LinkedList<Mediator> mediators;
 
 	public MediatorManager(){
@@ -31,7 +32,7 @@ public class MediatorManager {
 		s.createContext();
 		personsService = (UsersBean) s.getContext().getBean(Users.class.getName());
 		applicationsService = (Applications) s.getContext().getBean(Applications.class.getName());
-		opoRepository = new FileOPOService(PATH, "TURTLE");
+		rdfPersistance = new DefaultRdfPersistanceService();
 		mediators = new LinkedList<Mediator>();
 		initializeMediators();
 	}
@@ -52,8 +53,12 @@ public class MediatorManager {
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
 		
 		//storin OP into the repository
-		opoRepository.saveResource(onlinePresence, true);
-		
+		try {
+			rdfPersistance.saveResource(onlinePresence, true);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		String username = onlinePresence.getUserAccount().getAccountName();
 		String app = onlinePresence.getUserAccount().getAccountServiceHomepage().toString();
