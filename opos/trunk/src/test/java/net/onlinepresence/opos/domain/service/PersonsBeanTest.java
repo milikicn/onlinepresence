@@ -47,8 +47,8 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	
 	@Test
 	public void testGetPerson(){
-		User person = (User) personsBeanUnderTest.getUser("nikolakv");
-		assertEquals("Nikola", person.getName());		
+		User person = (User) personsBeanUnderTest.getUser("test");
+		assertEquals("test", person.getName());		
 	}
 	
 	@Test

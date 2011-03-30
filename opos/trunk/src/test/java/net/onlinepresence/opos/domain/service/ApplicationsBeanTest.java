@@ -26,7 +26,7 @@ public class ApplicationsBeanTest extends AbstractSpringTest{
 	@Test
 	public void testGetApplication(){
 		Application app = applicationsBeanUnderTest.getApplication("http://www.twitter.com");
-		assertEquals("Twitter", app.getName());
+		assertEquals("TWITTER", app.getName());
 	}
 	
 	@SuppressWarnings("rawtypes")
