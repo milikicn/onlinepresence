@@ -29,7 +29,7 @@ public class ApplicationsBeanTest extends AbstractSpringTest{
 		assertEquals("Twitter", app.getName());
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void testGetAllApplications(){
 		List app = applicationsBeanUnderTest.getAllApplications();
 		assertEquals(3, app.size());

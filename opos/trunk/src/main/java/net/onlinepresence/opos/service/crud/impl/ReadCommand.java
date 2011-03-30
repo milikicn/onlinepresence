@@ -18,12 +18,12 @@ public class ReadCommand<Type> implements Command<List<Type>>{
         return manager.get(clazz);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List executeQuery(String query){
 		return manager.runQuery(query);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List getEagerMemberships(String query){
 		return manager.getEagerMemberships(query);
 	}

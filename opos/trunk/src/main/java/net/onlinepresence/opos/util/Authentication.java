@@ -12,27 +12,18 @@ import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.Administrators;
 import net.onlinepresence.opos.domain.service.Keys;
 import net.onlinepresence.opos.domain.service.Users;
-import net.onlinepresence.opos.domain.service.beans.UsersBean;
 
 /**
  * @author Nikola Milikic
  * 
  */
 public class Authentication {
-	
-	
 
 	private Users persons;
-
 	private Keys keys;
-	
 	private Administrators administrators;
-	
 	private boolean userExists;
 
-	/**
-	 * 
-	 */
 	public Authentication(Users p) {
 		 this.persons = p;
 	}
@@ -44,7 +35,6 @@ public class Authentication {
 	public Authentication(Administrators a) {
 		 this.administrators = a;
 	}
-	
 
 	public User authenticateUser(String usernameOrEmail, String password) {
 		
@@ -116,7 +106,6 @@ public class Authentication {
 		this.administrators = administrators;
 	}
 
-
 	public boolean isUserExists() {
 		return userExists;
 	}
@@ -124,6 +113,5 @@ public class Authentication {
 	public void setUserExists(boolean userExists) {
 		this.userExists = userExists;
 	}
-
 
 }

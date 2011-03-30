@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.onlinepresence.opos.datacentral;
+package net.onlinepresence.opos.semanticstuff;
 
 import org.apache.log4j.Logger;
 

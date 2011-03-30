@@ -1,10 +1,6 @@
 package net.onlinepresence.opos.dataManager.mediators.twitter.service.submitter;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
-import twitter4j.GeoLocation;
-import twitter4j.GeoQuery;
-import twitter4j.Place;
-import twitter4j.ResponseList;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 

@@ -6,7 +6,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Key;
-import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.Keys;
 import net.onlinepresence.opos.service.crud.impl.DeleteCommand;
 import net.onlinepresence.opos.service.crud.impl.ReadCommand;

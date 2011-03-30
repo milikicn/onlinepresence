@@ -10,13 +10,12 @@ import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.service.Applications;
 
 import org.apache.tapestry5.ValueEncoder;
-import org.hibernate.cache.EhCacheProvider;
 
 /**
  * @author Nikola Milikic
  * 
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings("rawtypes")
 public class ApplicationEncoder implements ValueEncoder {
 	private Applications source;
 

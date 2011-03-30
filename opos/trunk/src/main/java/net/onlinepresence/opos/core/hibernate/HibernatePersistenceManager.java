@@ -106,7 +106,7 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 		delete(toBeDeleted);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Transactional
 	public void deleteAll(Class clazz) {
 		Session session = provideManager();
@@ -131,7 +131,7 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 		return input;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Transactional
 	public List runQuery(String queryString){
 		Session session = provideManager();		
@@ -140,7 +140,7 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 		return list;		
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Transactional
 	public List getEagerMemberships(String queryString){
 		Session session = provideManager();		

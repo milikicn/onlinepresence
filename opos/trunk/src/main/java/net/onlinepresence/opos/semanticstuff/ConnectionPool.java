@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.onlinepresence.opos.datacentral;
+package net.onlinepresence.opos.semanticstuff;
 
 import java.sql.Connection;
 import java.sql.SQLException;

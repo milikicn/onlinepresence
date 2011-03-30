@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.datacentral.urigenerator;
+package net.onlinepresence.opos.semanticstuff.urigenerator;
 
 import org.apache.log4j.Logger;
 

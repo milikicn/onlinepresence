@@ -9,18 +9,13 @@ import net.onlinepresence.opos.dataManager.mediators.Mediator;
 import net.onlinepresence.opos.dataManager.mediators.MediatorNames;
 import net.onlinepresence.opos.dataManager.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.dataManager.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.dataManager.util.properties.OPOSConstants;
-import net.onlinepresence.opos.dataManager.util.properties.PropertiesManager;
-import net.onlinepresence.opos.datacentral.rdfpersistance.DefaultRdfPersistanceService;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
 import net.onlinepresence.opos.domain.service.beans.UsersBean;
-import net.onlinepresence.services.FileOPOService;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.DefaultRdfPersistanceService;
 
 public class MediatorManager {
-	
-	private static final String PATH = PropertiesManager.instance().getProperty(OPOSConstants.FILE_REPOSITORY);
 	
 	private Users personsService;
 	private Applications applicationsService;

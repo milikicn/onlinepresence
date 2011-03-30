@@ -88,7 +88,7 @@ public interface PersistenceManager<ManagerType> {
      * pass <code>java.lang.Object</code> as the parameter.
      * @param clazz the type of objects that are going to be deleted.
      */
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	void deleteAll(Class clazz);
     
     /**
@@ -105,10 +105,10 @@ public interface PersistenceManager<ManagerType> {
 	
 	public void update(Object o);
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List runQuery(String queryString);
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	List getEagerMemberships(String query);
 
 }

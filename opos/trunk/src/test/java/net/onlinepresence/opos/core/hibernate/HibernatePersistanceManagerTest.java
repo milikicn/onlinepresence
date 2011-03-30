@@ -49,7 +49,7 @@ public class HibernatePersistanceManagerTest {
 	        id = new Long(1);
 	    }    
 	    
-	    @SuppressWarnings("unchecked")
+		@SuppressWarnings("rawtypes")
 		@Test()
 	    public void testGetByType(){
 	    	expect(sessionFactory.getCurrentSession()).andReturn(session);
@@ -87,7 +87,7 @@ public class HibernatePersistanceManagerTest {
 	    }
 
 	 
-	    @SuppressWarnings("unchecked")
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 		@Test()
 	    public void testGetByTypeID(){
 	    	expect(sessionFactory.getCurrentSession()).andReturn(session);
@@ -109,7 +109,7 @@ public class HibernatePersistanceManagerTest {
 	    }
 
 	    
-	    @SuppressWarnings("unchecked")
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 		@Test()
 	    public void testGetByTypeIDThrownHibernateException(){
 	    	expect(sessionFactory.getCurrentSession()).andReturn(session);
@@ -135,7 +135,7 @@ public class HibernatePersistanceManagerTest {
 	    }
 
 	    
-	    @SuppressWarnings("unchecked")
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 		@Test()
 	    public void testGetByTypeExample(){
 	    	expect(sessionFactory.getCurrentSession()).andReturn(session);
@@ -156,7 +156,7 @@ public class HibernatePersistanceManagerTest {
 	    }
 
 	    
-	    @SuppressWarnings("unchecked")
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 		@Test()
 	    public void testGetByTypeExampleThrownHibernateException(){
 	    	expect(sessionFactory.getCurrentSession()).andReturn(session);

@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.datacentral;
+package net.onlinepresence.opos.semanticstuff;
 
 import com.hp.hpl.jena.rdf.model.Model;
 

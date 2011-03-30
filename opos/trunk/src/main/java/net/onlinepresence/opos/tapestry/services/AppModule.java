@@ -1,6 +1,5 @@
 package net.onlinepresence.opos.tapestry.services;
 
-import java.util.Properties;
 
 import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
@@ -11,7 +10,6 @@ import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
 import net.onlinepresence.opos.domain.service.beans.ApplicationsBean;
 import net.onlinepresence.opos.domain.service.beans.UsersBean;
-import net.onlinepresence.opos.util.Util;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.ioc.MappedConfiguration;

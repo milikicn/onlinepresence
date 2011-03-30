@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.datacentral.urigenerator;
+package net.onlinepresence.opos.semanticstuff.urigenerator;
 
 import net.onlinepresence.ontmodel.general.Resource;
 
