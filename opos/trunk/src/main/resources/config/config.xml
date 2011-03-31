@@ -1,0 +1,17 @@
+<config>
+	
+	<!-- Settings for contacting MySQL for SDB -->
+	<sdb-config>
+		<db-type>MySQL</db-type>
+		<db-jdbcURL>jdbc:mysql://localhost/sdb</db-jdbcURL>
+		<db-username>root</db-username>
+		<db-password></db-password>
+	</sdb-config>
+	
+	<twitter-mediator>
+		<api-key>Lh9kHnnbN95Oo287N8hnA</api-key>
+		<api-secret>CzwiEuhWiezFfKeTfmHr0V1pgVMEkz09WCQnUVGUZsE</api-secret>
+		<check-timeout>20000</check-timeout>
+	</twitter-mediator>
+	
+</config>

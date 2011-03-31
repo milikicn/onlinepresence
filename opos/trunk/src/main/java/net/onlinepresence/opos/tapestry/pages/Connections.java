@@ -3,9 +3,9 @@ package net.onlinepresence.opos.tapestry.pages;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
 import java.util.Set;
 
+import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.Membership;
@@ -13,7 +13,6 @@ import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
-import net.onlinepresence.opos.util.Util;
 
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -98,9 +97,9 @@ public class Connections {
 
 	URL onSubmitFromTwitterForm() {
 		Twitter twitter = new TwitterFactory().getInstance();
-		Properties appProp = Util.loadPropertyFile("/mediator_params.properties");
-		System.out.println(appProp);
-	    twitter.setOAuthConsumer(appProp.getProperty("twitter-app-API-key"), appProp.getProperty("twitter-app-API-secret"));
+//		Properties appProp = Util.loadPropertyFile("/mediator_params.properties");
+//		System.out.println(appProp);
+	    twitter.setOAuthConsumer(Settings.getInstance().config.twitterMediatorConfig.apiKey, Settings.getInstance().config.twitterMediatorConfig.apiSecret);
 	    RequestToken requestToken;
 		try {
 			requestToken = twitter.getOAuthRequestToken();

@@ -2,15 +2,15 @@ package net.onlinepresence.opos.mediators.mediators.twitter.threads;
 
 import twitter4j.Twitter;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterStuff;
-import net.onlinepresence.opos.util.properties.OPOSConstants;
-import net.onlinepresence.opos.util.properties.PropertiesManager;
 
 public class TwitterProfileCheckerThread extends Thread {
 	
-	private static final long TIMEOUT = Long.parseLong(PropertiesManager.instance().getProperty(OPOSConstants.TWITTER_PROFILE_CHECK_TIMEOUT));
+//	private static final long TIMEOUT = Long.parseLong(PropertiesManager.instance().getProperty(OPOSConstants.TWITTER_PROFILE_CHECK_TIMEOUT));
+	private static final long TIMEOUT = Settings.getInstance().config.twitterMediatorConfig.checkTimeout;
 	private Membership user;
 	private OnlinePresence onlinePresence;
 	private TwitterMediator twitterMediator;

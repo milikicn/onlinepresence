@@ -17,36 +17,14 @@ public class RepositoryDataProvider implements DataProvider {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
 	private StoreDesc storeDesc;
-
 	private SDBConnection conn;
-
 	private Store store;
 
-	/**
-	 * 
-	 */
 	public RepositoryDataProvider() {
-		// // get DB settings from config file
-		// String dbType = Settings.getInstance().config.dbConfig.dbType;
 
 		// MySQL
-		// if (Config.MySQL.equalsIgnoreCase(dbType)) {
-		// create a data store description for MySQL database
 		storeDesc = new StoreDesc(LayoutType.LayoutTripleNodesHash,
 				DatabaseType.MySQL);
-		// }
-		// // H2
-		// else if (Config.H2.equalsIgnoreCase(dbType)) {
-		// // create a data store description for H2 database
-		// storeDesc = new StoreDesc(LayoutType.LayoutSimple,
-		// DatabaseType.H2);
-		// }
-		// // Default
-		// else {
-		// // create a data store description for H2 database
-		// storeDesc = new StoreDesc(LayoutType.LayoutSimple,
-		// DatabaseType.H2);
-		// }
 
 		// get the connection
 		establishConnection();
@@ -97,10 +75,8 @@ public class RepositoryDataProvider implements DataProvider {
 	 */
 	private void establishConnection() {
 		try {
-			conn = new SDBConnection(ConnectionPool.getInstance()
-					.getConnection());
-			logger.debug("Got SQL connection (is closed? : "
-					+ conn.getSqlConnection().isClosed() + ")");
+			conn = new SDBConnection(ConnectionPool.getInstance().getConnection());
+			logger.debug("Got SQL connection (is closed? : " + conn.getSqlConnection().isClosed() + ")");
 			store = SDBFactory.connectStore(conn, storeDesc);
 		} catch (SQLException e) {
 			logger.error("Could not get JDBC Connection for SDB store", e);
