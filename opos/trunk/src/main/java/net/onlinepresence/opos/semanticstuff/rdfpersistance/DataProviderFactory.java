@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance;
 
 import org.apache.log4j.Logger;
 

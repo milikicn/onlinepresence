@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff.rdfpersistance;
+package net.onlinepresence.opos.semanticstuff.services;
 
 import java.util.Collection;
 

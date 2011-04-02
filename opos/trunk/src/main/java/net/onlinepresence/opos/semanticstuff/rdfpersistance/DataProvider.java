@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance;
 
 import com.hp.hpl.jena.rdf.model.Model;
 

@@ -1,10 +1,10 @@
-package net.onlinepresence.opos.semanticstuff.query.sparqlendpoint;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance.query.sparqlendpoint;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
-import net.onlinepresence.opos.semanticstuff.query.results.ResultsCollection;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.results.ResultsCollection;
 
 import com.hp.hpl.jena.ontology.OntModel;
 

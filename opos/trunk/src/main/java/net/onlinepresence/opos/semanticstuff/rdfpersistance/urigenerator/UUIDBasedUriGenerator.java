@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff.urigenerator;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator;
 
 import java.util.UUID;
 

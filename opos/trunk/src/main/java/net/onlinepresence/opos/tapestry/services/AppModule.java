@@ -70,14 +70,14 @@ public class AppModule {
     		    filter.add("openSessionInViewFilter",openSessionInViewFilter);
     }
     
-    /**
-     * Needed for tapestry-resteasy in order to wind classes
-     * 
-     * @param configuration
-     */
-    public static void contributeResteasyPackageManager(Configuration<String> configuration) {
-		configuration.add("net.onlinepresence.opos.api");
-	}
+//    /**
+//     * Needed for tapestry-resteasy in order to wind classes
+//     * 
+//     * @param configuration
+//     */
+//    public static void contributeResteasyPackageManager(Configuration<String> configuration) {
+//		configuration.add("net.onlinepresence.opos.api");
+//	}
     
     
     public static Users buildPersons() {

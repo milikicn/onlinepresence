@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.onlinepresence.opos.semanticstuff;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance;
 
 import java.sql.Connection;
 import java.sql.SQLException;

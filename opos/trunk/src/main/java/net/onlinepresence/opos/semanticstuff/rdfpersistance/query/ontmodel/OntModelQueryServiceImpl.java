@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff.query.ontmodel;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance.query.ontmodel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.onlinepresence.opos.semanticstuff.query.results.QueryResult;
-import net.onlinepresence.opos.semanticstuff.query.results.ResultsCollection;
-import net.onlinepresence.opos.semanticstuff.query.results.ResultsList;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.results.QueryResult;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.results.ResultsCollection;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.results.ResultsList;
 import net.onlinepresence.opos.util.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -66,6 +66,7 @@ public class OntModelQueryServiceImpl implements OntModelQueryService {
 		while (resultSet.hasNext()) {
 			QuerySolution solution = resultSet.nextSolution();
 			RDFNode value = solution.get(variable);
+			
 			if (value.isLiteral())
 				results.add(((Literal) value).getLexicalForm());
 			else
@@ -75,7 +76,6 @@ public class OntModelQueryServiceImpl implements OntModelQueryService {
 		qe.close();
 
 		return results;
-
 	}
 
 	public ResultsCollection executeSelectSparqlQuery(String query, Model model) {
@@ -89,21 +89,17 @@ public class OntModelQueryServiceImpl implements OntModelQueryService {
 
 		for (; results.hasNext();) {
 			QuerySolution solution = results.nextSolution();
-
-			QueryResult queryResult = new QueryResult();
-
 			Iterator<String> variables = solution.varNames();
+			QueryResult queryResult = new QueryResult();
+			
 			while (variables.hasNext()) {
 				String var = (String) variables.next();
 				RDFNode valueNode = solution.get(var);
 				if (valueNode != null)
 					queryResult.addVariableValuePair(var, valueNode.toString());
 			}
-
 			resCollection.addQueryResult(queryResult);
-
 		}
-
 		qe.close();
 
 		return resCollection;
@@ -120,17 +116,18 @@ public class OntModelQueryServiceImpl implements OntModelQueryService {
 			Model model, boolean loadDeep) {
 
 		RDF2Bean binding = new RDF2Bean(model);
+		
 		if (loadDeep)
 			return binding.loadDeep(instanceType);
 		else
 			return binding.load(instanceType);
-
 	}
 
 	public <T> T retrieveInstance(Class<T> instanceType, String instanceUri,
 			Model model, boolean loadDeep) {
 
 		RDF2Bean binding = new RDF2Bean(model);
+
 		if (loadDeep)
 			return binding.loadDeep(instanceType, instanceUri);
 		else

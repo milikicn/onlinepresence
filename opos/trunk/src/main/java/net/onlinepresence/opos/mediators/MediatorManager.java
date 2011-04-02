@@ -13,13 +13,13 @@ import net.onlinepresence.opos.mediators.mediators.Mediator;
 import net.onlinepresence.opos.mediators.mediators.MediatorNames;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.semanticstuff.rdfpersistance.DefaultRdfPersistanceService;
+import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class MediatorManager {
 	
 	private Users personsService;
 	private Applications applicationsService;
-	private DefaultRdfPersistanceService rdfPersistance;	
+	private OnlinePresenceService rdfPersistance;	
 	private LinkedList<Mediator> mediators;
 
 	public MediatorManager(){
@@ -27,7 +27,7 @@ public class MediatorManager {
 		s.createContext();
 		personsService = (UsersBean) s.getContext().getBean(Users.class.getName());
 		applicationsService = (Applications) s.getContext().getBean(Applications.class.getName());
-		rdfPersistance = new DefaultRdfPersistanceService();
+		rdfPersistance = new OnlinePresenceService();
 		mediators = new LinkedList<Mediator>();
 		initializeMediators();
 	}

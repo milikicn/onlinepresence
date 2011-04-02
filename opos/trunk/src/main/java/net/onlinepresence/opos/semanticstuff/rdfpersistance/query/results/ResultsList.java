@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.semanticstuff.query.results;
+package net.onlinepresence.opos.semanticstuff.rdfpersistance.query.results;
 
 import java.util.Collection;
 import java.util.LinkedList;

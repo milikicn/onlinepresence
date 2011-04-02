@@ -1,12 +1,12 @@
-package net.onlinepresence.opos.semanticstuff.rdfpersistance;
+package net.onlinepresence.opos.semanticstuff.services;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
 import net.onlinepresence.ontmodel.general.Resource;
-import net.onlinepresence.opos.semanticstuff.DataModelManager;
-import net.onlinepresence.opos.semanticstuff.urigenerator.URIBuilder;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.DataModelManager;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator.URIBuilder;
 
 import org.apache.log4j.Logger;
 
