@@ -3,9 +3,14 @@
   <groupId>net.online-presence.opo</groupId>
   <artifactId>opo-lib</artifactId>
   <name>Java library for OPO data</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <description>Java library for importing and exporting data in form of Online Presence Ontology (OPO)</description>
   <url>http://online-presence.net</url>
+  
+  <properties>
+	<jenabean-version>1.0.3</jenabean-version>
+	<spring.version>2.5.6</spring.version>
+  </properties>
   
   <licenses>
     <license>
@@ -78,7 +83,6 @@
      </plugin>
   	</plugins>
   </build>
-
   
   <distributionManagement>
   	<repository>
@@ -86,9 +90,5 @@
       <url>svn:https://onlinepresence.googlecode.com/svn/repo</url>
   	</repository>
   </distributionManagement>
-  
-  <properties>
-	<jenabean-version>1.0.3</jenabean-version>
-	<spring.version>2.5.6</spring.version>
-  </properties>
+
 </project>
