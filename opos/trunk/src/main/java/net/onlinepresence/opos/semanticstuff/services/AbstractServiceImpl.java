@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import net.onlinepresence.ontmodel.general.Resource;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.DataModelManager;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator.URIBuilder;
+import net.onlinepresence.services.spring.ResourceFactory;
 
 import org.apache.log4j.Logger;
 
@@ -21,6 +22,8 @@ public abstract class AbstractServiceImpl implements AbstractService {
 	 * The logger.
 	 */
 	private Logger logger = Logger.getLogger(this.getClass().getName());
+	
+	private ResourceFactory factory = new ResourceFactory();
 
 	/**
 	 * @return the dataModel
@@ -61,10 +64,8 @@ public abstract class AbstractServiceImpl implements AbstractService {
 
 			// save to model
 			if (deep) {
-
 				getBean2RDFBinding().saveDeep(t);
 			} else {
-
 				getBean2RDFBinding().save(t);
 			}
 
@@ -153,15 +154,16 @@ public abstract class AbstractServiceImpl implements AbstractService {
 	 * org.intelleo.services.ontologies.AbstractService#loadAllResources(java
 	 * .lang.Class, boolean)
 	 */
+	@SuppressWarnings("unchecked")
 	public <T extends Resource> Collection<T> loadAllResources(Class<T> clazz,
 			boolean deep) throws Exception {
 		Collection<T> resources = new LinkedList<T>();
 
 		try {
 			if (deep) {
-				resources = getRdf2BeanBinding().loadDeep(clazz);
+				resources = getRdf2BeanBinding().loadDeep(factory.getBeanImplementationClass(clazz));
 			} else {
-				resources = getRdf2BeanBinding().load(clazz);
+				resources = getRdf2BeanBinding().load(factory.getBeanImplementationClass(clazz));
 			}
 
 		} catch (Exception e) {
@@ -230,15 +232,16 @@ public abstract class AbstractServiceImpl implements AbstractService {
 	 * org.intelleo.services.ontologies.AbstractService#loadResourceByURI(java
 	 * .lang.Class, java.lang.String, boolean)
 	 */
+	@SuppressWarnings("unchecked")
 	public <T extends Resource> T loadResourceByURI(Class<T> clazz,
 			String resourceURI, boolean deep) throws Exception {
 		T t = null;
 
 		try {
 			if (deep) {
-				t = (T) getRdf2BeanBinding().loadDeep(clazz, resourceURI);
+				t = (T) getRdf2BeanBinding().loadDeep(factory.getBeanImplementationClass(clazz), resourceURI);
 			} else {
-				t = (T) getRdf2BeanBinding().load(clazz, resourceURI);
+				t = (T) getRdf2BeanBinding().load(factory.getBeanImplementationClass(clazz), resourceURI);
 			}
 
 		} catch (Exception e) {

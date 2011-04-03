@@ -14,6 +14,7 @@ public class Constants
 	public static final String FILE_STORE = "FILE";
 	
 	public static final String OPO_NS = "http://online-presence.net/opo/ns#";
+	public static final String OPO_ACTIONS_NS = "http://online-presence.net/opo-actions/ns#";
 	public static final String FOAF_NS = "http://xmlns.com/foaf/0.1/";
 	public static final String DC_TERMS_NS = "http://purl.org/dc/terms/";
 	public static final String RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#";

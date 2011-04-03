@@ -18,5 +18,8 @@ public class SDBConfig {
 	
 	@Element(name = "db-password", required = false)
 	public String dbPassword = "";
+	
+	@Element(name = "format", required = false)
+	public boolean format;
 
 }

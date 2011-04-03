@@ -6,6 +6,7 @@
 		<db-jdbcURL>jdbc:mysql://localhost/sdb</db-jdbcURL>
 		<db-username>root</db-username>
 		<db-password></db-password>
+		<format>false</format>
 	</sdb-config>
 	
 	<twitter-mediator>

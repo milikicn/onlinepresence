@@ -2,6 +2,8 @@ package net.onlinepresence.opos.semanticstuff.rdfpersistance;
 
 import java.sql.SQLException;
 
+import net.onlinepresence.opos.config.Settings;
+
 import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -39,11 +41,11 @@ public class RepositoryDataProvider implements DataProvider {
 		Model dataModel = null;
 
 		try {
-			// // create the necessary tables - cleans the db
-			// if (Settings.getInstance().config.populateDB && !reconnect) {
-			logger.debug("Formatting db tables...");
-			store.getTableFormatter().create();
-			// }
+			// create the necessary tables - cleans the db
+			if (Settings.getInstance().config.sdbConfig.format) {
+				logger.debug("Formatting db tables...");
+				store.getTableFormatter().create();
+			}
 			// get the data model
 			establishConnection();
 			logger.debug("Connecting default data model...");

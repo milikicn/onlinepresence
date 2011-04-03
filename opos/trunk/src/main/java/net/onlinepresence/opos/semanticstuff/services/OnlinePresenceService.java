@@ -17,11 +17,13 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"PREFIX opo: <"+Constants.OPO_NS+"> \n" + 
 			"SELECT ?onlinePresence \n" + 
 			"WHERE  {\n" + 
-				"<"+userUri+"> opo:declaresOnlinePresence ?onlinePresence . \n" +
 				"?onlinePresence rdf:type opo:OnlinePresence ; \n" +
 						"opo:startTime ?startTime . \n" +
+				"{<"+userUri+"> opo:declaresOnlinePresence ?onlinePresence . } \n" +
+				"UNION \n" +
+				"{?onlinePresence opo:declaredBy <"+userUri+"> . } \n" +
 			"} \n" +
-			"ORDER BY ?startTime DESC \n" +
+			"ORDER BY DESC(?startTime)  \n" +
 			"LIMIT 1";
 		
 		System.out.println(queryString);

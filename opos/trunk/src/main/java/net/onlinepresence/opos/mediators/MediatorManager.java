@@ -32,7 +32,6 @@ public class MediatorManager {
 		initializeMediators();
 	}
 	
-	
 	//  mozda bolje preko springa da se nekako istanciraju svi medijatori
 	private void initializeMediators() {
 		Mediator spark = new SparkMediator(this);
@@ -43,11 +42,10 @@ public class MediatorManager {
 		mediators.add(twitter);
 	}
 
-
 	// reimplementirati
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
 		
-		//storin OP into the repository
+		//storing OP into the repository
 		try {
 			rdfPersistance.saveResource(onlinePresence, true);
 		} catch (Exception e1) {
@@ -83,11 +81,9 @@ public class MediatorManager {
 					System.out.println("Ne postoji medijator: " + membership.getApplication().getName());
 					//e.printStackTrace();
 				}
-				
 			}
 		}
 	}
-	
 	
 	public Mediator getMediator(MediatorNames name){
 		System.out.println("Looking for mediator: " + name);

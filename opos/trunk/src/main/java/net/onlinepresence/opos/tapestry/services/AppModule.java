@@ -1,6 +1,5 @@
 package net.onlinepresence.opos.tapestry.services;
 
-
 import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
@@ -12,7 +11,6 @@ import net.onlinepresence.opos.domain.service.beans.UsersBean;
 import net.onlinepresence.opos.mediators.MediatorManager;
 
 import org.apache.tapestry5.*;
-import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.ObjectProvider;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -79,7 +77,6 @@ public class AppModule {
 //		configuration.add("net.onlinepresence.opos.api");
 //	}
     
-    
     public static Users buildPersons() {
     	return new UsersBean();
     }
@@ -100,7 +97,6 @@ public class AppModule {
     }
     
     public static MediatorManager buildMediatorManager() {
-//    	System.out.println("----------------------------MediatorManager");
     	return new MediatorManager();
     }
 }

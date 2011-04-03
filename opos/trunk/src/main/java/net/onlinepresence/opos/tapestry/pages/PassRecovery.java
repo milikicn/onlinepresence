@@ -24,8 +24,6 @@ public class PassRecovery {
 	@Property
 	private String email;
 	
-
-	
 	Object onSubmitFromPassRecoveryForm(){		
 		try {
 			//TODO send pass recovery email
