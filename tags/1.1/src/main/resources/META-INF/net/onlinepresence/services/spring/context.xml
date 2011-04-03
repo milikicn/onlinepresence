@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="net.onlinepresence.ontmodel.opo.OnlinePresence"
+		class="net.onlinepresence.ontmodel.opo.beans.OnlinePresenceBean"
+		scope="prototype" />
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Agent"
+		class="net.onlinepresence.ontmodel.foaf.beans.AgentBean"
+		scope="prototype">
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.general.Resource"
+		class="net.onlinepresence.ontmodel.general.ResourceBean"
+		scope="prototype">
+	</bean>
+
+</beans>

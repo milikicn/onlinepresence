@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Agent"
+		class="net.onlinepresence.ontmodel.foaf.beans.AgentBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Group"
+		class="net.onlinepresence.ontmodel.foaf.beans.GroupBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Image"
+		class="net.onlinepresence.ontmodel.foaf.beans.ImageBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Person"
+		class="net.onlinepresence.ontmodel.foaf.beans.PersonBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.ontmodel.foaf.Thing"
+		class="net.onlinepresence.ontmodel.foaf.beans.ThingBean"
+		scope="prototype" >
+	</bean>
+	
+</beans>
