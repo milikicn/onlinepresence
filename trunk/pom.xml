@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.online-presence.opo</groupId>
-  <artifactId>opo-lib</artifactId>
+  <artifactId>jopo</artifactId>
   <name>Java library for OPO data</name>
   <version>1.1</version>
   <description>Java library for importing and exporting data in form of Online Presence Ontology (OPO)</description>
   <url>http://online-presence.net</url>
   
   <properties>
-	<jenabean-version>1.0.3</jenabean-version>
+	<jenabean-version>1.0.7</jenabean-version>
 	<spring.version>2.5.6</spring.version>
   </properties>
   
@@ -86,7 +86,7 @@
   
   <distributionManagement>
   	<repository>
-      <id>opo-lib</id>
+      <id>jopo</id>
       <url>svn:https://onlinepresence.googlecode.com/svn/repo</url>
   	</repository>
   </distributionManagement>
