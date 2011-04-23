@@ -5,6 +5,7 @@ import javax.ws.rs.core.Response;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
+import net.onlinepresence.opos.tapestry.rest.util.JSONFormater;
 
 @Path("/onlinePresences")
 public class OnlinePresencesResource {
@@ -17,11 +18,8 @@ public class OnlinePresencesResource {
 
 	@GET
 	@Path("{id}")
-//	@Produces("application/json")
-	@Produces("text/plain")
+	@Produces("application/json")
 	public String getOnlinePresence(@PathParam("id") String uri) {
-		System.out.println("//////////////////////////////////// URI: "+uri);
-		
 		// TODO: introduce interface for OnlinePresenceService and inject via
 		// spring its implementation
 		OnlinePresenceService ops = new OnlinePresenceService();
@@ -35,6 +33,8 @@ public class OnlinePresencesResource {
 		} catch (Exception e) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
-		return op.getUri().toString();
+		JSONFormater jsonFormater = new JSONFormater();
+		return jsonFormater.exportToJSON(op);
 	}
+	
 }
