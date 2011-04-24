@@ -18,10 +18,8 @@ public class TwitterMediator implements Mediator {
 	
 	private List<TwitterProfileCheckerThread> twitterProfileCheckers = new LinkedList<TwitterProfileCheckerThread>();
 	private List<Membership> users = null;
-	private MediatorManager mm;
 
-	public TwitterMediator(MediatorManager mm, List<Membership> userss) {
-		this.mm = mm;
+	public TwitterMediator(List<Membership> userss) {
 		this.users = userss;
 		
 		initThreadsForTwitterUsers(users);
@@ -57,7 +55,7 @@ public class TwitterMediator implements Mediator {
 
 	public void propagateOnlinePresence(OnlinePresence onlinePresence) {
 		System.out.println("||||||||Propagating OP");
-		mm.propagateOnlinePresence(onlinePresence);
+		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
 	}
 	
 	private TwitterProfileCheckerThread findTwitterProfileCheckerThread(Membership membership){

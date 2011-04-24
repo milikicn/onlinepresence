@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import net.onlinepresence.opos.core.spring.AbstractSpringTest;
 import net.onlinepresence.opos.domain.Application;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
 
 public class ApplicationsBeanTest extends AbstractSpringTest{
@@ -25,8 +26,8 @@ public class ApplicationsBeanTest extends AbstractSpringTest{
 	
 	@Test
 	public void testGetApplication(){
-		Application app = applicationsBeanUnderTest.getApplication("http://www.twitter.com");
-		assertEquals("TWITTER", app.getName());
+		Application app = applicationsBeanUnderTest.getApplication(ApplicationNames.TWITTER);
+		assertEquals(ApplicationNames.TWITTER, app.getName());
 	}
 	
 	@SuppressWarnings("rawtypes")

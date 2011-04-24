@@ -11,6 +11,7 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
+import net.onlinepresence.opos.mediators.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
@@ -21,8 +22,22 @@ public class MediatorManager {
 	private ApplicationManager applicationsService;
 	private OnlinePresenceService rdfPersistance;	
 	private LinkedList<Mediator> mediators;
+	
+	public static MediatorManager INSTANCE;
+	
+	private MediatorManager(){ 
+		init();
+	}
+	
+	public static MediatorManager getInstance() {
+		if (INSTANCE == null)
+			INSTANCE = new MediatorManager();
+		
+		return INSTANCE;
+	}
 
-	public MediatorManager(){
+	public void init(){
+		System.out.println("MediatorManager initialized");
 		ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
 		s.createContext();
 		personsService = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
@@ -37,13 +52,13 @@ public class MediatorManager {
 		Mediator spark = new SparkMediator(this);
 		mediators.add(spark);
 		
-		List<Membership> twitterMemberships = applicationsService.getAllApplicationMemberships("http://www.twitter.com");
-		Mediator twitter = new TwitterMediator(this, twitterMemberships);
+		List<Membership> twitterMemberships = applicationsService.getAllApplicationMemberships(ApplicationNames.TWITTER);
+		Mediator twitter = new TwitterMediator(twitterMemberships);
 		mediators.add(twitter);
 		
-		List<Membership> facebookMemberships = applicationsService.getAllApplicationMemberships("http://www.facebook.com");
-		Mediator facebook = new TwitterMediator(this, facebookMemberships);
-		mediators.add(twitter);
+		List<Membership> facebookMemberships = applicationsService.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
+		Mediator facebook = new FacebookMediator(facebookMemberships);
+		mediators.add(facebook);
 	}
 
 	// reimplementirati

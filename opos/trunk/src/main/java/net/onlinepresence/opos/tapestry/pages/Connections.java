@@ -155,11 +155,18 @@ public class Connections {
 	private UserAppSettings sparkAppSettings;
 
 	Object onSubmitFromSparkForm() {
+		// refreshing Hibernate session
+		System.out.println("0000000000000000000");
+		loggedUser.setUser(users.findUser(loggedUser.getUser().getUsername()));
+		System.out.println("11111111111111111111");
+		Application sparkApp = applications.getApplication(ApplicationNames.SPARK);
+		System.out.println("22222222222222222222222");
+		
 		Membership memb = new MembershipBean(
-				applications
-						.getApplication("http://www.igniterealtime.org/projects/spark/"),
+				sparkApp,
 				loggedUser.getUser(), sparkAppSettings.getUsername(), null, sparkAppSettings.isSendDataToApp(),
 				sparkAppSettings.isReceiveDataFromApp(), null, null);
+		System.out.println("333333333333333333333");
 		
 		return submitForm(memb);
 	}

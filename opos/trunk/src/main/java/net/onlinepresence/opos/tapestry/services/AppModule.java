@@ -97,6 +97,6 @@ public class AppModule {
     }
     
     public static MediatorManager buildMediatorManager() {
-    	return new MediatorManager();
+    	return MediatorManager.getInstance();
     }
 }

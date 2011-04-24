@@ -68,7 +68,7 @@ public class TwitterApp {
 			Membership memb;
 			try {
 				memb = new MembershipBean(
-						applications.getApplication("http://www.twitter.com"),
+						applications.getApplication(ApplicationNames.TWITTER),
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,
 						accessToken.getToken(), accessToken.getTokenSecret());
 
