@@ -6,7 +6,7 @@ import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 
 
-public interface Users {
+public interface UserManager {
 
 	void update(User user);
 	

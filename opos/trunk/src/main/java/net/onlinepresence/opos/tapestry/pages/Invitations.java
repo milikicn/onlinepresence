@@ -7,7 +7,7 @@ import java.util.UUID;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Key;
 import net.onlinepresence.opos.domain.beans.LoggedAdminBean;
-import net.onlinepresence.opos.domain.service.Keys;
+import net.onlinepresence.opos.domain.service.KeyManager;
 
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
@@ -15,13 +15,11 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 public class Invitations {
-
 	
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Keys")
-	private Keys invitations;
+	@SpringBean("net.onlinepresence.opos.domain.service.KeyManager")
+	private KeyManager invitations;
 	
-
 	@SuppressWarnings("unused")
 	@SessionState
 	private LoggedAdminBean loggedAdmin;
@@ -36,7 +34,6 @@ public class Invitations {
 		return null;
 	}
 	
-	
 	public List<Key> getInvitations(){
 		List<Key> k = invitations.getKeys();
 		List<Key> list = new LinkedList<Key>();
@@ -47,8 +44,7 @@ public class Invitations {
 		return list;
 	}
 	
-	public String getEmail()
-    {
+	public String getEmail() {
         return invitation.getEmail();
     }
 	
@@ -63,8 +59,6 @@ public class Invitations {
 		
 		return null;
 	}
-	
-	
 	
 	@OnEvent(component = "signout")
     public Object signout(){

@@ -3,7 +3,7 @@ package net.onlinepresence.opos.tapestry.pages;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.util.Authentication;
 
 import org.apache.tapestry5.annotations.Property;
@@ -19,8 +19,8 @@ public class Login {
 	private String password;
 
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users persons;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager persons;
 
 	@SessionState
 	private LoggedUserBean loggedUser;
@@ -30,7 +30,6 @@ public class Login {
 		Authentication auth = new Authentication(persons);
 
 		User u = auth.authenticateUser(usernameOrEmail, password);
-
 
 		if (u != null) {
 			loggedUser.setUser(u);

@@ -4,10 +4,10 @@ import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.service.Applications;
-import net.onlinepresence.opos.domain.service.Users;
-import net.onlinepresence.opos.domain.service.beans.ApplicationsBean;
-import net.onlinepresence.opos.domain.service.beans.UsersBean;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.domain.service.UserManager;
+import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
+import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 import net.onlinepresence.opos.mediators.MediatorManager;
 
 import org.apache.tapestry5.*;
@@ -77,12 +77,12 @@ public class AppModule {
 //		configuration.add("net.onlinepresence.opos.api");
 //	}
     
-    public static Users buildPersons() {
-    	return new UsersBean();
+    public static UserManager buildPersons() {
+    	return new UserManagerBean();
     }
     
-    public static Applications buildApps() {
-    	return new ApplicationsBean();
+    public static ApplicationManager buildApps() {
+    	return new ApplicationManagerBean();
     }
     
     public static ApplicationContext buildApplicationContext() {

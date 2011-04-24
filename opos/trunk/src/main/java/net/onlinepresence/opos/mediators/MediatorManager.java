@@ -7,9 +7,9 @@ import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
-import net.onlinepresence.opos.domain.service.Applications;
-import net.onlinepresence.opos.domain.service.Users;
-import net.onlinepresence.opos.domain.service.beans.UsersBean;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.domain.service.UserManager;
+import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
@@ -17,16 +17,16 @@ import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class MediatorManager {
 	
-	private Users personsService;
-	private Applications applicationsService;
+	private UserManager personsService;
+	private ApplicationManager applicationsService;
 	private OnlinePresenceService rdfPersistance;	
 	private LinkedList<Mediator> mediators;
 
 	public MediatorManager(){
 		ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
 		s.createContext();
-		personsService = (UsersBean) s.getContext().getBean(Users.class.getName());
-		applicationsService = (Applications) s.getContext().getBean(Applications.class.getName());
+		personsService = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
+		applicationsService = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
 		rdfPersistance = new OnlinePresenceService();
 		mediators = new LinkedList<Mediator>();
 		initializeMediators();

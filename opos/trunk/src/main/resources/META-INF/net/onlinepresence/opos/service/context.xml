@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="net.onlinepresence.opos.domain.service.Users" 
-class="net.onlinepresence.opos.domain.service.beans.UsersBean" scope="prototype">
+<bean id="net.onlinepresence.opos.domain.service.AbstractManager" 
+	class="net.onlinepresence.opos.domain.service.beans.AbstractManagerBean" 
+	abstract="true"
+	scope="prototype">
 	<property name="reader">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
 	</property>
@@ -14,53 +16,39 @@ class="net.onlinepresence.opos.domain.service.beans.UsersBean" scope="prototype"
 	<property name="writer">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.WriteCommand"/>
 	</property>
-	<property name="delete">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.DeleteCommand"/>
-	</property>
-		<property name="membershipDeleter">
+	<property name="deleter">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.DeleteCommand"/>
 	</property>
 	<property name="searcher">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.ExampleSearchCommand"/>
 	</property>
 </bean>
-<bean id="net.onlinepresence.opos.domain.service.Applications" 
-class="net.onlinepresence.opos.domain.service.beans.ApplicationsBean" scope="prototype">
-	<property name="reader">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
-	</property>
-	<property name="updater">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.UpdateCommand"/>
-	</property>
-	<property name="writer">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.WriteCommand"/>
-	</property>
-	<property name="delete">
+
+<bean id="net.onlinepresence.opos.domain.service.UserManager" 
+	class="net.onlinepresence.opos.domain.service.beans.UserManagerBean" 
+	parent="net.onlinepresence.opos.domain.service.AbstractManager" 
+	scope="prototype">
+	<property name="membershipDeleter">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.DeleteCommand"/>
 	</property>
-	<property name="searcher">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.ExampleSearchCommand"/>
-	</property>
 </bean>
-<bean id="net.onlinepresence.opos.domain.service.Keys" 
-class="net.onlinepresence.opos.domain.service.beans.KeysBean" scope="prototype">
-	<property name="reader">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
-	</property>
-	<property name="writer">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.WriteCommand"/>
-	</property>
-	<property name="delete">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.DeleteCommand"/>
-	</property>
-		<property name="updater">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.UpdateCommand"/>
-	</property>
+
+<bean id="net.onlinepresence.opos.domain.service.ApplicationManager" 
+	class="net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean" 
+	parent="net.onlinepresence.opos.domain.service.AbstractManager" 
+	scope="prototype">
 </bean>
-<bean id="net.onlinepresence.opos.domain.service.Administrators" 
-class="net.onlinepresence.opos.domain.service.beans.AdministratorsBean" scope="prototype">
-	<property name="reader">
-		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
-	</property>
+
+<bean id="net.onlinepresence.opos.domain.service.KeyManager" 
+	class="net.onlinepresence.opos.domain.service.beans.KeyManagerBean" 
+	parent="net.onlinepresence.opos.domain.service.AbstractManager" 
+	scope="prototype">
 </bean>
+
+<bean id="net.onlinepresence.opos.domain.service.AdministratorManager" 
+	class="net.onlinepresence.opos.domain.service.beans.AdministratorManagerBean" 
+	parent="net.onlinepresence.opos.domain.service.AbstractManager" 
+	scope="prototype">
+</bean>
+
 </beans>

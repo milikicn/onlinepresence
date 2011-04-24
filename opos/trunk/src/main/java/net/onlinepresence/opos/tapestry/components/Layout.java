@@ -4,7 +4,7 @@ import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.UserBean;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Index;
 import net.onlinepresence.opos.tapestry.pages.Registration;
@@ -30,8 +30,8 @@ import org.apache.tapestry5.BindingConstants;
 public class Layout{
 	
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users persons;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager persons;
 	
 	@SessionState
 	private LoggedUserBean loggedUser;

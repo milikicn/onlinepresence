@@ -3,8 +3,8 @@ package net.onlinepresence.opos.tapestry.pages;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.service.Applications;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.domain.service.UserManager;
 
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -29,13 +29,13 @@ public class Account {
 	private boolean loggedUserExists;
 	
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users persons;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager persons;
 	
 	@SuppressWarnings("unused")
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Applications")
-	private Applications apps;
+	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
+	private ApplicationManager apps;
 	
 	@SuppressWarnings("unused")
 	@Property
@@ -52,7 +52,6 @@ public class Account {
 		return null;
 	}
 	
-	
 	Object onSubmitFromUserDetailsForm(){
 		if(!password.equals(passwordConfirmation))
 			return null;		
@@ -62,7 +61,6 @@ public class Account {
 		
 		return null;
 	}
-	
 	
 	Object onSubmitFromDeleteAccount(){
 		persons.removeUser(loggedUser.getUser());

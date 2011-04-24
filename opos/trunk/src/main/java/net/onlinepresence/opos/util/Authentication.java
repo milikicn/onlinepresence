@@ -9,9 +9,9 @@ package net.onlinepresence.opos.util;
 import net.onlinepresence.opos.domain.Administrator;
 import net.onlinepresence.opos.domain.Key;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.service.Administrators;
-import net.onlinepresence.opos.domain.service.Keys;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.AdministratorManager;
+import net.onlinepresence.opos.domain.service.KeyManager;
+import net.onlinepresence.opos.domain.service.UserManager;
 
 /**
  * @author Nikola Milikic
@@ -19,20 +19,20 @@ import net.onlinepresence.opos.domain.service.Users;
  */
 public class Authentication {
 
-	private Users persons;
-	private Keys keys;
-	private Administrators administrators;
+	private UserManager persons;
+	private KeyManager keys;
+	private AdministratorManager administrators;
 	private boolean userExists;
 
-	public Authentication(Users p) {
+	public Authentication(UserManager p) {
 		 this.persons = p;
 	}
 	
-	public Authentication(Keys k) {
+	public Authentication(KeyManager k) {
 		 this.keys = k;
 	}
 	
-	public Authentication(Administrators a) {
+	public Authentication(AdministratorManager a) {
 		 this.administrators = a;
 	}
 
@@ -78,7 +78,7 @@ public class Authentication {
 	/**
 	 * @return the persons
 	 */
-	public Users getPersons() {
+	public UserManager getPersons() {
 		return persons;
 	}
 
@@ -86,23 +86,23 @@ public class Authentication {
 	 * @param persons
 	 *            the persons to set
 	 */
-	public void setPersons(Users persons) {
+	public void setPersons(UserManager persons) {
 		this.persons = persons;
 	}
 
-	public Keys getKeys() {
+	public KeyManager getKeys() {
 		return keys;
 	}
 
-	public void setKeys(Keys keys) {
+	public void setKeys(KeyManager keys) {
 		this.keys = keys;
 	}
 
-	public Administrators getAdministrators() {
+	public AdministratorManager getAdministrators() {
 		return administrators;
 	}
 
-	public void setAdministrators(Administrators administrators) {
+	public void setAdministrators(AdministratorManager administrators) {
 		this.administrators = administrators;
 	}
 

@@ -4,8 +4,8 @@ import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.UserBean;
-import net.onlinepresence.opos.domain.service.Keys;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.KeyManager;
+import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.util.Authentication;
 
 import org.apache.tapestry5.EventConstants;
@@ -42,12 +42,12 @@ public class Registration {
 	private User user;
 
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users users;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager users;
 	
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Keys")
-	private Keys keys;
+	@SpringBean("net.onlinepresence.opos.domain.service.KeyManager")
+	private KeyManager keys;
 
 	@SessionState
 	private LoggedUserBean loggedUser;
@@ -83,17 +83,12 @@ public class Registration {
 	}
 
 	Object onSubmitFromRegistrationForm() {
-		
 		Authentication auth = new Authentication(keys);
-
 		
 		if (auth.authenticateKey(user.getEmail(), enteredKey))
 			return registerUser();
 		
-		
 		return null;
-		
-		
 	}
 	
 	Object registerUser(){

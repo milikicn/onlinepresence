@@ -1,13 +1,9 @@
 package net.onlinepresence.opos.service.crud.impl;
 
-
-
 import net.onlinepresence.opos.core.persistance.PersistenceManager;
 import net.onlinepresence.opos.service.crud.Command;
 
 import org.hibernate.Session;
-
-
 
 public class UpdateCommand<Type> implements Command<Boolean> {
 	

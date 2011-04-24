@@ -1,7 +1,7 @@
 package net.onlinepresence.opos.tapestry.pages;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.UserManager;
 
 import org.apache.tapestry5.Field;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -18,8 +18,8 @@ public class PassRecovery {
 	private Field emailF;
 
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users users;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager users;
 	
 	@Property
 	private String email;

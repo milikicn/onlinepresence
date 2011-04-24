@@ -16,7 +16,7 @@ import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.ApplicationBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.beans.UserBean;
-import net.onlinepresence.opos.domain.service.beans.UsersBean;
+import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 
 import org.testng.annotations.Test;
 
@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
  */
 public class PersonsBeanTest extends AbstractSpringTest{
 
-	private UsersBean personsBeanUnderTest;
+	private UserManagerBean personsBeanUnderTest;
 	
 	
 	
@@ -42,8 +42,8 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	}
 	
 	@Override
-	protected UsersBean createUnderTest() {
-		return (UsersBean) getApplicationContext().getBean(Users.class.getName());
+	protected UserManagerBean createUnderTest() {
+		return (UserManagerBean) getApplicationContext().getBean(UserManager.class.getName());
 	}
 	
 	@Test

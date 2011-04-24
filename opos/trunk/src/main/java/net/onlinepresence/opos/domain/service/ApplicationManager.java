@@ -15,7 +15,7 @@ import net.onlinepresence.opos.domain.Membership;
  * @author Nikola Milikic
  *
  */
-public interface Applications {
+public interface ApplicationManager {
 
 	public boolean save(Application app);
 	

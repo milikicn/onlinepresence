@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.onlinepresence.opos.domain.Key;
 
-public interface Keys {
+public interface KeyManager {
 
 	void addKey(Key key);
 	

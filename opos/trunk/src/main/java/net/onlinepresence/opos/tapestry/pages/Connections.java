@@ -11,8 +11,8 @@ import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
-import net.onlinepresence.opos.domain.service.Applications;
-import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -39,12 +39,12 @@ import twitter4j.auth.RequestToken;
 public class Connections {
 
 	@Inject @Property
-	@SpringBean("net.onlinepresence.opos.domain.service.Applications")
-	private Applications applications;
+	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
+	private ApplicationManager applications;
 
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private Users users;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager users;
 
 	@Property @SuppressWarnings("unused")
 	private Application currentApplication;

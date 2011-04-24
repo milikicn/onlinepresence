@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 
 import net.onlinepresence.opos.core.spring.AbstractSpringTest;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.service.beans.ApplicationsBean;
+import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
 
 public class ApplicationsBeanTest extends AbstractSpringTest{
 
-	private ApplicationsBean applicationsBeanUnderTest;
+	private ApplicationManagerBean applicationsBeanUnderTest;
 	
 	public void onSetUpInTransaction() throws Exception{
 //		super.onSetUpInTransaction();
@@ -19,8 +19,8 @@ public class ApplicationsBeanTest extends AbstractSpringTest{
 	}
 	
 	@Override
-	protected ApplicationsBean createUnderTest() {
-		return (ApplicationsBean) getApplicationContext().getBean(Applications.class.getName());
+	protected ApplicationManagerBean createUnderTest() {
+		return (ApplicationManagerBean) getApplicationContext().getBean(ApplicationManager.class.getName());
 	}
 	
 	@Test
