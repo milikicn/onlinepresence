@@ -9,7 +9,7 @@
 		<li><t:pagelink id="selected" t:page="Connections" class="btnConn">Connections</t:pagelink></li>
 	</ul>
 	
-	<t:if t:test="twitterExists">
+	<t:if t:test="twitterAppSettings.userUssesApp">
 		<a id="inline" href="#data1"><img class="icon" src="${asset:context:images/applications/icon-Twitter-on.png}" width="70" height="70" alt="" /></a>
 		<p:else>
 			<a id="inline" href="#data1"><img class="icon" src="${asset:context:images/applications/icon-Twitter-off.png}" width="70" height="70" alt="" /></a>
@@ -40,8 +40,51 @@
 			                <span class="withShadow">Receive data from Twitter</span>
 			            </div>	            
 						
-						<t:if t:test="twitterExists">
+						<t:if t:test="twitterAppSettings.userUssesApp">
 							<t:ActionLink t:id="deleteTwitter" class="btnDisconnect">Disconnect</t:ActionLink>
+							<p:else>
+								 <input type="submit" class="btnConnect" value="Connect" />
+							</p:else>
+						</t:if>
+					</form>
+				</div>
+			</div>    
+		</div>
+	</div>
+	
+	<t:if t:test="facebookAppSettings.userUssesApp">
+		<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Twitter-on.png}" width="70" height="70" alt="" /></a>
+		<p:else>
+			<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Twitter-off.png}" width="70" height="70" alt="" /></a>
+		</p:else>
+	</t:if>
+	
+	<div style="display: none;">
+		<div id="data2">
+			<div class="popupDiv">
+				<h3 class="fontface">Connect with Facebook</h3>
+								    
+				<div class="form">
+					<form t:type="Form" t:id="facebookForm">
+						<div class="formRow">
+							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpFacebook">Sign Up</t:ActionLink></label>
+							
+							<div class="inputWrapper">
+								
+							</div>
+						</div>
+
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" />
+			                <span class="withShadow">Send data to Facebook</span>
+			            </div>
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox"/>
+			                <span class="withShadow">Receive data from Facebook</span>
+			            </div>	            
+						
+						<t:if t:test="facebookAppSettings.userUssesApp">
+							<t:ActionLink t:id="deleteFacebook" class="btnDisconnect">Disconnect</t:ActionLink>
 							<p:else>
 								 <input type="submit" class="btnConnect" value="Connect" />
 							</p:else>
@@ -53,15 +96,15 @@
 	</div>
           
             
-    <t:if t:test="sparkExists">
-		<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Spark-on.png}" width="70" height="70" alt="" /></a>
+    <t:if t:test="sparkAppSettings.userUssesApp">
+		<a id="inline" href="#data3"><img class="icon" src="${asset:context:images/applications/icon-Spark-on.png}" width="70" height="70" alt="" /></a>
 		<p:else>
-			<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Spark-off.png}" width="70" height="70" alt="" /></a>
+			<a id="inline" href="#data3"><img class="icon" src="${asset:context:images/applications/icon-Spark-off.png}" width="70" height="70" alt="" /></a>
 		</p:else>
 	</t:if>            
 	
 	<div style="display: none;">
-		<div id="data2">		
+		<div id="data3">		
 			<div class="popupDiv">
 			
 				<h3 class="fontface">Connect with Spark</h3>
@@ -75,22 +118,22 @@
 								<div class="inputLeft"></div>
 								<div class="inputCenter">
 									<input class="input" t:id="sparkUsername" t:type="TextField" 
-													t:value="sparkUsername" title="Spark username" tabindex="5" />
+													t:value="sparkAppSettings.username" title="Spark username" tabindex="5" />
 								</div>
 								<div class="inputRight"></div>
 							</div>
 						</div>
 
 						<div class="formRowSmall">
-			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkSendTo" />
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkAppSettings.sendDataToApp" />
 			                <span class="withShadow">Send data to Spark</span>
 			            </div>
 						<div class="formRowSmall">
-			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkReceiveFrom"/>
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="sparkAppSettings.receiveDataFromApp"/>
 			                <span class="withShadow">Receive data from Spark</span>
 			            </div>
 											
-						<t:if t:test="sparkExists">
+						<t:if t:test="sparkAppSettings.userUssesApp">
 							<input type="submit" class="btnUpdate" value="Update" /> 
 							<t:ActionLink t:id="deleteSpark" class="btnDisconnect">Disconnect</t:ActionLink>
 							<p:else>

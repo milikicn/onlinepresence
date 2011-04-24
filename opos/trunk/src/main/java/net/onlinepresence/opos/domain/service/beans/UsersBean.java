@@ -67,7 +67,7 @@ public class UsersBean implements Users {
 	/* (non-Javadoc)
 	 * @see opos.service.Persons#getPerson(java.lang.String)
 	 */
-	public User getUser(String usernameOrEmail) {
+	public User findUser(String usernameOrEmail) {
 		
 		List<User> users = getUsers();
 		
@@ -98,7 +98,7 @@ public class UsersBean implements Users {
 	}
 	
 	public boolean existsUser(String username){
-		User u = getUser(username);
+		User u = findUser(username);
 		if(u != null)
 			return true;
 		return false;

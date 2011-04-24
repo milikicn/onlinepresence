@@ -14,7 +14,7 @@ public interface Users {
 	
 	void removeUser(User user);
 	
-	User getUser(String usernameOrEmail);
+	User findUser(String usernameOrEmail);
 	
 	List<User> getUsers();
 	

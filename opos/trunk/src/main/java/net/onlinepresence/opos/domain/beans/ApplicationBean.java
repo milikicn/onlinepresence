@@ -4,12 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.onlinepresence.opos.domain.Application;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 
 public class ApplicationBean implements Application {
 	
-	private String name;
+	private ApplicationNames name;
 	private String webAddress;
 	private List<Membership> userMemberships = new LinkedList<Membership>();
 	
@@ -21,7 +22,7 @@ public class ApplicationBean implements Application {
 	 * @param name
 	 * @param webAdress
 	 */
-	public ApplicationBean(String name, String webAdress) {
+	public ApplicationBean(ApplicationNames name, String webAdress) {
 		this.name = name;
 		this.webAddress = webAdress;
 	}
@@ -29,14 +30,14 @@ public class ApplicationBean implements Application {
 	/**
 	 * @return the name
 	 */
-	public String getName() {
+	public ApplicationNames getName() {
 		return name;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(ApplicationNames name) {
 		if(name==null)
 			throw new IllegalArgumentException("Name is not valid");
 		this.name = name;

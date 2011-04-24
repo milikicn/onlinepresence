@@ -71,6 +71,12 @@ public class ApplicationsBean implements Applications{
 		}
 		return null;
 	}
+	
+	public boolean save(Application app) {
+		writer.setToSave(app);
+		writer.execute();
+		return true;
+	}
 
 	public ReadCommand<Application> getReader() {
 		return reader;

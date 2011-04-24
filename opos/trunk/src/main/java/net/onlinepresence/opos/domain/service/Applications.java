@@ -17,7 +17,7 @@ import net.onlinepresence.opos.domain.Membership;
  */
 public interface Applications {
 
-	//public boolean save(Application app);
+	public boolean save(Application app);
 	
 	Application getApplication(String appUrl);
 	

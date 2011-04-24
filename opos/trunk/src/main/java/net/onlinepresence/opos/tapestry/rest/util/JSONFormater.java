@@ -21,10 +21,7 @@ public class JSONFormater {
 		StringWriter writer = new StringWriter();
 		
 		try {
-			Encoder.get().encode(
-					tempModel, 
-			        writer,
-			        true);
+			Encoder.get().encode(tempModel, writer, true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

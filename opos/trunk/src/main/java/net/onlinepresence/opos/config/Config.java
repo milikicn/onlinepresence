@@ -14,5 +14,8 @@ public class Config {
 	
 	@Element(name = "twitter-mediator", required = false)
 	public TwitterMediatorConfig twitterMediatorConfig;
+	
+	@Element(name = "facebook-mediator", required = false)
+	public FacebookMediatorConfig facebookMediatorConfig;
 
 }

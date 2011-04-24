@@ -27,7 +27,7 @@ public class PassRecovery {
 	Object onSubmitFromPassRecoveryForm(){		
 		try {
 			//TODO send pass recovery email
-			String password = users.getUser(email).getPassword();
+			String password = users.findUser(email).getPassword();
 		} catch (NullPointerException e) {
 			passRecoveryForm.recordError(emailF, "Wrong email");
 			return null;

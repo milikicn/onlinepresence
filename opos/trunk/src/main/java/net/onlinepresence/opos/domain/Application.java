@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface Application {
 
-	String getName();
-	void setName(String name);
+	ApplicationNames getName();
+	void setName(ApplicationNames name);
 	
 	String getWebAddress();
 	void setWebAddress(String webAdress);

@@ -6,10 +6,10 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.MediatorNames;
 import net.onlinepresence.opos.mediators.mediators.spark.threads.ReceivingThread;
 
 public class SparkMediator extends Thread implements Mediator{
@@ -67,8 +67,8 @@ public class SparkMediator extends Thread implements Mediator{
 		mm.propagateOnlinePresence(onlinePresence);
 	}
 	
-	public MediatorNames getMediatorName(){
-		return MediatorNames.Spark;
+	public ApplicationNames getMediatorName(){
+		return ApplicationNames.SPARK;
 	}
 
 }

@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
@@ -9,7 +10,6 @@ import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.MediatorNames;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
@@ -77,7 +77,7 @@ public class TwitterApp {
 				// it, and thus it will instantiate TwitterMediator instance for
 				// saved Membership instance, but the TwitterMediator instance won't
 				// have Twitter object to work with
-				Mediator twitterMediator = mediatorManager.getMediator(MediatorNames.Twitter);
+				Mediator twitterMediator = mediatorManager.getMediator(ApplicationNames.TWITTER);
 				if (!loggedUser.getUser().hasMembership(memb)) {
 					loggedUser.getUser().addApplicationMembership(memb);
 					users.update(loggedUser.getUser());

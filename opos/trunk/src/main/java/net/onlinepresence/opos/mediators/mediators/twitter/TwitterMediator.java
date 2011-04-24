@@ -7,10 +7,10 @@ import java.util.List;
 import twitter4j.Twitter;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.MediatorNames;
 import net.onlinepresence.opos.mediators.mediators.twitter.threads.TwitterProfileCheckerThread;
 import net.onlinepresence.opos.mediators.mediators.twitter.threads.TwitterProfileSubmitThread;
 
@@ -43,8 +43,8 @@ public class TwitterMediator implements Mediator {
 		twitterProfileCheckers.add(tpc);
 	}
 
-	public MediatorNames getMediatorName() {
-		return MediatorNames.Twitter;
+	public ApplicationNames getMediatorName() {
+		return ApplicationNames.TWITTER;
 	}
 	
 	public void sendOnlinePresenceToUser(OnlinePresence op, Membership membership) {

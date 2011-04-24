@@ -15,7 +15,7 @@ public class LoggedUserBean {
 	private Users service;
 
 	public User getUser() {
-		return service.getUser(user.getUsername());
+		return service.findUser(user.getUsername());
 	}
 
 	public void setUser(User user) {

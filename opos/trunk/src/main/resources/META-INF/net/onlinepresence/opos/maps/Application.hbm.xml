@@ -4,12 +4,15 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="net.onlinepresence.opos.domain.beans">
-<class name="ApplicationBean" table="APPLICATIONS">
-<id name="webAddress" column="WEBADDRESS" type="string">
+	<class name="ApplicationBean" table="APPLICATIONS">
+		<id name="webAddress" column="WEBADDRESS" type="string" />
 
-</id>
-<property name="name"/>
+		<property name="name"> 
+			<type name="org.hibernate.type.EnumType"> 
+				<param name="enumClass">net.onlinepresence.opos.domain.ApplicationNames</param> 
+				<param name="type">12</param> 
+			</type> 
+		</property> 
 
-
-</class>
+	</class>
 </hibernate-mapping>

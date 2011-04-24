@@ -10,6 +10,7 @@ import java.util.Set;
 
 import net.onlinepresence.opos.core.spring.AbstractSpringTest;
 import net.onlinepresence.opos.domain.Application;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.ApplicationBean;
@@ -47,7 +48,7 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	
 	@Test
 	public void testGetPerson(){
-		User person = (User) personsBeanUnderTest.getUser("test");
+		User person = (User) personsBeanUnderTest.findUser("test");
 		assertEquals("test", person.getName());		
 	}
 	
@@ -60,7 +61,7 @@ public class PersonsBeanTest extends AbstractSpringTest{
 		p.setEmail("testLastName");
 		
 		Application app = new ApplicationBean();
-		app.setName("Twitter.test");
+		app.setName(ApplicationNames.TWITTER);
 		app.setWebAddress("http://www.twitter.com.test");
 		
 		Membership m = new MembershipBean();
@@ -79,7 +80,7 @@ public class PersonsBeanTest extends AbstractSpringTest{
 		
 
 		
-		User personResult = personsBeanUnderTest.getUser(p.getUsername());
+		User personResult = personsBeanUnderTest.findUser(p.getUsername());
 		
 		assertEquals("testUsername", personResult.getUsername());
 		assertEquals("testFirstName", personResult.getName());
@@ -94,22 +95,22 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	@Test
 	public void update(){
 		
-		User person = (User) personsBeanUnderTest.getUser("filiprd");
+		User person = (User) personsBeanUnderTest.findUser("filiprd");
 		person.setName("changedFirstName");
 		personsBeanUnderTest.update(person);
 		flush();
-		User updatedPerson = (User) personsBeanUnderTest.getUser("filiprd");
+		User updatedPerson = (User) personsBeanUnderTest.findUser("filiprd");
 		assertEquals("changedcontact", updatedPerson.getName());
 		
 	}
 	
 	@Test	
 	public void removePerson(){
-		User toDelete = (User) personsBeanUnderTest.getUser("nikolakv");
+		User toDelete = (User) personsBeanUnderTest.findUser("nikolakv");
 		personsBeanUnderTest.removeUser(toDelete);
 		flush();
 		
-		assertNull((User) personsBeanUnderTest.getUser("nikolakv"));
+		assertNull((User) personsBeanUnderTest.findUser("nikolakv"));
 	}
 	
 	@Test

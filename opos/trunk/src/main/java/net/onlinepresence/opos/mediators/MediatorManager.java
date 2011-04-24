@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
 import net.onlinepresence.opos.domain.service.beans.UsersBean;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.MediatorNames;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
@@ -37,8 +37,12 @@ public class MediatorManager {
 		Mediator spark = new SparkMediator(this);
 		mediators.add(spark);
 		
-		List<Membership> memberships = applicationsService.getAllApplicationMemberships("http://www.twitter.com");
-		Mediator twitter = new TwitterMediator(this, memberships);
+		List<Membership> twitterMemberships = applicationsService.getAllApplicationMemberships("http://www.twitter.com");
+		Mediator twitter = new TwitterMediator(this, twitterMemberships);
+		mediators.add(twitter);
+		
+		List<Membership> facebookMemberships = applicationsService.getAllApplicationMemberships("http://www.facebook.com");
+		Mediator facebook = new TwitterMediator(this, facebookMemberships);
 		mediators.add(twitter);
 	}
 
@@ -75,7 +79,7 @@ public class MediatorManager {
 				Mediator med = null;
 				try {
 					System.out.println("Proveravam membership: " + membership.toString());
-					med = getMediator(MediatorNames.valueOf(membership.getApplication().getName()));
+					med = getMediator(membership.getApplication().getName());
 					med.sendOnlinePresenceToUser(onlinePresence, membership);
 				} catch (NullPointerException e) {
 					System.out.println("Ne postoji medijator: " + membership.getApplication().getName());
@@ -85,7 +89,7 @@ public class MediatorManager {
 		}
 	}
 	
-	public Mediator getMediator(MediatorNames name){
+	public Mediator getMediator(ApplicationNames name){
 		System.out.println("Looking for mediator: " + name);
 		for (Mediator med : mediators) {
 			System.out.println("Proveravam medijator: " +med.getMediatorName());

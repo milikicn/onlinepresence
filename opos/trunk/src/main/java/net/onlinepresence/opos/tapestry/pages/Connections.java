@@ -1,6 +1,5 @@
 package net.onlinepresence.opos.tapestry.pages;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
@@ -8,11 +7,13 @@ import java.util.Set;
 import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.Applications;
 import net.onlinepresence.opos.domain.service.Users;
+import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -51,54 +52,61 @@ public class Connections {
 	@SessionState
 	private LoggedUserBean loggedUser;
 	private boolean loggedUserExists;
-	
-	@SuppressWarnings("unused")
-	@SessionState
-	private Twitter twitter;
-
-	@SuppressWarnings("unused")
-	@Property
-	private String twitterUsername;
-
-	@SuppressWarnings("unused")
-	@Property
-	private String twitterPassword;
-
-	@Property
-	private String sparkUsername;
-
-	@SuppressWarnings("unused")
-	@Property
-	private boolean twitterSendTo;
-
-	@SuppressWarnings("unused")
-	@Property
-	private boolean twitterReceiveFrom;
-
-	@Property
-	private boolean sparkSendTo;
-
-	@Property
-	private boolean sparkReceiveFrom;
-
-	@Property @SuppressWarnings("unused")
-	private boolean twitterExists;
-
-	@Property @SuppressWarnings("unused")
-	private boolean sparkExists;
 
 	Object onActivate() {
 		if (!loggedUserExists)
 			return Login.class;
+		
+		// refreshing Hibernate session
+		loggedUser.setUser(users.findUser(loggedUser.getUser().getUsername()));
+		
+		twitterAppSettings = new UserAppSettings(ApplicationNames.TWITTER);
+		facebookAppSettings = new UserAppSettings(ApplicationNames.FACEBOOK);
+		sparkAppSettings = new UserAppSettings(ApplicationNames.SPARK);
+		
 		loadMembershipInformation();
 		
 		return null;
 	}
 
+	private void loadMembershipInformation() {
+		
+		Set<Membership> memberships = (Set<Membership>) loggedUser.getUser().getApplicationMemberships();
+		
+		for (Membership mem : memberships) {
+			ApplicationNames appName = mem.getApplication().getName();
+			
+			switch (appName) {
+			case TWITTER:
+				configureUserAppSettings(twitterAppSettings, mem);
+				break;
+			case FACEBOOK:
+				configureUserAppSettings(facebookAppSettings, mem);
+				break;
+			case SPARK:
+				configureUserAppSettings(sparkAppSettings, mem);
+				break;
+			}
+		}
+	}
+	
+	private void configureUserAppSettings(UserAppSettings appSettings, Membership mem) {
+		appSettings.setUserUssesApp(true);
+		appSettings.setSendDataToApp(mem.isSendTo());
+		appSettings.setReceiveDataFromApp(mem.isReceiveFrom());
+		appSettings.setUsername(mem.getUsername());
+	}
+
+	//Twitter
+	@SuppressWarnings("unused")
+	@SessionState
+	private Twitter twitter;
+	
+	@Property
+	private UserAppSettings twitterAppSettings;
+	
 	URL onSubmitFromTwitterForm() {
 		Twitter twitter = new TwitterFactory().getInstance();
-//		Properties appProp = Util.loadPropertyFile("/mediator_params.properties");
-//		System.out.println(appProp);
 	    twitter.setOAuthConsumer(Settings.getInstance().config.twitterMediatorConfig.apiKey, Settings.getInstance().config.twitterMediatorConfig.apiSecret);
 	    RequestToken requestToken;
 		try {
@@ -119,16 +127,50 @@ public class Connections {
 		return null;
 	}
 
+	@OnEvent(component = "deleteTwitter")
+	void deleteTwitter() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(
+				"http://www.twitter.com");
+		users.deleteApplicationMemberhsip(m);
+	}
+	
+	//Facebook
+	@Property
+	private UserAppSettings facebookAppSettings;
+	
+	URL onSubmitFromFacebookForm() {
+		//https://www.facebook.com/dialog/oauth?client_id=22915582764&redirect_uri=http://localhost:8080/&scope=read_stream,user_online_presence,user_location,offline_access&response_type=token
+		return null;
+	}
+
+	@OnEvent(component = "deleteTwitter")
+	void deleteFacebook() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(
+				"http://www.twitter.com");
+		users.deleteApplicationMemberhsip(m);
+	}
+	
+	// Spark
+	@Property
+	private UserAppSettings sparkAppSettings;
+
 	Object onSubmitFromSparkForm() {
 		Membership memb = new MembershipBean(
 				applications
 						.getApplication("http://www.igniterealtime.org/projects/spark/"),
-				loggedUser.getUser(), sparkUsername, null, sparkSendTo,
-				sparkReceiveFrom, null, null);
+				loggedUser.getUser(), sparkAppSettings.getUsername(), null, sparkAppSettings.isSendDataToApp(),
+				sparkAppSettings.isReceiveDataFromApp(), null, null);
 		
 		return submitForm(memb);
 	}
-
+	
+	@OnEvent(component = "deleteSpark")
+	void deleteSpark() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(
+				"http://www.igniterealtime.org/projects/spark/");
+		users.deleteApplicationMemberhsip(m);
+	}
+	
 	public Object submitForm(Membership memb) {
 		if (!loggedUser.getUser().hasMembership(memb)) {
 			loggedUser.getUser().addApplicationMembership(memb);
@@ -139,75 +181,6 @@ public class Connections {
 		}
 		
 		return Connections.class;
-	}
-
-	private void loadMembershipInformation() {
-		
-		Set<Membership> memberships = (Set<Membership>) loggedUser.getUser()
-				.getApplicationMemberships();
-		
-		for (Membership mem : memberships) {
-			String appName = mem.getApplication().getName();
-			try {
-				Connections.class.getMethod("set" + appName + "Exists",
-						boolean.class).invoke(this, true);
-				Connections.class.getMethod("set" + appName + "Username",
-						String.class).invoke(this, mem.getUsername());
-				Connections.class.getMethod("set" + appName + "SendTo",
-						boolean.class).invoke(this, mem.isSendTo());
-				Connections.class.getMethod("set" + appName + "ReceiveFrom",
-						boolean.class).invoke(this, mem.isReceiveFrom());
-				// for the password fields that do not exists an exception will
-				// be thrown
-				Connections.class.getMethod("set" + appName + "Password",
-						String.class).invoke(this, mem.getPassword());
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@OnEvent(component = "deleteTwitter")
-	void deleteTwitter() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(
-				"http://www.twitter.com");
-		users.deleteApplicationMemberhsip(m);
-	}
-	
-//	@OnEvent(component = "signUpTwitter")
-//	URL onSubmitFromTwitterForm() {
-//		Twitter twitter = new TwitterFactory().getInstance();
-//		Properties appProp = Util.loadPropertyFile("/mediator_params.properties");
-//		System.out.println(appProp);
-//	    twitter.setOAuthConsumer(appProp.getProperty("twitter-app-API-key"), appProp.getProperty("twitter-app-API-secret"));
-//	    RequestToken requestToken;
-//		try {
-//			requestToken = twitter.getOAuthRequestToken();
-//			String autorizationUrl = requestToken.getAuthorizationURL();
-//			System.out.println("////////autorizationUrl: "+autorizationUrl);
-//			try {
-//				URL authorizationUrl = new URL(autorizationUrl);
-//				this.twitter= twitter;
-//				return authorizationUrl;
-//			} catch (MalformedURLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		} catch (TwitterException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
-	@OnEvent(component = "deleteSpark")
-	void deleteSpark() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(
-				"http://www.igniterealtime.org/projects/spark/");
-		users.deleteApplicationMemberhsip(m);
 	}
 
 }

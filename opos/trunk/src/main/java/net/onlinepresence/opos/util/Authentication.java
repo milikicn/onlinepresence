@@ -38,7 +38,7 @@ public class Authentication {
 
 	public User authenticateUser(String usernameOrEmail, String password) {
 		
-		User user = persons.getUser(usernameOrEmail);
+		User user = persons.findUser(usernameOrEmail);
 		 
 		if(user == null){
 			setUserExists(false);
