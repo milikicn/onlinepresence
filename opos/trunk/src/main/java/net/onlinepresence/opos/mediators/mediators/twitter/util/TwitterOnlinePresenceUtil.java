@@ -2,7 +2,7 @@ package net.onlinepresence.opos.mediators.mediators.twitter.util;
 
 import java.net.URI;
 
-import twitter4j.auth.AccessToken;
+import org.apache.log4j.Logger;
 
 import net.onlinepresence.ontmodel.foaf.Agent;
 import net.onlinepresence.ontmodel.foaf.Image;
@@ -10,9 +10,10 @@ import net.onlinepresence.ontmodel.geo.SpatialThing;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.sioc.Item;
 import net.onlinepresence.ontmodel.sioc.Post;
-import net.onlinepresence.opos.domain.Membership;
 
 public class TwitterOnlinePresenceUtil {
+	
+	private static Logger logger = Logger.getLogger(TwitterOnlinePresenceUtil.class);
 
 	public static OnlinePresence updateWithTwitterRelatedData(
 			OnlinePresence oldOP, OnlinePresence newOP) {
@@ -20,46 +21,44 @@ public class TwitterOnlinePresenceUtil {
 
 		Agent newAgent = newOP.getAgent();
 		if (newAgent != null) {
-			System.out.println("Setting setHomepage from " + updatedOP.getAgent().getHomepage() + " to " + newAgent.getHomepage());
+			logger.debug("Setting setHomepage from " + updatedOP.getAgent().getHomepage() + " to " + newAgent.getHomepage());
 			updatedOP.getAgent().setHomepage(newAgent.getHomepage());
-			System.out.println("Setting setName from " + updatedOP.getAgent().getName() + " to " + newAgent.getName());
+			logger.debug("Setting setName from " + updatedOP.getAgent().getName() + " to " + newAgent.getName());
 			updatedOP.getAgent().setName(newAgent.getName());
 		}
 
 		Image newAvatar = newOP.getAvatar();
 		if (newAvatar != null){
-			System.out.println("Setting setAvatar from " + updatedOP.getAvatar() + " to " + newAvatar);
+			logger.debug("Setting setAvatar from " + updatedOP.getAvatar() + " to " + newAvatar);
 			updatedOP.setAvatar(newAvatar);
 		}
 
 		SpatialThing newLocation = newOP.getLocation();
 		if (newLocation != null){
-			System.out.println("Setting setLocation from " + updatedOP.getLocation() + " to " + newLocation);
+			logger.debug("Setting setLocation from " + updatedOP.getLocation() + " to " + newLocation);
 			updatedOP.setLocation(newLocation);
 		}
 
 		Item newStatusMessage = newOP.getStatusMessage();
 		if (newStatusMessage != null) {
 			if (newStatusMessage instanceof Post) {
-				System.out.println("newStatusMessage instanceof Post");
+				logger.debug("newStatusMessage instanceof Post");
 				Post newPost = (Post) newStatusMessage;
 
-				System.out.println(1);
 				Post newInReplyOfPost = newPost.getReplyOf();
 				if (newInReplyOfPost != null){
-					System.out.println("Setting setReplyOf from " + ((Post) updatedOP.getStatusMessage()).getReplyOf() + " to " + newInReplyOfPost);
+					logger.debug("Setting setReplyOf from " + ((Post) updatedOP.getStatusMessage()).getReplyOf() + " to " + newInReplyOfPost);
 					((Post) updatedOP.getStatusMessage()).setReplyOf(newInReplyOfPost);
 				}
 
-				System.out.println(2);
 				URI newPrimaryTopicOf = newPost.getPrimaryTopicOf();
 				if (newPrimaryTopicOf != null){
-					System.out.println("Setting setPrimaryTopicOf from " + ((Post) updatedOP.getStatusMessage()).getPrimaryTopicOf() + " to " + newPrimaryTopicOf);
+					logger.debug("Setting setPrimaryTopicOf from " + ((Post) updatedOP.getStatusMessage()).getPrimaryTopicOf() + " to " + newPrimaryTopicOf);
 					((Post) updatedOP.getStatusMessage()).setPrimaryTopicOf(newPrimaryTopicOf);
 				}
 			}
 
-			System.out.println("Setting setContent from " + updatedOP.getStatusMessage().getContent() + " to " + newStatusMessage.getContent());
+			logger.debug("Setting setContent from " + updatedOP.getStatusMessage().getContent() + " to " + newStatusMessage.getContent());
 			updatedOP.getStatusMessage().setContent(newStatusMessage.getContent());
 		}
 
@@ -72,15 +71,15 @@ public class TwitterOnlinePresenceUtil {
 		Agent newAgent = newOP.getAgent();
 		Agent oldAgent = oldOP.getAgent();
 		if (newAgent != null) {
-			System.out.println("oldAgent.getHomepage " + oldAgent.getHomepage());
-			System.out.println("newAvatar.getHomepage " + newAgent.getHomepage());
+			logger.debug("oldAgent.getHomepage " + oldAgent.getHomepage());
+			logger.debug("newAvatar.getHomepage " + newAgent.getHomepage());
 			if (oldAgent.getHomepage() != null && 
 					newAgent.getHomepage() != null && 
 					!oldAgent.getHomepage().equals(newAgent.getHomepage())) {
 				return false;
 			}
-			System.out.println("oldAgent.getName " + oldAgent.getName());
-			System.out.println("newAvatar.getName " + newAgent.getName());
+			logger.debug("oldAgent.getName " + oldAgent.getName());
+			logger.debug("newAvatar.getName " + newAgent.getName());
 			if (oldAgent.getName() != null && 
 					newAgent.getName() != null && 
 					!oldAgent.getName().equals(newAgent.getName())) {
@@ -90,27 +89,27 @@ public class TwitterOnlinePresenceUtil {
 			return false;
 
 		Image newAvatar = newOP.getAvatar();
-		System.out.println("newAvatar: " + newAvatar);
+		logger.debug("newAvatar: " + newAvatar);
 		Image oldAvatar = oldOP.getAvatar();
-		System.out.println("oldAvatar: " + oldAvatar);
+		logger.debug("oldAvatar: " + oldAvatar);
 		if (oldAvatar != null && newAvatar != null) {
 			if (!oldAvatar.equals(newAvatar))
 				return false;
 		}
 
 		SpatialThing newLocation = newOP.getLocation();
-		System.out.println("newLocation: " + newLocation);
+		logger.debug("newLocation: " + newLocation);
 		SpatialThing oldLocation = oldOP.getLocation();
-		System.out.println("oldLocation: " + oldLocation);
+		logger.debug("oldLocation: " + oldLocation);
 		if (oldLocation != null && newLocation != null) {
 			if (!oldLocation.equals(newLocation))
 				return false;
 		}
 
 		Item newStatusMessage = newOP.getStatusMessage();
-		System.out.println("newStatusMessage: " + newStatusMessage);
+		logger.debug("newStatusMessage: " + newStatusMessage);
 		Item oldStatusMessage = oldOP.getStatusMessage();
-		System.out.println("oldStatusMessage: " + oldStatusMessage);
+		logger.debug("oldStatusMessage: " + oldStatusMessage);
 		if (newStatusMessage != null) {
 //			if (newStatusMessage instanceof Post) {
 //				System.out.println("newStatusMessage je tipa Post");
@@ -173,16 +172,16 @@ public class TwitterOnlinePresenceUtil {
 //					}
 //				}
 //			} 
-			System.out.println("oldStatusMessage.getContent() " + oldStatusMessage.getContent());
-			System.out.println("newStatusMessage.getContent() " + newStatusMessage.getContent());
+			logger.debug("oldStatusMessage.getContent() " + oldStatusMessage.getContent());
+			logger.debug("newStatusMessage.getContent() " + newStatusMessage.getContent());
 			if(oldStatusMessage.getContent() != null &&
 					newStatusMessage.getContent() != null &&
 					!oldStatusMessage.getContent().equals(newStatusMessage.getContent())){
-				System.out.println("returning false for oldStatusMessage.getContent().equals(newStatusMessage.getContent())");
+				logger.debug("returning false for oldStatusMessage.getContent().equals(newStatusMessage.getContent())");
 				return false;
 			}
 		}
-		System.out.println("equalOnlinePresenceData returning true");
+		logger.debug("equalOnlinePresenceData returning true");
 		return true;
 	}
 }

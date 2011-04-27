@@ -1,7 +1,9 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.service.builder;
 
+import org.apache.log4j.Logger;
+
 import net.onlinepresence.ontmodel.sioc.Post;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jStatusWrapper;
 import net.onlinepresence.services.spring.ResourceFactory;
 import twitter4j.Twitter;
@@ -9,6 +11,8 @@ import twitter4j.TwitterException;
 import twitter4j.User;
 
 public class TwitterOnlineStatusBuilder {
+	
+	private Logger logger = Logger.getLogger(TwitterOnlineStatusBuilder.class);
 	
 	private Twitter twitter;
 	private User user;
@@ -18,8 +22,8 @@ public class TwitterOnlineStatusBuilder {
 		this.user = user;
 	}
 
-	public Post buildStatus() throws TwitterOPOSException {
-		System.out.println("TwitterOnlineStatusBuilder: building status");
+	public Post buildStatus() throws OPOSException {
+		logger.debug("building status");
 		
 		ResourceFactory factory = new ResourceFactory();
 		
@@ -32,19 +36,19 @@ public class TwitterOnlineStatusBuilder {
 		try {
 			statusWrapper = new Twitter4jStatusWrapper(twitter.showStatus(user.getStatus().getId()));
 		} catch (TwitterException e) {
-			throw new TwitterOPOSException("Can not get an instance of Status.");
+			throw new OPOSException("Can not get an instance of Status.");
 		}
 
 		post.setContent(statusWrapper.getText());
-		System.out.println("TwitterOnlineStatusBuilder: post.setContent " + post.getContent());
+		logger.debug("post.setContent " + post.getContent());
 		post.setPrimaryTopicOf(statusWrapper.getStatusURL(user.getScreenName()).toString());
-		System.out.println("TwitterOnlineStatusBuilder: post.setPrimaryTopicOf " + post.getPrimaryTopicOf());
+		logger.debug("post.setPrimaryTopicOf " + post.getPrimaryTopicOf());
 		
 		if(statusWrapper.getStatusReplyOfStatusUrl() != null){
 			Post inReplyPost = (Post) factory.createResource(Post.class);
 
 			inReplyPost.setPrimaryTopicOf(statusWrapper.getStatusReplyOfStatusUrl().toString());
-			System.out.println("TwitterOnlineStatusBuilder: inReplyPost.setPrimaryTopicOf " + inReplyPost.getPrimaryTopicOf());
+			logger.debug("inReplyPost.setPrimaryTopicOf " + inReplyPost.getPrimaryTopicOf());
 			
 			post.setReplyOf(inReplyPost);
 		}

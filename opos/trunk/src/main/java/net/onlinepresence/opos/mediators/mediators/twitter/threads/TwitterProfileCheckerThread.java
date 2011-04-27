@@ -3,17 +3,14 @@ package net.onlinepresence.opos.mediators.mediators.twitter.threads;
 import org.apache.log4j.Logger;
 
 import twitter4j.Twitter;
-import twitter4j.auth.AccessToken;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.mediators.ProfileCheckerThread;
-import net.onlinepresence.opos.mediators.mediators.twitter.TwitterCommunication;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.TwitterOnlinePresenceBuilder;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterOnlinePresenceUtil;
-import net.onlinepresence.opos.mediators.mediators.twitter.util.Util;
 
 public class TwitterProfileCheckerThread extends ProfileCheckerThread {
 	
@@ -27,14 +24,9 @@ public class TwitterProfileCheckerThread extends ProfileCheckerThread {
 	
 	private TwitterOnlinePresenceBuilder topBuilder = null;
 	
-	public TwitterProfileCheckerThread(Membership userMembership, Twitter twitter2) throws TwitterOPOSException {
+	public TwitterProfileCheckerThread(Membership userMembership, Twitter twitter) throws OPOSException {
 		this.userMembership = userMembership;
 		
-		AccessToken accessToken = Util.loadAccessToken(userMembership);
-		if (accessToken == null)
-			throw new TwitterOPOSException("Error resembling Twitter sccess token.");
-		
-		Twitter twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance(accessToken);
 		topBuilder = new TwitterOnlinePresenceBuilder(twitter);
 		
 		// TODO: retrieve OnlinePresence instance from the repository if exist
@@ -97,7 +89,7 @@ public class TwitterProfileCheckerThread extends ProfileCheckerThread {
 					}else {
 						currentOnlinePresence = newOnlinePresence;
 					}
-				} catch (TwitterOPOSException e) {
+				} catch (OPOSException e) {
 					e.printStackTrace();
 				}	
 				

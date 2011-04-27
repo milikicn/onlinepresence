@@ -12,7 +12,7 @@ import net.onlinepresence.ontmodel.foaf.Person;
 import net.onlinepresence.ontmodel.geo.SpatialThing;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.sioc.UserAccount;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jUserWrapper;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.Geo;
 import net.onlinepresence.services.spring.ResourceFactory;
@@ -30,13 +30,13 @@ public class TwitterOnlinePresenceBuilder {
 		this.twitter = twitter;
 	}
 
-	public OnlinePresence build() throws TwitterOPOSException {
+	public OnlinePresence build() throws OPOSException {
 		User user;
 		try {
 			user = twitter.verifyCredentials();
 		} catch (TwitterException e) {
 			logger.error(e.getMessage());
-			throw new TwitterOPOSException("Error retrieving Twitter User instance.");
+			throw new OPOSException("Error retrieving Twitter User instance.");
 		}
 		
 		Twitter4jUserWrapper userWrapper = new Twitter4jUserWrapper(user);

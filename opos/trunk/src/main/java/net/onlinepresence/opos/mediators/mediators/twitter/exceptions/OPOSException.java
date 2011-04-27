@@ -1,14 +1,14 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.exceptions;
 
-public class TwitterOPOSException extends Exception {
+public class OPOSException extends Exception {
 
 	private static final long serialVersionUID = -8569573880946653340L;
 	
-	public TwitterOPOSException(String msg){
+	public OPOSException(String msg){
 		super(msg);
 	}
 	
-	public TwitterOPOSException(Exception cause){
+	public OPOSException(Exception cause){
 		super(cause);
 	}
 }

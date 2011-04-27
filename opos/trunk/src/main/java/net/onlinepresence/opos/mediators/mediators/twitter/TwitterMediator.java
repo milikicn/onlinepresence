@@ -1,29 +1,23 @@
 package net.onlinepresence.opos.mediators.mediators.twitter;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 import twitter4j.Twitter;
+import twitter4j.auth.AccessToken;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
-import net.onlinepresence.opos.mediators.MediatorManager;
-import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
+import net.onlinepresence.opos.mediators.mediators.IntervalPullMediator;
+import net.onlinepresence.opos.mediators.mediators.ProfileCheckerThread;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.threads.TwitterProfileCheckerThread;
 import net.onlinepresence.opos.mediators.mediators.twitter.threads.TwitterProfileSubmitThread;
+import net.onlinepresence.opos.mediators.mediators.twitter.util.Util;
 
-public class TwitterMediator implements Mediator {
+public class TwitterMediator extends IntervalPullMediator {
 	
 	private Logger logger = Logger.getLogger(TwitterMediator.class);
-	
-	private List<TwitterProfileCheckerThread> twitterProfileCheckers = new LinkedList<TwitterProfileCheckerThread>();
-//	private List<Membership> users;
-	private static boolean instantiated;
 	
 	private static TwitterMediator INSTANCE;
 	
@@ -39,36 +33,21 @@ public class TwitterMediator implements Mediator {
 		return INSTANCE;
 	}
 	
-	public void init(List<Membership> users) {
-		instantiated = true;
+	public ProfileCheckerThread spawnNewProfileCheckerThread(Membership userMembership) throws OPOSException {
+		logger.debug("TwitterMediator: instantiating TwitterProfileCheckerThread for username " + userMembership.getUsername());
+		AccessToken accessToken = Util.loadAccessToken(userMembership);
+		if (accessToken == null)
+			throw new OPOSException("Error resembling Twitter sccess token.");
 		
-//		this.users = users;
-		initThreadsForTwitterUsers(users);
-	}
-
-	private void initThreadsForTwitterUsers(List<Membership> users) {
-		Iterator<Membership> iterator = users.iterator();
-
-		while (iterator.hasNext()) {
-			Membership userMembership = (Membership) iterator.next();
-			spawnNewProfileCheckerThread(userMembership, null);
-		}
+		Twitter twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance(accessToken);
+		
+		return new TwitterProfileCheckerThread(userMembership, twitter);
 	}
 	
-	public void spawnNewProfileCheckerThread(Membership userMembership, Twitter twitter){
-		logger.debug("TwitterMediator: instantiating TwitterProfileCheckerThread for username " + userMembership.getUsername());
-		TwitterProfileCheckerThread tpc;
-		try {
-			tpc = new TwitterProfileCheckerThread(userMembership, twitter);
-			tpc.start();
-			twitterProfileCheckers.add(tpc);
-		} catch (TwitterOPOSException e) {
-			logger.error(e.getMessage());
-		}
-	}
-
-	public ApplicationNames getMediatorName() {
-		return ApplicationNames.TWITTER;
+	public void createNewProfileCheckerThread(Membership userMembership, Twitter twitter) throws OPOSException {
+		TwitterProfileCheckerThread tpc = new TwitterProfileCheckerThread(userMembership, twitter);
+		tpc.start();
+		getProfileCheckers().add(tpc);
 	}
 	
 	public void sendOnlinePresenceToUser(OnlinePresence op, Membership membership) {
@@ -79,24 +58,23 @@ public class TwitterMediator implements Mediator {
 		new TwitterProfileSubmitThread(op, tpcThread).start();
 	}
 
-	public void propagateOnlinePresence(OnlinePresence onlinePresence) {
-		logger.debug("Propagating OP");
-		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
-	}
-	
 	private TwitterProfileCheckerThread findTwitterProfileCheckerThread(Membership membership){
-		Iterator<TwitterProfileCheckerThread> iterator = twitterProfileCheckers.iterator();
-		
-		while (iterator.hasNext()) {
-			TwitterProfileCheckerThread twitterProfileCheckerThread = (TwitterProfileCheckerThread) iterator
-					.next();
-			
-			if(twitterProfileCheckerThread.getUserMembership().equals(membership)){
-				logger.debug("Pronasao sam twitterProfileCheckerThread koji ima usera " + membership);
-				return twitterProfileCheckerThread;
-			}
-		}
+//		Iterator<TwitterProfileCheckerThread> iterator = twitterProfileCheckers.iterator();
+//		
+//		while (iterator.hasNext()) {
+//			TwitterProfileCheckerThread twitterProfileCheckerThread = (TwitterProfileCheckerThread) iterator
+//					.next();
+//			
+//			if(twitterProfileCheckerThread.getUserMembership().equals(membership)){
+//				logger.debug("Pronasao sam twitterProfileCheckerThread koji ima usera " + membership);
+//				return twitterProfileCheckerThread;
+//			}
+//		}
 		
 		return null;
+	}
+	
+	public ApplicationNames getMediatorName() {
+		return ApplicationNames.TWITTER;
 	}
 }

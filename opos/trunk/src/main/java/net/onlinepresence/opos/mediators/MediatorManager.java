@@ -16,6 +16,7 @@ import net.onlinepresence.opos.mediators.mediators.Mediator;
 import net.onlinepresence.opos.mediators.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class MediatorManager {
@@ -54,22 +55,24 @@ public class MediatorManager {
 		mediators.add(spark);
 		
 		List<Membership> twitterMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.TWITTER);
-		TwitterMediator.getInstance().init(twitterMemberships);
+		try {
+			TwitterMediator.getInstance().init(twitterMemberships);
+		} catch (OPOSException e) {
+			logger.error(e.getMessage());
+		}
 		mediators.add(TwitterMediator.getInstance());
 		
-		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
-		FacebookMediator facebook = new FacebookMediator(facebookMemberships);
-		mediators.add(facebook);
+//		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
+//		FacebookMediator facebook = new FacebookMediator(facebookMemberships);
+//		mediators.add(facebook);
 	}
 
 	// reimplementirati
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
-		
 		//storing OP into the repository
 		try {
 			rdfPersistance.saveResource(onlinePresence, true);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -106,9 +109,8 @@ public class MediatorManager {
 	}
 	
 	public Mediator getMediator(ApplicationNames name){
-		logger.debug("Looking for mediator: " + name);
+		logger.debug("Looking for mediator " + name);
 		for (Mediator med : mediators) {
-			logger.debug("Proveravam medijator: " +med.getMediatorName());
 			if(med.getMediatorName().equals(name))
 				return med;
 		}

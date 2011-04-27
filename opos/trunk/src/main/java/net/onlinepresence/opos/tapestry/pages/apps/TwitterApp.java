@@ -11,6 +11,7 @@ import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 
@@ -49,9 +50,6 @@ public class TwitterApp {
 	@SpringBean("net.onlinepresence.opos.domain.service.Users")
 	private UserManager users;
 
-	@SessionState
-	private MediatorManager mediatorManager;
-
 	Object onActivate() {
 		if (!loggedUserExists)
 			return Login.class;
@@ -76,7 +74,7 @@ public class TwitterApp {
 				// it, and thus it will instantiate TwitterMediator instance for
 				// saved Membership instance, but the TwitterMediator instance won't
 				// have Twitter object to work with
-				Mediator twitterMediator = mediatorManager.getMediator(ApplicationNames.TWITTER);
+				Mediator twitterMediator = MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
 				if (!loggedUser.getUser().hasMembership(memb)) {
 					loggedUser.getUser().addApplicationMembership(memb);
 					users.update(loggedUser.getUser());
@@ -85,7 +83,13 @@ public class TwitterApp {
 					users.update(loggedUser.getUser());
 				}
 				twitter.setOAuthAccessToken(accessToken);
-				((TwitterMediator) twitterMediator).spawnNewProfileCheckerThread(memb,	twitter);
+				
+				try {
+					((TwitterMediator) twitterMediator).createNewProfileCheckerThread(memb,	twitter);
+				} catch (OPOSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (TwitterException e) {

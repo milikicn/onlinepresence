@@ -7,7 +7,7 @@ import net.onlinepresence.ontmodel.general.Resource;
 
 import thewebsemantic.Bean2RDF;
 
-import com.epimorphics.jsonrdf.Encoder;
+//import com.epimorphics.jsonrdf.Encoder;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -20,11 +20,11 @@ public class JSONFormater {
 		
 		StringWriter writer = new StringWriter();
 		
-		try {
-			Encoder.get().encode(tempModel, writer, true);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Encoder.get().encode(tempModel, writer, true);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		return writer.toString();
 	}
 	
