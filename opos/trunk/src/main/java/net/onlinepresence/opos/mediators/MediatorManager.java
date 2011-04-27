@@ -1,7 +1,9 @@
 package net.onlinepresence.opos.mediators;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
@@ -17,13 +19,14 @@ import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class MediatorManager {
+	private Logger logger = Logger.getLogger(MediatorManager.class);
 	
-	private UserManager personsService;
-	private ApplicationManager applicationsService;
-	private OnlinePresenceService rdfPersistance;	
-	private LinkedList<Mediator> mediators;
+	private UserManager personManager;
+	private ApplicationManager applicationManager;
+	private OnlinePresenceService rdfPersistance = new OnlinePresenceService();	
+	private List<Mediator> mediators = new ArrayList<Mediator>();
 	
-	public static MediatorManager INSTANCE;
+	private static MediatorManager INSTANCE;
 	
 	private MediatorManager(){ 
 		init();
@@ -36,28 +39,26 @@ public class MediatorManager {
 		return INSTANCE;
 	}
 
+	// spring should inject this
 	public void init(){
-		System.out.println("MediatorManager initialized");
+		logger.debug("MediatorManager initialized");
 		ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
-		s.createContext();
-		personsService = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
-		applicationsService = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
-		rdfPersistance = new OnlinePresenceService();
-		mediators = new LinkedList<Mediator>();
+		personManager = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
+		applicationManager = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
 		initializeMediators();
 	}
 	
 	//  mozda bolje preko springa da se nekako istanciraju svi medijatori
 	private void initializeMediators() {
-		Mediator spark = new SparkMediator(this);
+		SparkMediator spark = new SparkMediator(this);
 		mediators.add(spark);
 		
-		List<Membership> twitterMemberships = applicationsService.getAllApplicationMemberships(ApplicationNames.TWITTER);
-		Mediator twitter = new TwitterMediator(twitterMemberships);
-		mediators.add(twitter);
+		List<Membership> twitterMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.TWITTER);
+		TwitterMediator.getInstance().init(twitterMemberships);
+		mediators.add(TwitterMediator.getInstance());
 		
-		List<Membership> facebookMemberships = applicationsService.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
-		Mediator facebook = new FacebookMediator(facebookMemberships);
+		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
+		FacebookMediator facebook = new FacebookMediator(facebookMemberships);
 		mediators.add(facebook);
 	}
 
@@ -76,7 +77,7 @@ public class MediatorManager {
 		String app = onlinePresence.getUserAccount().getAccountServiceHomepage().toString();
 		
 		// memberships should be refreshed if a new one is added in the mean time
-		List<Membership> list = personsService.getAllMemberships(username, app);
+		List<Membership> list = personManager.getAllMemberships(username, app);
 		
 		for (Membership membership : list) {
 			if(membership.getApplication().getWebAddress().equals(app))
@@ -86,18 +87,18 @@ public class MediatorManager {
 
 		for (Membership membership : list) {
 			if(membership.getApplication().getWebAddress().equals(app)){
-				System.out.println("|||||Preskocio sam membership" + membership.toString());
+				logger.debug("|||||Preskocio sam membership" + membership.toString());
 				continue;
 			}
 			
 			if(membership.isSendTo() == true){
 				Mediator med = null;
 				try {
-					System.out.println("Proveravam membership: " + membership.toString());
+					logger.debug("Proveravam membership: " + membership.toString());
 					med = getMediator(membership.getApplication().getName());
 					med.sendOnlinePresenceToUser(onlinePresence, membership);
 				} catch (NullPointerException e) {
-					System.out.println("Ne postoji medijator: " + membership.getApplication().getName());
+					logger.error("Ne postoji medijator: " + membership.getApplication().getName());
 					//e.printStackTrace();
 				}
 			}
@@ -105,9 +106,9 @@ public class MediatorManager {
 	}
 	
 	public Mediator getMediator(ApplicationNames name){
-		System.out.println("Looking for mediator: " + name);
+		logger.debug("Looking for mediator: " + name);
 		for (Mediator med : mediators) {
-			System.out.println("Proveravam medijator: " +med.getMediatorName());
+			logger.debug("Proveravam medijator: " +med.getMediatorName());
 			if(med.getMediatorName().equals(name))
 				return med;
 		}

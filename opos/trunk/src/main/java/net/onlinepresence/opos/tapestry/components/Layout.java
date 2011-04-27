@@ -18,15 +18,11 @@ import org.apache.tapestry5.BindingConstants;
 /**
  * Layout component for pages of application opos.
  */
-//@IncludeStylesheet({
-//	"context:css/style.css",
-//	"context:css/front.css",
-//})
 
-@IncludeJavaScriptLibrary({
-	"context:js/jquery.min.js",
-	"context:js/login.js"
-})
+@Import(library= { 
+		"context:js/jquery.min.js",
+		"context:js/login.js" }
+)
 public class Layout{
 	
 	@Inject

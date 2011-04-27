@@ -21,7 +21,6 @@ public class TwitterProfileSubmitThread extends Thread {
 		System.out.println("Inicijalizujem TwitterProfileSubmitThread");
 		this.newOnlinePresence = newOnlinePresence;
 		this.tpcThread = tpcThread;
-		this.twitter = tpcThread.getTwitterStuff().getTwitter();
 	}
 
 	@Override
@@ -43,9 +42,9 @@ public class TwitterProfileSubmitThread extends Thread {
 			statusSubmited = new TwitterStatusSubmitter(newOnlinePresence,
 					twitter).submit();
 
-		OnlinePresence oldOP = tpcThread.getOnlinePresence();
+		OnlinePresence oldOP = tpcThread.getCurrentOnlinePresence();
 		OnlinePresence newOP = TwitterOnlinePresenceUtil.updateWithTwitterRelatedData(oldOP, newOnlinePresence);
-		tpcThread.setOnlinePresence(newOP);
+		tpcThread.setCurrentOnlinePresence(newOP);
 		
 		tpcThread.setWait(false);
 	}

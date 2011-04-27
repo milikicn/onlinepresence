@@ -1,79 +1,64 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.threads;
 
+import org.apache.log4j.Logger;
+
 import twitter4j.Twitter;
+import twitter4j.auth.AccessToken;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.domain.Membership;
+import net.onlinepresence.opos.mediators.mediators.ProfileCheckerThread;
+import net.onlinepresence.opos.mediators.mediators.twitter.TwitterCommunication;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterStuff;
+import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
+import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.TwitterOnlinePresenceBuilder;
+import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterOnlinePresenceUtil;
+import net.onlinepresence.opos.mediators.mediators.twitter.util.Util;
 
-public class TwitterProfileCheckerThread extends Thread {
+public class TwitterProfileCheckerThread extends ProfileCheckerThread {
 	
-//	private static final long TIMEOUT = Long.parseLong(PropertiesManager.instance().getProperty(OPOSConstants.TWITTER_PROFILE_CHECK_TIMEOUT));
+	private Logger logger = Logger.getLogger(TwitterProfileCheckerThread.class);
+	
 	private static final long TIMEOUT = Settings.getInstance().config.twitterMediatorConfig.checkTimeout;
-	private Membership user;
-	private OnlinePresence onlinePresence;
-	private TwitterMediator twitterMediator;
-	private TwitterStuff twitterStuff;
-	private Twitter twitter;
+	private Membership userMembership;
+	private OnlinePresence currentOnlinePresence;
 	private boolean wait = false;
 	private boolean checking = false;
 	
-	public TwitterProfileCheckerThread(TwitterMediator twitterMediator, Membership userMembership, Twitter twitter2) {
-		this.twitterMediator = twitterMediator;
-		this.user = userMembership;
-		
-		twitter = twitter2;
-//		System.out.println("TwitterProfileCheckerThread: getting Twitter instance for the user " +  userMembership.getUsername());
-////		twitter = twf.getInstance(userMembership.getUsername(), userMembership.getPassword());
-//		TwitterFactory twf = new TwitterFactory();
-//	    twitter = twf.getInstance();
-//	    Properties appProp = net.onlinepresence.opos.util.Util.loadPropertyFile("/mediator_params.properties");
-//	    twitter.setOAuthConsumer(appProp.getProperty("twitter-app-API-key"), appProp.getProperty("twitter-app-API-secret"));
-//	    AccessToken accessToken = Util.loadAccessToken(userMembership);
-//	    twitter.setOAuthAccessToken(accessToken);
-	}
-
-	/**
-	 * @return the user
-	 */
-	public Membership getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the person to set
-	 */
-	public void setUser(Membership user) {
-		this.user = user;
-	}
+	private TwitterOnlinePresenceBuilder topBuilder = null;
 	
-	/**
-	 * @return the onlinePresence
-	 */
-	public OnlinePresence getOnlinePresence() {
-		return onlinePresence;
+	public TwitterProfileCheckerThread(Membership userMembership, Twitter twitter2) throws TwitterOPOSException {
+		this.userMembership = userMembership;
+		
+		AccessToken accessToken = Util.loadAccessToken(userMembership);
+		if (accessToken == null)
+			throw new TwitterOPOSException("Error resembling Twitter sccess token.");
+		
+		Twitter twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance(accessToken);
+		topBuilder = new TwitterOnlinePresenceBuilder(twitter);
+		
+		// TODO: retrieve OnlinePresence instance from the repository if exist
 	}
 
 	/**
-	 * @param onlinePresence the onlinePresence to set
+	 * @return the userMembership
 	 */
-	public void setOnlinePresence(OnlinePresence onlinePresence) {
-		this.onlinePresence = onlinePresence;
+	public Membership getUserMembership() {
+		return userMembership;
 	}
 
 	/**
-	 * @return the twitterStuff
+	 * @return the currentOnlinePresence
 	 */
-	public TwitterStuff getTwitterStuff() {
-		return twitterStuff;
+	public OnlinePresence getCurrentOnlinePresence() {
+		return currentOnlinePresence;
 	}
 
 	/**
-	 * @param twitterStuff the twitterStuff to set
+	 * @param currentOnlinePresence the currentOnlinePresence to set
 	 */
-	public void setTwitterStuff(TwitterStuff twitterStuff) {
-		this.twitterStuff = twitterStuff;
+	public void setCurrentOnlinePresence(OnlinePresence currentOnlinePresence) {
+		this.currentOnlinePresence = currentOnlinePresence;
 	}
 
 	public void setWait(boolean wait) {
@@ -96,13 +81,25 @@ public class TwitterProfileCheckerThread extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("TwitterProfileCheckerThread: started");
+		logger.debug("Started checking of the Twitter profile.");
 		
 		while (true) {
 			setChecking(true);
 			if(!wait){
-				CheckThread check = new CheckThread(this, twitter, onlinePresence);
-				check.start();	
+				try {
+					OnlinePresence newOnlinePresence = topBuilder.build();
+					
+					if (currentOnlinePresence != null) {
+						if(!TwitterOnlinePresenceUtil.equalOnlinePresenceData(currentOnlinePresence, newOnlinePresence)){
+							TwitterMediator.getInstance().propagateOnlinePresence(newOnlinePresence);
+							currentOnlinePresence = newOnlinePresence;
+						}
+					}else {
+						currentOnlinePresence = newOnlinePresence;
+					}
+				} catch (TwitterOPOSException e) {
+					e.printStackTrace();
+				}	
 				
 				try {
 					setChecking(false);
@@ -112,9 +109,5 @@ public class TwitterProfileCheckerThread extends Thread {
 				}
 			}
 		}
-	}
-
-	public void propagateOnlinePresence(OnlinePresence newOnlinePresence) {
-		twitterMediator.propagateOnlinePresence(newOnlinePresence);
 	}
 }

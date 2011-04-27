@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
 
-import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -15,8 +14,7 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -24,18 +22,17 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
 import twitter4j.auth.RequestToken;
 
-@IncludeStylesheet( { 
-//	"context:css/style.css", 
-//	"context:css/front.css",
-	"context:css/jquery.fancybox-1.3.0.css" })
-@IncludeJavaScriptLibrary( { 
+@Import(library= { 
 	"context:js/jquery.min.js", 
 	"context:js/login.js",
 	"context:js/jquery.fancybox-1.3.0.js",
-	"context:js/jquery.fancybox-1.3.0.activation.js" })
+	"context:js/jquery.fancybox-1.3.0.activation.js" },
+	stylesheet= { 
+//		"context:css/style.css", 
+//		"context:css/front.css",
+		"context:css/jquery.fancybox-1.3.0.css" })
 public class Connections {
 
 	@Inject @Property
@@ -98,16 +95,14 @@ public class Connections {
 	}
 
 	//Twitter
-	@SuppressWarnings("unused")
 	@SessionState
 	private Twitter twitter;
 	
 	@Property
 	private UserAppSettings twitterAppSettings;
 	
+	@OnEvent(component = "twitterForm")
 	URL onSubmitFromTwitterForm() {
-		Twitter twitter = new TwitterFactory().getInstance();
-	    twitter.setOAuthConsumer(Settings.getInstance().config.twitterMediatorConfig.apiKey, Settings.getInstance().config.twitterMediatorConfig.apiSecret);
 	    RequestToken requestToken;
 		try {
 			requestToken = twitter.getOAuthRequestToken();
@@ -115,7 +110,6 @@ public class Connections {
 			System.out.println("////////autorizationUrl: "+autorizationUrl);
 			try {
 				URL authorizationUrl = new URL(autorizationUrl);
-				this.twitter= twitter;
 				return authorizationUrl;
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -129,8 +123,7 @@ public class Connections {
 
 	@OnEvent(component = "deleteTwitter")
 	void deleteTwitter() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(
-				"http://www.twitter.com");
+		Membership m = loggedUser.getUser().deleteApplicationMembership("http://www.twitter.com");
 		users.deleteApplicationMemberhsip(m);
 	}
 	
@@ -143,10 +136,9 @@ public class Connections {
 		return null;
 	}
 
-	@OnEvent(component = "deleteTwitter")
+	@OnEvent(component = "deleteFacebook")
 	void deleteFacebook() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(
-				"http://www.twitter.com");
+		Membership m = loggedUser.getUser().deleteApplicationMembership("http://www.facebook.com");
 		users.deleteApplicationMemberhsip(m);
 	}
 	

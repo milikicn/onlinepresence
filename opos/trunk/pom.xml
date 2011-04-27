@@ -7,7 +7,7 @@
     <name>opos Tapestry 5 Application</name>
     
     <properties>
-        <tapestry-release-version>5.1.0.5</tapestry-release-version>
+        <tapestry-release-version>5.2.5</tapestry-release-version>
         <spring.version>2.0.4</spring.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
 		<twitter4j.version>[2.1,)</twitter4j.version>

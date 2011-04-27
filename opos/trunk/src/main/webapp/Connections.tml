@@ -53,9 +53,9 @@
 	</div>
 	
 	<t:if t:test="facebookAppSettings.userUssesApp">
-		<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Twitter-on.png}" width="70" height="70" alt="" /></a>
+		<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Facebook-on.png}" width="70" height="70" alt="" /></a>
 		<p:else>
-			<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Twitter-off.png}" width="70" height="70" alt="" /></a>
+			<a id="inline" href="#data2"><img class="icon" src="${asset:context:images/applications/icon-Facebook-off.png}" width="70" height="70" alt="" /></a>
 		</p:else>
 	</t:if>
 	

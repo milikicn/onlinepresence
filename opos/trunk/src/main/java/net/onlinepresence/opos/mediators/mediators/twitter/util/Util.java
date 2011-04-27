@@ -5,9 +5,12 @@ import net.onlinepresence.opos.domain.Membership;
 
 public class Util {
 
-	public static AccessToken loadAccessToken(Membership membership) {
-		String token = membership.getAccessToken();
-		String tokenSecret = membership.getAccessToken();
-		return new AccessToken(token, tokenSecret);
+	public static AccessToken loadAccessToken(Membership memb) {
+		if (memb != null 
+				&& memb.getAccessToken() != null 
+				&& memb.getSecretToken() != null) {
+			return new AccessToken(memb.getAccessToken(), memb.getSecretToken());
+		}
+		return null;
 	}
 }

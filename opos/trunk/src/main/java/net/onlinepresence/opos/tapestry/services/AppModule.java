@@ -17,11 +17,9 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Startup;
 import org.apache.tapestry5.services.RequestFilter;
 import org.springframework.context.ApplicationContext;
-
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry,
@@ -40,6 +38,11 @@ public class AppModule {
 		binder.bind(ObjectProvider.class, 
         		ApplicationContextObjectProvider.class)
                 .withId("ApplicationContextObjectProvider");
+	}
+	
+	@Startup
+	public static void initApplication() {
+		MediatorManager.getInstance().init();
 	}
 	
 	public static void contributeApplicationDefaults(
@@ -89,14 +92,4 @@ public class AppModule {
     	return new ApplicationContextProviderSingleton().getContext();
     }
     
-    public static Twitter buildTwitter() {
-//    	Twitter twitter = 
-//		Properties appProp = Util.loadPropertyFile("/mediator_params.properties");
-//	    twitter.setOAuthConsumer(appProp.getProperty("twitter-app-API-key"), appProp.getProperty("twitter-app-API-secret"));
-	    return new TwitterFactory().getInstance();
-    }
-    
-    public static MediatorManager buildMediatorManager() {
-    	return MediatorManager.getInstance();
-    }
 }

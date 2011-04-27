@@ -27,13 +27,13 @@ import twitter4j.auth.AccessToken;
  * Start page of application opos.
  */
 public class TwitterApp {
+	
+	@SessionState
+	private Twitter twitter;
 
 	@SessionState
 	private LoggedUserBean loggedUser;
 	private boolean loggedUserExists;
-
-	@SessionState
-	private Twitter twitter;
 
 	@SuppressWarnings("unused")
 	@Property
@@ -61,7 +61,6 @@ public class TwitterApp {
 		try {
 			accessToken = twitter.getOAuthAccessToken();
 		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (accessToken != null) {
@@ -86,21 +85,13 @@ public class TwitterApp {
 					users.update(loggedUser.getUser());
 				}
 				twitter.setOAuthAccessToken(accessToken);
-				((TwitterMediator) twitterMediator).spawnNewTwitterThread(memb,	twitter);
+				((TwitterMediator) twitterMediator).spawnNewProfileCheckerThread(memb,	twitter);
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (TwitterException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return Connections.class;
 	}
-
-	// @SetupRender
-	// public Object finishTwiiterConnection() {
-	//
-	// }
-
 }

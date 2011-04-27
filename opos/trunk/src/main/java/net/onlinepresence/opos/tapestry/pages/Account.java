@@ -6,21 +6,20 @@ import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
-@IncludeStylesheet( { 
-//	"context:css/style.css", 
-//	"context:css/front.css",
-	"context:css/jquery.fancybox-1.3.0.css" })
-@IncludeJavaScriptLibrary( { 
-	"context:js/jquery.min.js", 
-	"context:js/login.js",
-	"context:js/jquery.fancybox-1.3.0.js",
-	"context:js/jquery.fancybox-1.3.0.activation.js" })
+@Import(library= { 
+		"context:js/jquery.min.js", 
+		"context:js/login.js",
+		"context:js/jquery.fancybox-1.3.0.js",
+		"context:js/jquery.fancybox-1.3.0.activation.js" },
+		stylesheet= { 
+//			"context:css/style.css", 
+//			"context:css/front.css",
+			"context:css/jquery.fancybox-1.3.0.css" })
 public class Account {
 
 	@Property

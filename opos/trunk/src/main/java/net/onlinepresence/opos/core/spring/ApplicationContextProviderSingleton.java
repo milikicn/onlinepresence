@@ -30,7 +30,8 @@ public class ApplicationContextProviderSingleton implements
 	}
 
 	public ApplicationContext getContext() {
-		if (context == null) context = createContext();
+		if (context == null) 
+			context = createContext();
 		return context;
 	}
 

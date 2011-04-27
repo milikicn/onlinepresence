@@ -7,33 +7,25 @@ import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
+import net.onlinepresence.opos.mediators.mediators.ProfileCheckerThread;
+import net.onlinepresence.opos.mediators.mediators.twitter.IntervalPullMediator;
 
-public class FacebookMediator implements Mediator {
-	
-	private List<Membership> users = null;
+public class FacebookMediator extends IntervalPullMediator {
 	
 	public FacebookMediator(List<Membership> users) {
-		this.users = users;
-		
-		initThreadsForFacebookUsers(users);
+		super(users);
 	}
 
-	private void initThreadsForFacebookUsers(List<Membership> users2) {
-		// TODO Auto-generated method stub
-		
+	public void sendOnlinePresenceToUser(OnlinePresence op,	Membership membership) {
 	}
 
-	public void sendOnlinePresenceToUser(OnlinePresence op,
-			Membership membership) {
-		// TODO Auto-generated method stub
-	}
-
-	public void propagateOnlinePresence(OnlinePresence onlinePresence) {
-		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
-	}
-	
 	public ApplicationNames getMediatorName() {
 		return ApplicationNames.FACEBOOK;
+	}
+
+	@Override
+	public ProfileCheckerThread spawnNewProfileCheckerThread(Membership userMembership) {
+		return null;
 	}
 
 }

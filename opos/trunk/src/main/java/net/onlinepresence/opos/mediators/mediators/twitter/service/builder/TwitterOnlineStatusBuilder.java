@@ -3,19 +3,19 @@ package net.onlinepresence.opos.mediators.mediators.twitter.service.builder;
 import net.onlinepresence.ontmodel.sioc.Post;
 import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.TwitterOPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jStatusWrapper;
-import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterStuff;
 import net.onlinepresence.services.spring.ResourceFactory;
+import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
 
 public class TwitterOnlineStatusBuilder {
 	
-	private TwitterStuff twitterStuff;
+	private Twitter twitter;
 	private User user;
 	
-	public TwitterOnlineStatusBuilder(TwitterStuff twitterStuff){
-		this.twitterStuff = twitterStuff;
-		this.user = twitterStuff.getTwitterUser();
+	public TwitterOnlineStatusBuilder(Twitter twitter, User user){
+		this.twitter = twitter;
+		this.user = user;
 	}
 
 	public Post buildStatus() throws TwitterOPOSException {
@@ -30,7 +30,7 @@ public class TwitterOnlineStatusBuilder {
 		if(user.getStatus() == null)
 			return post;
 		try {
-			statusWrapper = new Twitter4jStatusWrapper(twitterStuff.getTwitter().showStatus(user.getStatus().getId()));
+			statusWrapper = new Twitter4jStatusWrapper(twitter.showStatus(user.getStatus().getId()));
 		} catch (TwitterException e) {
 			throw new TwitterOPOSException("Can not get an instance of Status.");
 		}

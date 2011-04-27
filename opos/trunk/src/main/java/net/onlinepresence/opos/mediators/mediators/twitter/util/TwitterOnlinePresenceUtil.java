@@ -2,12 +2,15 @@ package net.onlinepresence.opos.mediators.mediators.twitter.util;
 
 import java.net.URI;
 
+import twitter4j.auth.AccessToken;
+
 import net.onlinepresence.ontmodel.foaf.Agent;
 import net.onlinepresence.ontmodel.foaf.Image;
 import net.onlinepresence.ontmodel.geo.SpatialThing;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.sioc.Item;
 import net.onlinepresence.ontmodel.sioc.Post;
+import net.onlinepresence.opos.domain.Membership;
 
 public class TwitterOnlinePresenceUtil {
 
