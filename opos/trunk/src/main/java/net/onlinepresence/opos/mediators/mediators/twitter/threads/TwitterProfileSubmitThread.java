@@ -4,7 +4,7 @@ import twitter4j.Twitter;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.submitter.TwitterProfileSubmitter;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.submitter.TwitterStatusSubmitter;
-import net.onlinepresence.opos.mediators.mediators.twitter.util.TwitterOnlinePresenceUtil;
+import net.onlinepresence.opos.mediators.mediators.twitter.util.OnlinePresenceUtil;
 
 public class TwitterProfileSubmitThread extends Thread {
 
@@ -43,7 +43,7 @@ public class TwitterProfileSubmitThread extends Thread {
 					twitter).submit();
 
 		OnlinePresence oldOP = tpcThread.getCurrentOnlinePresence();
-		OnlinePresence newOP = TwitterOnlinePresenceUtil.updateWithTwitterRelatedData(oldOP, newOnlinePresence);
+		OnlinePresence newOP = OnlinePresenceUtil.updateWithTwitterRelatedData(oldOP, newOnlinePresence);
 		tpcThread.setCurrentOnlinePresence(newOP);
 		
 		tpcThread.setWait(false);

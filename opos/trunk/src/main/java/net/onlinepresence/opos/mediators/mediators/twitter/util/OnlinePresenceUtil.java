@@ -11,9 +11,9 @@ import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.sioc.Item;
 import net.onlinepresence.ontmodel.sioc.Post;
 
-public class TwitterOnlinePresenceUtil {
+public class OnlinePresenceUtil {
 	
-	private static Logger logger = Logger.getLogger(TwitterOnlinePresenceUtil.class);
+	private static Logger logger = Logger.getLogger(OnlinePresenceUtil.class);
 
 	public static OnlinePresence updateWithTwitterRelatedData(
 			OnlinePresence oldOP, OnlinePresence newOP) {
