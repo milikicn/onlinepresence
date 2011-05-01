@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
+import net.onlinepresence.opos.exceptions.OPOSException;
 
 public abstract class IntervalPullMediator implements Mediator {
 
@@ -18,6 +18,12 @@ public abstract class IntervalPullMediator implements Mediator {
 	private List<ProfileCheckerThread> profileCheckers = new ArrayList<ProfileCheckerThread>();
 	protected static boolean instantiated;
 	
+	/**
+	 * This method will be called from MediatorManager.
+	 * 
+	 * @param users
+	 * @throws OPOSException
+	 */
 	public void init(List<Membership> users) throws OPOSException {
 		instantiated = true;
 		
@@ -29,21 +35,20 @@ public abstract class IntervalPullMediator implements Mediator {
 
 		while (iterator.hasNext()) {
 			Membership userMembership = (Membership) iterator.next();
-			ProfileCheckerThread tpc = spawnNewProfileCheckerThread(userMembership);
-			tpc.start();
-			profileCheckers.add(tpc);
+			spawnAndAddNewProfileCheckerThread(userMembership);
 		}
 	}
 
 	public void propagateOnlinePresence(OnlinePresence onlinePresence) {
 		logger.debug("Propagating Online Presence to the MediatorManager.");
+		
 		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
 	}
-	
-	public abstract ProfileCheckerThread spawnNewProfileCheckerThread(Membership userMembership) throws OPOSException;
-	public abstract void sendOnlinePresenceToUser(OnlinePresence op, Membership membership);
 
 	public List<ProfileCheckerThread> getProfileCheckers() {
 		return profileCheckers;
 	}
+	
+	public abstract void spawnAndAddNewProfileCheckerThread(Membership userMembership) throws OPOSException;
+	public abstract void sendOnlinePresenceToUser(OnlinePresence op, Membership membership);
 }

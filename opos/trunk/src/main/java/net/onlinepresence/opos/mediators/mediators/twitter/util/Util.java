@@ -5,7 +5,7 @@ import net.onlinepresence.opos.domain.Membership;
 
 public class Util {
 
-	public static AccessToken loadAccessToken(Membership memb) {
+	public static AccessToken loadTwitterAccessToken(Membership memb) {
 		if (memb != null 
 				&& memb.getAccessToken() != null 
 				&& memb.getSecretToken() != null) {

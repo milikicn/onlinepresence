@@ -1,6 +1,5 @@
 package net.onlinepresence.opos.tapestry.rest.util;
 
-import java.io.IOException;
 import java.io.StringWriter;
 
 import net.onlinepresence.ontmodel.general.Resource;

@@ -12,6 +12,7 @@ import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
+import net.onlinepresence.opos.mediators.mediators.twitter.TwitterCommunication;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
 import org.apache.tapestry5.annotations.Import;
@@ -103,11 +104,11 @@ public class Connections {
 	
 	@OnEvent(component = "twitterForm")
 	URL onSubmitFromTwitterForm() {
+		twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
 	    RequestToken requestToken;
 		try {
 			requestToken = twitter.getOAuthRequestToken();
 			String autorizationUrl = requestToken.getAuthorizationURL();
-			System.out.println("////////autorizationUrl: "+autorizationUrl);
 			try {
 				URL authorizationUrl = new URL(autorizationUrl);
 				return authorizationUrl;

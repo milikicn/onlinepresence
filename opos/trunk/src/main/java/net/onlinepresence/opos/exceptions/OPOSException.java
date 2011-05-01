@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.mediators.mediators.twitter.exceptions;
+package net.onlinepresence.opos.exceptions;
 
 public class OPOSException extends Exception {
 

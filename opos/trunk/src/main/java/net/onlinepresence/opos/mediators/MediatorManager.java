@@ -13,10 +13,9 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 import net.onlinepresence.opos.mediators.mediators.Mediator;
-import net.onlinepresence.opos.mediators.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
+import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class MediatorManager {
@@ -26,6 +25,8 @@ public class MediatorManager {
 	private ApplicationManager applicationManager;
 	private OnlinePresenceService rdfPersistance = new OnlinePresenceService();	
 	private List<Mediator> mediators = new ArrayList<Mediator>();
+	
+	private boolean initialized = false;
 	
 	private static MediatorManager INSTANCE;
 	
@@ -42,18 +43,23 @@ public class MediatorManager {
 
 	// spring should inject this
 	public void init(){
-		logger.debug("MediatorManager initialized");
-		ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
-		personManager = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
-		applicationManager = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
-		initializeMediators();
+		if (!initialized) {
+			logger.debug("Initializing MediatorManager.");
+			ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
+			personManager = (UserManagerBean) s.getContext().getBean(UserManager.class.getName());
+			applicationManager = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
+			initializeMediators();
+			initialized = true;
+		}
 	}
 	
 	//  mozda bolje preko springa da se nekako istanciraju svi medijatori
 	private void initializeMediators() {
-		SparkMediator spark = new SparkMediator(this);
+		logger.debug("Initializing SparkMediator.");
+		SparkMediator spark = new SparkMediator();
 		mediators.add(spark);
 		
+		logger.debug("Initializing TwitterMediator.");
 		List<Membership> twitterMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.TWITTER);
 		try {
 			TwitterMediator.getInstance().init(twitterMemberships);

@@ -3,7 +3,6 @@ package net.onlinepresence.opos.tapestry.services;
 import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
@@ -60,10 +59,6 @@ public class AppModule {
 		configuration.add("Spring", applicationContextObjectProvider);
 	}
 	
-	public static User buildPerson(@Inject @SpringBean("PersonBean") User bean){
-		return bean;
-	}
-	
     public void contributeRequestHandler(OrderedConfiguration<RequestFilter> filter,  
     		@Inject
 			@SpringBean("org.apache.tapestry5.services.RequestFilter")
@@ -80,16 +75,15 @@ public class AppModule {
 //		configuration.add("net.onlinepresence.opos.api");
 //	}
     
-    public static UserManager buildPersons() {
+    public static UserManager buildUserManager() {
     	return new UserManagerBean();
     }
     
-    public static ApplicationManager buildApps() {
+    public static ApplicationManager buildApplicationManager() {
     	return new ApplicationManagerBean();
     }
     
     public static ApplicationContext buildApplicationContext() {
     	return new ApplicationContextProviderSingleton().getContext();
-    }
-    
+    }    
 }

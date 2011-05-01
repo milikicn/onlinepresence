@@ -63,7 +63,7 @@ public class Registration {
 		user = new UserBean();
 	}
 	
-	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "registrationForm")
+	@OnEvent(value = EventConstants.VALIDATE, component = "registrationForm")
 	public void onValidate() {
 		if (user.getUsername() != null && user.getPassword() != null && user.getUsername().trim().compareToIgnoreCase(user.getPassword().trim()) == 0) {
 			registrationForm.recordError(passwordF, "User password cannot be its username");

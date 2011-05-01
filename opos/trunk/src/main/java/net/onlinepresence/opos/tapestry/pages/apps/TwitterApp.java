@@ -9,9 +9,8 @@ import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediators.MediatorManager;
-import net.onlinepresence.opos.mediators.mediators.Mediator;
 import net.onlinepresence.opos.mediators.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
+import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 
@@ -47,12 +46,14 @@ public class TwitterApp {
 	private ApplicationManager applications;
 
 	@Inject
-	@SpringBean("net.onlinepresence.opos.domain.service.Users")
-	private UserManager users;
+	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
+	private UserManager userManager;
 
 	Object onActivate() {
 		if (!loggedUserExists)
 			return Login.class;
+		
+		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 
 		AccessToken accessToken = null;
 
@@ -69,23 +70,18 @@ public class TwitterApp {
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,
 						accessToken.getToken(), accessToken.getTokenSecret());
 
-				// this must go before saving membership because if this is a first
-				// call of SessionState object mediatorManager, it will instantiate
-				// it, and thus it will instantiate TwitterMediator instance for
-				// saved Membership instance, but the TwitterMediator instance won't
-				// have Twitter object to work with
-				Mediator twitterMediator = MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
 				if (!loggedUser.getUser().hasMembership(memb)) {
 					loggedUser.getUser().addApplicationMembership(memb);
-					users.update(loggedUser.getUser());
+					userManager.update(loggedUser.getUser());
 				} else {
 					loggedUser.getUser().updateMembership(memb);
-					users.update(loggedUser.getUser());
+					userManager.update(loggedUser.getUser());
 				}
 				twitter.setOAuthAccessToken(accessToken);
 				
+				TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
 				try {
-					((TwitterMediator) twitterMediator).createNewProfileCheckerThread(memb,	twitter);
+					twitterMediator.spawnAndAddNewProfileCheckerThread(memb);
 				} catch (OPOSException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

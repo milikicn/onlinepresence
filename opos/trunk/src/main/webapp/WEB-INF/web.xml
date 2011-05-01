@@ -19,14 +19,14 @@
         PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
-    <display-name>opos Tapestry 5 Application</display-name>
+    <display-name>OPOS Application</display-name>
     <context-param>
         <!-- The only significant configuration for Tapestry 5, this informs Tapestry
 of where to look for pages, components and mixins. -->
         <param-name>tapestry.app-package</param-name>
         <param-value>net.onlinepresence.opos.tapestry</param-value>
     </context-param>
-    <filter>
+	<filter>
         <filter-name>app</filter-name>
         <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>
     </filter>
@@ -34,5 +34,22 @@ of where to look for pages, components and mixins. -->
         <filter-name>app</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+	
+	<servlet>
+		<servlet-name>SPARQL service processor</servlet-name>
+		<servlet-class>org.joseki.http.Servlet</servlet-class>
+
+		<!-- Configuration file -->
+		<init-param>
+			<param-name>org.joseki.rdfserver.config</param-name>
+			<param-value>joseki-config-sdb.ttl</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SPARQL service processor</servlet-name>
+		<url-pattern>/opos-rdf</url-pattern>
+	</servlet-mapping>
+
 </web-app>
       

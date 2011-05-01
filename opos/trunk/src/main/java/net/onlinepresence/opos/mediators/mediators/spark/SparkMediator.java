@@ -16,11 +16,8 @@ public class SparkMediator extends Thread implements Mediator{
 
 	public LinkedList<ReceivingThread> list;
 	
-	private MediatorManager mm;
-	
-	public SparkMediator(MediatorManager mm){
+	public SparkMediator(){
 		this.list = new LinkedList<ReceivingThread>();
-		this.mm = mm;
 		start();
 	}
 	
@@ -33,7 +30,6 @@ public class SparkMediator extends Thread implements Mediator{
 				Socket socket = ss.accept();
 				new ReceivingThread(socket, this);
 //				System.out.println("One Spark connected");
-
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -42,12 +38,10 @@ public class SparkMediator extends Thread implements Mediator{
 	
 	public void add(ReceivingThread rc){
 		list.add(rc);
-//		System.out.println("added to list");
 	}
 	
 	public void remove(ReceivingThread rc){
 		list.remove(rc);
-//		System.out.println("removed from list");
 	}
 	
 	public void sendOnlinePresenceToUser(OnlinePresence op, Membership membership){
@@ -55,7 +49,6 @@ public class SparkMediator extends Thread implements Mediator{
 		
 		for (ReceivingThread rc : list) {
 			if(rc.getName().equals(username)){
-//				System.out.println("sending to spark: " + username);
 				rc.sendOnlinePresence(op);
 				return;
 			}
@@ -64,7 +57,7 @@ public class SparkMediator extends Thread implements Mediator{
 	
 
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
-		mm.propagateOnlinePresence(onlinePresence);
+		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
 	}
 	
 	public ApplicationNames getMediatorName(){

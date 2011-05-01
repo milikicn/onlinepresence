@@ -38,7 +38,7 @@ public class ApplicationManagerBean
 		
 		List<Application> applications = getAllApplications();
 		for (Application app : applications) {
-			if(app.getWebAddress().equals(appName)){
+			if(app.getName().equals(appName)){
 				return app;
 			}
 		}

@@ -1,6 +1,8 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.service.builder;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -12,7 +14,7 @@ import net.onlinepresence.ontmodel.foaf.Person;
 import net.onlinepresence.ontmodel.geo.SpatialThing;
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.ontmodel.sioc.UserAccount;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
+import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jUserWrapper;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.Geo;
 import net.onlinepresence.services.spring.ResourceFactory;
@@ -88,6 +90,8 @@ public class TwitterOnlinePresenceBuilder {
 		//creating status instance
 		TwitterOnlineStatusBuilder statusBuilder = new TwitterOnlineStatusBuilder(twitter, user);
 		twitterOnlinePresence.setStatusMessage(statusBuilder.buildStatus());
+		
+		twitterOnlinePresence.setStartTime(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()));
 
 		return twitterOnlinePresence;
 	}

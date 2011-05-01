@@ -2,19 +2,18 @@ package net.onlinepresence.opos.mediators.mediators;
 
 import net.onlinepresence.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.Membership;
-import net.onlinepresence.opos.mediators.mediators.twitter.exceptions.OPOSException;
+import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.TwitterOnlinePresenceBuilder;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.OnlinePresenceUtil;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 import org.apache.log4j.Logger;
 
-import twitter4j.Twitter;
-
 public abstract class ProfileCheckerThread extends Thread {
 
 	public abstract long getTimeoutMilis();
 	public abstract Mediator getProfileCheckerMediator();
+	public abstract TwitterOnlinePresenceBuilder createOnlinePresenceBuilder();
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	
@@ -24,10 +23,13 @@ public abstract class ProfileCheckerThread extends Thread {
 	
 	protected TwitterOnlinePresenceBuilder onlinePresenceBulder = null;
 	
-	public ProfileCheckerThread(Membership userMembership, Twitter twitter) throws OPOSException {
-		onlinePresenceBulder = new TwitterOnlinePresenceBuilder(twitter);
+	public void initialize(Membership userMembership) throws OPOSException {
+		onlinePresenceBulder = createOnlinePresenceBuilder();
 		
-		// TODO: retrieve OnlinePresence instance from the repository if exist
+		// Retrieving OnlinePresence instance from the repository if exist
+		logger.debug("Retrieving last OnlinePresence instance for username "
+				+ userMembership.getUsername()+" on service "
+				+ userMembership.getApplication().getName());
 		OnlinePresenceService opService = new OnlinePresenceService();
 		
 		OnlinePresence lastOnlinePresence = null;
@@ -37,8 +39,12 @@ public abstract class ProfileCheckerThread extends Thread {
 			logger.error(e.getMessage());
 		}
 		
-		if (lastOnlinePresence != null)
+		if (lastOnlinePresence != null) {
+			logger.debug("OnlinePresence for username "+userMembership.getUsername()
+					+ " on service "+userMembership.getApplication().getName()
+					+ " exists in the repository and is loaded.");
 			setCurrentOnlinePresence(lastOnlinePresence);
+		}
 	}
 
 	/**
@@ -89,6 +95,7 @@ public abstract class ProfileCheckerThread extends Thread {
 							currentOnlinePresence = newOnlinePresence;
 						}
 					}else {
+						logger.debug("First Online Presence instance for this account on "+getProfileCheckerMediator().getMediatorName()+" service.");
 						currentOnlinePresence = newOnlinePresence;
 					}
 				} catch (OPOSException e) {
