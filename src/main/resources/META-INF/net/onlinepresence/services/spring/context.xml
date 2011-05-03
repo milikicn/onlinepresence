@@ -4,18 +4,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-	<bean id="net.onlinepresence.ontmodel.opo.OnlinePresence"
-		class="net.onlinepresence.ontmodel.opo.beans.OnlinePresenceBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.OnlinePresence"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.OnlinePresenceBean"
 		scope="prototype" />
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Agent"
-		class="net.onlinepresence.ontmodel.foaf.beans.AgentBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Agent"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.AgentBean"
 		scope="prototype">
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.general.Resource"
-		class="net.onlinepresence.ontmodel.general.ResourceBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.general.Resource"
+		class="net.onlinepresence.jopo.ontmodel.general.ResourceBean"
 		scope="prototype">
 	</bean>
 
