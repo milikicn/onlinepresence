@@ -74,11 +74,11 @@ public class ResourceFactory {
 		return context;
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public Object createResource(Class clazz ){
+	@SuppressWarnings("unchecked")
+	public <T extends Resource> T createResource(Class<T> clazz ){
 		Resource res = (Resource) context.getBean(clazz.getName());
 		res.setUri(URIBuilder.instance().generateURI(clazz, namespace));
-		return res;
+		return (T) res;
 	}
 
 	@SuppressWarnings("rawtypes")
