@@ -4,28 +4,28 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Agent"
-		class="net.onlinepresence.ontmodel.foaf.beans.AgentBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Agent"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.AgentBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Group"
-		class="net.onlinepresence.ontmodel.foaf.beans.GroupBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Group"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.GroupBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Image"
-		class="net.onlinepresence.ontmodel.foaf.beans.ImageBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Image"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.ImageBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Person"
-		class="net.onlinepresence.ontmodel.foaf.beans.PersonBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Person"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.PersonBean"
 		scope="prototype" >
 	</bean>
 	
-	<bean id="net.onlinepresence.ontmodel.foaf.Thing"
-		class="net.onlinepresence.ontmodel.foaf.beans.ThingBean"
+	<bean id="net.onlinepresence.jopo.ontmodel.foaf.Thing"
+		class="net.onlinepresence.jopo.ontmodel.foaf.beans.ThingBean"
 		scope="prototype" >
 	</bean>
 	

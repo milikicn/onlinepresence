@@ -2,17 +2,18 @@ package net.onlinepresence.services;
 
 import java.util.List;
 
-import net.onlinepresence.ontmodel.foaf.Agent;
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.ontmodel.opo.StatusMessage;
-import net.onlinepresence.ontmodel.opo.beans.presencecomponents.FindabilityBean;
-import net.onlinepresence.ontmodel.opo.beans.presencecomponents.NotifiabilityBean;
-import net.onlinepresence.ontmodel.opo.beans.statuscomponents.ActivityBean;
-import net.onlinepresence.ontmodel.opo.beans.statuscomponents.ContactabilityBean;
-import net.onlinepresence.ontmodel.opo.beans.statuscomponents.DisturbabilityBean;
-import net.onlinepresence.ontmodel.opo.beans.statuscomponents.VisibilityBean;
-import net.onlinepresence.ontmodel.opo.presencecomponents.OnlineStatus;
-import net.onlinepresence.services.spring.ResourceFactory;
+import net.onlinepresence.jopo.ontmodel.foaf.Agent;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.StatusMessage;
+import net.onlinepresence.jopo.ontmodel.opo.beans.presencecomponents.FindabilityBean;
+import net.onlinepresence.jopo.ontmodel.opo.beans.presencecomponents.NotifiabilityBean;
+import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ActivityBean;
+import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ContactabilityBean;
+import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.DisturbabilityBean;
+import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.VisibilityBean;
+import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.jopo.services.FileOPOService;
+import net.onlinepresence.jopo.services.spring.ResourceFactory;
 
 public class OPOServiceTest {
 
