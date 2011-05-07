@@ -39,7 +39,7 @@ public class ProjectBean extends ResourceBean implements Project {
 	private static final long serialVersionUID = -8108929907073854002L;
 	private URI homepage;
 	private String name;
-	private String dateCreated;
+	private String projectCreationDate;
 	private String shortDescription;
 	
 	@Deprecated
@@ -82,13 +82,13 @@ public class ProjectBean extends ResourceBean implements Project {
 	}
 
 	@RdfProperty(Constants.DOAP_NS + "created")
-	public String getDateCreated() {
-		return dateCreated;
+	public String getProjectCreationDate() {
+		return projectCreationDate;
 	}
 
-	public void setDateCreated(String dateCreated) {
-		if(dateCreated != null)
-			this.dateCreated = dateCreated;
+	public void setProjectCreationDate(String projectCreationDate) {
+		if(projectCreationDate != null)
+			this.projectCreationDate = projectCreationDate;
 	}
 
 	@RdfProperty(Constants.DOAP_NS + "shortdesc")
@@ -114,7 +114,7 @@ public class ProjectBean extends ResourceBean implements Project {
 		return
 			EqualsUtil.areEqual(getHomepage(), project.getHomepage()) &&
 			EqualsUtil.areEqual(getName(), project.getName()) &&
-			EqualsUtil.areEqual(getDateCreated(), project.getDateCreated()) &&
+			EqualsUtil.areEqual(getProjectCreationDate(), project.getProjectCreationDate()) &&
 			EqualsUtil.areEqual(getShortDescription(), project.getShortDescription());
 	}
 }

@@ -34,8 +34,8 @@ public interface Project extends Resource {
 	String getName();
 	void setName(String name);
 
-	String getDateCreated();
-	void setDateCreated(String dateCreated);
+	String getProjectCreationDate();
+	void setProjectCreationDate(String dateCreated);
 
 	String getShortDescription();
 	void setShortDescription(String shortDescription);

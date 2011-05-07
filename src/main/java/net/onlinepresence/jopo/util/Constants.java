@@ -30,10 +30,12 @@ public class Constants {
 	public static final String FOAF_NS = "http://xmlns.com/foaf/0.1/";
 	public static final String WSG84_POS_NS = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	public static final String SWC_NS = "http://data.semanticweb.org/ns/swc/ontology#";
+	public static final String RDF_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 	public static final String RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#";
 	public static final String OWL_NS = "http://www.w3.org/2002/07/owl";
 	public static final String DC_NS = "http://purl.org/dc/elements/1.1/";
 	public static final String EVENT_NS = "http://purl.org/NET/c4dm/event.owl#";
 	public static final String XSD_NS = "http://www.w3.org/2001/XMLSchema#";
+	public static final String DC_TERMS_NS = "http://purl.org/dc/terms/";
 	public static final String JENABEAN_NS = "http://thewebsemantic.com/";
 }
