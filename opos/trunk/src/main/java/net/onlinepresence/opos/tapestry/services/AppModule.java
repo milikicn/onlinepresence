@@ -7,7 +7,7 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
-import net.onlinepresence.opos.mediators.MediatorManager;
+import net.onlinepresence.opos.mediatorManagement.MediatorManager;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.ioc.MappedConfiguration;

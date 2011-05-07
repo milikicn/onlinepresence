@@ -41,12 +41,12 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"ORDER BY DESC(?startTime)  \n" +
 			"LIMIT 1";
 		
-		System.out.println(queryString);
+//		System.out.println(queryString);
 
 		Collection<String> onlinePresenceUris = queryService
 				.executeOneVariableSelectSparqlQuery(queryString, "onlinePresence",
 						getDataModel());
-		System.out.println("onlinePresenceUris: "+onlinePresenceUris);
+//		System.out.println("onlinePresenceUris: "+onlinePresenceUris);
 
 		if (onlinePresenceUris != null && !onlinePresenceUris.isEmpty()){
 			return loadResourceByURI(OnlinePresence.class, onlinePresenceUris.iterator().next(), false);
