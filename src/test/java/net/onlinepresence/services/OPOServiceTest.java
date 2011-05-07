@@ -1,5 +1,6 @@
 package net.onlinepresence.services;
 
+import java.util.Date;
 import java.util.List;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Agent;
@@ -42,7 +43,8 @@ public class OPOServiceTest {
 		
 		StatusMessage statusMessage = (StatusMessage) factory.createResource(StatusMessage.class);
 		statusMessage.setUri("http://www.status.com");
-		statusMessage.setContent("Testing new library.");		
+		statusMessage.setContent("Testing new library.");
+		statusMessage.setDateCreated(new Date());
 		onlinePresence.setStatusMessage(statusMessage);
 		
 //		Post twitterStatus = (Post) factory.createResource(Post.class);
