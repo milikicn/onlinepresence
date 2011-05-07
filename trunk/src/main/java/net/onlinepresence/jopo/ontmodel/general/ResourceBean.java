@@ -23,18 +23,27 @@ package net.onlinepresence.jopo.ontmodel.general;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.Date;
+
+import net.onlinepresence.jopo.util.Constants;
 
 import thewebsemantic.Id;
 import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 
-@Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+@Namespace(Constants.RDF_NS)
 @RdfType("Resource")
 public class ResourceBean
 implements Resource, Serializable{
 
 	private static final long serialVersionUID = -2234520192109835808L;
 	protected URI uri;
+	
+	/**
+	 * corresponds to the dct:created property
+	 */
+	private Date dateCreated;
 	
 	@Deprecated
 	public ResourceBean() {	}
@@ -60,6 +69,15 @@ implements Resource, Serializable{
 	
 	public void setUri(String uri){
 		this.uri = URI.create(uri);
+	}
+	
+	@RdfProperty(Constants.DC_TERMS_NS + "language")
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 	
 	public boolean equals(Object o) {
