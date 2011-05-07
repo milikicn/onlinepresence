@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.BeingWith"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.BeingWithBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.Chatting"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.ChattingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.HavingConversation"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.HavingConversationBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.HavingVoiceConversation"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.HavingVoiceConversationBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.Listening"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.ListeningBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.Reading"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.ReadingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.Watching"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.WatchingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.Working"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.WorkingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opoactions.WorkingOnProject"
+		class="net.onlinepresence.jopo.ontmodel.opoactions.beans.WorkingOnProjectBean"
+		scope="prototype" >
+	</bean>
+	
+</beans>
