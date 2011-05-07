@@ -2,14 +2,14 @@ package net.onlinepresence.opos.mediators.mediators.twitter.util;
 
 import java.net.URI;
 
-import org.apache.log4j.Logger;
+import net.onlinepresence.jopo.ontmodel.foaf.Agent;
+import net.onlinepresence.jopo.ontmodel.foaf.Image;
+import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.sioc.Item;
+import net.onlinepresence.jopo.ontmodel.sioc.Post;
 
-import net.onlinepresence.ontmodel.foaf.Agent;
-import net.onlinepresence.ontmodel.foaf.Image;
-import net.onlinepresence.ontmodel.geo.SpatialThing;
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.ontmodel.sioc.Item;
-import net.onlinepresence.ontmodel.sioc.Post;
+import org.apache.log4j.Logger;
 
 public class OnlinePresenceUtil {
 	

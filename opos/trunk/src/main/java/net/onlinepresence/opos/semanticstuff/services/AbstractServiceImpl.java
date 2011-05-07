@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import net.onlinepresence.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.services.spring.ResourceFactory;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.DataModelManager;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator.URIBuilder;
-import net.onlinepresence.services.spring.ResourceFactory;
 
 import org.apache.log4j.Logger;
 

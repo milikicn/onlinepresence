@@ -150,9 +150,9 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 		
     	<!-- jOPO lib. -->
     	<dependency> 
-  			<groupId>net.online-presence.opo</groupId> 
+  			<groupId>net.onlinepresence</groupId> 
   			<artifactId>jopo</artifactId> 
-  			<version>1.1</version> 
+  			<version>1.2</version> 
   		</dependency>
   		
 		<!-- Jena dependencies -->
@@ -278,7 +278,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         </repository>
         
         <repository> 
-			<id>OPO lib</id> 
+			<id>OPO Code Repository</id> 
 			<url>http://onlinepresence.googlecode.com/svn/repo</url> 
 		</repository>
 		

@@ -1,7 +1,7 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.threads;
 
 import twitter4j.Twitter;
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.submitter.TwitterProfileSubmitter;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.submitter.TwitterStatusSubmitter;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.OnlinePresenceUtil;

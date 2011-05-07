@@ -1,6 +1,6 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.service.submitter;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 

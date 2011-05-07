@@ -2,7 +2,7 @@ package net.onlinepresence.opos.mediators.mediators.facebook;
 
 import org.apache.log4j.Logger;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.mediators.IntervalPullMediator;

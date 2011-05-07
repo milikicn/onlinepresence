@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.core.util.TransferObject;
 import net.onlinepresence.opos.mediators.mediators.spark.SparkMediator;
 

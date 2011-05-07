@@ -2,7 +2,7 @@ package net.onlinepresence.opos.core.util;
 
 import java.io.Serializable;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 
 public class TransferObject implements Serializable{
 

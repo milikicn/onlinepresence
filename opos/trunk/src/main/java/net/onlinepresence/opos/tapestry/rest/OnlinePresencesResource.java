@@ -3,7 +3,7 @@ package net.onlinepresence.opos.tapestry.rest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 import net.onlinepresence.opos.tapestry.rest.util.JSONFormater;
 

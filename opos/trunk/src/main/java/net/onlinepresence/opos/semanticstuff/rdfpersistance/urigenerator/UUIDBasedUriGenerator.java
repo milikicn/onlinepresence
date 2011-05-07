@@ -2,7 +2,7 @@ package net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator;
 
 import java.util.UUID;
 
-import net.onlinepresence.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
 
 /**
  * This generator is based on a immutable universally unique identifier (UUID).

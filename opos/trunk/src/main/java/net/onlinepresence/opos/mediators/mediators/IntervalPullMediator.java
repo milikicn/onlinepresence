@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;
 import net.onlinepresence.opos.exceptions.OPOSException;

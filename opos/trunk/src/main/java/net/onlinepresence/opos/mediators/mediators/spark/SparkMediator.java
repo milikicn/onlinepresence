@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediators.MediatorManager;

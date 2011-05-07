@@ -1,6 +1,6 @@
 package net.onlinepresence.opos.mediators.mediators;
 
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.TwitterOnlinePresenceBuilder;
@@ -18,13 +18,15 @@ public abstract class ProfileCheckerThread extends Thread {
 	private Logger logger = Logger.getLogger(this.getClass());
 	
 	private OnlinePresence currentOnlinePresence;
+	private Membership userMembership;
 	private boolean wait = false;
 	private boolean checking = false;
 	
 	protected TwitterOnlinePresenceBuilder onlinePresenceBulder = null;
 	
 	public void initialize(Membership userMembership) throws OPOSException {
-		onlinePresenceBulder = createOnlinePresenceBuilder();
+		this.userMembership = userMembership;
+		this.onlinePresenceBulder = createOnlinePresenceBuilder();
 		
 		// Retrieving OnlinePresence instance from the repository if exist
 		logger.debug("Retrieving last OnlinePresence instance for username "
@@ -60,7 +62,15 @@ public abstract class ProfileCheckerThread extends Thread {
 	public void setCurrentOnlinePresence(OnlinePresence currentOnlinePresence) {
 		this.currentOnlinePresence = currentOnlinePresence;
 	}
-
+	
+	public Membership getUserMembership() {
+		return userMembership;
+	}
+	
+	public void setUserMembership(Membership userMembership) {
+		this.userMembership = userMembership;
+	}
+	
 	public void setWait(boolean wait) {
 		this.wait = wait;
 	}
@@ -96,19 +106,25 @@ public abstract class ProfileCheckerThread extends Thread {
 						}
 					}else {
 						logger.debug("First Online Presence instance for this account on "+getProfileCheckerMediator().getMediatorName()+" service.");
+						try {
+							new OnlinePresenceService().saveResource(newOnlinePresence, false);
+						} catch (Exception e) {
+							logger.error(e.getMessage());
+						}
 						currentOnlinePresence = newOnlinePresence;
 					}
 				} catch (OPOSException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}	
 				
 				try {
 					setChecking(false);
 					sleep(getTimeoutMilis());
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 		}
 	}
+
 }

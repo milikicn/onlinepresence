@@ -29,7 +29,7 @@ public class TwitterProfileCheckerThread extends ProfileCheckerThread {
 
 	@Override
 	public TwitterOnlinePresenceBuilder createOnlinePresenceBuilder() {
-		return new TwitterOnlinePresenceBuilder(twitterCommunicator);
+		return new TwitterOnlinePresenceBuilder(twitterCommunicator, getUserMembership());
 	}
 
 	@Override

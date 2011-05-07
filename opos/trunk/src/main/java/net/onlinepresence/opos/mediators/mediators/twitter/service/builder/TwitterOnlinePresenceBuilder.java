@@ -1,6 +1,5 @@
 package net.onlinepresence.opos.mediators.mediators.twitter.service.builder;
 
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,27 +8,31 @@ import org.apache.log4j.Logger;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
-import net.onlinepresence.ontmodel.foaf.Image;
-import net.onlinepresence.ontmodel.foaf.Person;
-import net.onlinepresence.ontmodel.geo.SpatialThing;
-import net.onlinepresence.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.ontmodel.sioc.UserAccount;
+import net.onlinepresence.jopo.ontmodel.foaf.Image;
+import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
+import net.onlinepresence.jopo.services.spring.ResourceFactory;
+import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jUserWrapper;
 import net.onlinepresence.opos.mediators.mediators.twitter.util.Geo;
-import net.onlinepresence.services.spring.ResourceFactory;
+import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 public class TwitterOnlinePresenceBuilder {
 	
 	private Logger logger = Logger.getLogger(TwitterOnlinePresenceBuilder.class);
 	
 	private Twitter twitter;
+	private Membership memb;
 
 	/**
 	 * @param twitterStuff
 	 */
-	public TwitterOnlinePresenceBuilder(Twitter twitter) {
+	public TwitterOnlinePresenceBuilder(Twitter twitter, Membership memb) {
 		this.twitter = twitter;
+		this.memb = memb;
 	}
 
 	public OnlinePresence build() throws OPOSException {
@@ -79,12 +82,9 @@ public class TwitterOnlinePresenceBuilder {
 		}
 		twitterOnlinePresence.setAgent(agent);
 		
-		//creating SIOC UserAccount
-		UserAccount userAccount = (UserAccount) factory.createResource(UserAccount.class);
-		userAccount.setAccountName(userWrapper.getScreenName());
-		logger.debug("TwitterOnlinePresenceBuilder: userAccount.setAccountName " + userAccount.getAccountName());
-		userAccount.setAccountServiceHomepage(URI.create("http://www.twitter.com"));
-		logger.debug("TwitterOnlinePresenceBuilder: userAccount.setAccountServiceHomepage " + userAccount.getAccountServiceHomepage());
+		//retrieving sioc:UserAccount instance
+		OnlinePresenceService opService = new OnlinePresenceService();
+		UserAccount userAccount = opService.getUserAccount(memb);
 		twitterOnlinePresence.setUserAccount(userAccount);
 		
 		//creating status instance
@@ -92,7 +92,7 @@ public class TwitterOnlinePresenceBuilder {
 		twitterOnlinePresence.setStatusMessage(statusBuilder.buildStatus());
 		
 		twitterOnlinePresence.setStartTime(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()));
-
+		
 		return twitterOnlinePresence;
 	}
 

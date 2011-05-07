@@ -2,10 +2,10 @@ package net.onlinepresence.opos.mediators.mediators.twitter.service.builder;
 
 import org.apache.log4j.Logger;
 
-import net.onlinepresence.ontmodel.sioc.Post;
+import net.onlinepresence.jopo.ontmodel.sioc.Post;
+import net.onlinepresence.jopo.services.spring.ResourceFactory;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediators.mediators.twitter.service.builder.wrappers.Twitter4jStatusWrapper;
-import net.onlinepresence.services.spring.ResourceFactory;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;

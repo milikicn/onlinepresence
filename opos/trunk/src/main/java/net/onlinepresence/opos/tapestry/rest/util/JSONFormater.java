@@ -2,7 +2,7 @@ package net.onlinepresence.opos.tapestry.rest.util;
 
 import java.io.StringWriter;
 
-import net.onlinepresence.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
 
 import thewebsemantic.Bean2RDF;
 
@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public class JSONFormater {
+	
 	public String exportToJSON(Resource resource) {
 		Model tempModel = ModelFactory.createDefaultModel();
 		

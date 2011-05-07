@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
@@ -48,7 +49,7 @@ public class TwitterApp {
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
 	private UserManager userManager;
-
+	
 	Object onActivate() {
 		if (!loggedUserExists)
 			return Login.class;
@@ -65,18 +66,14 @@ public class TwitterApp {
 		if (accessToken != null) {
 			Membership memb;
 			try {
+				Application twitterApplication = applications.getApplication(ApplicationNames.TWITTER);
 				memb = new MembershipBean(
-						applications.getApplication(ApplicationNames.TWITTER),
+						twitterApplication,
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,
 						accessToken.getToken(), accessToken.getTokenSecret());
-
-				if (!loggedUser.getUser().hasMembership(memb)) {
-					loggedUser.getUser().addApplicationMembership(memb);
-					userManager.update(loggedUser.getUser());
-				} else {
-					loggedUser.getUser().updateMembership(memb);
-					userManager.update(loggedUser.getUser());
-				}
+				
+				userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
+				
 				twitter.setOAuthAccessToken(accessToken);
 				
 				TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);

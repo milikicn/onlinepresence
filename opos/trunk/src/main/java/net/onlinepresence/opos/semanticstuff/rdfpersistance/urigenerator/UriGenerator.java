@@ -1,6 +1,6 @@
 package net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator;
 
-import net.onlinepresence.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
 
 public abstract class UriGenerator {
 

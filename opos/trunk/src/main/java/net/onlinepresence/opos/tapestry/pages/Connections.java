@@ -113,7 +113,6 @@ public class Connections {
 				URL authorizationUrl = new URL(autorizationUrl);
 				return authorizationUrl;
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (TwitterException e) {
@@ -149,17 +148,13 @@ public class Connections {
 
 	Object onSubmitFromSparkForm() {
 		// refreshing Hibernate session
-		System.out.println("0000000000000000000");
 		loggedUser.setUser(users.findUser(loggedUser.getUser().getUsername()));
-		System.out.println("11111111111111111111");
 		Application sparkApp = applications.getApplication(ApplicationNames.SPARK);
-		System.out.println("22222222222222222222222");
 		
 		Membership memb = new MembershipBean(
 				sparkApp,
 				loggedUser.getUser(), sparkAppSettings.getUsername(), null, sparkAppSettings.isSendDataToApp(),
 				sparkAppSettings.isReceiveDataFromApp(), null, null);
-		System.out.println("333333333333333333333");
 		
 		return submitForm(memb);
 	}

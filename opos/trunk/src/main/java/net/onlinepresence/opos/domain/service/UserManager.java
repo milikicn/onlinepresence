@@ -23,4 +23,6 @@ public interface UserManager {
 	boolean existsUser(String username);
 	
 	List<Membership> getAllMemberships(String username, String app);
+	
+	Membership createOrUpdateNewMembership(User user, Membership membership);
 }

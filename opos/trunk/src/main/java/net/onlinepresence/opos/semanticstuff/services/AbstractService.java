@@ -2,7 +2,7 @@ package net.onlinepresence.opos.semanticstuff.services;
 
 import java.util.Collection;
 
-import net.onlinepresence.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
 
 public interface AbstractService {
 	/**
