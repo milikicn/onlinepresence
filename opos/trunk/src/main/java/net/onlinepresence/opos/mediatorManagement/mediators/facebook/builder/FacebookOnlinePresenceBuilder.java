@@ -9,7 +9,9 @@ import org.apache.log4j.Logger;
 
 import com.restfb.Connection;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
 import com.restfb.types.Post;
+import com.restfb.types.User;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ActivityBean;
@@ -42,8 +44,8 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 
 	public OnlinePresence build() throws OPOSException {
 		logger.error("Building OnlinePresence instance on Facebook for user "+userMembership.getUsername());
-		
-		FacebookUser readUser = getUserDetails(facebookClient, "strujic");
+
+		FacebookUser readUser = getUserDetails(facebookClient);
 		
 		ResourceFactory factory = new ResourceFactory();
 		
@@ -69,7 +71,9 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		facebookOnlinePresence.setStartTime(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()));
 		
 		// chat status
+		// TODO: should be persisted
 		OnlineStatus onlineStatus = factory.createResource(OnlineStatus.class);
+		
 		if (readUser.isOnline()) {
 			onlineStatus.addStatusComponent(VisibilityBean.VISIBLE);
 			onlineStatus.addStatusComponent(ActivityBean.ACTIVE);
@@ -80,10 +84,10 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		return facebookOnlinePresence;
 	}
 	
-	public FacebookUser getUserDetails(FacebookClient facebookClient, String uid) {
+	public FacebookUser getUserDetails(FacebookClient facebookClient) {
 		try {
-			FacebookUser model = new FacebookUser();
-			String userId = facebookClient.fetchObject(uid, com.restfb.types.User.class).getId();
+			FacebookUser fbUser = new FacebookUser();
+			String userId = facebookClient.fetchObject("me", User.class).getId();
 			
 			Map<String, String> queries = new HashMap<String, String>();
 			queries.put("users", "SELECT uid, name, pic_big, online_presence, status, current_location FROM user WHERE uid="+userId);
@@ -94,28 +98,31 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 			if (multiqueryResults.users != null && !multiqueryResults.users.isEmpty()) {
 				FqlUser fqlUserTmp = multiqueryResults.users.iterator().next();
 				
-				model.setName(fqlUserTmp.getName());
-				model.setLocation(fqlUserTmp.getLocation());
-				model.setAvatarURL(fqlUserTmp.getAvatarURL());
+				fbUser.setName(fqlUserTmp.getName());
+				fbUser.setLocation(fqlUserTmp.getLocation());
+				fbUser.setAvatarURL(fqlUserTmp.getAvatarURL());
 				
 				String onlinePresence = fqlUserTmp.getOnlinePresence();
 				
 				if (onlinePresence != null) {
 					if (onlinePresence.equals("active"))
-						model.setOnline(true);
+						fbUser.setOnline(true);
 					else
-						model.setOnline(false);
+						fbUser.setOnline(false);
 				}
-				System.out.println("fqlUserTmp.getChatStatus(): "+fqlUserTmp.getChatStatus());
 				
 				// TODO: try to put this in multipart query to avoid spending one more call
-				Connection<Post> posts = facebookClient.fetchConnection(userId+"/feed", Post.class);
+				Connection<Post> posts = facebookClient.fetchConnection(
+						userId+"/feed", 
+						Post.class, 
+						Parameter.with("limit", "1"));
+				
 				if (posts != null && !posts.getData().isEmpty()) {
 					Post lastFbPost = posts.getData().get(0);
-					model.setLastPost(new FacebookPost(lastFbPost.getMessage(), lastFbPost.getUpdatedTime()));
+					fbUser.setLastPost(new FacebookPost(lastFbPost.getMessage(), lastFbPost.getUpdatedTime()));
 				}
 	
-				return model;
+				return fbUser;
 			} else
 				// TODO: introduce custom exception
 				throw new RuntimeException();

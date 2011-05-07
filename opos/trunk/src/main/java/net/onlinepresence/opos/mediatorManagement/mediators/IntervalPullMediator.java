@@ -40,7 +40,7 @@ public abstract class IntervalPullMediator implements Mediator {
 	}
 
 	public void propagateOnlinePresence(OnlinePresence onlinePresence) {
-		logger.debug("Propagating Online Presence to the MediatorManager.");
+		logger.debug("Propagating Online Presence from "+this.getClass().getCanonicalName()+" instance to the MediatorManager.");
 		
 		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
 	}

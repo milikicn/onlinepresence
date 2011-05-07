@@ -70,12 +70,12 @@ public abstract class ProfileCheckerThread extends Thread {
 		logger.debug("Retrieving last OnlinePresence instance for username "
 				+ userMembership.getUsername() + " on service "
 				+ userMembership.getApplication().getName());
+		
 		OnlinePresenceService opService = new OnlinePresenceService();
 
 		OnlinePresence lastOnlinePresence = null;
 		try {
-			lastOnlinePresence = opService
-					.getLastOnlinePresence(userMembership);
+			lastOnlinePresence = opService.getLastOnlinePresence(userMembership);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -104,10 +104,18 @@ public abstract class ProfileCheckerThread extends Thread {
 		this.currentOnlinePresence = currentOnlinePresence;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Membership getUserMembership() {
 		return userMembership;
 	}
 
+	/**
+	 * 
+	 * @param wait
+	 */
 	public void setWait(boolean wait) {
 		this.wait = wait;
 	}
@@ -136,14 +144,11 @@ public abstract class ProfileCheckerThread extends Thread {
 			setChecking(true);
 			if (!wait) {
 				try {
-					OnlinePresence newOnlinePresence = onlinePresenceBulder
-							.build();
+					OnlinePresence newOnlinePresence = onlinePresenceBulder.build();
 
 					if (currentOnlinePresence != null) {
-						if (!OnlinePresenceEquality.equalOnlinePresenceData(
-								currentOnlinePresence, newOnlinePresence)) {
-							getProfileCheckerMediator()
-									.propagateOnlinePresence(newOnlinePresence);
+						if (!OnlinePresenceEquality.equalOnlinePresenceData(currentOnlinePresence, newOnlinePresence)) {
+							getProfileCheckerMediator().propagateOnlinePresence(newOnlinePresence);
 							currentOnlinePresence = newOnlinePresence;
 						}
 					} else {
@@ -151,8 +156,7 @@ public abstract class ProfileCheckerThread extends Thread {
 								+ getProfileCheckerMediator().getMediatorName()
 								+ " service.");
 						try {
-							new OnlinePresenceService().saveResource(
-									newOnlinePresence, false);
+							new OnlinePresenceService().saveResource(newOnlinePresence, false);
 						} catch (Exception e) {
 							logger.error(e.getMessage());
 						}

@@ -2,7 +2,6 @@ package net.onlinepresence.opos.mediatorManagement.util;
 
 import org.apache.log4j.Logger;
 
-import net.onlinepresence.jopo.ontmodel.foaf.Agent;
 import net.onlinepresence.jopo.ontmodel.foaf.Image;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -15,25 +14,25 @@ public class OnlinePresenceEquality {
 	public static boolean equalOnlinePresenceData(OnlinePresence oldOP,
 			OnlinePresence newOP) {
 
-		Agent newAgent = newOP.getAgent();
-		Agent oldAgent = oldOP.getAgent();
-		if (newAgent != null) {
-			logger.debug("oldAgent.getHomepage " + oldAgent.getHomepage());
-			logger.debug("newAvatar.getHomepage " + newAgent.getHomepage());
-			if (oldAgent.getHomepage() != null && 
-					newAgent.getHomepage() != null && 
-					!oldAgent.getHomepage().equals(newAgent.getHomepage())) {
-				return false;
-			}
-			logger.debug("oldAgent.getName " + oldAgent.getName());
-			logger.debug("newAvatar.getName " + newAgent.getName());
-			if (oldAgent.getName() != null && 
-					newAgent.getName() != null && 
-					!oldAgent.getName().equals(newAgent.getName())) {
-				return false;
-			}
-		} else
-			return false;
+//		Agent newAgent = newOP.getAgent();
+//		Agent oldAgent = oldOP.getAgent();
+//		if (newAgent != null) {
+//			logger.debug("oldAgent.getHomepage " + oldAgent.getHomepage());
+//			logger.debug("newAvatar.getHomepage " + newAgent.getHomepage());
+//			if (oldAgent.getHomepage() != null && 
+//					newAgent.getHomepage() != null && 
+//					!oldAgent.getHomepage().equals(newAgent.getHomepage())) {
+//				return false;
+//			}
+//			logger.debug("oldAgent.getName " + oldAgent.getName());
+//			logger.debug("newAvatar.getName " + newAgent.getName());
+//			if (oldAgent.getName() != null && 
+//					newAgent.getName() != null && 
+//					!oldAgent.getName().equals(newAgent.getName())) {
+//				return false;
+//			}
+//		} else
+//			return false;
 
 		Image newAvatar = newOP.getAvatar();
 		logger.debug("newAvatar: " + newAvatar);

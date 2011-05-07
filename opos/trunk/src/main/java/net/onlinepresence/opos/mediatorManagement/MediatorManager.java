@@ -13,6 +13,7 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 import net.onlinepresence.opos.mediatorManagement.mediators.Mediator;
+import net.onlinepresence.opos.mediatorManagement.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.exceptions.OPOSException;
@@ -68,9 +69,14 @@ public class MediatorManager {
 		}
 		mediators.add(TwitterMediator.getInstance());
 		
-//		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
-//		FacebookMediator facebook = new FacebookMediator(facebookMemberships);
-//		mediators.add(facebook);
+		logger.debug("Initializing FacebookMediator.");
+		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
+		try {
+			FacebookMediator.getInstance().init(facebookMemberships);
+		} catch (OPOSException e) {
+			logger.error(e.getMessage());
+		}
+		mediators.add(FacebookMediator.getInstance());
 	}
 
 	// reimplementirati

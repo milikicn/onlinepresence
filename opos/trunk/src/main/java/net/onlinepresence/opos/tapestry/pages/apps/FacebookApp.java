@@ -17,6 +17,7 @@ import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
 import net.onlinepresence.opos.mediatorManagement.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.exceptions.OPOSException;
+import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 
 import org.apache.http.HttpEntity;
@@ -36,6 +37,9 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
+
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
 
 public class FacebookApp {
 	
@@ -74,10 +78,14 @@ public class FacebookApp {
 		System.out.println("++++++++++++++++++ accessToken: "+accessToken);
 
 		if (accessToken != null) {
-			Application twitterApplication = applications.getApplication(ApplicationNames.TWITTER);
+			Application facebookApplication = applications.getApplication(ApplicationNames.FACEBOOK);
+			
+			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
+			String email = facebookClient.fetchObject("me", com.restfb.types.User.class).getEmail();
+			
 			Membership memb = new MembershipBean(
-					twitterApplication,
-					loggedUser.getUser(), "", null, true, true,
+					facebookApplication,
+					loggedUser.getUser(), email, null, true, true,
 					accessToken, null);
 			
 			userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
@@ -89,8 +97,7 @@ public class FacebookApp {
 				logger.error(e.getMessage());
 			}
 		}
-		return null;
-//		return Connections.class;
+		return Connections.class;
 	}
 	
 	private String getAccessToken(String code){

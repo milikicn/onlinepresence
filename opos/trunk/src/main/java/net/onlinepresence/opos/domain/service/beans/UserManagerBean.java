@@ -105,6 +105,9 @@ public class UserManagerBean
 			OnlinePresenceService opService = new OnlinePresenceService();
 			try {
 				opService.saveResource(userAccount, false);
+				logger.debug("Saved in the repostiory new UserAccount for user with username '"
+						+membership.getUsername()+"' on the service '"
+						+membership.getApplication().getWebAddress()+"'.");
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
