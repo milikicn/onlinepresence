@@ -3,7 +3,7 @@
   <groupId>net.onlinepresence</groupId>
   <artifactId>jopo</artifactId>
   <name>Java library for OPO data</name>
-  <version>1.2</version>
+  <version>1.2.1</version>
   <description>Java library for importing and exporting data in form of Online Presence Ontology (OPO)</description>
   <url>http://online-presence.net</url>
   
