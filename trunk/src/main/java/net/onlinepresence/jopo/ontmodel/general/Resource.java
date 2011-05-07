@@ -22,6 +22,7 @@
 package net.onlinepresence.jopo.ontmodel.general;
 
 import java.net.URI;
+import java.util.Date;
 
 public interface Resource {
 
@@ -30,4 +31,7 @@ public interface Resource {
 	void setUri(URI uri);
 	
 	void setUri(String uri);
+	
+	Date getDateCreated();
+	void setDateCreated(Date dateCreated);
 }
