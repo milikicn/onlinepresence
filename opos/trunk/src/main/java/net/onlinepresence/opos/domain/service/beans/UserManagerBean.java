@@ -114,7 +114,7 @@ public class UserManagerBean
 				logger.error(e.getMessage());
 			}
 			
-			Person person = opService.getPerson(user);
+			Person person = opService.getPersonInstance(user);
 			person.addAccount(userAccount);
 			try {
 				opService.updateResource(person, false);

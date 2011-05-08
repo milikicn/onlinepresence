@@ -89,7 +89,7 @@ public class TwitterOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		OnlinePresenceService opService = new OnlinePresenceService();
 		
 		// setting the agent
-		Person agent = opService.getPerson(userMembership.getUser());
+		Person agent = opService.getPersonInstance(userMembership.getUser());
 		twitterOnlinePresence.setAgent(agent);
 		
 		//retrieving sioc:UserAccount instance

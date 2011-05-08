@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.semanticstuff.services;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.log4j.Logger;
@@ -9,19 +10,29 @@ import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
+import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
+import net.onlinepresence.opos.domain.Application;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.ontmodel.OntModelQueryService;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.ontmodel.OntModelQueryServiceImpl;
 import net.onlinepresence.opos.semanticstuff.util.Constants;
 
 public class OnlinePresenceService extends AbstractServiceImpl {
 	
-	private Logger logger = Logger.getLogger(OnlinePresenceService.class);
+	private Logger logger = Logger.getLogger(this.getClass());
 	
 	private ResourceFactory resourceFactory = new ResourceFactory();
 	private OntModelQueryService queryService = new OntModelQueryServiceImpl();
 
+	/**
+	 * 
+	 * @param memb
+	 * @return
+	 * @throws Exception
+	 */
 	public OnlinePresence getLastOnlinePresence(Membership memb) throws Exception {
 		String username = memb.getUsername();
 		String appWebAddress = memb.getApplication().getWebAddress();
@@ -44,12 +55,9 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"ORDER BY DESC(?startTime)  \n" +
 			"LIMIT 1";
 		
-//		System.out.println(queryString);
-
 		Collection<String> onlinePresenceUris = queryService
 				.executeOneVariableSelectSparqlQuery(queryString, "onlinePresence",
 						getDataModel());
-//		System.out.println("onlinePresenceUris: "+onlinePresenceUris);
 
 		if (onlinePresenceUris != null && !onlinePresenceUris.isEmpty()){
 			return loadResourceByURI(OnlinePresence.class, onlinePresenceUris.iterator().next(), false);
@@ -57,6 +65,12 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param userUri
+	 * @return
+	 * @throws Exception
+	 */
 	public OnlinePresence getLastOnlinePresence(String userUri) throws Exception {
 		String queryString = 
 			"PREFIX rdf: <"+Constants.RDF_NS+"> \n" + 
@@ -84,6 +98,11 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public Person getPersonInstance(User user) {
 		String email = user.getEmail();
 		
@@ -115,6 +134,11 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param userMembership
+	 * @return
+	 */
 	public UserAccount getUserAccount(Membership userMembership) {
 		String username = userMembership.getUsername();
 		String applicationWebAddress = userMembership.getApplication().getWebAddress();
@@ -150,6 +174,10 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 */
 	public void registerUserAndOposAccount(User user) {
 //		UserAccount oposUserAccount = null;
 //		try {
@@ -170,29 +198,136 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
 	}
 	
-	public Person getPerson(User user) {
+	/**
+	 * 
+	 * @param serviceName
+	 * @param username
+	 * @return
+	 */
+	public Person getPersonHoldingAccount(ApplicationNames serviceName, String username) {
+		ApplicationManager appManager = (ApplicationManager) new ApplicationContextProviderSingleton().getContext().getBean(ApplicationManager.class.toString());
+		
+		Application application = appManager.getApplication(serviceName);
+		
+		return getPersonHoldingAccount(application.getWebAddress(), username);
+	}
+	
+	/**
+	 * 
+	 * @param applicationWebAddress
+	 * @param username
+	 * @return
+	 */
+	public Person getPersonHoldingAccount(String applicationWebAddress, String username) {
 		String queryString = 
 			"PREFIX rdf: <"+Constants.RDF_NS+"> \n" + 
+			"PREFIX sioc: <"+Constants.SIOC_NS+"> \n" + 
 			"PREFIX foaf: <"+Constants.FOAF_NS+"> \n" + 
-			"SELECT ?person \n" + 
-			"WHERE  { \n" + 
-				"?person rdf:type foaf:Person ; \n" +
-						"foaf:mbox <mailto:"+user.getEmail()+"> . \n" +
+			"SELECT DISTINCT ?person \n" + 
+			"WHERE  {\n" +
+			"?person rdf:type foaf:Person ; \n" +
+			"foaf:holdsAccount ?userAccount . \n" + 
+			"?userAccount rdf:type sioc:UserAccount ; \n" +
+			"foaf:accountName ?accountName ; \n" +
+			"foaf:accountServiceHomepage <"+applicationWebAddress+"> . \n" +
+			"FILTER ( ?accountName = \""+username+"\") \n" +
 			"}";
 		
-		Collection<String> personUris = queryService
-				.executeOneVariableSelectSparqlQuery(queryString, "person",
-						getDataModel());
-
-		if (personUris != null && !personUris.isEmpty()){
+		Collection<String> userAccountUris = queryService
+		.executeOneVariableSelectSparqlQuery(queryString, "person",
+				getDataModel());
+		
+		if (userAccountUris != null && !userAccountUris.isEmpty()){
 			try {
-				return loadResourceByURI(Person.class, personUris.iterator().next(), false);
+				return loadResourceByURI(Person.class, userAccountUris.iterator().next(), false);
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param person
+	 * @return
+	 * @throws Exception
+	 */
+	public Collection<OnlinePresence> getLastOnlinePresencesOnUserAccounts(String personUri) throws Exception {
+		Collection<OnlinePresence> lastOnlinePresences = new ArrayList<OnlinePresence>();
+		Collection<UserAccount> userAccounts = getAllUserAccounts(personUri);
+		
+		if (userAccounts != null && !userAccounts.isEmpty()) {
+			for (UserAccount userAccount : userAccounts) {
+				OnlinePresence accountLastOnlinePresence = getLastOnlinePresencesFromUserAccount(userAccount.getUri().toString());
+				
+				if (accountLastOnlinePresence != null) {
+					lastOnlinePresences.add(accountLastOnlinePresence);
+				}
+			}
+		}
+		
+		return lastOnlinePresences;
+	}
+	
+	/**
+	 * 
+	 * @param personUri
+	 * @return
+	 */
+	public Collection<UserAccount> getAllUserAccounts(String personUri) {
+		String queryString = 
+			"PREFIX rdf: <"+Constants.RDF_NS+"> \n" + 
+			"PREFIX foaf: <"+Constants.FOAF_NS+"> \n" + 
+			"SELECT DISTINCT ?userAccount \n" + 
+			"WHERE  { \n" + 
+				"?person rdf:type foaf:Person ; \n" +
+					"foaf:holdsAccount ?userAccount . \n" + 
+			"}";
+		
+		Collection<String> userAccountUris = queryService
+				.executeOneVariableSelectSparqlQuery(queryString, "userAccount",
+						getDataModel());
+
+		if (userAccountUris != null && !userAccountUris.isEmpty()){
+			try {
+				return loadResourcesByURIs(UserAccount.class, userAccountUris, false);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param userAccountUri
+	 * @return
+	 * @throws Exception
+	 */
+	public OnlinePresence getLastOnlinePresencesFromUserAccount(String userAccountUri) throws Exception {
+		String queryString = 
+			"PREFIX rdf: <"+Constants.RDF_NS+"> \n" + 
+			"PREFIX opo: <"+Constants.OPO_NS+"> \n" + 
+			"PREFIX sioc: <"+Constants.SIOC_NS+"> \n" + 
+			"PREFIX foaf: <"+Constants.FOAF_NS+"> \n" + 
+			"SELECT ?onlinePresence \n" + 
+			"WHERE  {\n" +
+				"?onlinePresence rdf:type opo:OnlinePresence ; \n" +
+						"opo:startTime ?startTime ; \n" +
+						"opo:declaredOn <"+userAccountUri+"> . " +
+			"} \n" +
+			"ORDER BY DESC(?startTime)  \n" +
+			"LIMIT 1";
+		
+		Collection<String> onlinePresenceUris = queryService
+				.executeOneVariableSelectSparqlQuery(queryString, "onlinePresence",
+						getDataModel());
+
+		if (onlinePresenceUris != null && !onlinePresenceUris.isEmpty()){
+			return loadResourceByURI(OnlinePresence.class, onlinePresenceUris.iterator().next(), false);
 		}
 		return null;
 	}

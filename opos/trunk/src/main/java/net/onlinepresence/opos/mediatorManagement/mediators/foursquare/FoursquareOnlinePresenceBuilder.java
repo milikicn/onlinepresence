@@ -58,7 +58,7 @@ public class FoursquareOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		OnlinePresenceService opService = new OnlinePresenceService();
 		
 		// setting the agent
-		Person agent = opService.getPerson(userMembership.getUser());
+		Person agent = opService.getPersonInstance(userMembership.getUser());
 		foursquareOnlinePresence.setAgent(agent);
 		
 		//retrieving sioc:UserAccount instance

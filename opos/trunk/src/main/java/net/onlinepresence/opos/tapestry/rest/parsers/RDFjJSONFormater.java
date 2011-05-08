@@ -1,8 +1,10 @@
-package net.onlinepresence.opos.tapestry.rest.util;
+package net.onlinepresence.opos.tapestry.rest.parsers;
 
 import java.io.StringWriter;
+import java.util.Collection;
 
-import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 
 import thewebsemantic.Bean2RDF;
 
@@ -10,9 +12,9 @@ import thewebsemantic.Bean2RDF;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-public class JSONFormater {
+public class RDFjJSONFormater implements OnlinePresenceJSONParser {
 	
-	public String exportToJSON(Resource resource) {
+	public String exportToJSON(OnlinePresence resource, Person person) {
 		Model tempModel = ModelFactory.createDefaultModel();
 		
 		Bean2RDF b2rwriter = new Bean2RDF(tempModel);
@@ -26,6 +28,15 @@ public class JSONFormater {
 //			e.printStackTrace();
 //		}
 		return writer.toString();
+	}
+	
+	public String exportToJSON(Collection<OnlinePresence> onlinePresences, Person person) {
+		StringBuffer buffer = new StringBuffer();
+		
+		for (OnlinePresence onlinePresence : onlinePresences) {
+			buffer.append(exportToJSON(onlinePresence, person)+"\n");
+		}
+		return buffer.toString();
 	}
 	
 //	public Model importFromJSONFile(String pathtofile) {
