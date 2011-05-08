@@ -207,7 +207,7 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 	 * @return
 	 */
 	public Person getPersonHoldingAccount(ApplicationNames serviceName, String username) {
-		ApplicationManager appManager = (ApplicationManager) new ApplicationContextProviderSingleton().getContext().getBean(ApplicationManager.class.toString());
+		ApplicationManager appManager = (ApplicationManager) new ApplicationContextProviderSingleton().getContext().getBean(ApplicationManager.class.getName());
 		
 		Application application = appManager.getApplication(serviceName);
 		

@@ -3,9 +3,9 @@ package net.onlinepresence.opos.tapestry.rest.parsers;
 import java.util.Collection;
 import java.util.Date;
 
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -20,7 +20,7 @@ import net.onlinepresence.opos.util.DateUtil;
 
 public class SimpleJSONParser implements OnlinePresenceJSONParser {
 
-	public String exportToJSON(OnlinePresence onlinePresence, Person person) throws JSONException {
+	public JSONObject exportToJSON(OnlinePresence onlinePresence, Person person) throws JSONException {
 		
 		JSONObject onlinePresenceJSON = new JSONObject();
 		
@@ -75,7 +75,7 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 			onlinePresenceJSON.put("onlinestatus", onlineStatusJSON);
 		}
 	
-		return onlinePresenceJSON.toString();
+		return onlinePresenceJSON;
 	}
 
 	public String exportToJSON(Collection<OnlinePresence> onlinePresences, Person person) throws JSONException {
@@ -92,7 +92,7 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 		
 		lastOnlinePresences.put("onlinepresences", onlinePresencesJSON);
 
-		return lastOnlinePresences.toString();
+		return lastOnlinePresences.toString(4);
 	}
 
 }

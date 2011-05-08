@@ -27,11 +27,11 @@ public class OnlinePresencesResource {
 	private Logger logger = Logger.getLogger(this.getClass());
 
 	
-	@GET
-	@Produces("text/plain")
-	public String getAllDomains() {
-		return "works";
-	}
+//	@GET
+//	@Produces("text/plain")
+//	public String getAllDomains() {
+//		return "works";
+//	}
 
 	
 	@GET
@@ -106,7 +106,7 @@ public class OnlinePresencesResource {
 		
 		String output;
 		try {
-			output = jsonParser.exportToJSON(lastOnlinePresences, person);
+			output = jsonParser.exportToJSON(lastOnlinePresences, person).toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			throw new WebApplicationException(Response.Status.NOT_FOUND);

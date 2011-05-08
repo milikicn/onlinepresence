@@ -238,6 +238,13 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>20090823</version>
 		</dependency>
 		
+		<!-- JSON dependencies -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+		
     </dependencies>
     
     <build>
