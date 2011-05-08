@@ -82,7 +82,7 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 		JSONObject lastOnlinePresences = new JSONObject();
 		
 		lastOnlinePresences.put("user", person.getUri());
-		lastOnlinePresences.put("timepublished", DateUtil.getPreetyDate(new Date()));
+		lastOnlinePresences.put("timepublished", DateUtil.getPreetyDate(new Date(), DateUtil.TIME_DATE));
 		
 		JSONArray onlinePresencesJSON = new JSONArray();
 		
