@@ -22,8 +22,10 @@
 package net.onlinepresence.jopo.ontmodel.foaf;
 
 import java.net.URI;
+import java.util.Collection;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 
 public interface Agent extends Thing{
 	
@@ -35,4 +37,8 @@ public interface Agent extends Thing{
 	
 	URI getMbox();
 	void setMbox(URI mbox);
+	
+	Collection<UserAccount> getAccounts();
+	void setAccounts(Collection<UserAccount> accounts);
+	void addAccount(UserAccount account);
 }

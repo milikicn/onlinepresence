@@ -22,12 +22,15 @@
 package net.onlinepresence.jopo.ontmodel.foaf.beans;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import thewebsemantic.Namespace;
 import thewebsemantic.RdfProperty;
 import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.foaf.Agent;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.util.Constants;
 import net.onlinepresence.jopo.util.EqualsUtil;
 
@@ -39,15 +42,18 @@ public class AgentBean extends ThingBean implements Agent {
 	private String nick;
 	private OnlinePresence onlinePresence;
 	private URI mbox;
+	private Collection<UserAccount> accounts;
 
 	@Deprecated
 	public AgentBean() {
 		super();
+		accounts = new ArrayList<UserAccount>();
 	}
 
 	@Deprecated
 	public AgentBean(String uri) {
 		super(uri);
+		accounts = new ArrayList<UserAccount>();
 	}
 
 	
@@ -78,6 +84,34 @@ public class AgentBean extends ThingBean implements Agent {
 
 	public void setMbox(URI mbox) {
 		this.mbox = mbox;
+	}
+	
+	/**
+	 * @return the accounts
+	 */
+	@RdfProperty(Constants.FOAF_NS + "holdsAccount")
+	public Collection<UserAccount> getAccounts() {
+		return accounts;
+	}
+
+	/**
+	 * @param accounts the accounts to set
+	 */
+	public void setAccounts(Collection<UserAccount> accounts) {
+		if (null != accounts) {
+			this.accounts = accounts;
+		} else {
+			throw new RuntimeException("accounts can not be null.");
+		}
+	}
+	
+	public void addAccount(UserAccount account) {
+		if (account != null) {
+			if (!getAccounts().contains(account)){
+				getAccounts().add(account);
+			}
+		} else
+			throw new RuntimeException("account must not be null.");
 	}
 
 	@Override
