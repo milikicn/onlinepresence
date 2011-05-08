@@ -3,9 +3,9 @@ package net.onlinepresence.opos.tapestry.rest.parsers;
 import java.util.Collection;
 import java.util.Date;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -21,6 +21,7 @@ import net.onlinepresence.opos.util.DateUtil;
 public class SimpleJSONParser implements OnlinePresenceJSONParser {
 
 	public String exportToJSON(OnlinePresence onlinePresence, Person person) throws JSONException {
+		
 		JSONObject onlinePresenceJSON = new JSONObject();
 		
 		onlinePresenceJSON.put("presenceuri", onlinePresence.getUri());
