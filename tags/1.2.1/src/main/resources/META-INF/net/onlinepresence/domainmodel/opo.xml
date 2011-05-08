@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.Action"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.ActionBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.OnlinePresence"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.OnlinePresenceBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.OnlinePresenceComponent"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.OnlinePresenceComponentBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.OnlineStatusComponent"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.OnlineStatusComponentBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.SharingSpace"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.SharingSpaceBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.SourceOfPublishing"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.SourceOfPublishingBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.StatusMessage"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.StatusMessageBean"
+		scope="prototype" >
+	</bean>
+	
+</beans>
