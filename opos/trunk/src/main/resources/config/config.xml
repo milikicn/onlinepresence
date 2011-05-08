@@ -32,4 +32,11 @@
 		<check-timeout>20000</check-timeout>
 	</facebook-mediator>
 	
+	<!-- Settings for OPOS app registered on Foursquare on Nikola Milikic's account -->
+	<foursquare-mediator>
+		<api-key>UM42RGJXRDFSL55R5IOZ3JRWKNRL1EC2DLEX2GKUQ50WXJF2</api-key>
+		<api-secret>RMZX4NAR4LQEVNK2T0YKSWUQ30ZXVDAIHMPTC0FAZDSZJEIA</api-secret>
+		<check-timeout>20000</check-timeout>
+	</foursquare-mediator>
+	
 </config>

@@ -17,5 +17,8 @@ public class Config {
 	
 	@Element(name = "facebook-mediator", required = false)
 	public FacebookMediatorConfig facebookMediatorConfig;
+	
+	@Element(name = "foursquare-mediator", required = false)
+	public FoursquareMediatorConfig foursquarekMediatorConfig;
 
 }

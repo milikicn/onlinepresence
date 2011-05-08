@@ -220,6 +220,24 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>4.1</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Foursquare -->
+		<dependency>
+			<groupId>foursquare4j</groupId>
+			<artifactId>foursquare4j</artifactId>
+			<version>0.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>net.oauth.core</groupId>
+			<artifactId>oauth</artifactId>
+			<version>20090531</version>
+		</dependency>
+		<dependency>
+			<groupId>net.oauth.core</groupId>
+			<artifactId>oauth-consumer</artifactId>
+			<version>20090823</version>
+		</dependency>
+		
     </dependencies>
     
     <build>
@@ -322,6 +340,19 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<id>jboss</id>
 			<url>http://repository.jboss.org/maven2</url>
 		</repository>
+		
+		<repository>
+			<id>foursquare4j</id>
+			<name>foursquare4j</name>
+			<url>http://foursquare4j.googlecode.com/svn/maven2</url>
+		</repository>
+    
+		<repository>
+			<id>oAuth</id>
+			<name>foursquare4j</name>
+			<url>http://oauth.googlecode.com/svn/code/maven</url>
+		</repository>
+		
     </repositories>
 
     <pluginRepositories>

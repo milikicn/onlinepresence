@@ -3,6 +3,7 @@ package net.onlinepresence.opos.domain.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 
@@ -149,9 +150,9 @@ public class UserBean implements User {
 //		return membs;
 //	}
 	
-	public Membership deleteApplicationMembership(String appUrl){
+	public Membership deleteApplicationMembership(ApplicationNames applicationName){
 		for (Membership membership : applicationMemberships) {
-			if (membership.getApplication().getWebAddress().equals(appUrl)){
+			if (membership.getApplication().getName().equals(applicationName)){
 				applicationMemberships.remove(membership);
 				return membership;
 			}

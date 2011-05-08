@@ -14,6 +14,9 @@ import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
+import net.onlinepresence.opos.exceptions.OPOSException;
+import net.onlinepresence.opos.mediatorManagement.MediatorManager;
+import net.onlinepresence.opos.mediatorManagement.mediators.foursquare.FoursquareMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommunication;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
@@ -44,7 +47,7 @@ public class Connections {
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
-	private UserManager users;
+	private UserManager userManager;
 
 	@Property @SuppressWarnings("unused")
 	private Application currentApplication;
@@ -58,11 +61,12 @@ public class Connections {
 			return Login.class;
 		
 		// refreshing Hibernate session
-		loggedUser.setUser(users.findUser(loggedUser.getUser().getUsername()));
+		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		
 		twitterAppSettings = new UserAppSettings(ApplicationNames.TWITTER);
 		facebookAppSettings = new UserAppSettings(ApplicationNames.FACEBOOK);
 		sparkAppSettings = new UserAppSettings(ApplicationNames.SPARK);
+		foursquareAppSettings = new UserAppSettings(ApplicationNames.FOURSQUARE);
 		
 		loadMembershipInformation();
 		
@@ -86,6 +90,9 @@ public class Connections {
 			case SPARK:
 				configureUserAppSettings(sparkAppSettings, mem);
 				break;
+			case FOURSQUARE:
+				configureUserAppSettings(foursquareAppSettings, mem);
+				break;
 			}
 		}
 	}
@@ -95,6 +102,7 @@ public class Connections {
 		appSettings.setSendDataToApp(mem.isSendTo());
 		appSettings.setReceiveDataFromApp(mem.isReceiveFrom());
 		appSettings.setUsername(mem.getUsername());
+		appSettings.setPassword(mem.getPassword());
 	}
 
 	//Twitter
@@ -125,8 +133,8 @@ public class Connections {
 
 	@OnEvent(component = "deleteTwitter")
 	void deleteTwitter() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership("http://www.twitter.com");
-		users.deleteApplicationMemberhsip(m);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.TWITTER);
+		userManager.deleteApplicationMemberhsip(m);
 	}
 	
 	//Facebook
@@ -160,8 +168,8 @@ public class Connections {
 
 	@OnEvent(component = "deleteFacebook")
 	void deleteFacebook() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership("http://www.facebook.com");
-		users.deleteApplicationMemberhsip(m);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FACEBOOK);
+		userManager.deleteApplicationMemberhsip(m);
 	}
 	
 	// Spark
@@ -170,7 +178,7 @@ public class Connections {
 
 	Object onSubmitFromSparkForm() {
 		// refreshing Hibernate session
-		loggedUser.setUser(users.findUser(loggedUser.getUser().getUsername()));
+		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		Application sparkApp = applications.getApplication(ApplicationNames.SPARK);
 		
 		Membership memb = new MembershipBean(
@@ -178,26 +186,48 @@ public class Connections {
 				loggedUser.getUser(), sparkAppSettings.getUsername(), null, sparkAppSettings.isSendDataToApp(),
 				sparkAppSettings.isReceiveDataFromApp(), null, null);
 		
-		return submitForm(memb);
+		userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
+		
+		return Connections.class;
 	}
 	
 	@OnEvent(component = "deleteSpark")
 	void deleteSpark() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(
-				"http://www.igniterealtime.org/projects/spark/");
-		users.deleteApplicationMemberhsip(m);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.SPARK);
+		userManager.deleteApplicationMemberhsip(m);
 	}
 	
-	public Object submitForm(Membership memb) {
-		if (!loggedUser.getUser().hasMembership(memb)) {
-			loggedUser.getUser().addApplicationMembership(memb);
-			users.update(loggedUser.getUser());
-		} else {
-			loggedUser.getUser().updateMembership(memb);
-			users.update(loggedUser.getUser());
+	// Foursquare
+	@Property
+	private UserAppSettings foursquareAppSettings;
+	
+	@OnEvent(component = "foursquareForm")
+	Object onSubmitFromFoursquareForm() {
+		// refreshing Hibernate session
+		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
+		Application foursquareApp = applications.getApplication(ApplicationNames.FOURSQUARE);
+		
+		Membership memb = new MembershipBean(
+				foursquareApp,
+				loggedUser.getUser(), foursquareAppSettings.getUsername(), foursquareAppSettings.getPassword(), foursquareAppSettings.isSendDataToApp(),
+				foursquareAppSettings.isReceiveDataFromApp(), null, null);
+		
+		userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
+		
+		FoursquareMediator foursquareMediator = (FoursquareMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FOURSQUARE);
+		try {
+			foursquareMediator.spawnAndAddNewProfileCheckerThread(memb);
+		} catch (OPOSException e) {
+			// TODO
 		}
 		
 		return Connections.class;
 	}
 
+	@OnEvent(component = "deleteFoursquare")
+	void deleteFoursquare() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FOURSQUARE);
+		userManager.deleteApplicationMemberhsip(m);
+	}
+	
 }

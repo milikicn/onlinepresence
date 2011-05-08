@@ -7,6 +7,7 @@ public class UserAppSettings {
 	private ApplicationNames appName;
 	private boolean userUssesApp;
 	private String username;
+	private String password;
 	private boolean sendDataToApp;
 	private boolean receiveDataFromApp;
 	
@@ -52,6 +53,14 @@ public class UserAppSettings {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

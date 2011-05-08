@@ -23,7 +23,7 @@ public interface User {
 	void setApplicationMemberships(Set<Membership> memberships);
 	boolean addApplicationMembership(Membership membership);
 	void deleteApplicationMembership(Membership membership);
-	Membership deleteApplicationMembership(String appUrl);
+	Membership deleteApplicationMembership(ApplicationNames applicationName);
 	void updateMembership(Membership membership);
 	boolean hasMembership(Membership memb);
 }

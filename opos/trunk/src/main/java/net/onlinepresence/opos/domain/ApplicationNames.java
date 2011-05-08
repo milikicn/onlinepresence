@@ -1,5 +1,5 @@
 package net.onlinepresence.opos.domain;
 
 public enum ApplicationNames {
-	SPARK, TWITTER, FACEBOOK
+	SPARK, TWITTER, FACEBOOK, FOURSQUARE
 }

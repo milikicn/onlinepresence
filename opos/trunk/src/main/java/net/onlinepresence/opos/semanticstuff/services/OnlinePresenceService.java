@@ -112,9 +112,9 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		return null;
 	}
 
-	public UserAccount getUserAccount(Membership memb) {
-		String username = memb.getUsername();
-		String applicationWebAddress = memb.getApplication().getWebAddress();
+	public UserAccount getUserAccount(Membership userMembership) {
+		String username = userMembership.getUsername();
+		String applicationWebAddress = userMembership.getApplication().getWebAddress();
 		
 		if (username == null || applicationWebAddress == null) {
 			logger.error("Membership username and application web address can not be null.");

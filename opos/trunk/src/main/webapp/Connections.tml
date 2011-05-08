@@ -19,16 +19,13 @@
 	<div style="display: none;">
 		<div id="data1">
 			<div class="popupDiv">
-				<h3 class="fontface">Connect with Twitter</h3>
+				<h3 class="fontface">Connect your Twitter account</h3>
 								    
 				<div class="form">
 					<form t:type="Form" t:id="twitterForm">
 						<div class="formRow">
 							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpTwitter">Sign Up</t:ActionLink></label>
-							
-							<div class="inputWrapper">
-								
-							</div>
+							<div class="inputWrapper"></div>
 						</div>
 
 						<div class="formRowSmall">
@@ -62,16 +59,13 @@
 	<div style="display: none;">
 		<div id="data2">
 			<div class="popupDiv">
-				<h3 class="fontface">Connect with Facebook</h3>
+				<h3 class="fontface">Connect your Facebook account</h3>
 								    
 				<div class="form">
 					<form t:type="Form" t:id="facebookForm">
 						<div class="formRow">
 							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpFacebook">Sign Up</t:ActionLink></label>
-							
-							<div class="inputWrapper">
-								
-							</div>
+							<div class="inputWrapper"></div>
 						</div>
 
 						<div class="formRowSmall">
@@ -107,7 +101,7 @@
 		<div id="data3">		
 			<div class="popupDiv">
 			
-				<h3 class="fontface">Connect with Spark</h3>
+				<h3 class="fontface">Connect your Spark account</h3>
 							    
 				<div class="form">
 					<form t:type="Form" t:id="sparkForm">
@@ -136,6 +130,70 @@
 						<t:if t:test="sparkAppSettings.userUssesApp">
 							<input type="submit" class="btnUpdate" value="Update" /> 
 							<t:ActionLink t:id="deleteSpark" class="btnDisconnect">Disconnect</t:ActionLink>
+							<p:else>
+								<input type="submit" class="btnConnect" value="Connect" /> 
+							</p:else>
+						</t:if>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<t:if t:test="foursquareAppSettings.userUssesApp">
+		<a id="inline" href="#data4"><img class="icon" src="${asset:context:images/applications/icon-Foursquare-on.png}" width="70" height="70" alt="" /></a>
+		<p:else>
+			<a id="inline" href="#data4"><img class="icon" src="${asset:context:images/applications/icon-Foursquare-off.png}" width="70" height="70" alt="" /></a>
+		</p:else>
+	</t:if>            
+	
+	<div style="display: none;">
+		<div id="data4">		
+			<div class="popupDiv">
+			
+				<h3 class="fontface">Connect your Foursquare account</h3>
+							    
+				<div class="form">
+					<form t:type="Form" t:id="foursquareForm">
+						<div class="formRow">
+							<label class="label">Username</label>
+							
+							<div class="inputWrapper">
+								<div class="inputLeft"></div>
+								<div class="inputCenter">
+									<input class="input" t:id="foursquareUsername" t:type="TextField" 
+													t:value="foursquareAppSettings.username" title="Foursquare username" tabindex="5" />
+								</div>
+								<div class="inputRight"></div>
+							</div>
+						</div>
+						
+						<div class="formRow">
+							<label class="label">Password</label>
+							
+							<div class="inputWrapper">
+								<div class="inputLeft"></div>
+								<div class="inputCenter">
+									<input class="input" t:id="foursquarePassword" t:type="TextField" 
+													t:value="foursquareAppSettings.password" title="Foursquare password" tabindex="5" />
+								</div>
+								<div class="inputRight"></div>
+							</div>
+						</div>
+
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="foursquareAppSettings.sendDataToApp" />
+			                <span class="withShadow">Send data to Foursquare</span>
+			            </div>
+						<div class="formRowSmall">
+			                <input class="checkBox" type="checkbox" t:type="checkbox" t:value="foursquareAppSettings.receiveDataFromApp"/>
+			                <span class="withShadow">Receive data from Foursquare</span>
+			            </div>
+											
+						<t:if t:test="foursquareAppSettings.userUssesApp">
+							<input type="submit" class="btnUpdate" value="Update" /> 
+							<t:ActionLink t:id="deleteFoursquare" class="btnDisconnect">Disconnect</t:ActionLink>
 							<p:else>
 								<input type="submit" class="btnConnect" value="Connect" /> 
 							</p:else>
