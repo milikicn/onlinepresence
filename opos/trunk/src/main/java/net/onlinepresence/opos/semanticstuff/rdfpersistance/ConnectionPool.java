@@ -35,10 +35,10 @@ public class ConnectionPool {
 		logger.info("Initializing JDBC connection pool");
 		
 		// get DB settings from config file
-		String dbType = Settings.getInstance().config.sdbConfig.dbType;
-		String jdbcURL = Settings.getInstance().config.sdbConfig.dbURL;
-		String user = Settings.getInstance().config.sdbConfig.dbUser;
-		String pw = Settings.getInstance().config.sdbConfig.dbPassword;
+		String dbType = Settings.getInstance().config.rdfRepositoryConfig.sdbConfig.dbType;
+		String jdbcURL = Settings.getInstance().config.rdfRepositoryConfig.sdbConfig.dbURL;
+		String user = Settings.getInstance().config.rdfRepositoryConfig.sdbConfig.dbUser;
+		String pw = Settings.getInstance().config.rdfRepositoryConfig.sdbConfig.dbPassword;
 
 
 		// MySQL

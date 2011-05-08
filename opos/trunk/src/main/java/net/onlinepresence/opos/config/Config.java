@@ -8,9 +8,12 @@ public class Config {
 	
 	@org.simpleframework.xml.Transient
 	public static String MySQL = "MySQL";
+	
+	@Element(name = "opos-website", required = true)
+	public String oposWebsite;
 
-	@Element(name = "sdb-config", required = true)
-	public SDBConfig sdbConfig;
+	@Element(name = "rdf-repository", required = true)
+	public RdfRepositoryConfig rdfRepositoryConfig;
 	
 	@Element(name = "twitter-mediator", required = false)
 	public TwitterMediatorConfig twitterMediatorConfig;

@@ -2,6 +2,7 @@ package net.onlinepresence.opos.domain.service.beans;
 
 import java.util.List;
 
+import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
 import net.onlinepresence.opos.core.spring.SpringBean;
@@ -97,17 +98,31 @@ public class UserManagerBean
 			update(user);
 			
 			//save new UserAccount information into the RDF repository
+			OnlinePresenceService opService = new OnlinePresenceService();
 			ResourceFactory resourceFactory = new ResourceFactory();
+			
 			UserAccount userAccount = (UserAccount) resourceFactory.createResource(UserAccount.class);
 			userAccount.setAccountName(membership.getUsername());
 			userAccount.setAccountServiceHomepage(membership.getApplication().getWebAddress());
 			
-			OnlinePresenceService opService = new OnlinePresenceService();
 			try {
-				opService.saveResource(userAccount, false);
+				userAccount = opService.saveResource(userAccount, false);
 				logger.debug("Saved in the repostiory new UserAccount for user with username '"
 						+membership.getUsername()+"' on the service '"
 						+membership.getApplication().getWebAddress()+"'.");
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			
+			Person person = opService.getPerson(user);
+			person.addAccount(userAccount);
+			try {
+				opService.updateResource(person, false);
+				
+				logger.debug("Added sioc:UserAccount instance with username '"
+						+membership.getUsername()+"' on the service '"
+						+membership.getApplication().getWebAddress()+"' " +
+						"to the foaf:Person "+person.getUri()+".");
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}

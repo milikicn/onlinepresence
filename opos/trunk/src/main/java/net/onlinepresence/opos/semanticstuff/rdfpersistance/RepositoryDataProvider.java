@@ -42,7 +42,7 @@ public class RepositoryDataProvider implements DataProvider {
 
 		try {
 			// create the necessary tables - cleans the db
-			if (Settings.getInstance().config.sdbConfig.format) {
+			if (Settings.getInstance().config.rdfRepositoryConfig.sdbConfig.format) {
 				logger.debug("Formatting db tables...");
 				store.getTableFormatter().create();
 			}

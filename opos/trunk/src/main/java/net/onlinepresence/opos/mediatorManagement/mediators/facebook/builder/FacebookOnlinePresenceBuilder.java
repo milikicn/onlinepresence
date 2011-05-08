@@ -13,6 +13,7 @@ import com.restfb.Parameter;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
+import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ActivityBean;
 import net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ContactabilityBean;
@@ -54,11 +55,13 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		// TODO: location
 		// facebookOnlinePresence.setLocation(location);
 		
-		// TODO: agent - retrieve it from the repository
-		// facebookOnlinePresence.setAgent(agent);
+		OnlinePresenceService opService = new OnlinePresenceService();
+		
+		// setting the agent
+		Person agent = opService.getPerson(userMembership.getUser());
+		facebookOnlinePresence.setAgent(agent);
 		
 		//retrieving sioc:UserAccount instance
-		OnlinePresenceService opService = new OnlinePresenceService();
 		UserAccount userAccount = opService.getUserAccount(userMembership);
 		facebookOnlinePresence.setUserAccount(userAccount);
 		

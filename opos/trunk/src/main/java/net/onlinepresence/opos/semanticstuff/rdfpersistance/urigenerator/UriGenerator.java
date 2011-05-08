@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.semanticstuff.rdfpersistance.urigenerator;
 
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.opos.config.Settings;
 
 public abstract class UriGenerator {
 
@@ -14,7 +15,7 @@ public abstract class UriGenerator {
 	 */
 	public <E extends Resource> String generateInstanceURI(E instance) {
 		return this.generateInstanceURI(instance,
-				"http://online-presence.org/opos/triplestore#");
+				Settings.getInstance().config.rdfRepositoryConfig.namespace);
 	}
 
 	/**

@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
-import net.onlinepresence.jopo.ontmodel.foaf.Image;
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -26,18 +25,18 @@ public class TwitterOnlinePresenceBuilder implements OnlinePresenceBuilder {
 	private Logger logger = Logger.getLogger(TwitterOnlinePresenceBuilder.class);
 	
 	private Twitter twitter;
-	private Membership memb;
+	private Membership userMembership;
 
 	/**
 	 * @param twitterStuff
 	 */
-	public TwitterOnlinePresenceBuilder(Twitter twitter, Membership memb) {
+	public TwitterOnlinePresenceBuilder(Twitter twitter, Membership userMembership) {
 		this.twitter = twitter;
-		this.memb = memb;
+		this.userMembership = userMembership;
 	}
 
 	public OnlinePresence build() throws OPOSException {
-		logger.debug("Building Twitter OnlinePresence instance for the user "+memb.getUsername());
+		logger.debug("Building Twitter OnlinePresence instance for the user "+userMembership.getUsername());
 		
 		User user;
 		try {
@@ -63,33 +62,38 @@ public class TwitterOnlinePresenceBuilder implements OnlinePresenceBuilder {
 			twitterOnlinePresence.setLocation(location);
 		}
 		
-		//creating Agent instance
-		Person agent = (Person) factory.createResource(Person.class);
-		agent.setName(userWrapper.getName());
-		logger.debug("TwitterOnlinePresenceBuilder: agent.setName " + agent.getName());
-		if(userWrapper.getURL() != null){
-			agent.setHomepage(userWrapper.getURL().toString());
-			logger.debug("TwitterOnlinePresenceBuilder: agent.setHomepage " + agent.getHomepage());
-		}
-//		if(userWrapper.getMbox() != null){
+//		//creating Agent instance
+//		Person agent = (Person) factory.createResource(Person.class);
+//		agent.setName(userWrapper.getName());
+//		logger.debug("TwitterOnlinePresenceBuilder: agent.setName " + agent.getName());
+//		if(userWrapper.getURL() != null){
 //			agent.setHomepage(userWrapper.getURL().toString());
-//			System.out.println("TwitterOnlinePresenceBuilder: agent.setHomepage " + agent.getHomepage());
+//			logger.debug("TwitterOnlinePresenceBuilder: agent.setHomepage " + agent.getHomepage());
 //		}
+////		if(userWrapper.getMbox() != null){
+////			agent.setHomepage(userWrapper.getURL().toString());
+////			System.out.println("TwitterOnlinePresenceBuilder: agent.setHomepage " + agent.getHomepage());
+////		}
+//		
+//		// TODO: how to know whether should I update the avatar of the user if it is attached 
+//		// directly to the foaf:Person instance when every application gives us new avatar URL?
+//		if(userWrapper.getProfileImageURL() != null){
+//			Image image = (Image) factory.createResource(Image.class);
+//			image.setUri(userWrapper.getProfileImageURL().toString());
+//			logger.debug("TwitterOnlinePresenceBuilder: image.setURI " + image.getUri());
+//			
+//			agent.setImg(image);
+//		}
+//		twitterOnlinePresence.setAgent(agent);
 		
-		// TODO: how to know whether should I update the avatar of the user if it is attached 
-		// directly to the foaf:Person instance when every application gives us new avatar URL?
-		if(userWrapper.getProfileImageURL() != null){
-			Image image = (Image) factory.createResource(Image.class);
-			image.setUri(userWrapper.getProfileImageURL().toString());
-			logger.debug("TwitterOnlinePresenceBuilder: image.setURI " + image.getUri());
-			
-			agent.setImg(image);
-		}
+		OnlinePresenceService opService = new OnlinePresenceService();
+		
+		// setting the agent
+		Person agent = opService.getPerson(userMembership.getUser());
 		twitterOnlinePresence.setAgent(agent);
 		
 		//retrieving sioc:UserAccount instance
-		OnlinePresenceService opService = new OnlinePresenceService();
-		UserAccount userAccount = opService.getUserAccount(memb);
+		UserAccount userAccount = opService.getUserAccount(userMembership);
 		twitterOnlinePresence.setUserAccount(userAccount);
 		
 		//creating status instance

@@ -1,13 +1,19 @@
 <config>
 	
-	<!-- Settings for contacting MySQL for SDB -->
-	<sdb-config>
-		<db-type>MySQL</db-type>
-		<db-jdbcURL>jdbc:mysql://localhost/sdb</db-jdbcURL>
-		<db-username>sdb</db-username>
-		<db-password>password</db-password>
-		<format>false</format>
-	</sdb-config>
+	<opos-website>http://online-presence.net/opos</opos-website>
+	
+	<rdf-repository>
+		<namespace>http://online-presence.org/opos/triplestore#</namespace>
+	
+		<!-- Settings for contacting MySQL for SDB -->
+		<sdb-config>
+			<db-type>MySQL</db-type>
+			<db-jdbcURL>jdbc:mysql://localhost/sdb</db-jdbcURL>
+			<db-username>sdb</db-username>
+			<db-password>password</db-password>
+			<format>false</format>
+		</sdb-config>
+	</rdf-repository>
 	
 	<twitter-mediator>
 		<api-key>Lh9kHnnbN95Oo287N8hnA</api-key>

@@ -6,7 +6,7 @@ import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.UserBean;
 import net.onlinepresence.opos.domain.service.KeyManager;
 import net.onlinepresence.opos.domain.service.UserManager;
-import net.onlinepresence.opos.util.Authentication;
+import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Field;
@@ -43,11 +43,12 @@ public class Registration {
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
-	private UserManager users;
+	private UserManager userManager;
 	
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.KeyManager")
-	private KeyManager keys;
+	@SuppressWarnings("unused")
+	private KeyManager keyManager;
 
 	@SessionState
 	private LoggedUserBean loggedUser;
@@ -69,7 +70,7 @@ public class Registration {
 			registrationForm.recordError(passwordF, "User password cannot be its username");
 		}
 		// Do a first check
-		if (user.getUsername() != null && users.existsUser(user.getUsername())) {
+		if (user.getUsername() != null && userManager.existsUser(user.getUsername())) {
 			registrationForm.recordError(usernameF, "User already exists");
 		}
 		
@@ -82,23 +83,29 @@ public class Registration {
 		}
 	}
 
+	@OnEvent(component = "registrationForm")
 	Object onSubmitFromRegistrationForm() {
-		Authentication auth = new Authentication(keys);
+//		Authentication auth = new Authentication(keyManager);
 		
-		if (auth.authenticateKey(user.getEmail(), enteredKey))
+		// disabled for now for easier development
+//		if (auth.authenticateKey(user.getEmail(), enteredKey))
 			return registerUser();
 		
-		return null;
+//		return null;
 	}
 	
 	Object registerUser(){
 		if(!passwordConfirmation.equals(user.getPassword()))
 			return null;
 
-		if (!users.existsUser(user.getUsername())) {
-			users.addUser(user);
+		if (!userManager.existsUser(user.getUsername())) {
+			userManager.addUser(user);
 			loggedUser.setUser(user);
-			keys.removeKey(user.getEmail());
+//			keyManager.removeKey(user.getEmail());
+			
+			OnlinePresenceService opService = new OnlinePresenceService();
+			opService.registerUserAndOposAccount(user);
+			
 			return Connections.class;
 		} else
 			return Registration.class;

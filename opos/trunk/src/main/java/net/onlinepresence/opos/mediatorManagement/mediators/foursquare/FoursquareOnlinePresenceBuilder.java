@@ -6,6 +6,7 @@ import foursquare4j.exception.FoursquareException;
 import foursquare4j.oauth.FoursquareOAuthImpl;
 import foursquare4j.type.User;
 
+import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
@@ -54,8 +55,13 @@ public class FoursquareOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		
 		//location
 		
-		//retrieving sioc:UserAccount instance
 		OnlinePresenceService opService = new OnlinePresenceService();
+		
+		// setting the agent
+		Person agent = opService.getPerson(userMembership.getUser());
+		foursquareOnlinePresence.setAgent(agent);
+		
+		//retrieving sioc:UserAccount instance
 		UserAccount userAccount = opService.getUserAccount(userMembership);
 		foursquareOnlinePresence.setUserAccount(userAccount);
 		
