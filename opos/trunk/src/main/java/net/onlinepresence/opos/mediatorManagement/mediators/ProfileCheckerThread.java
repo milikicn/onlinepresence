@@ -147,6 +147,9 @@ public abstract class ProfileCheckerThread extends Thread {
 					OnlinePresence newOnlinePresence = onlinePresenceBulder.build();
 
 					if (currentOnlinePresence != null) {
+						logger.debug("Examining equality of OnlinePresences for the username "
+								+userMembership.getUsername()+" on "
+								+userMembership.getApplication().getName()+" application.");
 						if (!OnlinePresenceEquality.equalOnlinePresenceData(currentOnlinePresence, newOnlinePresence)) {
 							getProfileCheckerMediator().propagateOnlinePresence(newOnlinePresence);
 							currentOnlinePresence = newOnlinePresence;
@@ -155,8 +158,10 @@ public abstract class ProfileCheckerThread extends Thread {
 						logger.debug("First Online Presence instance for this account on "
 								+ getProfileCheckerMediator().getMediatorName()
 								+ " service.");
+						OnlinePresenceService opService = new OnlinePresenceService();
 						try {
-							new OnlinePresenceService().saveResource(newOnlinePresence, false);
+							opService.saveOnlinePresence(newOnlinePresence);
+//							new OnlinePresenceService().saveResource(newOnlinePresence, false);
 						} catch (Exception e) {
 							logger.error(e.getMessage());
 						}

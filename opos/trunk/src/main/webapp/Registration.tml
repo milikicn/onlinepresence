@@ -90,7 +90,7 @@
 	<div class="contentRight">
  		<p>
  			Allready a member?<br />
-			<t:pagelink t:page="Login">Sign in here</t:pagelink>.
+			<t:pagelink t:page="Login">Sign in here</t:pagelink>
 		</p>
 	</div>
 

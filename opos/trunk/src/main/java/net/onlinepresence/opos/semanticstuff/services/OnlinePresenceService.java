@@ -7,7 +7,12 @@ import java.util.Collection;
 import org.apache.log4j.Logger;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.Findability;
+import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.Notifiability;
+import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.jopo.ontmodel.sioc.Item;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
@@ -330,5 +335,40 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			return loadResourceByURI(OnlinePresence.class, onlinePresenceUris.iterator().next(), false);
 		}
 		return null;
+	}
+
+	public OnlinePresence saveOnlinePresence(OnlinePresence onlinePresence) throws Exception {
+		// saving post
+		Item post = onlinePresence.getStatusMessage();
+		if (post != null) {
+			onlinePresence.setStatusMessage(saveResource(post, false));
+		}
+		
+		// saving location
+		SpatialThing location = onlinePresence.getLocation();
+		if (location != null) {
+			onlinePresence.setLocation(saveResource(location, false));
+		}
+		
+		// saving presence components
+		// saving notifiability
+		Notifiability notifiability = onlinePresence.retrieveNotifiability();
+		if (notifiability != null) {
+			onlinePresence.setNotifiability(saveResource(notifiability, false));
+		}
+		
+		// saving findability
+		Findability findability = onlinePresence.retrieveFindability();
+		if (findability != null) {
+			onlinePresence.setFindability(saveResource(findability, false));
+		}
+		
+		// saving onlineStatus
+		OnlineStatus onlineStatus = onlinePresence.retrieveOnlineStatus();
+		if (onlineStatus != null) {
+			onlinePresence.setOnlineStatus(saveResource(onlineStatus, false));
+		}
+		
+		return saveResource(onlinePresence, false);
 	}
 }

@@ -71,6 +71,7 @@ public class FacebookApp {
 			return Login.class;
 		
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
+		loggedUser.getUser().getUsername();
 
 		System.out.println("request.getPath(): "+request.getPath());
 		String accessToken = getAccessToken(request.getParameter("code"));

@@ -93,7 +93,7 @@ public class MediatorManager {
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
 		//storing OP into the repository
 		try {
-			rdfPersistance.saveResource(onlinePresence, true);
+			rdfPersistance.saveOnlinePresence(onlinePresence);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

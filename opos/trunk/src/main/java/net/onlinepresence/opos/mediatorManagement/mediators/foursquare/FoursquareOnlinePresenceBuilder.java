@@ -7,6 +7,7 @@ import foursquare4j.oauth.FoursquareOAuthImpl;
 import foursquare4j.type.User;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
@@ -32,28 +33,33 @@ public class FoursquareOnlinePresenceBuilder implements OnlinePresenceBuilder {
 	public OnlinePresence build() throws OPOSException {
 		logger.error("Building OnlinePresence instance on Foursquare for user "+userMembership.getUsername());
 
+		FoursquareUserDetails userDetails = null;
 		try {
-			foursquareService.authentication(
-					"nikola.milikic@gmail.com", "nikolaopos");
-			User u = foursquareService.user(null, null, null);
-			FoursquareUserDetails ud = new FoursquareUserDetails();
-			ud.setFirstName(u.getFirstname());
-			ud.setLastName(u.getLastname());
-			ud.setAvatarURL(u.getPhoto());
-			ud.setLastLocation(new FoursquareLastLocation(u.getCheckin().getDisplay(), u
-					.getCheckin().getCreated()));
+			User fsUser = foursquareService.user(null, null, null);
+			userDetails = new FoursquareUserDetails();
+			userDetails.setFirstName(fsUser.getFirstname());
+			userDetails.setLastName(fsUser.getLastname());
+			userDetails.setAvatarURL(fsUser.getPhoto());
+			userDetails.setLastLocation(new FoursquareLastLocation(fsUser.getCheckin().getDisplay(), fsUser
+					.getCheckin().getCreated(), fsUser.getCheckin().getVenue()
+					.getGeolat(), fsUser.getCheckin().getVenue().getGeolong()));
 
-			System.out.println(ud.toString());
+			System.out.println(userDetails.toString());
 
 		} catch (FoursquareException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		ResourceFactory factory = new ResourceFactory();
 		
-		OnlinePresence foursquareOnlinePresence = (OnlinePresence) factory.createResource(OnlinePresence.class);
+		OnlinePresence foursquareOnlinePresence = factory.createResource(OnlinePresence.class);
 		
 		//location
+		// TODO: persist this
+		SpatialThing geoLocation = factory.createResource(SpatialThing.class);
+		geoLocation.setLatitude(userDetails.getLastLocation().getLatitude());
+		geoLocation.setLongitude(userDetails.getLastLocation().getLongitude());
+		foursquareOnlinePresence.setLocation(geoLocation);
 		
 		OnlinePresenceService opService = new OnlinePresenceService();
 		

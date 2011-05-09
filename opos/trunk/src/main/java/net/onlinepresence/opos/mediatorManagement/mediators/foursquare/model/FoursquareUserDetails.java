@@ -41,9 +41,11 @@ public class FoursquareUserDetails {
 
 	public String toString() {
 		return "Name: " + this.firstName + " " + this.lastName
-				+ "\nAvatar URL: " + this.avatarURL + "\nLast location: ( "
+				+ "\nAvatar URL: " + this.avatarURL + "\nLast location: \n"
 				+ this.lastLocation.getText() + " - "
-				+ this.lastLocation.getTime() + ")";
+				+ this.lastLocation.getTime() + "\n" +"Lat:"
+				+ this.lastLocation.getLatitude() + "\n" +"Long:"
+				+ this.lastLocation.getLongitude() + "\n" + ")";
 
 	}
 }

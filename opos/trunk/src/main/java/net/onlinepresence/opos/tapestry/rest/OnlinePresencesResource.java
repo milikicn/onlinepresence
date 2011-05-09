@@ -93,7 +93,7 @@ public class OnlinePresencesResource {
 		ParserTypes parserType = ParserTypes.valueOf(type.toUpperCase());
 		
 		switch (parserType) {
-			case JRDF:
+			case RDFJ:
 				jsonParser = new RDFjJSONFormater();
 				break;
 			case SIMPLE:

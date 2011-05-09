@@ -44,7 +44,7 @@
     
     <div class="contentRight">
     	<p>Not a member?<br />
-    	<t:pagelink t:page="SignUp">Register here</t:pagelink>.</p>
+    	<t:pagelink t:page="Registration">Register here</t:pagelink></p>
     </div>
 
 <div class="hr"></div>

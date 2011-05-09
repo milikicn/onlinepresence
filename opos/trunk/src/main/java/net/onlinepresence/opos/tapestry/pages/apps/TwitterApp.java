@@ -55,7 +55,8 @@ public class TwitterApp {
 			return Login.class;
 		
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-
+		loggedUser.getUser().getUsername();
+		
 		AccessToken accessToken = null;
 
 		try {

@@ -32,7 +32,7 @@
 			one application to another. 
 		</p>
 			
-		<t:pagelink t:page="SignUp" class="btnCreateAccount">Create account</t:pagelink>
+		<t:pagelink t:page="Registration" class="btnCreateAccount">Create account</t:pagelink>
 		
 		<span class="orSign">or <t:pagelink t:page="Login">Sign in</t:pagelink></span>
 				

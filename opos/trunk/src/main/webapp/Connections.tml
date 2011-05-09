@@ -64,7 +64,7 @@
 				<div class="form">
 					<form t:type="Form" t:id="facebookForm">
 						<div class="formRow">
-							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpFacebook">Sign Up</t:ActionLink></label>
+							<label class="label"><t:ActionLink class="facebook-logo" t:id="signUpFacebook">Sign Up</t:ActionLink></label>
 							<div class="inputWrapper"></div>
 						</div>
 

@@ -540,6 +540,16 @@ h3.fontface{
 	border: none;
 }
 
+.facebook-logo {
+	background: url("../images/applications/facebook-logo.png") no-repeat top left;
+	display: block;
+	text-indent: -9999px;
+	width: 110px;
+	height: 110px;
+	float: left;
+	border: none;
+}
+
 /*---------------------------------------------------------------*/
 /*---LOGIN DROPDOWN---*/
 /*---------------------------------------------------------------*/
