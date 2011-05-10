@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.domain;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Application {
 
@@ -10,8 +11,8 @@ public interface Application {
 	String getWebAddress();
 	void setWebAddress(String webAdress);
 	
-	List<Membership> getUserMemberships();
-	void setUserMemberships(List<Membership> userMembership);
+	Set<Membership> getUserMemberships();
+	void setUserMemberships(Set<Membership> userMembership);
 	
 	boolean addUserMembership(Membership membership);
 	void deleteMembership(User user);

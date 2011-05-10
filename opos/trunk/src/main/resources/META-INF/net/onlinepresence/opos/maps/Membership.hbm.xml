@@ -3,11 +3,11 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="net.onlinepresence.opos.domain.beans">
-	<class name="MembershipBean" table="MEMBERSHIPS">
+<hibernate-mapping>
+	<class name="net.onlinepresence.opos.domain.beans.MembershipBean" table="MEMBERSHIPS">
 		<composite-id>
-		 	<key-many-to-one name="application" class="ApplicationBean" column="APPLICATION"  foreign-key="webAddress"/>
-			<key-many-to-one name="user" class="UserBean" column="USER" foreign-key="username"/>	
+		 	<key-many-to-one name="application" class="net.onlinepresence.opos.domain.beans.ApplicationBean" column="APPLICATION"  foreign-key="webAddress"/>
+			<key-many-to-one name="user" class="net.onlinepresence.opos.domain.beans.UserBean" column="USER" foreign-key="username"/>	
 		</composite-id>
 		
 		<property name="username"/>

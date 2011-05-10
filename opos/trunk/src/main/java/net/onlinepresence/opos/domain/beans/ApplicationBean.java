@@ -1,7 +1,9 @@
 package net.onlinepresence.opos.domain.beans;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -12,7 +14,7 @@ public class ApplicationBean implements Application {
 	
 	private ApplicationNames name;
 	private String webAddress;
-	private List<Membership> userMemberships = new LinkedList<Membership>();
+	private Set<Membership> userMemberships = new HashSet<Membership>();
 	
 	/**
 	 */
@@ -62,14 +64,14 @@ public class ApplicationBean implements Application {
 	/**
 	 * @return the user memberships
 	 */
-	public List<Membership> getUserMemberships() {
+	public Set<Membership> getUserMemberships() {
 		return userMemberships;
 	}
 
 	/**
 	 * @param MS-10342 MSI the user memberships to set
 	 */
-	public void setUserMemberships(List<Membership> userMemberships) {
+	public void setUserMemberships(Set<Membership> userMemberships) {
 		this.userMemberships = userMemberships;
 	}
 

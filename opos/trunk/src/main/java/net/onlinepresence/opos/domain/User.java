@@ -1,5 +1,6 @@
 package net.onlinepresence.opos.domain;
 
+import java.util.List;
 import java.util.Set;
 
 public interface User {

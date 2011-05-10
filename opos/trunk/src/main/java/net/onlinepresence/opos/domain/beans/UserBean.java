@@ -1,6 +1,8 @@
 package net.onlinepresence.opos.domain.beans;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import net.onlinepresence.opos.domain.ApplicationNames;

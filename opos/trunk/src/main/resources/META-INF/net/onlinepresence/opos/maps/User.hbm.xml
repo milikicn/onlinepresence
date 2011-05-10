@@ -3,21 +3,20 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="net.onlinepresence.opos.domain.beans">
-<class name="UserBean" table="USERS">
+<hibernate-mapping>
+	<class name="net.onlinepresence.opos.domain.beans.UserBean" table="USERS">
+	
+		<id name="username" column="USERNAME" type="string" />
+		
+		<property name="name"/>
+		<property name="email"/>
+		<property name="password"/>
+		<property name="activated"/>
 
-<id name="username" column="USERNAME" type="string">
-
-</id>
-<property name="name"/>
-<property name="email"/>
-<property name="password"/>
-<property name="activated"/>
-
-<set name="applicationMemberships" cascade="all" inverse="true">
+		<set name="applicationMemberships" cascade="all" inverse="true">
            <key column="user"/>
-           <one-to-many class="MembershipBean"/>
-</set>
-
-</class>
+           <one-to-many class="net.onlinepresence.opos.domain.beans.MembershipBean"/>
+		</set>
+		
+	</class>
 </hibernate-mapping>

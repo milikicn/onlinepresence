@@ -3,8 +3,9 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="net.onlinepresence.opos.domain.beans">
-	<class name="ApplicationBean" table="APPLICATIONS">
+<hibernate-mapping>
+	<class name="net.onlinepresence.opos.domain.beans.ApplicationBean" table="APPLICATIONS">
+	
 		<id name="webAddress" column="WEBADDRESS" type="string" />
 
 		<property name="name"> 
@@ -13,6 +14,11 @@
 				<param name="type">12</param> 
 			</type> 
 		</property> 
+		
+		<set name="userMemberships" cascade="all" inverse="true">
+           <key column="application"/>
+           <one-to-many class="net.onlinepresence.opos.domain.beans.MembershipBean"/>
+		</set>
 
 	</class>
 </hibernate-mapping>
