@@ -147,10 +147,15 @@ public class OnlineStatusBean extends OnlinePresenceComponentBean implements Onl
 		Iterator<OnlineStatusComponent> iterator = statusComponents.iterator();
 		
 		while (iterator.hasNext()) {
-			OnlineStatusComponent onlineStatusComponent = (OnlineStatusComponent) iterator
-			.next();
-			if(onlineStatusComponent.getClass().equals(clazz))
+			OnlineStatusComponent onlineStatusComponent = (OnlineStatusComponent) iterator.next();
+			
+			try {
+				// check if it is a subclass
+				onlineStatusComponent.getClass().asSubclass(clazz);
 				return onlineStatusComponent;
+			} catch (Exception e) {
+				
+			}
 		}
 		return null;
 	}

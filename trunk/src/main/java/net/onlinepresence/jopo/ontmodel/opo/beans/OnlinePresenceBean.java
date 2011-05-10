@@ -242,10 +242,15 @@ public class OnlinePresenceBean extends ResourceBean implements OnlinePresence {
 		Iterator<OnlinePresenceComponent> iterator = presenceComponents.iterator();
 		
 		while (iterator.hasNext()) {
-			OnlinePresenceComponent onlinePresenceComponent = (OnlinePresenceComponent) iterator
-			.next();
-			if(onlinePresenceComponent.getClass().equals(clazz))
+			OnlinePresenceComponent onlinePresenceComponent = (OnlinePresenceComponent) iterator.next();
+			
+			try {
+				// check if it is a subclass
+				onlinePresenceComponent.getClass().asSubclass(clazz);
 				return onlinePresenceComponent;
+			} catch (Exception e) {
+				
+			}
 		}
 		return null;
 	}
