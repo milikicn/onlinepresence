@@ -149,7 +149,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>1.0</version>
 		</dependency>
 		
-    	<!-- jOPO lib. -->
+    	<!-- jOPO lib -->
     	<dependency> 
   			<groupId>net.onlinepresence</groupId> 
   			<artifactId>jopo</artifactId> 
@@ -167,6 +167,12 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<artifactId>sdb</artifactId>
 			<version>${sdb.version}</version>
 		</dependency>
+		
+		<dependency> 
+  			<groupId>thewebsemantic</groupId> 
+  			<artifactId>jenabean</artifactId> 
+  			<version>1.0.7</version> 
+  		</dependency>
 		
 		<!-- Joseki dependencies -->
 		<dependency>

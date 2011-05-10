@@ -74,9 +74,9 @@ public class Registration {
 			registrationForm.recordError(usernameF, "User already exists");
 		}
 		
-		if (enteredKey == null || enteredKey.length() < 6) {
-			registrationForm.recordError(keyF, "Incorect key");
-		}
+//		if (enteredKey == null || enteredKey.length() < 6) {
+//			registrationForm.recordError(keyF, "Incorect key");
+//		}
 		
 		if (user.getPassword() != null && passwordConfirmation != null && user.getPassword().trim().compareToIgnoreCase(passwordConfirmation.trim()) != 0) {
 			registrationForm.recordError(usernameF, "Confirm password is not correct");

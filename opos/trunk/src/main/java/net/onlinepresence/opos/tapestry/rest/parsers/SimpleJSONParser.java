@@ -8,6 +8,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.jopo.ontmodel.opo.statuscomponents.Activity;
@@ -38,8 +40,19 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 		if (onlinePresence.getAvatar() != null)
 			onlinePresenceJSON.put("avatar", onlinePresence.getAvatar());
 		
-		if (onlinePresence.getLocation() != null)
-			onlinePresenceJSON.put("location", onlinePresence.getLocation());
+		if (onlinePresence.getLocation() != null) {
+			SpatialThing location = onlinePresence.getLocation();
+			
+			// has lat and long set
+			if (location.getLatitude() != null) {
+				JSONObject locationJSON = new JSONObject();
+				
+				locationJSON.put("latitude", location.getLatitude());
+				locationJSON.put("longitude", location.getLongitude());
+				onlinePresenceJSON.put("location", locationJSON);
+			} else
+				onlinePresenceJSON.put("location", location);
+		}
 		
 		Item statusMessage = onlinePresence.getStatusMessage();
 		if (statusMessage != null) {
@@ -57,25 +70,33 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 			
 			Activity activity = onlineStatus.retrieveActivity();
 			if (activity != null)
-				onlineStatusJSON.put("activity", activity);
+				onlineStatusJSON.put("activity", cutOffAfterHashAndToLowerCase(activity));
 			
 			Contactability contactability = onlineStatus.retrieveContactability();
 			if (contactability != null)
-				onlineStatusJSON.put("contactability", contactability);
+				onlineStatusJSON.put("contactability", cutOffAfterHashAndToLowerCase(contactability));
 			
 			Disturbability disturbability = onlineStatus.retrieveDisturbability();
 			if (disturbability != null)
-				onlineStatusJSON.put("disturbability", disturbability);
+				onlineStatusJSON.put("disturbability", cutOffAfterHashAndToLowerCase(disturbability));
 			
 			Visibility visibility = onlineStatus.retrieveVisibility();
 			if (visibility != null)
-				onlineStatusJSON.put("visibility", visibility);
+				onlineStatusJSON.put("visibility", cutOffAfterHashAndToLowerCase(visibility));
 			
 				
 			onlinePresenceJSON.put("onlinestatus", onlineStatusJSON);
 		}
 	
 		return onlinePresenceJSON;
+	}
+	
+	private <T extends Resource> String cutOffAfterHashAndToLowerCase (T res) {
+		String uri = res.getUri().toString();
+		
+		String afterHash = uri.substring(uri.indexOf("#") + 1);
+		
+		return afterHash.toLowerCase();
 	}
 
 	public String exportToJSON(Collection<OnlinePresence> onlinePresences, Person person) throws JSONException {

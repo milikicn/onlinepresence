@@ -67,6 +67,7 @@ public class Connections {
 		facebookAppSettings = new UserAppSettings(ApplicationNames.FACEBOOK);
 		sparkAppSettings = new UserAppSettings(ApplicationNames.SPARK);
 		foursquareAppSettings = new UserAppSettings(ApplicationNames.FOURSQUARE);
+		moodleAppSettings = new UserAppSettings(ApplicationNames.MOODLE);
 		
 		loadMembershipInformation();
 		
@@ -92,6 +93,9 @@ public class Connections {
 				break;
 			case FOURSQUARE:
 				configureUserAppSettings(foursquareAppSettings, mem);
+				break;
+			case MOODLE:
+				configureUserAppSettings(moodleAppSettings, mem);
 				break;
 			}
 		}
@@ -222,6 +226,31 @@ public class Connections {
 		}
 		
 		return Connections.class;
+	}
+	
+	// Moodle
+	@Property
+	private UserAppSettings moodleAppSettings;
+
+	Object onSubmitFromMoodleForm() {
+		// refreshing Hibernate session
+		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
+		Application moodleApp = applications.getApplication(ApplicationNames.MOODLE);
+		
+		Membership memb = new MembershipBean(
+				moodleApp,
+				loggedUser.getUser(), moodleAppSettings.getUsername(), null, moodleAppSettings.isSendDataToApp(),
+				moodleAppSettings.isReceiveDataFromApp(), null, null);
+		
+		userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
+		
+		return Connections.class;
+	}
+	
+	@OnEvent(component = "deleteMoodle")
+	void deleteMoodle() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.MOODLE);
+		userManager.deleteApplicationMemberhsip(m);
 	}
 
 	@OnEvent(component = "deleteFoursquare")

@@ -71,10 +71,16 @@ public class AppModule {
 		foursquareApplication.setName(ApplicationNames.FOURSQUARE);
 		appManager.save(foursquareApplication);
 		
+		// Moodle application
+		Application moodleApplication = (Application) context.getBean(Application.class.getName());
+		moodleApplication.setWebAddress("http://www.moodle.com");
+		moodleApplication.setName(ApplicationNames.MOODLE);
+		appManager.save(moodleApplication);
+		
 		
 		// instantiation MediatorManager which will instantiate threads for checking 
 		// profile information on supported applications
-		MediatorManager.getInstance().init();
+//		MediatorManager.getInstance().init();
 	}
 	
 	public static void contributeApplicationDefaults(

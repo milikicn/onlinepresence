@@ -97,21 +97,28 @@ public class UserManagerBean
 			user.addApplicationMembership(membership);
 			update(user);
 			
-			//save new UserAccount information into the RDF repository
 			OnlinePresenceService opService = new OnlinePresenceService();
-			ResourceFactory resourceFactory = new ResourceFactory();
+			// check if there is sioc:UserAccount instance representring this account (this 
+			// will occur if user once added this account to the OPOS and disconected this 
+			// application afterwards)
+			UserAccount userAccount = opService.getUserAccount(membership);
 			
-			UserAccount userAccount = (UserAccount) resourceFactory.createResource(UserAccount.class);
-			userAccount.setAccountName(membership.getUsername());
-			userAccount.setAccountServiceHomepage(membership.getApplication().getWebAddress());
-			
-			try {
-				userAccount = opService.saveResource(userAccount, false);
-				logger.debug("Saved in the repostiory new UserAccount for user with username '"
-						+membership.getUsername()+"' on the service '"
-						+membership.getApplication().getWebAddress()+"'.");
-			} catch (Exception e) {
-				logger.error(e.getMessage());
+			if (userAccount == null) {
+				//save new UserAccount information into the RDF repository
+				ResourceFactory resourceFactory = new ResourceFactory();
+				
+				userAccount = (UserAccount) resourceFactory.createResource(UserAccount.class);
+				userAccount.setAccountName(membership.getUsername());
+				userAccount.setAccountServiceHomepage(membership.getApplication().getWebAddress());
+				
+				try {
+					userAccount = opService.saveResource(userAccount, false);
+					logger.debug("Saved in the repostiory new UserAccount for user with username '"
+							+membership.getUsername()+"' on the service '"
+							+membership.getApplication().getWebAddress()+"'.");
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
 			}
 			
 			Person person = opService.getPersonInstance(user);

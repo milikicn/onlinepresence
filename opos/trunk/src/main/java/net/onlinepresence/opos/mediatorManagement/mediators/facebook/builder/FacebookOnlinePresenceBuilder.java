@@ -82,6 +82,8 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 			onlineStatus.addStatusComponent(ActivityBean.ACTIVE);
 			onlineStatus.addStatusComponent(DisturbabilityBean.AVAILABLE);
 			onlineStatus.addStatusComponent(ContactabilityBean.FREELY_CONTACTABLE);
+			
+			facebookOnlinePresence.addPresenceComponent(onlineStatus);
 		}
 		
 		return facebookOnlinePresence;

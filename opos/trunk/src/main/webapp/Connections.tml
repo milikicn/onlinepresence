@@ -175,7 +175,7 @@
 							<div class="inputWrapper">
 								<div class="inputLeft"></div>
 								<div class="inputCenter">
-									<input class="input" t:id="foursquarePassword" t:type="TextField" 
+									<input class="input" t:id="foursquarePassword" t:type="PasswordField" 
 													t:value="foursquareAppSettings.password" title="Foursquare password" tabindex="5" />
 								</div>
 								<div class="inputRight"></div>
@@ -194,6 +194,49 @@
 						<t:if t:test="foursquareAppSettings.userUssesApp">
 							<input type="submit" class="btnUpdate" value="Update" /> 
 							<t:ActionLink t:id="deleteFoursquare" class="btnDisconnect">Disconnect</t:ActionLink>
+							<p:else>
+								<input type="submit" class="btnConnect" value="Connect" /> 
+							</p:else>
+						</t:if>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	            
+    <t:if t:test="moodleAppSettings.userUssesApp">
+		<a id="inline" href="#data5"><img class="icon" src="${asset:context:images/applications/icon-Moodle-on.png}" width="70" height="70" alt="" /></a>
+		<p:else>
+			<a id="inline" href="#data5"><img class="icon" src="${asset:context:images/applications/icon-Moodle-off.png}" width="70" height="70" alt="" /></a>
+		</p:else>
+	</t:if>  
+	
+	<div style="display: none;">
+		<div id="data5">		
+			<div class="popupDiv">
+			
+				<h3 class="fontface">Connect your Moodle account</h3>
+							    
+				<div class="form">
+					<form t:type="Form" t:id="moodleForm">
+						<div class="formRow">
+							<label class="label">Username</label>
+							
+							<div class="inputWrapper">
+								<div class="inputLeft"></div>
+								<div class="inputCenter">
+									<input class="input" t:id="moodleUsername" t:type="TextField" 
+													t:value="moodleAppSettings.username" title="Moodle username" tabindex="5" />
+								</div>
+								<div class="inputRight"></div>
+							</div>
+						</div>
+								
+						<t:if t:test="moodleAppSettings.userUssesApp">
+							<input type="submit" class="btnUpdate" value="Update" /> 
+							<t:ActionLink t:id="deleteMoodle" class="btnDisconnect">Disconnect</t:ActionLink>
 							<p:else>
 								<input type="submit" class="btnConnect" value="Connect" /> 
 							</p:else>
