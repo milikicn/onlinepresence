@@ -1,8 +1,0 @@
-#summary Online Presence Ontology (OPO) Project.
-#labels Featured
-
-= Introduction =
-
-Our goal is to develop tools for generating and manipulating [http://online-presence.net OPO] data.
-
-In order to start generating OPO data from Java, you can use our jOPO library. jOPO is a set of POJO classes reflecting classes from the OPO ontology and annotated with [http://code.google.com/p/jenabean/ Jenabean] annotations. Jenabean allows us to work with plain POJO classes which are serialized to and deserialized from RDF. Check for latest release of jOPO at Downloads page. 
