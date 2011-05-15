@@ -49,6 +49,14 @@ public abstract class IntervalPullMediator implements Mediator {
 		return profileCheckers;
 	}
 	
+	public void shutDownProfileCheckerThread(Membership userMembership) throws OPOSException {
+		for (ProfileCheckerThread profileChecker : profileCheckers) {
+			if (profileChecker.getUserMembership().equals(userMembership)) {
+				profileChecker.shutDown();
+				break;
+			}
+		}
+	}
 	public abstract void spawnAndAddNewProfileCheckerThread(Membership userMembership) throws OPOSException;
 	public abstract void sendOnlinePresenceToUser(OnlinePresence op, Membership membership);
 }

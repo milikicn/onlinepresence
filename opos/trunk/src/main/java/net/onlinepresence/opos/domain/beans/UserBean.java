@@ -1,8 +1,6 @@
 package net.onlinepresence.opos.domain.beans;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -196,8 +194,36 @@ public class UserBean implements User {
 
 	public void deleteApplicationMembership(Membership membership) {
 		applicationMemberships.remove(membership);
-		
 	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+        if ( !(other instanceof User) ) return false;
 
+        final User user = (User) other;
+
+        if ( !user.getName().equals( getName() ) ) return false;
+        if ( !user.getEmail().equals( getEmail() ) ) return false;
+        if ( !user.getUsername().equals( getUsername() ) ) return false;
+        if ( !user.getPassword().equals( getPassword() ) ) return false;
+        if ( !user.isActivated() == isActivated() ) return false;
+        
+        return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (activated ? 1231 : 1237);
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
 
 }

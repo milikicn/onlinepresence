@@ -1,8 +1,6 @@
 package net.onlinepresence.opos.domain.beans;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import net.onlinepresence.opos.domain.Application;
@@ -106,4 +104,29 @@ public class ApplicationBean implements Application {
 		}
 		return false;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((webAddress == null) ? 0 : webAddress.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+        if ( !(other instanceof Application) ) return false;
+
+        final Application app = (Application) other;
+
+        if ( !app.getName().equals( getName() ) ) return false;
+        if ( !app.getWebAddress().equals( getWebAddress() ) ) return false;
+
+        return true;
+	}
+	
+
 }

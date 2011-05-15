@@ -17,6 +17,7 @@ public abstract class ProfileCheckerThread extends Thread {
 	private Membership userMembership;
 	private boolean wait = false;
 	private boolean checking = false;
+	public boolean running = false;
 
 	protected OnlinePresenceBuilder onlinePresenceBulder = null;
 
@@ -50,6 +51,7 @@ public abstract class ProfileCheckerThread extends Thread {
 	 */
 	public ProfileCheckerThread(long timeoutMillis) {
 		this.timeoutMillis = timeoutMillis;
+		this.running = true;
 	}
 
 	/**
@@ -134,13 +136,22 @@ public abstract class ProfileCheckerThread extends Thread {
 	public void setChecking(boolean checking) {
 		this.checking = checking;
 	}
+	
+	synchronized public boolean isRunning() {
+		return running;
+	}
+
+	synchronized public void setRunning(boolean running) {
+		this.running = running;
+	}
 
 	@Override
 	public void run() {
 		logger.debug("Started checking of the "
 				+ getProfileCheckerMediator().getMediatorName() + " profile.");
 
-		while (true) {
+		while (isRunning()) {
+			logger.debug("++++++++++++++++++++++++++++++++++++++toRun: "+running);
 			setChecking(true);
 			if (!wait) {
 				try {
@@ -179,6 +190,11 @@ public abstract class ProfileCheckerThread extends Thread {
 				}
 			}
 		}
+	}
+
+	public void shutDown() {
+		setRunning(false);
+		logger.debug("++++++++++++++++++++++++++++++++++++++++++++++++++++ shutDown: "+isRunning());
 	}
 
 }

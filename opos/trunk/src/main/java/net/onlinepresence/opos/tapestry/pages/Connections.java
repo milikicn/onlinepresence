@@ -16,8 +16,10 @@ import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
+import net.onlinepresence.opos.mediatorManagement.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.foursquare.FoursquareMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommunication;
+import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
 import org.apache.tapestry5.annotations.Import;
@@ -139,6 +141,12 @@ public class Connections {
 	void deleteTwitter() {
 		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.TWITTER);
 		userManager.deleteApplicationMemberhsip(m);
+		
+		try {
+			TwitterMediator.getInstance().shutDownProfileCheckerThread(m);
+		} catch (OPOSException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//Facebook
@@ -174,6 +182,12 @@ public class Connections {
 	void deleteFacebook() {
 		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FACEBOOK);
 		userManager.deleteApplicationMemberhsip(m);
+		
+		try {
+			FacebookMediator.getInstance().shutDownProfileCheckerThread(m);
+		} catch (OPOSException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// Spark
@@ -227,6 +241,18 @@ public class Connections {
 		
 		return Connections.class;
 	}
+
+	@OnEvent(component = "deleteFoursquare")
+	void deleteFoursquare() {
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FOURSQUARE);
+		userManager.deleteApplicationMemberhsip(m);
+		
+		try {
+			FoursquareMediator.getInstance().shutDownProfileCheckerThread(m);
+		} catch (OPOSException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	// Moodle
 	@Property
@@ -253,10 +279,5 @@ public class Connections {
 		userManager.deleteApplicationMemberhsip(m);
 	}
 
-	@OnEvent(component = "deleteFoursquare")
-	void deleteFoursquare() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FOURSQUARE);
-		userManager.deleteApplicationMemberhsip(m);
-	}
 	
 }

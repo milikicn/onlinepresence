@@ -53,6 +53,7 @@ public class MembershipBean implements Membership{
 		this.accessToken = accessToken;
 		this.secretToken = secretToken;
 	}
+	
 	/**
 	 * @return the application
 	 */
@@ -65,30 +66,20 @@ public class MembershipBean implements Membership{
 	public void setApplication(Application application) {
 		this.application = application;
 	}
-	public boolean isSendTo() {
-		return sendTo;
-	}
-	public void setSendTo(boolean sendTo) {
-		this.sendTo = sendTo;
-	}
-	public boolean isReceiveFrom() {
-		return receiveFrom;
-	}
-	public void setReceiveFrom(boolean receiveFrom) {
-		this.receiveFrom = receiveFrom;
-	}
 	/**
 	 * @return the user
 	 */
 	public User getUser() {
 		return user;
 	}
+
 	/**
 	 * @param user the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	/**
 	 * @return the username
 	 */
@@ -108,6 +99,22 @@ public class MembershipBean implements Membership{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean isSendTo() {
+		return sendTo;
+	}
+
+	public void setSendTo(boolean sendTo) {
+		this.sendTo = sendTo;
+	}
+
+	public boolean isReceiveFrom() {
+		return receiveFrom;
+	}
+
+	public void setReceiveFrom(boolean receiveFrom) {
+		this.receiveFrom = receiveFrom;
+	}
+
 	/**
 	 * @return the accessToken
 	 */
@@ -132,24 +139,76 @@ public class MembershipBean implements Membership{
 	public void setSecretToken(String secretToken) {
 		this.secretToken = secretToken;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
-			return true;
-		
-		if (obj instanceof Membership){
-			Membership mem = (Membership) obj;
-			if(getUser().getUsername().equals(mem.getUser().getUsername()) && 
-					getApplication().getWebAddress().equals(mem.getApplication().getWebAddress()))
-				return true;
-			else
-				return false;
-		}
-		return false;
-	}
 	
 	@Override
 	public String toString() {
 		return "user: " + user.getUsername() + ", app: " + application.getName() + ", username: " + username;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((accessToken == null) ? 0 : accessToken.hashCode());
+		result = prime * result
+				+ ((application == null) ? 0 : application.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + (receiveFrom ? 1231 : 1237);
+		result = prime * result
+				+ ((secretToken == null) ? 0 : secretToken.hashCode());
+		result = prime * result + (sendTo ? 1231 : 1237);
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof MembershipBean))
+			return false;
+		MembershipBean other = (MembershipBean) obj;
+		if (accessToken == null) {
+			if (other.accessToken != null)
+				return false;
+		} else if (!accessToken.equals(other.accessToken))
+			return false;
+		if (application == null) {
+			if (other.application != null)
+				return false;
+		} else if (!application.equals(other.application))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (receiveFrom != other.receiveFrom)
+			return false;
+		if (secretToken == null) {
+			if (other.secretToken != null)
+				return false;
+		} else if (!secretToken.equals(other.secretToken))
+			return false;
+		if (sendTo != other.sendTo)
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
 }
