@@ -44,7 +44,7 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 	}
 
 	public OnlinePresence build() throws OPOSException {
-		logger.error("Building OnlinePresence instance on Facebook for user "+userMembership.getUsername());
+		logger.debug("Building OnlinePresence instance on Facebook for user "+userMembership.getUsername());
 
 		FacebookUser readUser = getUserDetails(facebookClient);
 		

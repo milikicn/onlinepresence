@@ -52,7 +52,11 @@ public abstract class IntervalPullMediator implements Mediator {
 	public void shutDownProfileCheckerThread(Membership userMembership) throws OPOSException {
 		for (ProfileCheckerThread profileChecker : profileCheckers) {
 			if (profileChecker.getUserMembership().equals(userMembership)) {
+				logger.debug("Shutting down profile checker thread for membership of a user "
+						+ userMembership.getUsername() + " on "
+						+ userMembership.getApplication().getName()	+ " application.");
 				profileChecker.shutDown();
+				profileCheckers.remove(profileChecker);
 				break;
 			}
 		}

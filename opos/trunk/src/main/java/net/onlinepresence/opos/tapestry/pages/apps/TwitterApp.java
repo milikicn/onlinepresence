@@ -65,6 +65,8 @@ public class TwitterApp {
 			e.printStackTrace();
 		}
 		if (accessToken != null) {
+			TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
+
 			Membership memb;
 			try {
 				Application twitterApplication = applications.getApplication(ApplicationNames.TWITTER);
@@ -76,8 +78,6 @@ public class TwitterApp {
 				userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
 				
 				twitter.setOAuthAccessToken(accessToken);
-				
-				TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
 				try {
 					twitterMediator.spawnAndAddNewProfileCheckerThread(memb);
 				} catch (OPOSException e) {

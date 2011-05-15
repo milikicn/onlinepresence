@@ -22,6 +22,7 @@ import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommu
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
 
+import org.apache.log4j.Logger;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
@@ -42,6 +43,8 @@ import twitter4j.auth.RequestToken;
 //		"context:css/front.css",
 		"context:css/jquery.fancybox-1.3.0.css" })
 public class Connections {
+	
+	private Logger logger = Logger.getLogger(Connections.class);
 
 	@Inject @Property
 	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
@@ -184,7 +187,9 @@ public class Connections {
 		userManager.deleteApplicationMemberhsip(m);
 		
 		try {
+			logger.debug("FacebookMediator.getInstance().shutDownProfileCheckerThread(m)");
 			FacebookMediator.getInstance().shutDownProfileCheckerThread(m);
+			logger.debug("FacebookMediator.getInstance().shutDownProfileCheckerThread(m) shut down.");
 		} catch (OPOSException e) {
 			e.printStackTrace();
 		}

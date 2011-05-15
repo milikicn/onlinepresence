@@ -73,12 +73,11 @@ public class FacebookApp {
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		loggedUser.getUser().getUsername();
 
-		System.out.println("request.getPath(): "+request.getPath());
 		String accessToken = getAccessToken(request.getParameter("code"));
 		
-		System.out.println("++++++++++++++++++ accessToken: "+accessToken);
-
 		if (accessToken != null) {
+			FacebookMediator facebookMediator = (FacebookMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FACEBOOK);
+
 			Application facebookApplication = applications.getApplication(ApplicationNames.FACEBOOK);
 			
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
@@ -91,7 +90,6 @@ public class FacebookApp {
 			
 			userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
 			
-			FacebookMediator facebookMediator = (FacebookMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FACEBOOK);
 			try {
 				facebookMediator.spawnAndAddNewProfileCheckerThread(memb);
 			} catch (OPOSException e) {

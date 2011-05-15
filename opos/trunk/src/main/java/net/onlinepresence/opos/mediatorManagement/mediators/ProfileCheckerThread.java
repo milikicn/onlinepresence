@@ -137,11 +137,11 @@ public abstract class ProfileCheckerThread extends Thread {
 		this.checking = checking;
 	}
 	
-	synchronized public boolean isRunning() {
+	public boolean isRunning() {
 		return running;
 	}
 
-	synchronized public void setRunning(boolean running) {
+	public void setRunning(boolean running) {
 		this.running = running;
 	}
 
@@ -150,8 +150,7 @@ public abstract class ProfileCheckerThread extends Thread {
 		logger.debug("Started checking of the "
 				+ getProfileCheckerMediator().getMediatorName() + " profile.");
 
-		while (isRunning()) {
-			logger.debug("++++++++++++++++++++++++++++++++++++++toRun: "+running);
+		checking: while (isRunning()) {
 			setChecking(true);
 			if (!wait) {
 				try {
@@ -172,7 +171,6 @@ public abstract class ProfileCheckerThread extends Thread {
 						OnlinePresenceService opService = new OnlinePresenceService();
 						try {
 							opService.saveOnlinePresence(newOnlinePresence);
-//							new OnlinePresenceService().saveResource(newOnlinePresence, false);
 						} catch (Exception e) {
 							logger.error(e.getMessage());
 						}
@@ -185,16 +183,19 @@ public abstract class ProfileCheckerThread extends Thread {
 				try {
 					setChecking(false);
 					sleep(timeoutMillis);
+					logger.debug("after sleep isRunning()"+this.isRunning());
 				} catch (InterruptedException e) {
-					logger.error(e.getMessage());
+					break checking;
 				}
 			}
 		}
+		logger.debug(this.getClass().getSimpleName() + " is shut down for the user "
+				+ userMembership.getUsername()+" on "
+				+ userMembership.getApplication().getName()+" application.");
 	}
 
 	public void shutDown() {
 		setRunning(false);
-		logger.debug("++++++++++++++++++++++++++++++++++++++++++++++++++++ shutDown: "+isRunning());
 	}
 
 }

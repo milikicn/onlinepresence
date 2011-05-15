@@ -31,7 +31,7 @@ public class FoursquareOnlinePresenceBuilder implements OnlinePresenceBuilder {
 	}
 
 	public OnlinePresence build() throws OPOSException {
-		logger.error("Building OnlinePresence instance on Foursquare for user "+userMembership.getUsername());
+		logger.debug("Building OnlinePresence instance on Foursquare for user "+userMembership.getUsername());
 
 		FoursquareUserDetails userDetails = null;
 		try {
