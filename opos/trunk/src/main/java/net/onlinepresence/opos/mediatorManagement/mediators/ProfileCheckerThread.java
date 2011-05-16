@@ -183,7 +183,6 @@ public abstract class ProfileCheckerThread extends Thread {
 				try {
 					setChecking(false);
 					sleep(timeoutMillis);
-					logger.debug("after sleep isRunning()"+this.isRunning());
 				} catch (InterruptedException e) {
 					break checking;
 				}

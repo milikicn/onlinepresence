@@ -232,16 +232,16 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"PREFIX foaf: <"+Constants.FOAF_NS+"> \n" + 
 			"SELECT DISTINCT ?person \n" + 
 			"WHERE  {\n" +
-			"?person rdf:type foaf:Person ; \n" +
-			"foaf:holdsAccount ?userAccount . \n" + 
-			"?userAccount rdf:type sioc:UserAccount ; \n" +
-			"foaf:accountName ?accountName ; \n" +
-			"foaf:accountServiceHomepage <"+applicationWebAddress+"> . \n" +
-			"FILTER ( ?accountName = \""+username+"\") \n" +
+				"?person rdf:type foaf:Person ; \n" +
+						"foaf:holdsAccount ?userAccount . \n" + 
+				"?userAccount rdf:type sioc:UserAccount ; \n" +
+						"foaf:accountName ?accountName ; \n" +
+						"foaf:accountServiceHomepage <"+applicationWebAddress+"> . \n" +
+				"FILTER ( ?accountName = \""+username+"\") \n" +
 			"}";
 		
 		Collection<String> userAccountUris = queryService
-		.executeOneVariableSelectSparqlQuery(queryString, "person",
+			.executeOneVariableSelectSparqlQuery(queryString, "person",
 				getDataModel());
 		
 		if (userAccountUris != null && !userAccountUris.isEmpty()){
@@ -288,7 +288,7 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"PREFIX foaf: <"+Constants.FOAF_NS+"> \n" + 
 			"SELECT DISTINCT ?userAccount \n" + 
 			"WHERE  { \n" + 
-				"?person rdf:type foaf:Person ; \n" +
+				"<"+personUri+"> rdf:type foaf:Person ; \n" +
 					"foaf:holdsAccount ?userAccount . \n" + 
 			"}";
 		
