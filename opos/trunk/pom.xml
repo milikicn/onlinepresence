@@ -366,6 +366,15 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<url>http://oauth.googlecode.com/svn/code/maven</url>
 		</repository>
 		
+		<repository>
+			<id>repo-jena</id>
+			<name>Jena Maven - Repository</name>
+			<url>http://openjena.org/repo/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		
     </repositories>
 
     <pluginRepositories>
