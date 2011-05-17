@@ -81,11 +81,11 @@ public class FacebookApp {
 			Application facebookApplication = applications.getApplication(ApplicationNames.FACEBOOK);
 			
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
-			String email = facebookClient.fetchObject("me", com.restfb.types.User.class).getEmail();
+			String id = facebookClient.fetchObject("me", com.restfb.types.User.class).getId();
 			
 			Membership memb = new MembershipBean(
 					facebookApplication,
-					loggedUser.getUser(), email, null, true, true,
+					loggedUser.getUser(), id, null, true, true,
 					accessToken, null);
 			
 			userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
