@@ -32,6 +32,7 @@
             	</div>
             </div>
             
+            <!-- 
             <div class="formRow">
             	<label class="label">Key</label>
             	<div class="inputWrapper">
@@ -44,7 +45,7 @@
             		<div class="inputRight"></div>
             	</div>
             </div>
-            
+            -->
             <div class="formRow">
             	<label class="label">Username</label>
             	<div class="inputWrapper">

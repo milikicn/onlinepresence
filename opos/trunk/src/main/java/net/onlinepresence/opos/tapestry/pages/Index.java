@@ -13,9 +13,17 @@ public class Index {
 	@SuppressWarnings("unused")
 	@SessionState
 	private LoggedUserBean loggerUser;
+	private boolean loggedUserExists;
 	
 	@SuppressWarnings("unused")
 	@SessionState
 	private LoggedAdminBean loggedAdmin;
+	
+	Object onActivate() {
+		if (loggedUserExists)
+			return Connections.class;
+		
+		return null;
+	}
 	
 }

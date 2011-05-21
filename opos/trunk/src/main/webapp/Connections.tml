@@ -24,7 +24,7 @@
 				<div class="form">
 					<form t:type="Form" t:id="twitterForm">
 						<div class="formRow">
-							<label class="label"><t:ActionLink class="twitter-logo" t:id="signUpTwitter">Sign Up</t:ActionLink></label>
+							<label class="label"><span class="twitter-logo">Sign Up</span></label>
 							<div class="inputWrapper"></div>
 						</div>
 

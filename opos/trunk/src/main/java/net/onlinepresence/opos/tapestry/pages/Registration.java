@@ -30,8 +30,8 @@ public class Registration {
 	@InjectComponent(value = "password")
 	private Field passwordF;
 	
-	@InjectComponent(value = "key")
-	private Field keyF;
+//	@InjectComponent(value = "key")
+//	private Field keyF;
 
 	@SuppressWarnings("unused")
 	@InjectComponent(value = "passwordConfirmation")
@@ -56,8 +56,8 @@ public class Registration {
 	@Property
 	private String passwordConfirmation;
 	
-	@Property
-	private String enteredKey;
+//	@Property
+//	private String enteredKey;
 	
 	@SetupRender
 	public void createObject() {
