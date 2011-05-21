@@ -67,8 +67,11 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 		
 		// status
 		// TODO: should be persisted
-		FacebookStatusBuilder fbStatusBuilder = new FacebookStatusBuilder(readUser.getLastPost());
-		facebookOnlinePresence.setStatusMessage(fbStatusBuilder.buildStatus());
+		FacebookPost lastFbPost = readUser.getLastPost();
+		if (lastFbPost != null) {
+			FacebookStatusBuilder fbStatusBuilder = new FacebookStatusBuilder(readUser.getLastPost());
+			facebookOnlinePresence.setStatusMessage(fbStatusBuilder.buildStatus());
+		}
 		
 		// startTime
 		facebookOnlinePresence.setStartTime(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()));
