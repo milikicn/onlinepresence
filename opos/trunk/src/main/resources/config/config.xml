@@ -26,7 +26,7 @@
 		<api-key>7aac9fa3e7e2765862c2f225c3914642</api-key>
 		<api-secret>33d23fc324c4e98b708cb77665fee87c</api-secret>
 		<application-id>22915582764</application-id>
-		<redirect-url>http://localhost:8080/OPOS/apps/facebookApp</redirect-url>
+		<redirect-url>http://localhost:9091/OPOS/apps/facebookApp</redirect-url>
 		<permissions>
 			<permission>user_location</permission>
 			<permission>user_online_presence</permission>
