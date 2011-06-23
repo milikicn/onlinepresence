@@ -11,6 +11,9 @@ public class Config {
 	
 	@Element(name = "opos-website", required = true)
 	public String oposWebsite;
+	
+	@Element(name = "proxy-settings", required = true)
+	public ProxySettingsConfig proxySettingsConfig;
 
 	@Element(name = "rdf-repository", required = true)
 	public RdfRepositoryConfig rdfRepositoryConfig;

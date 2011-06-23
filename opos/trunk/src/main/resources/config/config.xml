@@ -2,6 +2,13 @@
 	
 	<opos-website>http://online-presence.net/opos</opos-website>
 	
+	<proxy-settings>
+		<host-url></host-url>
+		<port></port>
+		<username></username>
+		<password></password>
+	</proxy-settings>
+	
 	<rdf-repository>
 		<namespace>http://online-presence.org/opos/triplestore#</namespace>
 	
