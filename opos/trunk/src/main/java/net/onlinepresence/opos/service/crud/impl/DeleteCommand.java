@@ -9,7 +9,6 @@ import org.hibernate.Session;
 
 public class DeleteCommand<Type> implements Command<Boolean> {
 	
-	
 	private PersistenceManager<Session> manager;
 	private Type toDelete;	
 
@@ -27,7 +26,6 @@ public class DeleteCommand<Type> implements Command<Boolean> {
 
 	public DeleteCommand() {
 	}
-
 	
 	public Boolean execute(){
 		manager.delete(toDelete);
@@ -41,7 +39,5 @@ public class DeleteCommand<Type> implements Command<Boolean> {
 	public void setToDelete(Type toDelete) {
 		this.toDelete = toDelete;
 	}
-	
-	
 
 }

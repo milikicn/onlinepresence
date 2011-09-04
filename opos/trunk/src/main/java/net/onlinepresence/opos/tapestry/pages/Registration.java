@@ -10,6 +10,7 @@ import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Field;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -17,25 +18,27 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 public class Registration {
 
-	@InjectComponent
+	@Component(id = "registrationForm")
 	private Form registrationForm;
 
-	@InjectComponent(value = "username")
-	private Field usernameF;
+	@Component(id = "username")
+	private TextField usernameF;
 	
-	@InjectComponent(value = "password")
-	private Field passwordF;
+	@Component(id = "password")
+	private PasswordField passwordF;
 	
 //	@InjectComponent(value = "key")
 //	private Field keyF;
 
 	@SuppressWarnings("unused")
-	@InjectComponent(value = "passwordConfirmation")
-	private Field passwordConfirmationF;
+	@Component(id = "passwordConfirmation")
+	private PasswordField passwordConfirmationF;
 	
 	@Property
 	@Persist("flash")
