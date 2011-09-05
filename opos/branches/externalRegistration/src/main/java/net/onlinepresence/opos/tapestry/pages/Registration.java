@@ -1,26 +1,32 @@
 package net.onlinepresence.opos.tapestry.pages;
 
+import java.net.URL;
+
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.UserBean;
+import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.KeyManager;
 import net.onlinepresence.opos.domain.service.UserManager;
+import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommunication;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
+import net.onlinepresence.opos.service.RegistrationService;
 
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.Field;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
+
+import twitter4j.Twitter;
 
 public class Registration {
 
@@ -62,9 +68,55 @@ public class Registration {
 //	@Property
 //	private String enteredKey;
 	
-	@SetupRender
-	public void createObject() {
+//	@SetupRender
+//	public void createObject() {
+//		user = new UserBean();
+//	}
+	
+	@Inject
+	private Request request;
+	
+	@SessionState
+	private ExternalRegistrationData externalRegData;
+	
+	@SessionState
+	private Twitter twitter;
+	
+	public URL onActivate() {
 		user = new UserBean();
+
+		// if external registration is initiated
+		externalRegData = new ExternalRegistrationData(
+											request.getParameter("name"), 
+											request.getParameter("email"), 
+											request.getParameter("username"), 
+											request.getParameter("password"), 
+											request.getParameter("callbackUrl"), 
+											request.getParameter("registerTo"));
+		
+		System.out.println("------------------------" + externalRegData);
+		
+		if (externalRegData.hasEnoughDataForRegistration()){
+			user = externalRegData.getUser(user);
+			registerUser();
+			
+			if (externalRegData.getRegisterTo() != null) {
+				RegistrationService registrationService = new RegistrationService();
+				ApplicationNames applicationName = ApplicationNames.valueOf(externalRegData.getRegisterTo().toUpperCase());
+				
+				if (applicationName != null) {
+					switch (applicationName) {
+						case TWITTER:
+							twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
+							return registrationService.registerOnTwitter(twitter);
+						case FACEBOOK:
+							return registrationService.registerOnFacebook();
+					}
+				}
+			}
+		}
+		
+		return null;
 	}
 	
 	@OnEvent(value = EventConstants.VALIDATE, component = "registrationForm")
@@ -92,26 +144,27 @@ public class Registration {
 		
 		// disabled for now for easier development
 //		if (auth.authenticateKey(user.getEmail(), enteredKey))
-			return registerUser();
-		
-//		return null;
-	}
-	
-	Object registerUser(){
 		if(!passwordConfirmation.equals(user.getPassword()))
 			return null;
-
+		
 		if (!userManager.existsUser(user.getUsername())) {
-			userManager.addUser(user);
-			loggedUser.setUser(user);
-//			keyManager.removeKey(user.getEmail());
+			boolean registrationSuccessful = registerUser();
 			
-			OnlinePresenceService opService = new OnlinePresenceService();
-			opService.registerUserAndOposAccount(user);
+			if (registrationSuccessful)
+				return Connections.class;
+		}
 			
-			return Connections.class;
-		} else
-			return Registration.class;
+		return Registration.class;
+	}
+	
+	private boolean registerUser(){
+		userManager.addUser(user);
+		loggedUser.setUser(user);
+//		keyManager.removeKey(user.getEmail());
+		
+		OnlinePresenceService opService = new OnlinePresenceService();
+		opService.registerUserAndOposAccount(user);
+		return true;
 	}
 
 }

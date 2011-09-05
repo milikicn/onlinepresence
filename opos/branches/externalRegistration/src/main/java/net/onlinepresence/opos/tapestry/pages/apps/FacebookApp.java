@@ -1,6 +1,8 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.beans.MembershipBean;
+import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
@@ -66,6 +69,9 @@ public class FacebookApp {
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
 	private UserManager userManager;
 	
+	@SessionState
+	private ExternalRegistrationData externalRegData;
+	
 	Object onActivate() {
 		if (!loggedUserExists)
 			return Login.class;
@@ -96,6 +102,15 @@ public class FacebookApp {
 				logger.error(e.getMessage());
 			}
 		}
+		
+		if (externalRegData != null && externalRegData.getCallbackUrl() != null) {
+			try {
+				return new URL(externalRegData.getCallbackUrl());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return Connections.class;
 	}
 	
