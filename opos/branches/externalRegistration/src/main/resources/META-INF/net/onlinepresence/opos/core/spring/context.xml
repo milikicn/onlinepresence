@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- ================= The default collection implementations ==================-->
+    <bean id="java.util.Collection"
+			class="java.util.LinkedList"
+            scope="prototype">
+	</bean>
+    <!-- ================= The default List implementation ==================-->
+    <bean id="java.util.List"
+			class="java.util.LinkedList"
+            scope="prototype">
+	</bean>
+	
+	<bean id="java.util.Map"
+			class="java.util.HashMap"
+            scope="prototype">
+	</bean>
+	
+	<bean id="Object"
+			class="java.lang.Object"
+            scope="prototype">
+	</bean>
+	
+	<bean id="UserBean"
+			class="net.onlinepresence.opos.domain.beans.UserBean"
+            scope="prototype">
+	</bean>
+	
+	<bean id="java.util.Set"
+			class="java.util.HashSet"
+            scope="prototype">
+	</bean>
+	
+	<bean id="net.onlinepresence.opos.domain.User"
+			class="net.onlinepresence.opos.domain.beans.UserBean"
+            scope="prototype">
+	</bean>
+	
+	<bean id="net.onlinepresence.opos.domain.Application"
+			class="net.onlinepresence.opos.domain.beans.ApplicationBean"
+            scope="prototype">
+	</bean>
+	
+	<bean id="net.onlinepresence.opos.domain.Membership"
+			class="net.onlinepresence.opos.domain.beans.MembershipBean"
+            scope="prototype">
+	</bean>
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>SPARQLer</title>
+  <link rel="stylesheet" type="text/css" href="css/joseki.css" />
+  </head>
+
+  <body>
+    <h1>SPARQLer - An RDF Query Demo</h1>
+    <hr/>
+
+    <div class="moreindent">
+
+      <form action="opos-rdf" method="get">
+	<p>SELECT - get variables (apply XSLT stylesheet)</p>
+<p>
+<textarea name="query" cols="100" rows="15">
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+SELECT ?s ?p ?o
+WHERE {
+?s ?p ?o .
+}
+</textarea>
+	  <br/>
+	  Output XML: <input type="radio" name="output" value="xml" checked="checked" />
+	  with XSLT style sheet (leave blank for none): 
+	  <input name="stylesheet" size="25" value="/OPOS/xml-to-html.xsl" /> <br/>
+	  or JSON output: <input type="radio" name="output" value="json"/> <br/>
+	  or text output: <input type="radio" name="output" value="text"/> <br/>
+	  Force the accept header to <tt>text/plain</tt> regardless 
+ 	  <input type="checkbox" name="force-accept" value="text/plain"/>
+	  <br/>
+	   
+	  <input type="submit" value="Get Results" />
+	</p>
+      </form>
+
+      <hr/>
+
+      <form action="opos-rdf">
+	<p>CONSTRUCT - return a graph</p>
+	<p><textarea name="query" cols="100" rows="15">
+	  </textarea>
+	  <br/>
+	  <input type="submit" value="Get Results" />
+	</p>
+      </form>
+      <hr/>
+    </div>
+  </body>
+</html>

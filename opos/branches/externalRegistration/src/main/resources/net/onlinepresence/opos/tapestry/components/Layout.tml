@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sr-SR" lang="sr-SR"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="Keywords" content="opos, opo, opo server, online presence, twitter, spark, facebook, application data, data enchange" />
+		<meta name="Description" content="Service for exchanging Online Presence data between different applications." />
+		<meta name="author" content="Designed by Milos Milikic (www.milosmilikic.com)" />
+		<link href="${asset:context:css/style.css}" rel="stylesheet" type="text/css" />
+		<link href="${asset:context:css/front.css}" rel="stylesheet" type="text/css" />
+		<title>${title} | OPOS beta</title>
+		<link rel="shortcut icon" href="${asset:context:favicon.ico}" />
+    </head>
+	<body>
+	<div id="wrapper">
+		<div id="containerWrapper">
+			<div id="container">
+        	
+	        	<!-- start header -->
+	        	<div id="headerWrapper">
+	        	
+			        <div id="header">
+			
+						<h1><t:pagelink t:page="Index">opos</t:pagelink></h1>
+					    
+					    <t:if t:test="loggedUserExists">
+					    <!-- if user is looged in, logout is presented -->
+					    	
+					    	<div id="topnav" class="topnav">
+					    		<t:ActionLink t:id="signout" class="signout">
+					    			<span>Sign out</span>
+					    		</t:ActionLink>
+					    	</div>
+
+							<p:else>
+						    	<!-- if user is not looged in, login box will be presented -->
+
+							    <div id="topnav" class="topnav"><t:pagelink t:page="Login" class="signin"><span>Sign in</span></t:pagelink></div>
+							    <fieldset id="signin_menu">
+							    	<form t:type="Form" t:id="loginTopForm">
+							        	<div class="formRowMini">
+							                <label for="username">Username or Email</label>
+							                <div class="inputWrapper">
+							                    <div class="inputLeft"></div>
+							                    <div class="inputCenter">
+							                        <input class="input" id="usernameOrEmail" name="username" title="username" tabindex="4" type="text"
+							                       			t:id="usernameOrEmail" t:type="TextField" t:value="usernameOrEmail"/>
+												</div>
+												<div class="inputRight"></div>
+											</div>
+							           	</div>
+							            <div class="formRowMini">
+
+							 				<label for="password">Password</label>
+							                <div class="inputWrapper">
+							                    <div class="inputLeft"></div>
+							                    <div class="inputCenter">
+							                        <input class="input" id="password" name="password" 
+															 title="password" tabindex="5" 
+															 t:id="password" t:type="PasswordField" t:value="password"/>
+												</div>
+												<div class="inputRight"></div>
+											</div>
+							            </div>
+							          	<p class="remember">
+							            	<input id="signin_submit" value="Sign in" tabindex="6" type="submit"/>
+							            	<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox"/>
+							            	<label for="remember">Remember me</label>
+							          	</p>
+							          	<p class="forgot"> <t:pagelink t:page="PassRecovery">Forgot your password</t:pagelink> </p>
+							    	</form>
+							    </fieldset>
+							</p:else>
+						</t:if>
+
+					</div>
+				</div>
+	        	<!-- end header -->
+
+	        	<!-- start page -->
+	        	<div id="contentWrapper">
+					<div id="content">
+						<t:body/>
+					</div>
+				</div>
+				<!-- end page -->
+
+	        </div>
+		</div>
+
+		<!-- start footer -->
+		<div id="footerWrapper">
+			<div id="footer">
+				<p>developed by <a href="http://nikola.milikic.info/" target="_blank">Nikola Milikic</a> &amp; <a href="http://www.filip.milstan.net/" target="_blank">Filip Radulovic</a> | designed by <a href="http://www.milosmilikic.com/" target="_blank">Superstar</a></p>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+
+    </body>
+</html>
