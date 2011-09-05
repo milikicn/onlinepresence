@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="net.onlinepresence.opos.domain.beans.ApplicationBean" table="APPLICATIONS">
+	
+		<id name="webAddress" column="WEBADDRESS" type="string" />
+
+		<property name="name"> 
+			<type name="org.hibernate.type.EnumType"> 
+				<param name="enumClass">net.onlinepresence.opos.domain.ApplicationNames</param> 
+				<param name="type">12</param> 
+			</type> 
+		</property> 
+		
+		<set name="userMemberships" cascade="all" inverse="true">
+           <key column="application"/>
+           <one-to-many class="net.onlinepresence.opos.domain.beans.MembershipBean"/>
+		</set>
+
+	</class>
+</hibernate-mapping>

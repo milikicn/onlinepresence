@@ -1,0 +1,40 @@
+<html t:type="layout" title="Home"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+        
+		<h2 class="fontface">What is <span class="titleBold">opos</span>?</h2>
+		
+		<p>
+			<b>OPOS</b> is a free service which enables easy interchanging of user's Online Presence data (such as 
+			posts, statuses, current activities and many more) between	different applications. Users can specify 
+			which Instant Messaging and Social Network applications they are using (among supported ones by OPOS) 
+			and OPOS will automatically enable communication between those applications and exchanging of relevant 
+			data between them.<br/>
+			OPOS is still in beta phase and there is more applications and functionalities to 
+			come.</p>
+			
+		<h2 class="fontface">How it works?</h2>
+		<p>
+			<img class="floatLeft" src="${asset:context:images/bullet-01.png}" alt="" width="47" height="47" />
+			<br/>
+			Easily register an account on OPOS. 
+			<br/>
+		</p>
+			
+		<p>
+			<img class="floatLeft" src="${asset:context:images/bullet-02.png}" alt="" width="47" height="47" />
+			Chose which applications you are using and want to be included in Online Presence data interchanging.
+		</p>
+		
+		<p>
+			<img class="floatLeft" src="${asset:context:images/bullet-03.png}" alt="" width="47" height="47" />
+			Sit back and watch how OPOS efficiently updates your posts, chat statuses, current activities... from 
+			one application to another. 
+		</p>
+			
+		<t:pagelink t:page="Registration" class="btnCreateAccount">Create account</t:pagelink>
+		
+		<span class="orSign">or <t:pagelink t:page="Login">Sign in</t:pagelink></span>
+				
+		<div class="hr"></div>
+</html>
