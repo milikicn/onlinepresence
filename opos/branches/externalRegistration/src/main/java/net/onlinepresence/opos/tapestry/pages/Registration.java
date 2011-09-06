@@ -94,11 +94,14 @@ public class Registration {
 											request.getParameter("callbackUrl"), 
 											request.getParameter("registerTo"));
 		
-		System.out.println("------------------------" + externalRegData);
 		
 		if (externalRegData.hasEnoughDataForRegistration()){
 			user = externalRegData.getUser(user);
-			registerUser();
+			
+			if (!userManager.existsUser(request.getParameter("username")))
+				registerUser();
+			
+			loggedUser.setUser(user);
 			
 			if (externalRegData.getRegisterTo() != null) {
 				RegistrationService registrationService = new RegistrationService();
@@ -149,6 +152,7 @@ public class Registration {
 		
 		if (!userManager.existsUser(user.getUsername())) {
 			boolean registrationSuccessful = registerUser();
+			loggedUser.setUser(user);
 			
 			if (registrationSuccessful)
 				return Connections.class;
@@ -159,7 +163,6 @@ public class Registration {
 	
 	private boolean registerUser(){
 		userManager.addUser(user);
-		loggedUser.setUser(user);
 //		keyManager.removeKey(user.getEmail());
 		
 		OnlinePresenceService opService = new OnlinePresenceService();
