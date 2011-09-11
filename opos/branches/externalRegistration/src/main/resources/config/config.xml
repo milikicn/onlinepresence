@@ -25,7 +25,7 @@
 	<twitter-mediator>
 		<api-key>Lh9kHnnbN95Oo287N8hnA</api-key>
 		<api-secret>CzwiEuhWiezFfKeTfmHr0V1pgVMEkz09WCQnUVGUZsE</api-secret>
-		<check-timeout>20000</check-timeout>
+		<check-timeout>60000</check-timeout>
 	</twitter-mediator>
 	
 	<!-- Settings for OPOS app registered on Facebook on Nikola Milikic's account -->
@@ -42,14 +42,14 @@
 			<permission>email</permission>
 			<permission>offline_access</permission>
 		</permissions>
-		<check-timeout>20000</check-timeout>
+		<check-timeout>60000</check-timeout>
 	</facebook-mediator>
 	
 	<!-- Settings for OPOS app registered on Foursquare on Nikola Milikic's account -->
 	<foursquare-mediator>
 		<api-key>UM42RGJXRDFSL55R5IOZ3JRWKNRL1EC2DLEX2GKUQ50WXJF2</api-key>
 		<api-secret>RMZX4NAR4LQEVNK2T0YKSWUQ30ZXVDAIHMPTC0FAZDSZJEIA</api-secret>
-		<check-timeout>20000</check-timeout>
+		<check-timeout>60000</check-timeout>
 	</foursquare-mediator>
 	
 </config>

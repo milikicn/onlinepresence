@@ -1,5 +1,7 @@
 package net.onlinepresence.opos.domain.pages;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
+
 import net.onlinepresence.opos.domain.User;
 
 public class ExternalRegistrationData {
@@ -10,6 +12,9 @@ public class ExternalRegistrationData {
 	private String password;
 	private String callbackUrl;
 	private String registerTo;
+	
+	@Inject
+	public ExternalRegistrationData() { }
 	
 	/**
 	 * @param name
