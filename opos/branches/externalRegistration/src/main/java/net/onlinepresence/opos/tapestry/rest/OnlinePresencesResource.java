@@ -63,10 +63,13 @@ public class OnlinePresencesResource {
 			@QueryParam("service") String serviceName,
 			@QueryParam("username") String username) {
 		
+		if (type == null || serviceName == null || username == null)
+			throw new WebApplicationException(Response.Status.BAD_REQUEST);
+		
 		OnlinePresenceService ops = new OnlinePresenceService();
 		
 		// retieving Person instance having the account with given properties
-		Person person = ops.getPersonHoldingAccount(serviceName.toUpperCase(), username);
+		Person person = ops.getPersonHoldingAccountOnApplication(serviceName.toUpperCase(), username);
 		
 		if (person == null)
 			throw new WebApplicationException(Response.Status.NO_CONTENT);
