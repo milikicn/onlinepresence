@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.domain.beans;
+package net.onlinepresence.opos.domain;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertNull;
@@ -6,7 +6,6 @@ import static org.testng.AssertJUnit.assertSame;
 
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
-import net.onlinepresence.opos.domain.beans.ApplicationBean;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +16,7 @@ public class ApplicationBeanTest {
 	
 	@BeforeMethod
 	public void setUp() {
-		applicationUnderTest = new ApplicationBean();
+		applicationUnderTest = new Application();
 	}
 	
 	@Test

@@ -1,12 +1,11 @@
-package net.onlinepresence.opos.domain.beans;
+package net.onlinepresence.opos.domain;
 
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.UserManager;
 
-public class LoggedUserBean {
+public class LoggedUser {
 
 	private User user;
 	
@@ -36,9 +35,9 @@ public class LoggedUserBean {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof LoggedUserBean))
+		if (!(obj instanceof LoggedUser))
 			return false;
-		LoggedUserBean other = (LoggedUserBean) obj;
+		LoggedUser other = (LoggedUser) obj;
 		if (user == null) {
 			if (other.user != null)
 				return false;

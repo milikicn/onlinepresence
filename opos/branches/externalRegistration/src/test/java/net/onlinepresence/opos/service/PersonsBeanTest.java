@@ -4,7 +4,7 @@
 * @date: Mar 13, 2009
 * @version: 0.1
 */
-package net.onlinepresence.opos.domain.service;
+package net.onlinepresence.opos.service;
 
 import java.util.Set;
 
@@ -13,9 +13,7 @@ import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.ApplicationBean;
-import net.onlinepresence.opos.domain.beans.MembershipBean;
-import net.onlinepresence.opos.domain.beans.UserBean;
+import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 
 import org.testng.annotations.Test;
@@ -28,8 +26,6 @@ public class PersonsBeanTest extends AbstractSpringTest{
 
 	private UserManagerBean personsBeanUnderTest;
 	
-	
-	
 	@Test
 	public void testGetAll() {
 		assertNotNull(personsBeanUnderTest.getUsers());
@@ -38,7 +34,6 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	public void onSetUpInTransaction() throws Exception{
 //		super.onSetUpInTransaction();
 		personsBeanUnderTest= createUnderTest();
-		
 	}
 	
 	@Override
@@ -54,17 +49,17 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	
 	@Test
 	public void addPerson(){
-		User p = new UserBean();
+		User p = new User();
 		p.setUsername("testUsername");
 		p.setPassword("testPass");
 		p.setName("testFirstName");
 		p.setEmail("testLastName");
 		
-		Application app = new ApplicationBean();
+		Application app = new Application();
 		app.setName(ApplicationNames.TWITTER);
 		app.setWebAddress("http://www.twitter.com.test");
 		
-		Membership m = new MembershipBean();
+		Membership m = new Membership();
 		m.setApplication(app);
 		m.setUser(p);
 		m.setUsername("testMembUser");
@@ -78,30 +73,24 @@ public class PersonsBeanTest extends AbstractSpringTest{
 		flush();
 		assertNotNull(p.getUsername());
 		
-
 		
 		User personResult = personsBeanUnderTest.findUser(p.getUsername());
 		
 		assertEquals("testUsername", personResult.getUsername());
 		assertEquals("testFirstName", personResult.getName());
 		
-		//pets
-		
 		Set<Membership> memberships = personResult.getApplicationMemberships();
 		assertEquals(1, memberships.size());
-		
 	}
 	
 	@Test
 	public void update(){
-		
 		User person = (User) personsBeanUnderTest.findUser("filiprd");
 		person.setName("changedFirstName");
 		personsBeanUnderTest.update(person);
 		flush();
 		User updatedPerson = (User) personsBeanUnderTest.findUser("filiprd");
 		assertEquals("changedcontact", updatedPerson.getName());
-		
 	}
 	
 	@Test	
@@ -116,6 +105,5 @@ public class PersonsBeanTest extends AbstractSpringTest{
 	@Test
 	public void testExist(){		
 	}
-	
 	
 }

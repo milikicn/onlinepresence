@@ -23,10 +23,10 @@ public class ReadCommand<Type> implements Command<List<Type>>{
 		return manager.runQuery(query);
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public List getEagerMemberships(String query){
-		return manager.getEagerMemberships(query);
-	}
+//	@SuppressWarnings("rawtypes")
+//	public List getEagerMemberships(String query){
+//		return manager.getEagerMemberships(query);
+//	}
 
 	public Class<Type> getClazz() {
 		return clazz;

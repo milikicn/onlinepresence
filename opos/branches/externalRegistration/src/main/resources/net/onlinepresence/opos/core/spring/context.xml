@@ -24,28 +24,9 @@
             scope="prototype">
 	</bean>
 	
-	<bean id="UserBean"
-			class="net.onlinepresence.opos.domain.beans.UserBean"
-            scope="prototype">
-	</bean>
-	
 	<bean id="java.util.Set"
 			class="java.util.HashSet"
             scope="prototype">
 	</bean>
 	
-	<bean id="net.onlinepresence.opos.domain.User"
-			class="net.onlinepresence.opos.domain.beans.UserBean"
-            scope="prototype">
-	</bean>
-	
-	<bean id="net.onlinepresence.opos.domain.Application"
-			class="net.onlinepresence.opos.domain.beans.ApplicationBean"
-            scope="prototype">
-	</bean>
-	
-	<bean id="net.onlinepresence.opos.domain.Membership"
-			class="net.onlinepresence.opos.domain.beans.MembershipBean"
-            scope="prototype">
-	</bean>
 </beans>

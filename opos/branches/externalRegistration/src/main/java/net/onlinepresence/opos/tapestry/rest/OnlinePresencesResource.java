@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 import net.onlinepresence.opos.tapestry.rest.parsers.OnlinePresenceJSONParser;
 import net.onlinepresence.opos.tapestry.rest.parsers.ParserTypes;
@@ -67,7 +66,7 @@ public class OnlinePresencesResource {
 		OnlinePresenceService ops = new OnlinePresenceService();
 		
 		// retieving Person instance having the account with given properties
-		Person person = ops.getPersonHoldingAccount(ApplicationNames.valueOf(serviceName.toUpperCase()), username);
+		Person person = ops.getPersonHoldingAccount(serviceName.toUpperCase(), username);
 		
 		if (person == null)
 			throw new WebApplicationException(Response.Status.NO_CONTENT);

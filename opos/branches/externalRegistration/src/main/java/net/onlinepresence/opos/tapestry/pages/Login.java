@@ -1,8 +1,8 @@
 package net.onlinepresence.opos.tapestry.pages;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.util.Authentication;
 
@@ -23,7 +23,7 @@ public class Login {
 	private UserManager persons;
 
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 
 	Object onSubmitFromLoginForm() {
 		

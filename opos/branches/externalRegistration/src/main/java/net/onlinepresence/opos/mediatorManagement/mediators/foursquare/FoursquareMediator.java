@@ -41,7 +41,7 @@ public class FoursquareMediator extends IntervalPullMediator {
 		// TODO Auto-generated method stub
 	}
 	
-	public ApplicationNames getMediatorName() {
+	public String getMediatorName() {
 		return ApplicationNames.FOURSQUARE;
 	}
 

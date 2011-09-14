@@ -61,7 +61,7 @@ public class TwitterMediator extends IntervalPullMediator {
 		return null;
 	}
 	
-	public ApplicationNames getMediatorName() {
+	public String getMediatorName() {
 		return ApplicationNames.TWITTER;
 	}
 }

@@ -5,7 +5,6 @@ import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
-import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
@@ -48,31 +47,31 @@ public class AppModule {
 		ApplicationManager appManager = (ApplicationManager) context.getBean(ApplicationManager.class.getName());
 		
 		// Twitter application
-		Application twitterApplication = (Application) context.getBean(Application.class.getName());
+		Application twitterApplication = new Application();
 		twitterApplication.setWebAddress("http://twitter.com");
 		twitterApplication.setName(ApplicationNames.TWITTER);
 		appManager.save(twitterApplication);
 		
 		// Facebook application
-		Application facebookApplication = (Application) context.getBean(Application.class.getName());
+		Application facebookApplication = new Application();
 		facebookApplication.setWebAddress("http://www.facebook.com");
 		facebookApplication.setName(ApplicationNames.FACEBOOK);
 		appManager.save(facebookApplication);
 		
 		// Spark application
-		Application sparkApplication = (Application) context.getBean(Application.class.getName());
+		Application sparkApplication = new Application();
 		sparkApplication.setWebAddress("http://www.igniterealtime.org/projects/spark/");
 		sparkApplication.setName(ApplicationNames.SPARK);
 		appManager.save(sparkApplication);
 		
 		// Foursquare application
-		Application foursquareApplication = (Application) context.getBean(Application.class.getName());
+		Application foursquareApplication = new Application();
 		foursquareApplication.setWebAddress("https://foursquare.com");
 		foursquareApplication.setName(ApplicationNames.FOURSQUARE);
 		appManager.save(foursquareApplication);
 		
 		// Moodle application
-		Application moodleApplication = (Application) context.getBean(Application.class.getName());
+		Application moodleApplication = new Application();
 		moodleApplication.setWebAddress("http://www.moodle.com");
 		moodleApplication.setName(ApplicationNames.MOODLE);
 		appManager.save(moodleApplication);

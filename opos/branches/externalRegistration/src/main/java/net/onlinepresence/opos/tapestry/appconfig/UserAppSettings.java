@@ -1,25 +1,23 @@
 package net.onlinepresence.opos.tapestry.appconfig;
 
-import net.onlinepresence.opos.domain.ApplicationNames;
-
 public class UserAppSettings {
 
-	private ApplicationNames appName;
+	private String appName;
 	private boolean userUssesApp;
 	private String username;
 	private String password;
 	private boolean sendDataToApp;
 	private boolean receiveDataFromApp;
 	
-	public UserAppSettings(ApplicationNames appName) {
+	public UserAppSettings(String appName) {
 		this.appName = appName;
 	}
 
-	public ApplicationNames getAppName() {
+	public String getAppName() {
 		return appName;
 	}
 
-	public void setAppName(ApplicationNames appName) {
+	public void setAppName(String appName) {
 		this.appName = appName;
 	}
 

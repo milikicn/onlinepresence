@@ -1,8 +1,6 @@
-package net.onlinepresence.opos.domain.beans;
+package net.onlinepresence.opos.domain;
 
-import net.onlinepresence.opos.domain.Administrator;
-
-public class LoggedAdminBean {
+public class LoggedAdmin {
 
 	private Administrator admin;
 
@@ -28,9 +26,9 @@ public class LoggedAdminBean {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof LoggedAdminBean))
+		if (!(obj instanceof LoggedAdmin))
 			return false;
-		LoggedAdminBean other = (LoggedAdminBean) obj;
+		LoggedAdmin other = (LoggedAdmin) obj;
 		if (admin == null) {
 			if (other.admin != null)
 				return false;

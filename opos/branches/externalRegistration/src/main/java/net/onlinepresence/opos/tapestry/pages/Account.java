@@ -1,8 +1,8 @@
 package net.onlinepresence.opos.tapestry.pages;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 
@@ -24,7 +24,7 @@ public class Account {
 
 	@Property
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 	private boolean loggedUserExists;
 	
 	@Inject

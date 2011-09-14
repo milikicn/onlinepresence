@@ -8,8 +8,9 @@
     
     <properties>
         <tapestry-release-version>5.2.6</tapestry-release-version>
-        <spring.version>2.0.4</spring.version>
-		<hibernate.version>3.2.5.ga</hibernate.version>
+        <spring.version>3.0.6.RELEASE</spring.version>
+		<hibernate.version>4.0.0.CR2</hibernate.version>
+		<mysql-connectior.version>5.1.17</mysql-connectior.version>
 		<twitter4j.version>[2.1,)</twitter4j.version>
 		<jersey.version>1.5</jersey.version>
 		<jena.version>2.6.4</jena.version>
@@ -19,28 +20,11 @@
     </properties>
     
 	<dependencies>
+		<!-- Tapestry -->
         <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-core</artifactId>
             <version>${tapestry-release-version}</version>
-        </dependency>
-        
-        <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
-will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
-of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>5.8</version>
-            <classifier>jdk15</classifier>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>2.4</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -49,20 +33,43 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>${tapestry-release-version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Provided by the servlet container, but sometimes referenced in the application
+        
+		<!-- Provided by the servlet container, but sometimes referenced in the application
        code. -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+        
+        <!-- Tapestry-resteasy module -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
+            <groupId>org.tynamo</groupId>
+            <artifactId>tapestry-resteasy</artifactId>
+            <version>0.2.1</version>
         </dependency>
 
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-mock</artifactId>
-			<version>${spring.version}</version>
+			<version>2.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -76,65 +83,54 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-dao</artifactId>
-			<version>${spring.version}</version>
+			<version>2.0.8</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.2.2</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-hibernate3</artifactId>
+			<version>2.0.8</version>
 		</dependency>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.7</version>
-		</dependency>
+		
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>
+			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
-			<version>3.2.1.ga</version>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>4.0.0.CR2</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-hibernate3</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-    		<groupId>mysql</groupId>
-    		<artifactId>mysql-connector-java</artifactId>
-    		<version>5.1.12</version>
-		</dependency>
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-tx</artifactId>
-    		<version>2.5.6</version>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
     		<groupId>javax.transaction</groupId>
     		<artifactId>jta</artifactId>
     		<version>1.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- MySQL Connectior -->
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>${mysql-connectior.version}</version>
+		</dependency>
+		
 		<!-- Twitter4j -->
 		<dependency>
 			<groupId>org.twitter4j</groupId>
@@ -168,6 +164,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>${sdb.version}</version>
 		</dependency>
 		
+		<!-- Jenabean dependencies -->
 		<dependency> 
   			<groupId>thewebsemantic</groupId> 
   			<artifactId>jenabean</artifactId> 
@@ -181,13 +178,6 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>${joseki.version}</version>
 		</dependency>
 		
-    	<!-- Tapestry-resteasy module -->
-        <dependency>
-            <groupId>org.tynamo</groupId>
-            <artifactId>tapestry-resteasy</artifactId>
-            <version>0.2.1</version>
-        </dependency>
-        
         <!-- JSON marshaller/unmarshaller -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
@@ -251,6 +241,33 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 			<version>20090211</version>
 		</dependency>
 		
+		<!--  SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		<!-- Testing -->
+		
+		<!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
+will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
+of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.8</version>
+			<classifier>jdk15</classifier>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
+		
     </dependencies>
     
     <build>
@@ -305,7 +322,6 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
     </reporting>
 
     <repositories>
-
         <!-- This repository is only needed if the Tapestry released artifacts haven't made it to the central Maven repository yet. -->
         <repository>
             <id>tapestry</id>

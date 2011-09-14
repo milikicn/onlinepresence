@@ -9,7 +9,6 @@ package net.onlinepresence.opos.domain.service.beans;
 import java.util.List;
 
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 
@@ -34,7 +33,7 @@ public class ApplicationManagerBean
 	/* (non-Javadoc)
 	 * @see opos.service.Applications#getApplication(java.net.URL)
 	 */
-	public Application getApplication(ApplicationNames appName) {
+	public Application getApplication(String appName) {
 		
 		List<Application> applications = getAllApplications();
 		for (Application app : applications) {
@@ -52,8 +51,8 @@ public class ApplicationManagerBean
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Membership> getAllApplicationMemberships(ApplicationNames appName) {
-		return (List<Membership>) getReader().getEagerMemberships("from MembershipBean where application.name='" + 
+	public List<Membership> getAllApplicationMemberships(String appName) {
+		return (List<Membership>) getReader().executeQuery("from Membership where application.name='" + 
 				appName +"')");
 	}
 

@@ -4,9 +4,8 @@ import java.net.URL;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.beans.UserBean;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.KeyManager;
 import net.onlinepresence.opos.domain.service.UserManager;
@@ -60,7 +59,7 @@ public class Registration {
 	private KeyManager keyManager;
 
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 
 	@Property
 	private String passwordConfirmation;
@@ -83,7 +82,7 @@ public class Registration {
 	private Twitter twitter;
 	
 	public URL onActivate() {
-		user = new UserBean();
+		user = new User();
 
 		// if external registration is initiated
 		externalRegData = new ExternalRegistrationData(
@@ -105,15 +104,14 @@ public class Registration {
 			
 			if (externalRegData.getRegisterTo() != null) {
 				RegistrationService registrationService = new RegistrationService();
-				ApplicationNames applicationName = ApplicationNames.valueOf(externalRegData.getRegisterTo().toUpperCase());
+				String applicationName = externalRegData.getRegisterTo().toUpperCase();
 				
 				if (applicationName != null) {
-					switch (applicationName) {
-						case TWITTER:
-							twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
-							return registrationService.registerOnTwitter(twitter);
-						case FACEBOOK:
-							return registrationService.registerOnFacebook();
+					if (applicationName.equals(ApplicationNames.TWITTER)) {
+						twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
+						return registrationService.registerOnTwitter(twitter);
+					} if (applicationName.equals(ApplicationNames.FACEBOOK)) {
+						return registrationService.registerOnFacebook();
 					}
 				}
 			}

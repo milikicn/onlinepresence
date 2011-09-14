@@ -1,4 +1,4 @@
-package net.onlinepresence.opos.domain.service;
+package net.onlinepresence.opos.service;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import net.onlinepresence.opos.core.spring.AbstractSpringTest;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
 
 public class ApplicationsBeanTest extends AbstractSpringTest{

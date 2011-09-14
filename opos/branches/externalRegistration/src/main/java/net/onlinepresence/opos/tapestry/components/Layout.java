@@ -1,9 +1,8 @@
 package net.onlinepresence.opos.tapestry.components;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.beans.UserBean;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Index;
@@ -30,7 +29,7 @@ public class Layout{
 	private UserManager persons;
 	
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 	
 	@Property @SuppressWarnings("unused")
 	private boolean loggedUserExists;
@@ -55,7 +54,7 @@ public class Layout{
     
     @SetupRender
 	public void createObject() {
-		user = new UserBean();
+		user = new User();
     }
     
     Object onSubmitFromLoginTopForm(){

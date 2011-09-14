@@ -17,7 +17,6 @@ import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.jopo.services.spring.ResourceFactory;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
@@ -205,19 +204,19 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param serviceName
-	 * @param username
-	 * @return
-	 */
-	public Person getPersonHoldingAccount(ApplicationNames serviceName, String username) {
-		ApplicationManager appManager = (ApplicationManager) new ApplicationContextProviderSingleton().getContext().getBean(ApplicationManager.class.getName());
-		
-		Application application = appManager.getApplication(serviceName);
-		
-		return getPersonHoldingAccount(application.getWebAddress(), username);
-	}
+//	/**
+//	 * 
+//	 * @param serviceName
+//	 * @param username
+//	 * @return
+//	 */
+//	public Person getPersonHoldingAccount(ApplicationNames serviceName, String username) {
+//		ApplicationManager appManager = (ApplicationManager) new ApplicationContextProviderSingleton().getContext().getBean(ApplicationManager.class.getName());
+//		
+//		Application application = appManager.getApplication(serviceName);
+//		
+//		return getPersonHoldingAccount(application.getWebAddress(), username);
+//	}
 	
 	/**
 	 * 

@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.onlinepresence.opos.domain.beans.UserBean" table="USERS">
+	<class name="net.onlinepresence.opos.domain.User" table="USERS">
 	
 		<id name="username" column="USERNAME" type="string" />
 		
@@ -15,7 +15,7 @@
 
 		<set name="applicationMemberships" cascade="all" inverse="true">
            <key column="user"/>
-           <one-to-many class="net.onlinepresence.opos.domain.beans.MembershipBean"/>
+           <one-to-many class="net.onlinepresence.opos.domain.Membership"/>
 		</set>
 		
 	</class>

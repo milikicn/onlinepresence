@@ -10,10 +10,9 @@ import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
@@ -52,7 +51,7 @@ public class FacebookApp {
 	private Request request;
 	
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 	private boolean loggedUserExists;
 
 	@SuppressWarnings("unused")
@@ -89,7 +88,7 @@ public class FacebookApp {
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 			String id = facebookClient.fetchObject("me", com.restfb.types.User.class).getId();
 			
-			Membership memb = new MembershipBean(
+			Membership memb = new Membership(
 					facebookApplication,
 					loggedUser.getUser(), id, null, true, true,
 					accessToken, null);

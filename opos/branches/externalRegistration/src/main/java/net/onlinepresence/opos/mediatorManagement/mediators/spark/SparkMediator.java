@@ -60,7 +60,7 @@ public class SparkMediator extends Thread implements Mediator{
 		MediatorManager.getInstance().propagateOnlinePresence(onlinePresence);
 	}
 	
-	public ApplicationNames getMediatorName(){
+	public String getMediatorName(){
 		return ApplicationNames.SPARK;
 	}
 

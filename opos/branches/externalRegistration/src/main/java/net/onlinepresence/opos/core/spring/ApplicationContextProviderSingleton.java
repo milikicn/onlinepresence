@@ -18,13 +18,12 @@ public class ApplicationContextProviderSingleton implements
 
 	public String[] getContextLocations() {
 		String[] contextLocations = {
-				"META-INF/net/onlinepresence/opos/core/spring/context.xml",
-				"META-INF/net/onlinepresence/opos/core/mysqldb/context.xml",
-				"META-INF/net/onlinepresence/opos/core/hibernate/context.xml",
-				"META-INF/net/onlinepresence/opos/core/tapestry/context.xml",
-				"META-INF/net/onlinepresence/opos/crud/context.xml",
-				"META-INF/net/onlinepresence/opos/domain/context.xml",
-				"META-INF/net/onlinepresence/opos/service/context.xml"
+				"net/onlinepresence/opos/core/spring/context.xml",
+				"net/onlinepresence/opos/core/mysqldb/context.xml",
+				"net/onlinepresence/opos/core/hibernate/context.xml",
+				"net/onlinepresence/opos/core/tapestry/context.xml",
+				"net/onlinepresence/opos/crud/context.xml",
+				"net/onlinepresence/opos/service/context.xml"
 			};
 		return contextLocations;
 	}

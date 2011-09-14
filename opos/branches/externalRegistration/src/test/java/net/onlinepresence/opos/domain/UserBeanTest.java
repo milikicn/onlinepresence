@@ -1,16 +1,14 @@
-package net.onlinepresence.opos.domain.beans;
+package net.onlinepresence.opos.domain;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertNull;
 import static org.testng.AssertJUnit.assertSame;
 
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.UserBean;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-
 
 public class UserBeanTest {
 	
@@ -18,7 +16,7 @@ public class UserBeanTest {
 	
 	@BeforeMethod
 	public void setUp() {
-		personUnderTest = new UserBean();
+		personUnderTest = new User();
 	}
 	
 	@Test

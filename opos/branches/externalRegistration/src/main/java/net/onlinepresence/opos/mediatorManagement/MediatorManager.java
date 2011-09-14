@@ -130,7 +130,7 @@ public class MediatorManager {
 		}
 	}
 	
-	public Mediator getMediator(ApplicationNames name){
+	public Mediator getMediator(String name){
 		logger.debug("Looking for mediator " + name);
 		for (Mediator med : mediators) {
 			if(med.getMediatorName().equals(name))

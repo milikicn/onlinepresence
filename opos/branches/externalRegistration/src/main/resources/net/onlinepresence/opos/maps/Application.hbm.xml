@@ -4,20 +4,15 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.onlinepresence.opos.domain.beans.ApplicationBean" table="APPLICATIONS">
+	<class name="net.onlinepresence.opos.domain.Application" table="APPLICATIONS">
 	
 		<id name="webAddress" column="WEBADDRESS" type="string" />
 
-		<property name="name"> 
-			<type name="org.hibernate.type.EnumType"> 
-				<param name="enumClass">net.onlinepresence.opos.domain.ApplicationNames</param> 
-				<param name="type">12</param> 
-			</type> 
-		</property> 
+		<property name="name"/>
 		
 		<set name="userMemberships" cascade="all" inverse="true">
            <key column="application"/>
-           <one-to-many class="net.onlinepresence.opos.domain.beans.MembershipBean"/>
+           <one-to-many class="net.onlinepresence.opos.domain.Membership"/>
 		</set>
 
 	</class>

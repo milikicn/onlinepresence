@@ -1,17 +1,13 @@
 package net.onlinepresence.opos.tapestry.pages;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
 
-import net.onlinepresence.opos.config.Permission;
-import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.exceptions.OPOSException;
@@ -57,7 +53,7 @@ public class Connections {
 	private Application currentApplication;
 
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 	private boolean loggedUserExists;
 	
 	private RegistrationService registrationService;
@@ -87,24 +83,18 @@ public class Connections {
 		Set<Membership> memberships = (Set<Membership>) loggedUser.getUser().getApplicationMemberships();
 		
 		for (Membership mem : memberships) {
-			ApplicationNames appName = mem.getApplication().getName();
+			String appName = mem.getApplication().getName();
 			
-			switch (appName) {
-			case TWITTER:
+			if (appName.equals(ApplicationNames.TWITTER)) {
 				configureUserAppSettings(twitterAppSettings, mem);
-				break;
-			case FACEBOOK:
+			} else if (appName.equals(ApplicationNames.FACEBOOK)) {
 				configureUserAppSettings(facebookAppSettings, mem);
-				break;
-			case SPARK:
+			} else if (appName.equals(ApplicationNames.SPARK)) {
 				configureUserAppSettings(sparkAppSettings, mem);
-				break;
-			case FOURSQUARE:
+			} else if (appName.equals(ApplicationNames.FOURSQUARE)) {
 				configureUserAppSettings(foursquareAppSettings, mem);
-				break;
-			case MOODLE:
+			} else if (appName.equals(ApplicationNames.MOODLE)) {
 				configureUserAppSettings(moodleAppSettings, mem);
-				break;
 			}
 		}
 	}
@@ -174,7 +164,7 @@ public class Connections {
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		Application sparkApp = applications.getApplication(ApplicationNames.SPARK);
 		
-		Membership memb = new MembershipBean(
+		Membership memb = new Membership(
 				sparkApp,
 				loggedUser.getUser(), sparkAppSettings.getUsername(), null, sparkAppSettings.isSendDataToApp(),
 				sparkAppSettings.isReceiveDataFromApp(), null, null);
@@ -200,7 +190,7 @@ public class Connections {
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		Application foursquareApp = applications.getApplication(ApplicationNames.FOURSQUARE);
 		
-		Membership memb = new MembershipBean(
+		Membership memb = new Membership(
 				foursquareApp,
 				loggedUser.getUser(), foursquareAppSettings.getUsername(), foursquareAppSettings.getPassword(), foursquareAppSettings.isSendDataToApp(),
 				foursquareAppSettings.isReceiveDataFromApp(), null, null);
@@ -238,7 +228,7 @@ public class Connections {
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		Application moodleApp = applications.getApplication(ApplicationNames.MOODLE);
 		
-		Membership memb = new MembershipBean(
+		Membership memb = new Membership(
 				moodleApp,
 				loggedUser.getUser(), moodleAppSettings.getUsername(), null, moodleAppSettings.isSendDataToApp(),
 				moodleAppSettings.isReceiveDataFromApp(), null, null);

@@ -11,7 +11,6 @@ import com.restfb.Connection;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.Post;
-import com.restfb.types.User;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -95,7 +94,7 @@ public class FacebookOnlinePresenceBuilder implements OnlinePresenceBuilder {
 	public FacebookUser getUserDetails(FacebookClient facebookClient) {
 		try {
 			FacebookUser fbUser = new FacebookUser();
-			String userId = facebookClient.fetchObject("me", User.class).getId();
+			String userId = facebookClient.fetchObject("me", com.restfb.types.User.class).getId();
 			
 			Map<String, String> queries = new HashMap<String, String>();
 			queries.put("users", "SELECT uid, name, pic_big, online_presence, status, current_location FROM user WHERE uid="+userId);

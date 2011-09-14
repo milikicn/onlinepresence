@@ -6,10 +6,9 @@ import java.net.URL;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.LoggedUserBean;
-import net.onlinepresence.opos.domain.beans.MembershipBean;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
@@ -37,7 +36,7 @@ public class TwitterApp {
 	private Twitter twitter;
 
 	@SessionState
-	private LoggedUserBean loggedUser;
+	private LoggedUser loggedUser;
 	private boolean loggedUserExists;
 
 	@SuppressWarnings("unused")
@@ -77,7 +76,7 @@ public class TwitterApp {
 			Membership memb;
 			try {
 				Application twitterApplication = applications.getApplication(ApplicationNames.TWITTER);
-				memb = new MembershipBean(
+				memb = new Membership(
 						twitterApplication,
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,
 						accessToken.getToken(), accessToken.getTokenSecret());

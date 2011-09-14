@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.onlinepresence.opos.core.persistance.PersistenceManager;
-import net.onlinepresence.opos.domain.Membership;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -140,17 +139,17 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 		return list;		
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Transactional
-	public List getEagerMemberships(String queryString){
-		Session session = provideManager();		
-		Query query = session.createQuery(queryString);
-		List list = (List<Membership>) query.list();
-		
-		for (Object object : list) {
-			object.toString();
-		}
-		return list;		
-	}
+//	@SuppressWarnings({ "unchecked", "rawtypes" })
+//	@Transactional
+//	public List getEagerMemberships(String queryString){
+//		Session session = provideManager();		
+//		Query query = session.createQuery(queryString);
+//		List list = (List<Membership>) query.list();
+//		
+//		for (Object object : list) {
+//			object.toString();
+//		}
+//		return list;		
+//	}
 
 }

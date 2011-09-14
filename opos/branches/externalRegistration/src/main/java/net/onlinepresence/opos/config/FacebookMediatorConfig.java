@@ -10,9 +10,6 @@ import org.simpleframework.xml.ElementList;
 
 public class FacebookMediatorConfig {
 
-	@Element(name = "api-key", required = true)
-	public String apiKey;
-	
 	@Element(name = "api-secret", required = true)
 	public String apiSecret;
 	

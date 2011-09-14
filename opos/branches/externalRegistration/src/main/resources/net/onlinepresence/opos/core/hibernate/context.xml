@@ -25,7 +25,7 @@
 		<!-- Must reference all O/R mapping files. -->
 		<property name="mappingDirectoryLocations">
 			<list>
-				<value>classpath:/META-INF/net/onlinepresence/opos/maps</value>
+				<value>classpath:net/onlinepresence/opos/maps</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

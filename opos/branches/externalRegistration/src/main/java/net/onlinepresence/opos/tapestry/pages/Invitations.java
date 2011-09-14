@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Key;
-import net.onlinepresence.opos.domain.beans.LoggedAdminBean;
+import net.onlinepresence.opos.domain.LoggedAdmin;
 import net.onlinepresence.opos.domain.service.KeyManager;
 
 import org.apache.tapestry5.annotations.OnEvent;
@@ -22,7 +22,7 @@ public class Invitations {
 	
 	@SuppressWarnings("unused")
 	@SessionState
-	private LoggedAdminBean loggedAdmin;
+	private LoggedAdmin loggedAdmin;
 	private boolean loggedAdminExists;
 	
 	@Property

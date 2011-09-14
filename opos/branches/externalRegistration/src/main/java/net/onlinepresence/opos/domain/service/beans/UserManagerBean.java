@@ -88,8 +88,13 @@ public class UserManagerBean
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Membership> getAllMemberships(String username, String app){
-		return (List<Membership>) getReader().getEagerMemberships("from MembershipBean where user=(select user.username from MembershipBean where application='" + 
-				app +"'" + "and username='" + username +"')");
+		return (List<Membership>) getReader().executeQuery(
+				"from Membership " +
+				"where user = (" +
+					"select user.username " +
+					"from Membership " +
+					"where application = '" + app +"'" + "and " +
+							"				username = '" + username +"')");
 	}
 	
 	public Membership createOrUpdateNewMembership(User user, Membership membership) {

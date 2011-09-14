@@ -5,7 +5,6 @@ import java.util.List;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 
-
 public interface UserManager {
 
 	void update(User user);

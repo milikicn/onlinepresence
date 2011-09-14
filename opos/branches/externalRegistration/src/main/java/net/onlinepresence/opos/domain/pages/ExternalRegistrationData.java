@@ -1,8 +1,8 @@
 package net.onlinepresence.opos.domain.pages;
 
-import org.apache.tapestry5.ioc.annotations.Inject;
-
 import net.onlinepresence.opos.domain.User;
+
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 public class ExternalRegistrationData {
 

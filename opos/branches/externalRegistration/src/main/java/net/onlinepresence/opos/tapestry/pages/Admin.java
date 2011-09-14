@@ -2,7 +2,7 @@ package net.onlinepresence.opos.tapestry.pages;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Administrator;
-import net.onlinepresence.opos.domain.beans.LoggedAdminBean;
+import net.onlinepresence.opos.domain.LoggedAdmin;
 import net.onlinepresence.opos.domain.service.AdministratorManager;
 import net.onlinepresence.opos.util.Authentication;
 
@@ -23,11 +23,7 @@ public class Admin {
 	private String password;
 	
 	@SessionState
-	private LoggedAdminBean loggedAdmin;
-	
-	void onActivate(){
-		
-	}
+	private LoggedAdmin loggedAdmin;
 	
 	Object onSubmitFromLoginForm(){
 		Authentication auth = new Authentication(administrators);

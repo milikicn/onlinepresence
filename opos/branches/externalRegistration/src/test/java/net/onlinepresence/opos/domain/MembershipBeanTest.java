@@ -4,15 +4,13 @@
 * @date: Apr 7, 2009
 * @version: 0.1
 */
-package net.onlinepresence.opos.domain.beans;
+package net.onlinepresence.opos.domain;
 
 import static org.testng.AssertJUnit.assertNull;
 import static org.testng.AssertJUnit.assertSame;
 
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
-import net.onlinepresence.opos.domain.beans.MembershipBean;
-import net.onlinepresence.opos.domain.beans.UserBean;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,7 +25,7 @@ public class MembershipBeanTest {
 	
 	@BeforeMethod
 	public void setUp() {
-		associationUnderTest = new MembershipBean();
+		associationUnderTest = new Membership();
 	}
 	
 //	@Test
@@ -47,7 +45,7 @@ public class MembershipBeanTest {
 	@Test
 	public void testPerson() {
 		assertNull(associationUnderTest.getUser());
-		User person = new UserBean("Nikola", "Milikic", "nikolakv", "nikola0000", false);
+		User person = new User("Nikola", "Milikic", "nikolakv", "nikola0000", false);
 		associationUnderTest.setUser(person);
 		assertSame(person, associationUnderTest.getUser());
 	}
