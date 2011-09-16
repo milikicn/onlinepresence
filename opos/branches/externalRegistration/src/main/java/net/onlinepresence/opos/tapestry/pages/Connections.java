@@ -18,6 +18,7 @@ import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommu
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.service.RegistrationService;
 import net.onlinepresence.opos.tapestry.appconfig.UserAppSettings;
+import net.onlinepresence.opos.tapestry.pages.util.ApplicationSettingsConfigurator;
 
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.annotations.Import;
@@ -43,7 +44,7 @@ public class Connections {
 
 	@Inject @Property
 	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
-	private ApplicationManager applications;
+	private ApplicationManager applicationManager;
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
@@ -73,7 +74,7 @@ public class Connections {
 		
 		loadMembershipInformation();
 
-		registrationService = new RegistrationService();
+		registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
 		
 		return null;
 	}
@@ -86,27 +87,19 @@ public class Connections {
 			String appName = mem.getApplication().getName();
 			
 			if (appName.equals(ApplicationNames.TWITTER)) {
-				configureUserAppSettings(twitterAppSettings, mem);
+				ApplicationSettingsConfigurator.configureUserAppSettings(twitterAppSettings, mem);
 			} else if (appName.equals(ApplicationNames.FACEBOOK)) {
-				configureUserAppSettings(facebookAppSettings, mem);
+				ApplicationSettingsConfigurator.configureUserAppSettings(facebookAppSettings, mem);
 			} else if (appName.equals(ApplicationNames.SPARK)) {
-				configureUserAppSettings(sparkAppSettings, mem);
+				ApplicationSettingsConfigurator.configureUserAppSettings(sparkAppSettings, mem);
 			} else if (appName.equals(ApplicationNames.FOURSQUARE)) {
-				configureUserAppSettings(foursquareAppSettings, mem);
+				ApplicationSettingsConfigurator.configureUserAppSettings(foursquareAppSettings, mem);
 			} else if (appName.equals(ApplicationNames.MOODLE)) {
-				configureUserAppSettings(moodleAppSettings, mem);
+				ApplicationSettingsConfigurator.configureUserAppSettings(moodleAppSettings, mem);
 			}
 		}
 	}
 	
-	private void configureUserAppSettings(UserAppSettings appSettings, Membership mem) {
-		appSettings.setUserUssesApp(true);
-		appSettings.setSendDataToApp(mem.isSendTo());
-		appSettings.setReceiveDataFromApp(mem.isReceiveFrom());
-		appSettings.setUsername(mem.getUsername());
-		appSettings.setPassword(mem.getPassword());
-	}
-
 	//Twitter
 	@SessionState
 	private Twitter twitter;
@@ -162,7 +155,7 @@ public class Connections {
 	Object onSubmitFromSparkForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application sparkApp = applications.getApplication(ApplicationNames.SPARK);
+		Application sparkApp = applicationManager.getApplication(ApplicationNames.SPARK);
 		
 		Membership memb = new Membership(
 				sparkApp,
@@ -188,7 +181,7 @@ public class Connections {
 	Object onSubmitFromFoursquareForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application foursquareApp = applications.getApplication(ApplicationNames.FOURSQUARE);
+		Application foursquareApp = applicationManager.getApplication(ApplicationNames.FOURSQUARE);
 		
 		Membership memb = new Membership(
 				foursquareApp,
@@ -226,7 +219,7 @@ public class Connections {
 	Object onSubmitFromMoodleForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application moodleApp = applications.getApplication(ApplicationNames.MOODLE);
+		Application moodleApp = applicationManager.getApplication(ApplicationNames.MOODLE);
 		
 		Membership memb = new Membership(
 				moodleApp,

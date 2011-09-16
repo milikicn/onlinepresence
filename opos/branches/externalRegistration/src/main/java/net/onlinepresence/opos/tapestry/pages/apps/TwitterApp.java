@@ -1,8 +1,5 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -15,6 +12,7 @@ import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
 import net.onlinepresence.opos.exceptions.OPOSException;
+import net.onlinepresence.opos.service.RegistrationService;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 
@@ -47,7 +45,7 @@ public class TwitterApp {
 	@Inject
 	@Property
 	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
-	private ApplicationManager applications;
+	private ApplicationManager applicationManager;
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
@@ -75,7 +73,7 @@ public class TwitterApp {
 
 			Membership memb;
 			try {
-				Application twitterApplication = applications.getApplication(ApplicationNames.TWITTER);
+				Application twitterApplication = applicationManager.getApplication(ApplicationNames.TWITTER);
 				memb = new Membership(
 						twitterApplication,
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,
@@ -87,7 +85,6 @@ public class TwitterApp {
 				try {
 					twitterMediator.spawnAndAddNewProfileCheckerThread(memb);
 				} catch (OPOSException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} catch (IllegalStateException e) {
@@ -98,10 +95,9 @@ public class TwitterApp {
 		}
 		
 		if (externalRegData != null && externalRegData.getCallbackUrl() != null) {
-			try {
-				return new URL(externalRegData.getCallbackUrl());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
+			if (externalRegData != null) {
+				RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
+				return registrationService.registerOnServices(externalRegData);
 			}
 		}
 		

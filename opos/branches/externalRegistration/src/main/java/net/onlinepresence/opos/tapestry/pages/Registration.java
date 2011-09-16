@@ -1,12 +1,16 @@
 package net.onlinepresence.opos.tapestry.pages;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.ApplicationNames;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.KeyManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterCommunication;
@@ -48,6 +52,11 @@ public class Registration {
 	@Property
 	@Persist("flash")
 	private User user;
+	
+	@Inject
+	@Property
+	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
+	private ApplicationManager applicationManager;
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
@@ -91,8 +100,7 @@ public class Registration {
 											request.getParameter("username"), 
 											request.getParameter("password"), 
 											request.getParameter("callbackUrl"), 
-											request.getParameter("registerTo"));
-		
+											new LinkedList<String>(Arrays.asList(request.getParameter("registerTo").split(","))));
 		
 		if (externalRegData.hasEnoughDataForRegistration()){
 			user = externalRegData.getUser(user);
@@ -102,19 +110,33 @@ public class Registration {
 			
 			loggedUser.setUser(user);
 			
-			if (externalRegData.getRegisterTo() != null) {
-				RegistrationService registrationService = new RegistrationService();
-				String applicationName = externalRegData.getRegisterTo().toUpperCase();
+			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
+			
+			/**
+			 * this is ugly hack because I can't pass twitter instance to the serviec as it 
+			 * doesn't have fdefault construstor. And I need it to be SissaioState as it is 
+			 * used again on TwitterApp page.
+			 */
+			String applicationName = externalRegData.getNextSeviceToAuthenticateOn();
+			
+			if (applicationName != null) {
+				applicationName = applicationName.toUpperCase();
 				
-				if (applicationName != null) {
-					if (applicationName.equals(ApplicationNames.TWITTER)) {
-						twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
-						return registrationService.registerOnTwitter(twitter);
-					} if (applicationName.equals(ApplicationNames.FACEBOOK)) {
-						return registrationService.registerOnFacebook();
-					}
-				}
+				if (applicationName.equals(ApplicationNames.TWITTER)) {
+					twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
+					return registrationService.registerOnTwitter(twitter);
+				} 
+
+				return registrationService.registerOnServices(externalRegData);
 			}
+			
+			URL callbackUrl = null;
+			try {
+				callbackUrl = new URL(externalRegData.getCallbackUrl());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			return callbackUrl;
 		}
 		
 		return null;

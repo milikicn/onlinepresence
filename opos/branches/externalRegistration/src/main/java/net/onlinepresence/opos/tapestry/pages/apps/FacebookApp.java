@@ -1,8 +1,6 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +17,7 @@ import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
 import net.onlinepresence.opos.mediatorManagement.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.exceptions.OPOSException;
+import net.onlinepresence.opos.service.RegistrationService;
 import net.onlinepresence.opos.tapestry.pages.Connections;
 import net.onlinepresence.opos.tapestry.pages.Login;
 
@@ -62,7 +61,7 @@ public class FacebookApp {
 	@Inject
 	@Property
 	@SpringBean("net.onlinepresence.opos.domain.service.ApplicationManager")
-	private ApplicationManager applications;
+	private ApplicationManager applicationManager;
 
 	@Inject
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
@@ -83,7 +82,7 @@ public class FacebookApp {
 		if (accessToken != null) {
 			FacebookMediator facebookMediator = (FacebookMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FACEBOOK);
 
-			Application facebookApplication = applications.getApplication(ApplicationNames.FACEBOOK);
+			Application facebookApplication = applicationManager.getApplication(ApplicationNames.FACEBOOK);
 			
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 			String id = facebookClient.fetchObject("me", com.restfb.types.User.class).getId();
@@ -102,12 +101,9 @@ public class FacebookApp {
 			}
 		}
 		
-		if (externalRegData != null && externalRegData.getCallbackUrl() != null) {
-			try {
-				return new URL(externalRegData.getCallbackUrl());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+		if (externalRegData != null) {
+			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
+			return registrationService.registerOnServices(externalRegData);
 		}
 		
 		return Connections.class;
