@@ -25,7 +25,7 @@ public class KeepDatabaseAliveThread extends Thread {
 			reader.executeQuery("from Application");
 			logger.debug("Executing dummy query for keeping the database connection alive.");
 			try {
-				sleep(4*60*60);
+				sleep(4*60*60*1000);
 			} catch (InterruptedException e) {
 				
 			}
