@@ -126,9 +126,9 @@ public class UserManagerBean
 				}
 			}
 			
-			Person person = opService.getPersonInstance(user);
-			person.addAccount(userAccount);
 			try {
+				Person person = opService.getPersonInstance(user);
+				person.addAccount(userAccount);
 				opService.updateResource(person, false);
 				
 				logger.debug("Added sioc:UserAccount instance with username '"

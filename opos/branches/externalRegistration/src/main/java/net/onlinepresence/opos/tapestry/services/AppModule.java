@@ -1,5 +1,6 @@
 package net.onlinepresence.opos.tapestry.services;
 
+import net.onlinepresence.opos.core.KeepDatabaseAliveThread;
 import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
@@ -75,6 +76,8 @@ public class AppModule {
 		moodleApplication.setWebAddress("http://www.moodle.com");
 		moodleApplication.setName(ApplicationNames.MOODLE);
 		appManager.save(moodleApplication);
+		
+		new KeepDatabaseAliveThread().start();
 		
 		
 		// instantiation MediatorManager which will instantiate threads for checking 

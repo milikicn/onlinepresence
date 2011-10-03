@@ -53,7 +53,7 @@ public class ApplicationManagerBean
 	@SuppressWarnings("unchecked")
 	public List<Membership> getAllApplicationMemberships(String appName) {
 		return (List<Membership>) getReader().executeQuery("from Membership where application.name='" + 
-				appName +"')");
+				appName +"'");
 	}
 
 }
