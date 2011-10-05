@@ -23,13 +23,14 @@ public class KeepDatabaseAliveThread extends Thread {
 	@Override
 	public void run() {
 		while (true) {
+			logger.debug("Executing dummy query for keeping the database connection alive.");
+			
 			reader.executeQuery("from Application");
 			try {
 				DummyQueryService.getInstance().performDummyQuery();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			logger.debug("Executing dummy query for keeping the database connection alive.");
 			try {
 				sleep(4*60*60*1000);
 			} catch (InterruptedException e) {
