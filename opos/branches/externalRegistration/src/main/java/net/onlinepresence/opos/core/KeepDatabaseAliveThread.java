@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.core;
 
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
+import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.DummyQueryService;
 import net.onlinepresence.opos.service.crud.impl.ReadCommand;
 
 import org.apache.log4j.Logger;
@@ -23,6 +24,11 @@ public class KeepDatabaseAliveThread extends Thread {
 	public void run() {
 		while (true) {
 			reader.executeQuery("from Application");
+			try {
+				DummyQueryService.getInstance().performDummyQuery();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			logger.debug("Executing dummy query for keeping the database connection alive.");
 			try {
 				sleep(4*60*60*1000);
