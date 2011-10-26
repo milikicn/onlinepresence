@@ -1,5 +1,7 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
+import java.net.URL;
+
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -95,10 +97,11 @@ public class TwitterApp {
 		}
 		
 		if (externalRegData != null && externalRegData.getCallbackUrl() != null) {
-			if (externalRegData != null) {
-				RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
-				return registrationService.registerOnServices(externalRegData);
-			}
+			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
+			URL callbackUrl = registrationService.registerOnServices(externalRegData);
+			
+			if (callbackUrl != null)
+				return callbackUrl;
 		}
 		
 		return Connections.class;

@@ -1,5 +1,6 @@
 package net.onlinepresence.opos.domain.pages;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,13 +29,16 @@ public class ExternalRegistrationData {
 	 * @param authenticateOn
 	 */
 	public ExternalRegistrationData(String name, String email, String username,
-			String password, String callbackUrl, LinkedList<String> authenticateOn) {
+			String password, String callbackUrl, String authenticateOn) {
 		this.name = name;
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.callbackUrl = callbackUrl;
-		this.authenticateOn = authenticateOn;
+		
+		if (authenticateOn != null) {
+			this.authenticateOn = new LinkedList<String>(Arrays.asList(authenticateOn.split(",")));
+		}
 		setTwitterOnFirstPlace();
 	}
 

@@ -141,7 +141,7 @@ public class Membership implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "user: " + user.getUsername() + ", app: " + application.getName() + ", username: " + username;
+		return "username: " + username;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.tapestry.pages.apps;
 
 import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,7 +104,10 @@ public class FacebookApp {
 		
 		if (externalRegData != null) {
 			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
-			return registrationService.registerOnServices(externalRegData);
+			URL callbackUrl = registrationService.registerOnServices(externalRegData);
+			
+			if (callbackUrl != null)
+				return callbackUrl;
 		}
 		
 		return Connections.class;

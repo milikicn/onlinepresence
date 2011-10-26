@@ -71,15 +71,16 @@ public class RegistrationService {
 				
 				return registerOnServices(externalRegData);
 			}
+			
+			URL callbackUrl = null;
+			try {
+				callbackUrl = new URL(externalRegData.getCallbackUrl());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			return callbackUrl;
 		}
-		
-		URL callbackUrl = null;
-		try {
-			callbackUrl = new URL(externalRegData.getCallbackUrl());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		return callbackUrl;
+		return null;
 	}
 
 	public URL registerOnTwitter(Twitter twitter) {

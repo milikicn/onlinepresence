@@ -50,6 +50,7 @@ public class RepositoryDataProvider implements DataProvider {
 			establishConnection();
 			logger.debug("Connecting default data model...");
 			dataModel = SDBFactory.connectDefaultModel(store);
+			logger.debug("Connection to the default data model established!");
 
 		} catch (Exception e) {
 			logger.error("Could not load DataModel from database!", e);

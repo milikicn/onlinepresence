@@ -2,8 +2,6 @@ package net.onlinepresence.opos.tapestry.pages;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.ApplicationNames;
@@ -100,7 +98,7 @@ public class Registration {
 											request.getParameter("username"), 
 											request.getParameter("password"), 
 											request.getParameter("callbackUrl"), 
-											new LinkedList<String>(Arrays.asList(request.getParameter("registerTo").split(","))));
+											request.getParameter("registerTo"));
 		
 		if (externalRegData.hasEnoughDataForRegistration()){
 			user = externalRegData.getUser(user);
