@@ -1,6 +1,7 @@
 package net.onlinepresence.opos.core;
 
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
+import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.semanticstuff.rdfpersistance.query.DummyQueryService;
 import net.onlinepresence.opos.service.crud.impl.ReadCommand;
 
@@ -11,13 +12,13 @@ public class KeepDatabaseAliveThread extends Thread {
 	
 	private Logger logger = Logger.getLogger(KeepDatabaseAliveThread.class);
 
-	@SuppressWarnings("rawtypes")
-	private ReadCommand reader;
+	private ReadCommand<Application> reader;
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public KeepDatabaseAliveThread() {
 		ApplicationContext context = new ApplicationContextProviderSingleton().getContext();
-		reader = (ReadCommand) context.getBean(ReadCommand.class.getName());
+		reader = (ReadCommand<Application>) context.getBean(ReadCommand.class.getName());
+		reader.setClazz(Application.class);
 	}
 	
 	@Override
@@ -25,7 +26,7 @@ public class KeepDatabaseAliveThread extends Thread {
 		while (true) {
 			logger.debug("Executing dummy query for keeping the database connection alive.");
 			
-			reader.executeQuery("select WEBADDRESS from APPLICATION;");
+			reader.executeQuery("select * from APPLICATION LIMIT 1;");
 			try {
 				DummyQueryService.getInstance().performDummyQuery();
 			} catch (Exception e1) {

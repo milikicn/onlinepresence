@@ -7,6 +7,7 @@ import net.onlinepresence.opos.core.persistance.PersistenceManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
@@ -141,9 +142,10 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 	
 	@SuppressWarnings("rawtypes")
 	@Transactional
-	public List runSQLQuery(String queryString){
+	public List runSQLQuery(String queryString, Class clazz){
 		Session session = provideManager();		
-		Query query = session.createSQLQuery(queryString);
+		SQLQuery query = session.createSQLQuery(queryString);
+		query.addEntity(clazz);
 		List list = query.list();		
 		return list;		
 	}

@@ -31,6 +31,9 @@
 	<property name="membershipDeleter">
 		<ref bean="net.onlinepresence.opos.service.crud.impl.DeleteCommand"/>
 	</property>
+	<property name="membershipReader">
+		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
+	</property>
 </bean>
 
 <bean id="net.onlinepresence.opos.domain.service.ApplicationManager" 

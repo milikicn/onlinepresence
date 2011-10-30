@@ -20,7 +20,7 @@ public class ReadCommand<Type> implements Command<List<Type>>{
 	
 	@SuppressWarnings("rawtypes")
 	public List executeQuery(String query){
-		return manager.runSQLQuery(query);
+		return manager.runSQLQuery(query, clazz);
 	}
 	
 //	@SuppressWarnings("rawtypes")

@@ -11,6 +11,7 @@ import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 import net.onlinepresence.opos.service.crud.impl.DeleteCommand;
+import net.onlinepresence.opos.service.crud.impl.ReadCommand;
 
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -83,12 +84,25 @@ public class UserManagerBean
 		return false;
 	}
 	
+	@Inject
+	@SpringBean("net.onlinepresence.opos.service.crud.impl.ReadCommand")
+	private ReadCommand<Membership> membershipReader;
+	
+	public ReadCommand<Membership> getMembershipReader() {
+		return membershipReader;
+	}
+
+	public void setMembershipReader(ReadCommand<Membership> reader) {
+		this.membershipReader = reader;
+	}
+	
 	/*
 	 * for a given username and app of membership, finds its user and list all his memberships
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Membership> getAllMemberships(String username, String app){
-		return (List<Membership>) getReader().executeQuery(
+	public List<Membership> getAllMemberships(String username){
+		membershipReader.setClazz(Membership.class);
+		return (List<Membership>)membershipReader.executeQuery(
 				"SELECT * " +
 				"FROM MEMBERSHIP AS MEMB " +
 					"JOIN USER AS U ON MEMB.USER = U.USERNAME " +

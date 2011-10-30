@@ -102,7 +102,7 @@ public class MediatorManager {
 		String app = onlinePresence.getUserAccount().getAccountServiceHomepage().toString();
 		
 		// memberships should be refreshed if a new one is added in the mean time
-		List<Membership> list = personManager.getAllMemberships(username, app);
+		List<Membership> list = personManager.getAllMemberships(username);
 		
 		for (Membership membership : list) {
 			if(membership.getApplication().getWebAddress().equals(app))

@@ -68,6 +68,7 @@ public class ApplicationManagerBean
 
 	@SuppressWarnings("unchecked")
 	public List<Membership> getAllApplicationMemberships(String appName) {
+		membershipReader.setClazz(Membership.class);
 		return (List<Membership>) membershipReader.executeQuery(
 				"SELECT * " +
 				"FROM MEMBERSHIP AS MEMB " +
