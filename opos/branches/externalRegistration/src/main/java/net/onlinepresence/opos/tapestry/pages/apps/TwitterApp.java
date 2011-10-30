@@ -98,7 +98,7 @@ public class TwitterApp {
 		
 		if (externalRegData != null && externalRegData.getCallbackUrl() != null) {
 			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
-			URL callbackUrl = registrationService.registerOnServices(externalRegData);
+			URL callbackUrl = registrationService.registerOnServices(externalRegData, null);
 			
 			if (callbackUrl != null)
 				return callbackUrl;

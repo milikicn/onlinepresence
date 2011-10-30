@@ -125,7 +125,7 @@ public class Registration {
 					return registrationService.registerOnTwitter(twitter);
 				} 
 
-				return registrationService.registerOnServices(externalRegData);
+				return registrationService.registerOnServices(externalRegData, applicationName);
 			}
 			
 			URL callbackUrl = null;

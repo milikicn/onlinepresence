@@ -25,7 +25,7 @@ public class KeepDatabaseAliveThread extends Thread {
 		while (true) {
 			logger.debug("Executing dummy query for keeping the database connection alive.");
 			
-			reader.executeQuery("from Application");
+			reader.executeQuery("select WEBADDRESS from APPLICATION;");
 			try {
 				DummyQueryService.getInstance().performDummyQuery();
 			} catch (Exception e1) {

@@ -8,9 +8,13 @@ package net.onlinepresence.opos.domain.service.beans;
 
 import java.util.List;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
+
+import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.service.crud.impl.ReadCommand;
 
 /**
  * @author Nikola Milikic
@@ -49,11 +53,25 @@ public class ApplicationManagerBean
 		getWriter().execute();
 		return true;
 	}
+	
+	@Inject
+	@SpringBean("net.onlinepresence.opos.service.crud.impl.ReadCommand")
+	private ReadCommand<Membership> membershipReader;
+	
+	public ReadCommand<Membership> getMembershipReader() {
+		return membershipReader;
+	}
+
+	public void setMembershipReader(ReadCommand<Membership> reader) {
+		this.membershipReader = reader;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Membership> getAllApplicationMemberships(String appName) {
-		return (List<Membership>) getReader().executeQuery("from Membership where application.name='" + 
-				appName +"'");
+		return (List<Membership>) membershipReader.executeQuery(
+				"select * " +
+				"from MEMEBERSHIP " +
+				"where APPLICATION.name='" + appName +"'");
 	}
 
 }

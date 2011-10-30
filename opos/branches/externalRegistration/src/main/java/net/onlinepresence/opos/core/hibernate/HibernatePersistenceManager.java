@@ -139,6 +139,15 @@ public class HibernatePersistenceManager extends HibernateDaoSupport implements
 		return list;		
 	}
 	
+	@SuppressWarnings("rawtypes")
+	@Transactional
+	public List runSQLQuery(String queryString){
+		Session session = provideManager();		
+		Query query = session.createSQLQuery(queryString);
+		List list = query.list();		
+		return list;		
+	}
+	
 //	@SuppressWarnings({ "unchecked", "rawtypes" })
 //	@Transactional
 //	public List getEagerMemberships(String queryString){

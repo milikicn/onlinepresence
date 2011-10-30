@@ -47,8 +47,9 @@ public class RegistrationService {
 	 * @param externalRegData
 	 * @return
 	 */
-	public URL registerOnServices(ExternalRegistrationData externalRegData) {
-		String applicationName = externalRegData.getNextSeviceToAuthenticateOn();
+	public URL registerOnServices(ExternalRegistrationData externalRegData, String applicationName) {
+		if (applicationName == null)
+			applicationName = externalRegData.getNextSeviceToAuthenticateOn();
 		
 		if (applicationName != null) {
 			applicationName = applicationName.toUpperCase();
@@ -69,18 +70,17 @@ public class RegistrationService {
 				
 				userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
 				
-				return registerOnServices(externalRegData);
+				return registerOnServices(externalRegData, null);
 			}
 			
-			URL callbackUrl = null;
-			try {
-				callbackUrl = new URL(externalRegData.getCallbackUrl());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			return callbackUrl;
 		}
-		return null;
+		URL callbackUrl = null;
+		try {
+			callbackUrl = new URL(externalRegData.getCallbackUrl());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return callbackUrl;
 	}
 
 	public URL registerOnTwitter(Twitter twitter) {

@@ -104,7 +104,7 @@ public class FacebookApp {
 		
 		if (externalRegData != null) {
 			RegistrationService registrationService = new RegistrationService(applicationManager, userManager, loggedUser);
-			URL callbackUrl = registrationService.registerOnServices(externalRegData);
+			URL callbackUrl = registrationService.registerOnServices(externalRegData, null);
 			
 			if (callbackUrl != null)
 				return callbackUrl;

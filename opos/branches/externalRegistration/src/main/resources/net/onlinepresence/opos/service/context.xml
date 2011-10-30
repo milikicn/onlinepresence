@@ -37,6 +37,9 @@
 	class="net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean" 
 	parent="net.onlinepresence.opos.domain.service.AbstractManager" 
 	scope="prototype">
+	<property name="membershipReader">
+		<ref bean="net.onlinepresence.opos.service.crud.impl.ReadCommand"/>
+	</property>
 </bean>
 
 <bean id="net.onlinepresence.opos.domain.service.KeyManager" 

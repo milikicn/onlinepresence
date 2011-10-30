@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.onlinepresence.opos.domain.Membership" table="MEMBERSHIPS">
+	<class name="net.onlinepresence.opos.domain.Membership" table="MEMBERSHIP">
 		<composite-id>
 		 	<key-many-to-one name="application" class="net.onlinepresence.opos.domain.Application" column="APPLICATION"  foreign-key="webAddress"/>
 			<key-many-to-one name="user" class="net.onlinepresence.opos.domain.User" column="USER" foreign-key="username"/>	

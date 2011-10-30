@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.onlinepresence.opos.domain.Application" table="APPLICATIONS">
+	<class name="net.onlinepresence.opos.domain.Application" table="APPLICATION">
 	
 		<id name="webAddress" column="WEBADDRESS" type="string" />
 

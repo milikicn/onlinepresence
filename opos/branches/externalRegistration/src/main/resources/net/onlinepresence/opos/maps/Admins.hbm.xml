@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="net.onlinepresence.opos.domain">
-	<class name="Administrator" table="ADMINS">
+	<class name="Administrator" table="ADMIN">
 		<id name="username" column="USERNAME" type="string" />
 		<property name="password"/>
 

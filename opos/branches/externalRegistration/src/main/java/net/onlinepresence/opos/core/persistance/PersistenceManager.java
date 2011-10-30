@@ -107,6 +107,9 @@ public interface PersistenceManager<ManagerType> {
 	
 	@SuppressWarnings("rawtypes")
 	public List runQuery(String queryString);
+	
+	@SuppressWarnings("rawtypes")
+	public List runSQLQuery(String queryString);
 
 //	@SuppressWarnings("rawtypes")
 //	List getEagerMemberships(String query);
