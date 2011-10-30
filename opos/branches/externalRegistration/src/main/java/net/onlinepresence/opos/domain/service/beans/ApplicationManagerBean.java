@@ -70,7 +70,7 @@ public class ApplicationManagerBean
 	public List<Membership> getAllApplicationMemberships(String appName) {
 		return (List<Membership>) membershipReader.executeQuery(
 				"select * " +
-				"from MEMEBERSHIP " +
+				"from MEMBERSHIP " +
 				"where APPLICATION.name='" + appName +"'");
 	}
 
