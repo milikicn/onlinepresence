@@ -69,9 +69,10 @@ public class ApplicationManagerBean
 	@SuppressWarnings("unchecked")
 	public List<Membership> getAllApplicationMemberships(String appName) {
 		return (List<Membership>) membershipReader.executeQuery(
-				"select * " +
-				"from MEMBERSHIP " +
-				"where APPLICATION.name='" + appName +"'");
+				"SELECT * " +
+				"FROM MEMBERSHIP AS MEMB " +
+					"JOIN APPLICATION AS APP ON MEMB.APPLICATION = APP.WEBADDRESS " +
+				"WHERE APP.name='" + appName +"'");
 	}
 
 }
