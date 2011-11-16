@@ -38,7 +38,7 @@
 	<!-- Settings for OPOS app registered on Facebook on Nikola Milikic's account -->
 	<facebook-mediator>
 		<!-- For testing -->
-		<api-secret>18bae6b9bdc18111c8ab6dac516d3ba8</api-secret>
+		<api-secret>22a14965f611c95e064d8aa90c76e671</api-secret>
 		<application-id>174920289252003</application-id>
 		
 		<!-- For real use 
