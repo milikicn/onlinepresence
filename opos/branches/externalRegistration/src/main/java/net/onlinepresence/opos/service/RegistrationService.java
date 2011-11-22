@@ -74,9 +74,16 @@ public class RegistrationService {
 			}
 			
 		}
+		String callbackUrlString = externalRegData.getCallbackUrl();
+		String successParam = "registrationSuccess=true";
 		URL callbackUrl = null;
 		try {
-			callbackUrl = new URL(externalRegData.getCallbackUrl());
+			callbackUrl = new URL(callbackUrlString);
+			if (callbackUrl.getQuery() != null) {
+				callbackUrl = new URL(callbackUrlString+"&"+successParam); 
+			} else {
+				callbackUrl = new URL(callbackUrlString+"?"+successParam); 
+			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
