@@ -21,14 +21,60 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.doap.Project;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * The action of working on a project.
- *
- */
-public interface WorkingOnProject extends Working {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("WorkingOnProject")
+public class WorkingOnProject extends Working {
 
-	Project getProject();
-	void setProject(Project project);
+	private static final long serialVersionUID = -4310932998681221925L;
+	private Project project;
+
+	public WorkingOnProject() {
+		super();
+	}
+	
+	public WorkingOnProject(String uri) {
+		super(uri);
+	}
+	
+	public WorkingOnProject(Project project) {
+		super();
+		setProject(project);
+	}
+	
+	public WorkingOnProject(String uri, Project project) {
+		super(uri);
+		setProject(project);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "project")
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		if(project != null)
+			this.project = project;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof WorkingOnProject))
+			return false;
+
+		WorkingOnProject wop = (WorkingOnProject) (o);
+			
+		return
+			EqualsUtil.areEqual(getProject(), wop.getProject()) &&
+			super.equals(wop);
+	}
 }

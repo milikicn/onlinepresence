@@ -21,14 +21,50 @@
  */
 package net.onlinepresence.jopo.ontmodel.opo;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * The source that can publish Online Presence data.
- *
- */
-public interface SourceOfPublishing extends Resource{
+@Namespace(Constants.OPO_NS)
+@RdfType("SourceOfPublishing")
+public class SourceOfPublishing extends Resource {
 
-	void setName(String sourceName);
-	String getName();
+	private static final long serialVersionUID = -1775769547311907246L;
+	private String name;
+
+	public SourceOfPublishing() {
+		super();
+	}
+	
+	public SourceOfPublishing(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_NS + "sourceName")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String sourceName) {
+		if(sourceName != null)
+			this.name = sourceName;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof SourceOfPublishing))
+			return false;
+			
+		SourceOfPublishing sourceOfPub = (SourceOfPublishing) (o);
+	
+		return
+			EqualsUtil.areEqual(getName(), sourceOfPub.getName()) &&
+			super.equals(sourceOfPub);
+	}
 }

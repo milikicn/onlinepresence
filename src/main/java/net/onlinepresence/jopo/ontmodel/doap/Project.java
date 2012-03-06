@@ -22,22 +22,96 @@
 package net.onlinepresence.jopo.ontmodel.doap;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-public interface Project extends Resource {
+@Namespace(Constants.DOAP_NS)
+@RdfType("Project")
+public class Project extends Resource {
+
+	private static final long serialVersionUID = -8108929907073854002L;
+	private URI homepage;
+	private String name;
+	private String projectCreationDate;
+	private String shortDescription;
 	
-	URI getHomepage();
-	void setHomepage(URI homepage);
-	void setHomepage(String homepage);
+	public Project() {
+		super();
+	}
 
-	String getName();
-	void setName(String name);
+	public Project(String uri) {
+		super(uri);
+	}
 
-	String getProjectCreationDate();
-	void setProjectCreationDate(String dateCreated);
+	@RdfProperty(Constants.DOAP_NS + "homepage")
+	public URI getHomepage() {
+		return homepage;
+	}
 
-	String getShortDescription();
-	void setShortDescription(String shortDescription);
+	public void setHomepage(URI homepage) {
+		if(homepage != null)
+			this.homepage = homepage;
+	}
 	
+	public void setHomepage(String homepage) {
+		if(homepage != null)
+			try {
+				setHomepage(new URI(homepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	@RdfProperty(Constants.DOAP_NS + "name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		if(name != null)
+			this.name = name;
+	}
+
+	@RdfProperty(Constants.DOAP_NS + "created")
+	public String getProjectCreationDate() {
+		return projectCreationDate;
+	}
+
+	public void setProjectCreationDate(String projectCreationDate) {
+		if(projectCreationDate != null)
+			this.projectCreationDate = projectCreationDate;
+	}
+
+	@RdfProperty(Constants.DOAP_NS + "shortdesc")
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		if(shortDescription != null)
+			this.shortDescription = shortDescription;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Project))
+			return false;
+		
+		Project project = (Project)(o);
+			
+		return
+			EqualsUtil.areEqual(getHomepage(), project.getHomepage()) &&
+			EqualsUtil.areEqual(getName(), project.getName()) &&
+			EqualsUtil.areEqual(getProjectCreationDate(), project.getProjectCreationDate()) &&
+			EqualsUtil.areEqual(getShortDescription(), project.getShortDescription());
+	}
 }

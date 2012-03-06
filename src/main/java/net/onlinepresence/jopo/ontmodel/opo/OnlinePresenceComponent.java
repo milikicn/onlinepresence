@@ -21,14 +21,50 @@
  */
 package net.onlinepresence.jopo.ontmodel.opo;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresenceComponent;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * A component of OnlinePresence used to represent one of its dimensions.
- *
- */
-public interface OnlinePresenceComponent extends Resource{
+@Namespace(Constants.OPO_NS)
+@RdfType("OnlinePresenceComponent")
+public class OnlinePresenceComponent extends Resource {
 
-	void setComponent(OnlinePresence component);
-	OnlinePresence getComponent();
+	private static final long serialVersionUID = -4683853452711452930L;
+	private OnlinePresence component;
+
+	public OnlinePresenceComponent() {
+		super();
+	}
+	
+	public OnlinePresenceComponent(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_NS + "isPresenceComponentOf")
+	public OnlinePresence getComponent() {
+		return component;
+	}
+
+	public void setComponent(OnlinePresence component) {
+		if(component != null)
+			this.component = component;
+	}	
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof OnlinePresenceComponent))
+			return false;
+		
+		OnlinePresenceComponent opComp = (OnlinePresenceComponent) (o);
+		
+		return
+			EqualsUtil.areEqual(getComponent(), opComp.getComponent());
+	}
 }

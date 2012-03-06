@@ -23,6 +23,7 @@ package net.onlinepresence.jopo.ontmodel.purl;
 
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 
-public interface Event extends Resource{
+public class Event extends Resource{
 
+	public Event() { }
 }

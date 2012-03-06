@@ -21,14 +21,52 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.foaf.Agent;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * An action of voice talking with somebody.
- *
- */
-public interface HavingVoiceConversation extends HavingConversation {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("HavingVoiceConversation")
+public class HavingVoiceConversation extends HavingConversation {
 
-	Agent getSpeaker();
-	void setSpeaker(Agent speaker);
+	private static final long serialVersionUID = 4759904896863266051L;
+	private Agent speaker;
+
+	public HavingVoiceConversation() {
+		super();
+	}
+	
+	public HavingVoiceConversation(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "speaker")
+	public Agent getSpeaker() {
+		return speaker;
+	}
+
+	public void setSpeaker(Agent speaker) {
+		if(speaker != null){
+			speaker.setUri(speaker.getUri().toString().replaceFirst("Agent", "Speaker"));
+			this.speaker = speaker;
+		}
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof HavingVoiceConversation))
+			return false;
+
+		HavingVoiceConversation hvc = (HavingVoiceConversation) (o);
+			
+		return
+			EqualsUtil.areEqual(getSpeaker(), hvc.getSpeaker()) &&
+			super.equals(hvc);
+	}
 }

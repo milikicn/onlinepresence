@@ -21,6 +21,34 @@
  */
 package net.onlinepresence.jopo.ontmodel.foaf;
 
-public interface Group extends Thing{
+import net.onlinepresence.jopo.util.Constants;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 
+@Namespace(Constants.FOAF_NS)
+@RdfType("Group")
+public class Group extends Thing {
+
+	private static final long serialVersionUID = -6661802367888286003L;
+
+	public Group() {
+		super();
+	}
+
+	public Group(String uri) {
+		super(uri);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Group))
+			return false;
+		
+		Group group = (Group) o;
+		
+		return super.equals(group);
+	}
 }

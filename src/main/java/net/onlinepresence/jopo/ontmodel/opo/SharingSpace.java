@@ -22,43 +22,171 @@
 package net.onlinepresence.jopo.ontmodel.opo;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
-import net.onlinepresence.jopo.ontmodel.foaf.Group;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
+import net.onlinepresence.jopo.ontmodel.foaf.Group;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.purl.Event;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * A group of people belonging to a space for sharing online psresence data - 
- * the intended audience of data.
- *
- */
-public interface SharingSpace extends Group{
+@Namespace(Constants.OPO_NS)
+@RdfType("SharingSpace")
+public class SharingSpace extends Group {
 
-	void setEvent(Event event);
-	Event getEvent();
-	
-	void setNearLocation(SpatialThing base);
-	SpatialThing getNearLocation();
-	
-	void setFriend(Person friend);
-	Person getFriend();
-	
-	void setCommonInterest(URI commonInterest);
-	void setCommonInterest(String commonInterest);
-	URI getCommonInterest();
-	
-	void setCurrentLocation(SpatialThing base);
-	SpatialThing getCurrentLocation();
-	
-	void setFamily(Person family);
-	Person getFamily();
-	
-	void setSchoolHomepage(URI schoolHomepage);
-	void setSchoolHomepage(String schoolHomepage);
-	URI getSchoolHomepage();
-	
-	void setWorkplaceHomepage(URI workplaceHomepage);
-	void setWorkplaceHomepage(String workplaceHomepage);
-	URI getWorkplaceHomepage();
+	private static final long serialVersionUID = 1445987656012017340L;
+	private Event event;
+	private SpatialThing nearLocation;
+	private SpatialThing currentLocation;
+	private Person friend;
+	private Person family;
+	private URI commonInterest;
+	private URI schoolHomepage;
+	private URI workplaceHomepage;
+
+	public SharingSpace() {
+		super();
+	}
+
+	public SharingSpace(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty(Constants.OPO_NS + "attendedOrganisedEvent")
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		if (event != null)
+			this.event = event;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "basedNear")
+	public SpatialThing getNearLocation() {
+		return nearLocation;
+	}
+
+	public void setNearLocation(SpatialThing nearLocation) {
+		if (nearLocation != null)
+			this.nearLocation = nearLocation;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "currentlyIn")
+	public SpatialThing getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(SpatialThing currentLocation) {
+		if (currentLocation != null)
+			this.currentLocation = currentLocation;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "closestFriendsOf")
+	public Person getFriend() {
+		return friend;
+	}
+
+	public void setFriend(Person friend) {
+		if (friend != null)
+			this.friend = friend;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "familyOf")
+	public Person getFamily() {
+		return family;
+	}
+
+	public void setFamily(Person family) {
+		if (family != null)
+			this.family = family;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "commonInterest")
+	public URI getCommonInterest() {
+		return commonInterest;
+	}
+
+	public void setCommonInterest(URI commonInterest) {
+		if (commonInterest != null)
+			this.commonInterest = commonInterest;
+	}
+
+	public void setCommonInterest(String commonInterest) {
+		if (commonInterest != null)
+			try {
+				setCommonInterest(new URI(commonInterest));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@RdfProperty(Constants.OPO_NS + "schoolHomepage")
+	public URI getSchoolHomepage() {
+		return schoolHomepage;
+	}
+
+	public void setSchoolHomepage(URI schoolHomepage) {
+		if (schoolHomepage != null)
+			this.schoolHomepage = schoolHomepage;
+	}
+
+	public void setSchoolHomepage(String schoolHomepage) {
+		if (schoolHomepage != null)
+			try {
+				setSchoolHomepage(new URI(schoolHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@RdfProperty(Constants.OPO_NS + "workplaceHomepage")
+	public URI getWorkplaceHomepage() {
+		return workplaceHomepage;
+	}
+
+	public void setWorkplaceHomepage(URI workplaceHomepage) {
+		if (workplaceHomepage != null)
+			this.workplaceHomepage = workplaceHomepage;
+	}
+
+	public void setWorkplaceHomepage(String workplaceHomepage) {
+		if (workplaceHomepage != null)
+			try {
+				setWorkplaceHomepage(new URI(workplaceHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+
+		if (!(o instanceof SharingSpace))
+			return false;
+
+		SharingSpace sharSpace = (SharingSpace) (o);
+
+		return EqualsUtil.areEqual(getEvent(), sharSpace.getEvent())
+				&& EqualsUtil.areEqual(getNearLocation(),
+						sharSpace.getNearLocation())
+				&& EqualsUtil.areEqual(getCurrentLocation(),
+						sharSpace.getCurrentLocation())
+				&& EqualsUtil.areEqual(getFriend(), sharSpace.getFriend())
+				&& EqualsUtil.areEqual(getFamily(), sharSpace.getFamily())
+				&& EqualsUtil.areEqual(getCommonInterest(),
+						sharSpace.getCommonInterest())
+				&& EqualsUtil.areEqual(getSchoolHomepage(),
+						sharSpace.getSchoolHomepage())
+				&& EqualsUtil.areEqual(getWorkplaceHomepage(),
+						sharSpace.getWorkplaceHomepage())
+				&& super.equals(sharSpace);
+
+	}
 }

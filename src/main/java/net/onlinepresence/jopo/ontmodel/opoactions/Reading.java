@@ -21,15 +21,51 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.opo.Action;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * An action of reading (e.g., reading a book).
- *
- * @param <T>
- */
-public interface Reading<T> extends Action {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("Reading")
+public class Reading<T> extends Action {
 
-	T getReadingMaterial();
-	void setReadingMaterial(T readingMaterial);
+	private static final long serialVersionUID = -5314424168742022037L;
+	private T readingMaterial;
+
+	public Reading() {
+		super();
+	}
+	
+	public Reading(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "readingMaterial")
+	public T getReadingMaterial() {
+		return readingMaterial;
+	}
+
+	public void setReadingMaterial(T readingMaterial) {
+		if(readingMaterial != null)
+			this.readingMaterial = readingMaterial;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Reading))
+			return false;
+
+		Reading read = (Reading) (o);
+			
+		return
+			EqualsUtil.areEqual(getReadingMaterial(), read.getReadingMaterial()) &&
+			super.equals(read);
+	}
 }

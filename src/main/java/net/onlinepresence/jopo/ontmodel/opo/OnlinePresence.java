@@ -22,65 +22,256 @@
 package net.onlinepresence.jopo.ontmodel.opo;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
 import net.onlinepresence.jopo.ontmodel.foaf.Agent;
 import net.onlinepresence.jopo.ontmodel.foaf.Image;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
+import net.onlinepresence.jopo.ontmodel.opo.Action;
+import net.onlinepresence.jopo.ontmodel.opo.OnlinePresenceComponent;
+import net.onlinepresence.jopo.ontmodel.opo.SharingSpace;
+import net.onlinepresence.jopo.ontmodel.opo.SourceOfPublishing;
 import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.Findability;
 import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.Notifiability;
 import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.OnlineStatus;
 import net.onlinepresence.jopo.ontmodel.sioc.Item;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
+import net.onlinepresence.jopo.util.Util;
 
-/**
- * OnlinePresence, described in termes of various OnlinePresenceComponents to 
- * represent the attitude of an Agent towards interaction with other Agents and 
- * Applications.
- *
- */
-public interface OnlinePresence extends Resource{
+@Namespace(Constants.OPO_NS)
+@RdfType("OnlinePresence")
+public class OnlinePresence extends Resource {
 
-	void setAgent(Agent agent);
-	Agent getAgent();
+	private static final long serialVersionUID = -377623284014131162L;
+	public Action action;
+	public Agent agent;
+	public Image avatar;
+	public String duration;
+	public SharingSpace intendedFor;
+	public SpatialThing location;
+	public Collection<OnlinePresenceComponent> presenceComponents = new LinkedList<OnlinePresenceComponent>();
+	public SourceOfPublishing source;
+	public String startTime;
+	public Item statusMessage;
+	public UserAccount userAccount;
 	
-	void setAvatar(Image avatar);
-	Image getAvatar();
+	public OnlinePresence() {
+		super();
+		setStartTime(Util.getTime());
+	}
 	
-	void setAction(Action action);
-	Action getAction();
+	public OnlinePresence(String uri) {
+		super(uri);
+		setStartTime(Util.getTime());
+	}
 	
-	void setLocation(SpatialThing location);
-	SpatialThing getLocation();
+	@RdfProperty(Constants.OPO_NS + "currentAction")
+	public Action getAction() {
+		return action;
+	}
 	
-	void setStatusMessage(Item statusMessage);
-	Item getStatusMessage();
+	public void setAction(Action action) {
+		if(action != null)
+			this.action = action;
+	}
 	
-	void setUserAccount(UserAccount user);
-	UserAccount getUserAccount();
-	
-	void setPresenceComponents(Collection<OnlinePresenceComponent> presenceComponents);
-	Collection<OnlinePresenceComponent> getPresenceComponents();
-	void addPresenceComponent(OnlinePresenceComponent presenceComponent);
-	
-	void setIntendedFor(SharingSpace intendedFor);
-	SharingSpace getIntendedFor();
-	
-	void setSource(SourceOfPublishing source);
-	SourceOfPublishing getSource();
-	
-	void setDuration(String duration);
-	String getDuration();
-	
-	void setStartTime(String startTime);
-	String getStartTime();
-	
-	Findability retrieveFindability();
-	void setFindability(Findability findability);
-	
-	Notifiability retrieveNotifiability();
-	void setNotifiability(Notifiability notifiability);
+	@RdfProperty(Constants.OPO_NS + "declaredBy")
+	public Agent getAgent() {
+		return agent;
+	}
 
-	OnlineStatus retrieveOnlineStatus();
-	void setOnlineStatus(OnlineStatus onlineStatus);
+	public void setAgent(Agent agent) {
+		if(agent != null)
+			this.agent = agent;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "avatar")
+	public Image getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Image avatar) {
+		if(avatar != null)
+			this.avatar = avatar;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "duration")
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		if(duration != null)
+			this.duration = duration;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "intendedFor")
+	public SharingSpace getIntendedFor() {
+		return intendedFor;
+	}
+
+	public void setIntendedFor(SharingSpace intendedFor) {
+		if(intendedFor != null)
+			this.intendedFor = intendedFor;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "currentLocation")
+	public SpatialThing getLocation() {
+		return location;
+	}
+
+	public void setLocation(SpatialThing location) {
+		if(location != null)
+			this.location = location;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "hasPresenceComponent")
+	public Collection<OnlinePresenceComponent> getPresenceComponents() {
+		return presenceComponents;
+	}
+
+	public void setPresenceComponents(
+			Collection<OnlinePresenceComponent> presenceComponents) {
+		if(presenceComponents != null)
+			this.presenceComponents = presenceComponents;
+	}
+
+	public void addPresenceComponent(
+			OnlinePresenceComponent presenceComponent) {
+		
+		if(presenceComponent != null){
+			OnlinePresenceComponent pc = findPresenceComponent(presenceComponent.getClass());
+			
+			if(pc != null)
+				getPresenceComponents().remove(pc);
+			
+			getPresenceComponents().add(presenceComponent);
+		}
+	}
+
+	@RdfProperty(Constants.OPO_NS + "publishedFrom")
+	public SourceOfPublishing getSource() {
+		return source;
+	}
+
+	public void setSource(SourceOfPublishing source) {
+		if(source != null)
+			this.source = source;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "startTime")
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		if(startTime != null)
+			this.startTime = startTime;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "customMessage")
+	public Item getStatusMessage() {
+		return statusMessage;
+	}
+
+	public void setStatusMessage(Item statusMessage) {
+		if(statusMessage != null)
+			this.statusMessage = statusMessage;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "declaredOn")
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(UserAccount user) {
+		if(user != null)
+			this.userAccount = user;
+	}
+	
+	public Findability retrieveFindability() {
+		OnlinePresenceComponent find = findPresenceComponent(Findability.class);
+		if(find != null)
+			return (Findability) find;
+		
+		return null;
+	}
+
+	public void setFindability(Findability findability){
+		addPresenceComponent(findability);
+	}
+	
+	public Notifiability retrieveNotifiability() {
+		OnlinePresenceComponent not = findPresenceComponent(Notifiability.class);
+		if(not != null)
+			return (Notifiability) not;
+		
+		return null;
+	}
+
+	public void setNotifiability(Notifiability notifiability){
+		addPresenceComponent(notifiability);
+	}
+
+	public OnlineStatus retrieveOnlineStatus() {
+		OnlinePresenceComponent onlineStatus = findPresenceComponent(OnlineStatus.class);
+		if(onlineStatus != null)
+			return (OnlineStatus) onlineStatus;
+		
+		return null;
+	}
+
+	public void setOnlineStatus(OnlineStatus onlineStatus){
+		addPresenceComponent(onlineStatus);
+	}
+	
+	private OnlinePresenceComponent findPresenceComponent(
+			Class<? extends OnlinePresenceComponent> clazz) {
+		
+		Iterator<OnlinePresenceComponent> iterator = presenceComponents.iterator();
+		
+		while (iterator.hasNext()) {
+			OnlinePresenceComponent onlinePresenceComponent = (OnlinePresenceComponent) iterator.next();
+			
+			try {
+				// check if it is a subclass
+				onlinePresenceComponent.getClass().asSubclass(clazz);
+				return onlinePresenceComponent;
+			} catch (Exception e) {
+				
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof OnlinePresence))
+			return false;
+
+		OnlinePresence onlinePresence = (OnlinePresence) (o);
+			
+		return
+			EqualsUtil.areEqual(getAction(), onlinePresence.getAction()) &&
+			EqualsUtil.areEqual(getAgent(), onlinePresence.getAgent()) &&
+			EqualsUtil.areEqual(getAvatar(), onlinePresence.getAvatar()) &&
+			EqualsUtil.areEqual(getDuration(), onlinePresence.getDuration()) &&
+			EqualsUtil.areEqual(getIntendedFor(), onlinePresence.getIntendedFor()) &&
+			EqualsUtil.areEqual(getLocation(), onlinePresence.getLocation()) &&
+			EqualsUtil.areEqual(getPresenceComponents(), onlinePresence.getPresenceComponents()) &&
+			EqualsUtil.areEqual(getSource(), onlinePresence.getSource()) &&
+			EqualsUtil.areEqual(getStatusMessage(), onlinePresence.getStatusMessage()) &&
+			EqualsUtil.areEqual(getUserAccount(), onlinePresence.getUserAccount());		
+	}
 }
