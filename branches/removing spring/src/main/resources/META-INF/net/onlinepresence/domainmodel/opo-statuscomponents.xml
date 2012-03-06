@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.statuscomponents.Activity"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ActivityBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.statuscomponents.Contactability"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.ContactabilityBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.statuscomponents.Disturbability"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.DisturbabilityBean"
+		scope="prototype" >
+	</bean>
+	
+	<bean id="net.onlinepresence.jopo.ontmodel.opo.statuscomponents.Visibility"
+		class="net.onlinepresence.jopo.ontmodel.opo.beans.statuscomponents.VisibilityBean"
+		scope="prototype" >
+	</bean>
+	
+</beans>
