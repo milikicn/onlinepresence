@@ -21,6 +21,34 @@
  */
 package net.onlinepresence.jopo.ontmodel.foaf;
 
-public interface Image extends Thing{
+import net.onlinepresence.jopo.util.Constants;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 
+@Namespace(Constants.FOAF_NS)
+@RdfType("Image")
+public class Image extends Thing {
+
+	private static final long serialVersionUID = -6825031811259519554L;
+
+	public Image() {
+		super();
+	}
+
+	public Image(String uri) {
+		super(uri);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Image))
+			return false;
+
+		Image image = (Image) o;
+		
+		return super.equals(image);
+	}
 }

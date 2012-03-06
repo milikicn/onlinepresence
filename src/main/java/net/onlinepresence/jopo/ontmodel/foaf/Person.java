@@ -21,8 +21,49 @@
  */
 package net.onlinepresence.jopo.ontmodel.foaf;
 
-public interface Person extends Agent{
-	
-	Image getImg();
-	void setImg(Image img);
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+@Namespace(Constants.FOAF_NS)
+@RdfType("Person")
+public class Person extends Agent {
+
+	private static final long serialVersionUID = 1862465439415539L;
+	private Image img;
+
+	public Person() {
+		super();
+	}
+
+	public Person(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "img")
+	public Image getImg() {
+		return img;
+	}
+
+	public void setImg(Image img) {
+		if (img != null)
+			this.img = img;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Person))
+			return false;
+
+		Person per = (Person) (o);
+			
+		return 
+			EqualsUtil.areEqual(getImg(), per.getImg()) &&
+			super.equals(per);
+	}
 }

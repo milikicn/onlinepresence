@@ -21,14 +21,64 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.foaf.Agent;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * An action of chatting (exchanging instant messages) with somebody.
- *
- */
-public interface Chatting extends HavingConversation {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("Chatting")
+public class Chatting extends HavingConversation {
 
-	Agent getChatBuddy();
-	void setChatBuddy(Agent chatBuddy);
+	private static final long serialVersionUID = 1008649956975198556L;
+	private Agent chatBuddy;
+
+	public Chatting() {
+		super();
+	}
+	
+	public Chatting(String uri) {
+		super(uri);
+	}
+	
+	@Deprecated
+	public Chatting(Agent chatBuddy) {
+		this();
+		setChatBuddy(chatBuddy);
+	}
+	
+	@Deprecated
+	public Chatting(String uri, Agent chatBuddy) {
+		this(uri);
+		setChatBuddy(chatBuddy);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "chatBuddy")
+	public Agent getChatBuddy() {
+		return chatBuddy;
+	}
+
+	public void setChatBuddy(Agent chatBuddy) {
+		if(chatBuddy != null){
+			chatBuddy.setUri(chatBuddy.getUri().toString().replaceFirst("Agent", "ChatBuddy"));
+			this.chatBuddy = chatBuddy;
+		}
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Chatting))
+			return  false;
+			
+		Chatting chat = (Chatting) (o);
+			
+		return
+			EqualsUtil.areEqual(getChatBuddy(), chat.getChatBuddy()) &&
+			super.equals(chat);
+	}
 }

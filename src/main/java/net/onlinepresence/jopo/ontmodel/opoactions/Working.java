@@ -21,12 +21,35 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.opo.Action;
+import net.onlinepresence.jopo.util.Constants;
 
-/**
- * The action of working on something (e.g., a project, a task, etc.).
- *
- */
-public interface Working extends Action {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("Working")
+public class Working extends Action {
 
+	private static final long serialVersionUID = 5044220142463486049L;
+
+	public Working() {
+		super();
+	}
+	
+	public Working(String uri) {
+		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Working))
+			return false;
+		
+		Working work = (Working) o;
+
+		return super.equals(work);
+	}
 }

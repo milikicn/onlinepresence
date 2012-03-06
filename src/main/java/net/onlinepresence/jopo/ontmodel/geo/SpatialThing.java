@@ -21,13 +21,61 @@
  */
 package net.onlinepresence.jopo.ontmodel.geo;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-public interface SpatialThing extends Resource{
+@Namespace(Constants.WSG84_POS_NS)
+@RdfType("SpatialThing")
+public class SpatialThing extends Resource {
 
-	String getLatitude();
-	void setLatitude(String latitude);
+	private static final long serialVersionUID = -8705685396142943896L;
+	private String latitude;
+	private String longitude;
+
+	public SpatialThing() {
+		super();
+	}
+
+	public SpatialThing(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty(Constants.WSG84_POS_NS + "lat")
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		if (latitude != null)
+			this.latitude = latitude;
+	}
+
+	@RdfProperty(Constants.WSG84_POS_NS + "long")
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		if (longitude != null)
+			this.longitude = longitude;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof SpatialThing))
+			return false;
+
+		SpatialThing st = (SpatialThing) (o);
 	
-	String getLongitude();
-	void setLongitude(String longitude);
+		return 
+			EqualsUtil.areEqual(getLatitude(), st.getLatitude()) &&
+			EqualsUtil.areEqual(getLongitude(), st.getLongitude());
+	}
 }

@@ -22,14 +22,50 @@
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
 import net.onlinepresence.jopo.ontmodel.opo.Action;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
-/**
- * An action of watching something (e.g., a movie).
- *
- * @param <T>
- */
-public interface Watching<T> extends Action {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("Watching")
+public class Watching<T> extends Action {
 
-	T getWatching();
-	void setWatching(T watching);
+	private static final long serialVersionUID = -5896058348004113174L;
+	private T watching;
+
+	public Watching() {
+		super();
+	}
+	
+	public Watching(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "watching")
+	public T getWatching() {
+		return watching;
+	}
+
+	public void setWatching(T watching) {
+		if(watching != null)
+			this.watching = watching;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Watching))
+			return false;
+
+		Watching watc = (Watching) (o);
+			
+		return
+			EqualsUtil.areEqual(getWatching(), watc.getWatching()) &&
+			super.equals(watc);
+	}
 }

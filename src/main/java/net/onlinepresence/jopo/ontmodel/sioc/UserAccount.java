@@ -22,15 +22,73 @@
 package net.onlinepresence.jopo.ontmodel.sioc;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
 import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-public interface UserAccount extends Resource{
+@Namespace(Constants.SIOC_NS)
+@RdfType("UserAccount")
+public class UserAccount extends Resource {
 
-	URI getAccountServiceHomepage();
-	void setAccountServiceHomepage(URI accountServiceHomepage);
-	void setAccountServiceHomepage(String accountServiceHomepage);
+	private static final long serialVersionUID = 5001849648664311372L;
+	private String accountName;
+	private URI accountServiceHomepage;
 	
-	String getAccountName();
-	void setAccountName(String accountName);
+	public UserAccount() {
+		super();
+	}
+
+	public UserAccount(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "accountName")
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		if(accountName != null)
+			this.accountName = accountName;
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "accountServiceHomepage")
+	public URI getAccountServiceHomepage() {
+		return accountServiceHomepage;
+	}
+
+	public void setAccountServiceHomepage(URI accountServiceHomepage) {
+		if(accountServiceHomepage != null)
+			this.accountServiceHomepage = accountServiceHomepage;
+	}
+	
+	public void setAccountServiceHomepage(String accountServiceHomepage) {
+		if(accountServiceHomepage != null)
+			try {
+				setAccountServiceHomepage(new URI(accountServiceHomepage));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof UserAccount))
+			return false;
+
+		UserAccount userAccount = (UserAccount) (o);
+			
+		return 
+			EqualsUtil.areEqual(getAccountName(), userAccount.getAccountName()) &&
+			EqualsUtil.areEqual(getAccountServiceHomepage(), userAccount.getAccountServiceHomepage());
+	}
 }

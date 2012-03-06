@@ -21,12 +21,35 @@
  */
 package net.onlinepresence.jopo.ontmodel.opo;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.sioc.Item;
+import net.onlinepresence.jopo.util.Constants;
 
-/**
- * A status message that cannot be commented on.
- *
- */
-public interface StatusMessage extends Item {
+@Namespace(Constants.OPO_NS)
+@RdfType("StatusMessage")
+public class StatusMessage extends Item {
 
+	private static final long serialVersionUID = 3619444485077014132L;
+
+	public StatusMessage() {
+		super();
+	}
+	
+	public StatusMessage(String uri) {
+		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof StatusMessage))
+			return false;
+		
+		StatusMessage status = (StatusMessage) o;
+		
+		return super.equals(status);
+	}
 }

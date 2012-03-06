@@ -22,14 +22,50 @@
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
 import net.onlinepresence.jopo.ontmodel.opo.Action;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 
-/**
- * The action of listening to music.
- *
- * @param <T>
- */
-public interface Listening<T> extends Action {
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("Listening")
+public class Listening<T> extends Action {
 
-	T getListeningTo();
-	void setListeningTo(T listeningTo);
+	private static final long serialVersionUID = -1119964731771453365L;
+	private T listeningTo;
+
+	public Listening() {
+		super();
+	}
+	
+	public Listening(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_ACTIONS_NS + "listeningTo")
+	public T getListeningTo() {
+		return listeningTo;
+	}
+
+	public void setListeningTo(T listeningTo) {
+		if(listeningTo != null)
+			this.listeningTo = listeningTo;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Listening))
+			return false;
+
+		Listening listen = (Listening) (o);
+			
+		return
+			EqualsUtil.areEqual(getListeningTo(), listen.getListeningTo()) &&
+			super.equals(listen);
+	}
 }

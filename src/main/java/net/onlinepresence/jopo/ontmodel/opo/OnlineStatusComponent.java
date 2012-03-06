@@ -21,15 +21,50 @@
  */
 package net.onlinepresence.jopo.ontmodel.opo;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 import net.onlinepresence.jopo.ontmodel.opo.presencecomponents.OnlineStatus;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-/**
- * The component of the OnlineStatus representing one of its dimensions.
- *
- */
-public interface OnlineStatusComponent extends Resource {
+@Namespace(Constants.OPO_NS)
+@RdfType("OnlineStatusComponent")
+public class OnlineStatusComponent extends Resource {
 
-	void setComponent(OnlineStatus component);
-	OnlineStatus getComponent();
+	private static final long serialVersionUID = 7830921848384682441L;
+	private OnlineStatus component;
+
+	public OnlineStatusComponent() {
+		super();
+	}
+	
+	public OnlineStatusComponent(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.OPO_NS + "isStatusComponentOf")
+	public OnlineStatus getComponent() {
+		return component;
+	}
+
+	public void setComponent(OnlineStatus component) {
+		if(component != null)
+			this.component = component;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof OnlineStatusComponent))
+			return false;
+
+		OnlineStatusComponent osComp = (OnlineStatusComponent) (o);
+			
+		return
+			EqualsUtil.areEqual(getComponent(), osComp.getComponent());
+	}
 }

@@ -21,17 +21,71 @@
  */
 package net.onlinepresence.jopo.ontmodel.general;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.Date;
 
-public interface Resource {
+import net.onlinepresence.jopo.util.Constants;
 
-	URI getUri();
+import thewebsemantic.Id;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+@Namespace(Constants.RDF_NS)
+@RdfType("Resource")
+public class Resource
+implements Serializable{
+
+	private static final long serialVersionUID = -2234520192109835808L;
+	protected URI uri;
 	
-	void setUri(URI uri);
+	/**
+	 * corresponds to the dct:created property
+	 */
+	private Date dateCreated;
 	
-	void setUri(String uri);
+	public Resource() {	}
 	
-	Date getDateCreated();
-	void setDateCreated(Date dateCreated);
+	public Resource(URI uri) {
+		this.uri = uri;
+	}
+	
+	public Resource(String uri) {
+		this.uri = URI.create(uri);
+	}
+	
+	@Id
+	public URI getUri() {
+		return uri;
+	}
+	
+	public void setUri(URI uri){
+		this.uri = uri;
+	}
+	
+	public void setUri(String uri){
+		this.uri = URI.create(uri);
+	}
+	
+	@RdfProperty(Constants.DC_TERMS_NS + "language")
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+	
+	public boolean equals(Object o) {
+		if ( !(o instanceof Resource) )
+			return false;
+		Resource r = (Resource)o;
+		return r.getUri().equals(this.getUri());
+	}
+	
+	public String toString() {
+		return getUri().toString();
+	}
+
 }

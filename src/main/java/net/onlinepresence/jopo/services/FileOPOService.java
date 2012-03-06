@@ -25,7 +25,6 @@ import java.util.Collection;
 
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 import net.onlinepresence.jopo.services.datacentral.FileDataProvider;
-import net.onlinepresence.jopo.services.spring.ResourceFactory;
 
 public class FileOPOService extends DefaultOPOManager {
 	
@@ -34,13 +33,13 @@ public class FileOPOService extends DefaultOPOManager {
 		initialize();
 	}
 	
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T extends Resource> Collection<T> loadAllResources(Class<T> clazz, boolean loadDeep) {
-		
-		ResourceFactory factory = new ResourceFactory();
-
-		return (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
-	}
+//	@Override
+//	@SuppressWarnings("unchecked")
+//	public <T extends Resource> Collection<T> loadAllResources(Class<T> clazz, boolean loadDeep) {
+//		
+//		ResourceFactory factory = new ResourceFactory();
+//
+//		return (Collection<T>) loadAllResources(factory.getBeanImplementationClass(clazz), true);
+//	}
 
 }

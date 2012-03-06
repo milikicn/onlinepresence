@@ -21,10 +21,34 @@
  */
 package net.onlinepresence.jopo.ontmodel.opoactions;
 
-/**
- * An action of having a conversation with somebody.
- *
- */
-public interface HavingConversation extends BeingWith {
+import net.onlinepresence.jopo.util.Constants;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
 
+@Namespace(Constants.OPO_ACTIONS_NS)
+@RdfType("HavingConversation")
+public class HavingConversation extends BeingWith {
+
+	private static final long serialVersionUID = 4958089431080869021L;
+
+	public HavingConversation() {
+		super();
+	}
+	
+	public HavingConversation(String uri) {
+		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof HavingConversation))
+			return false;
+
+		HavingConversation havingCon = (HavingConversation) o;
+		
+		return super.equals(havingCon);
+	}
 }

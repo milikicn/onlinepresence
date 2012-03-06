@@ -22,23 +22,109 @@
 package net.onlinepresence.jopo.ontmodel.foaf;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-public interface Agent extends Thing{
-	
-	String getNick();
-	void setNick(String nick);
+@Namespace(Constants.FOAF_NS)
+@RdfType("Agent")
+public class Agent extends Thing {
 
-	void setOnlinePresence(OnlinePresence onlinePresence);
-	OnlinePresence getOnlinePresence();
+	private static final long serialVersionUID = 4248456427067038592L;
+	private String nick;
+	private OnlinePresence onlinePresence;
+	private URI mbox;
+	private Collection<UserAccount> accounts;
+
+	public Agent() {
+		super();
+		accounts = new ArrayList<UserAccount>();
+	}
+
+	public Agent(String uri) {
+		super(uri);
+		accounts = new ArrayList<UserAccount>();
+	}
+
 	
-	URI getMbox();
-	void setMbox(URI mbox);
+	public String getNick() {
+		return nick;
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "nick")
+	public void setNick(String nick) {
+		if (nick != null)
+			this.nick = nick;
+	}
+
+	@RdfProperty(Constants.OPO_NS + "declaresOnlinePresence")
+	public OnlinePresence getOnlinePresence() {
+		return onlinePresence;
+	}
+
+	public void setOnlinePresence(OnlinePresence onlinePresence) {
+		if (onlinePresence != null)
+			this.onlinePresence = onlinePresence;
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "mbox")
+	public URI getMbox() {
+		return mbox;
+	}
+
+	public void setMbox(URI mbox) {
+		this.mbox = mbox;
+	}
 	
-	Collection<UserAccount> getAccounts();
-	void setAccounts(Collection<UserAccount> accounts);
-	void addAccount(UserAccount account);
+	/**
+	 * @return the accounts
+	 */
+	@RdfProperty(Constants.FOAF_NS + "holdsAccount")
+	public Collection<UserAccount> getAccounts() {
+		return accounts;
+	}
+
+	/**
+	 * @param accounts the accounts to set
+	 */
+	public void setAccounts(Collection<UserAccount> accounts) {
+		if (null != accounts) {
+			this.accounts = accounts;
+		} else {
+			throw new RuntimeException("accounts can not be null.");
+		}
+	}
+	
+	public void addAccount(UserAccount account) {
+		if (account != null) {
+			if (!getAccounts().contains(account)){
+				getAccounts().add(account);
+			}
+		} else
+			throw new RuntimeException("account must not be null.");
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Agent))
+			return false;
+
+		Agent ag = (Agent) (o);
+			
+		return 
+			EqualsUtil.areEqual(getNick(), ag.getNick()) &&
+			EqualsUtil.areEqual(getOnlinePresence(), ag.getOnlinePresence()) &&
+			EqualsUtil.areEqual(getMbox(), ag.getMbox()) &&
+			super.equals(ag);
+	}
 }

@@ -21,12 +21,33 @@
  */
 package net.onlinepresence.jopo.ontmodel.opo;
 
-import net.onlinepresence.jopo.ontmodel.purl.Event;
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfType;
+import net.onlinepresence.jopo.ontmodel.general.Resource;
+import net.onlinepresence.jopo.util.Constants;
 
-/**
- * An action currently performed by the Agent (e.g., listening to music, reading a book).
- *
- */
-public interface Action extends Event{
+@Namespace(Constants.OPO_NS)
+@RdfType("Action")
+public class Action extends Resource {
 
+	private static final long serialVersionUID = -8270286515825418854L;
+
+	public Action() {
+		super();
+	}
+	
+	public Action(String uri) {
+		super(uri);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Action))
+			return false;
+
+		return true;
+	}
 }

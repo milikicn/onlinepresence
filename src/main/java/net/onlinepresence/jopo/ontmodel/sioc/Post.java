@@ -22,13 +22,74 @@
 package net.onlinepresence.jopo.ontmodel.sioc;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
-public interface Post extends Item {
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-	Post getReplyOf();
-	void setReplyOf(Post replyOf);
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
+
+@Namespace(Constants.SIOC_NS)
+@RdfType("Post")
+public class Post extends Item {
+
+	private static final long serialVersionUID = 3408687529954231482L;
+	private Post replyOf;
+	private URI primaryTopicOf;
 	
-	URI getPrimaryTopicOf();
-	void setPrimaryTopicOf(URI primaryTopicOf);
-	void setPrimaryTopicOf(String primaryTopicOf);
+	public Post() {
+		super();
+	}
+
+	public Post(String uri) {
+		super(uri);
+	}
+
+	@RdfProperty(Constants.SIOC_NS + "reply_of")
+	public Post getReplyOf() {
+		return replyOf;
+	}
+
+	public void setReplyOf(Post replyOf) {
+		if(replyOf != null){
+			replyOf.setUri(replyOf.getUri().toString().replaceFirst("Post", "ReplyPost"));
+			this.replyOf = replyOf;
+		}
+	}
+
+	@RdfProperty(Constants.FOAF_NS + "isPrimaryTopicOf")
+	public URI getPrimaryTopicOf() {
+		return primaryTopicOf;
+	}
+
+	public void setPrimaryTopicOf(URI primaryTopicOf) {
+		this.primaryTopicOf = primaryTopicOf;
+	}
+	
+	public void setPrimaryTopicOf(String primaryTopicOf) {
+		if(primaryTopicOf != null)
+			try {
+				setPrimaryTopicOf(new URI(primaryTopicOf));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof Post))
+			return false;
+
+		Post post = (Post) (o);
+		
+		return
+			EqualsUtil.areEqual(getReplyOf(), post.getReplyOf()) &&
+			EqualsUtil.areEqual(getPrimaryTopicOf(), post.getPrimaryTopicOf()) &&
+			super.equals(post);
+	}
 }

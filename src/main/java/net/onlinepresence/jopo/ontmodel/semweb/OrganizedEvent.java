@@ -21,15 +21,61 @@
  */
 package net.onlinepresence.jopo.ontmodel.semweb;
 
+import thewebsemantic.Namespace;
+import thewebsemantic.RdfProperty;
+import thewebsemantic.RdfType;
 import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
+import net.onlinepresence.jopo.util.Constants;
+import net.onlinepresence.jopo.util.EqualsUtil;
 
-public interface OrganizedEvent extends Resource{
+@Namespace(Constants.SWC_NS)
+@RdfType("OrganizedEvent")
+public class OrganizedEvent extends Resource {
 
-	public Person getAttendee();
-	public void setAttendee(Person attendee);
+	private static final long serialVersionUID = 6426836405445334449L;
+	private Person attendee;
+	private SpatialThing location;
+
+	public OrganizedEvent() {
+		super();
+	}
 	
-	public SpatialThing getLocation();
-	public void setLocation(SpatialThing location);
+	public OrganizedEvent(String uri) {
+		super(uri);
+	}
+	
+	@RdfProperty(Constants.SWC_NS + "hasAttendee")
+	public Person getAttendee() {
+		return attendee;
+	}
+
+	public void setAttendee(Person attendee) {
+		this.attendee = attendee;
+	}
+
+	@RdfProperty(Constants.SWC_NS + "hasLocation")
+	public SpatialThing getLocation() {
+		return location;
+	}
+
+	public void setLocation(SpatialThing location) {
+		this.location = location;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o)
+			return true;
+		
+		if (!(o instanceof OrganizedEvent))
+			return false;
+
+		OrganizedEvent orgEvent = (OrganizedEvent) (o);
+			
+		return
+			EqualsUtil.areEqual(getAttendee(), orgEvent.getAttendee()) &&
+			EqualsUtil.areEqual(getLocation(), orgEvent.getLocation());
+	}
 }
