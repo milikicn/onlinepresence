@@ -6,7 +6,7 @@
     <packaging>war</packaging>
     <name>opos Tapestry 5 Application</name>
     
-    <properties>
+    <properties> 
         <tapestry-release-version>5.2.6</tapestry-release-version>
         <spring.version>3.0.6.RELEASE</spring.version>
 		<hibernate.version>4.0.0.CR2</hibernate.version>
