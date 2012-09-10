@@ -10,7 +10,7 @@ import java.util.Set;
 
 import net.onlinepresence.opos.core.spring.AbstractSpringTest;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.service.UserManager;
@@ -56,7 +56,7 @@ public class PersonsBeanTest extends AbstractSpringTest{
 		p.setEmail("testLastName");
 		
 		Application app = new Application();
-		app.setName(ApplicationNames.TWITTER);
+		app.setName(ApplicationName.TWITTER);
 		app.setWebAddress("http://www.twitter.com.test");
 		
 		Membership m = new Membership();

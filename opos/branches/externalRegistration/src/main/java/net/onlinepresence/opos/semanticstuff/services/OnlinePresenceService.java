@@ -225,6 +225,19 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 	 * @return
 	 */
 	public Person getPersonHoldingAccount(String applicationWebAddress, String username) {
+		String userUri = getUriOfUserHoldingAccount(applicationWebAddress, username);
+		
+		if (userUri != null) {
+			try {
+				return loadResourceByURI(Person.class, userUri, false);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	public String getUriOfUserHoldingAccount(String applicationWebAddress, String username) {
 		String queryString = 
 			"PREFIX rdf: <"+Constants.RDF_NS+"> \n" + 
 			"PREFIX sioc: <"+Constants.SIOC_NS+"> \n" + 
@@ -232,23 +245,19 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 			"SELECT DISTINCT ?person \n" + 
 			"WHERE  {\n" +
 				"?person rdf:type foaf:Person ; \n" +
-						"foaf:holdsAccount ?userAccount . \n" + 
+				"foaf:holdsAccount ?userAccount . \n" + 
 				"?userAccount rdf:type sioc:UserAccount ; \n" +
-						"foaf:accountName ?accountName ; \n" +
-						"foaf:accountServiceHomepage <"+applicationWebAddress+"> . \n" +
+				"foaf:accountName ?accountName ; \n" +
+				"foaf:accountServiceHomepage <"+applicationWebAddress+"> . \n" +
 				"FILTER ( ?accountName = \""+username+"\") \n" +
 			"}";
 		
 		Collection<String> userAccountUris = queryService
-			.executeOneVariableSelectSparqlQuery(queryString, "person",
-				getDataModel());
+				.executeOneVariableSelectSparqlQuery(queryString, "person",
+						getDataModel());
 		
 		if (userAccountUris != null && !userAccountUris.isEmpty()){
-			try {
-				return loadResourceByURI(Person.class, userAccountUris.iterator().next(), false);
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
+			return userAccountUris.iterator().next();
 		}
 		return null;
 	}
@@ -370,4 +379,5 @@ public class OnlinePresenceService extends AbstractServiceImpl {
 		
 		return saveResource(onlinePresence, false);
 	}
+
 }

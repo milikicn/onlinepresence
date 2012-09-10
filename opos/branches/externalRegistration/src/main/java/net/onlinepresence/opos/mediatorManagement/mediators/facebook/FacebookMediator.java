@@ -3,7 +3,7 @@ package net.onlinepresence.opos.mediatorManagement.mediators.facebook;
 import org.apache.log4j.Logger;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediatorManagement.mediators.IntervalPullMediator;
@@ -42,7 +42,7 @@ public class FacebookMediator extends IntervalPullMediator {
 	}
 	
 	public String getMediatorName() {
-		return ApplicationNames.FACEBOOK;
+		return ApplicationName.FACEBOOK;
 	}
 
 }

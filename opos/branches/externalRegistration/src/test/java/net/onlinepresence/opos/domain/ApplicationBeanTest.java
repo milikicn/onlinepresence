@@ -5,7 +5,7 @@ import static org.testng.AssertJUnit.assertNull;
 import static org.testng.AssertJUnit.assertSame;
 
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,8 +22,8 @@ public class ApplicationBeanTest {
 	@Test
 	public void testName() {
 		assertNull(applicationUnderTest.getName());
-		applicationUnderTest.setName(ApplicationNames.TWITTER);
-		assertSame(ApplicationNames.TWITTER, applicationUnderTest.getName());
+		applicationUnderTest.setName(ApplicationName.TWITTER);
+		assertSame(ApplicationName.TWITTER, applicationUnderTest.getName());
 	}
 	
 	@Test

@@ -4,7 +4,7 @@ import java.net.URL;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
@@ -71,11 +71,11 @@ public class TwitterApp {
 			e.printStackTrace();
 		}
 		if (accessToken != null) {
-			TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationNames.TWITTER);
+			TwitterMediator twitterMediator = (TwitterMediator) MediatorManager.getInstance().getMediator(ApplicationName.TWITTER);
 
 			Membership memb;
 			try {
-				Application twitterApplication = applicationManager.getApplication(ApplicationNames.TWITTER);
+				Application twitterApplication = applicationManager.getApplication(ApplicationName.TWITTER);
 				memb = new Membership(
 						twitterApplication,
 						loggedUser.getUser(), twitter.getScreenName(), null, true, true,

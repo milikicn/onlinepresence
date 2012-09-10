@@ -8,7 +8,7 @@ import java.util.List;
 import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.User;
@@ -81,9 +81,9 @@ public class FacebookApp {
 		String accessToken = getAccessToken(request.getParameter("code"));
 		
 		if (accessToken != null) {
-			FacebookMediator facebookMediator = (FacebookMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FACEBOOK);
+			FacebookMediator facebookMediator = (FacebookMediator) MediatorManager.getInstance().getMediator(ApplicationName.FACEBOOK);
 
-			Application facebookApplication = applicationManager.getApplication(ApplicationNames.FACEBOOK);
+			Application facebookApplication = applicationManager.getApplication(ApplicationName.FACEBOOK);
 			
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 			String id = facebookClient.fetchObject("me", com.restfb.types.User.class).getId();

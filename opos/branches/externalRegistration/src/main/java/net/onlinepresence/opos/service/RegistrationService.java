@@ -8,7 +8,7 @@ import org.apache.tapestry5.annotations.SessionState;
 import net.onlinepresence.opos.config.Permission;
 import net.onlinepresence.opos.config.Settings;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
@@ -54,14 +54,14 @@ public class RegistrationService {
 		if (applicationName != null) {
 			applicationName = applicationName.toUpperCase();
 			
-			if (applicationName.equals(ApplicationNames.TWITTER)) {
+			if (applicationName.equals(ApplicationName.TWITTER)) {
 				if (twitter == null)
 					twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
 				return registerOnTwitter(twitter);
-			} else if (applicationName.equals(ApplicationNames.FACEBOOK)) {
+			} else if (applicationName.equals(ApplicationName.FACEBOOK)) {
 				return registerOnFacebook();
-			} else if (applicationName.equals(ApplicationNames.MOODLE)) {
-				Application moodleApp = applicationManager.getApplication(ApplicationNames.MOODLE);
+			} else if (applicationName.equals(ApplicationName.MOODLE)) {
+				Application moodleApp = applicationManager.getApplication(ApplicationName.MOODLE);
 				
 				Membership memb = new Membership(
 						moodleApp,

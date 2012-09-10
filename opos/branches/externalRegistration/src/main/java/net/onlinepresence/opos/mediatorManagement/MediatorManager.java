@@ -1,24 +1,25 @@
 package net.onlinepresence.opos.mediatorManagement;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
+import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediatorManagement.mediators.Mediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.facebook.FacebookMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.foursquare.FoursquareMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.spark.SparkMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.twitter.TwitterMediator;
-import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
+
+import org.apache.log4j.Logger;
 
 public class MediatorManager {
 	private Logger logger = Logger.getLogger(MediatorManager.class);
@@ -61,35 +62,44 @@ public class MediatorManager {
 		SparkMediator spark = new SparkMediator();
 		mediators.add(spark);
 		
+		// TWITTER mediator
 		logger.debug("Initializing TwitterMediator.");
-		List<Membership> twitterMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.TWITTER);
+		List<Membership> twitterMemberships = applicationManager.getAllApplicationMemberships(ApplicationName.TWITTER);
 		try {
-			TwitterMediator.getInstance().init(twitterMemberships);
+			if (twitterMemberships != null && !twitterMemberships.isEmpty()) {
+				TwitterMediator.getInstance().init(twitterMemberships);
+			}
 		} catch (OPOSException e) {
 			logger.error(e.getMessage());
 		}
 		mediators.add(TwitterMediator.getInstance());
 		
+		// FACEBOOK mediator
 		logger.debug("Initializing FacebookMediator.");
-		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FACEBOOK);
+		List<Membership> facebookMemberships = applicationManager.getAllApplicationMemberships(ApplicationName.FACEBOOK);
 		try {
-			FacebookMediator.getInstance().init(facebookMemberships);
+			if (facebookMemberships != null && !facebookMemberships.isEmpty()) {
+				FacebookMediator.getInstance().init(facebookMemberships);
+			}
 		} catch (OPOSException e) {
 			logger.error(e.getMessage());
 		}
 		mediators.add(FacebookMediator.getInstance());
 		
+		// FOURSQUARE mediator
 		logger.debug("Initializing FoursquareMediator.");
-		List<Membership> foursquareMemberships = applicationManager.getAllApplicationMemberships(ApplicationNames.FOURSQUARE);
+		List<Membership> foursquareMemberships = applicationManager.getAllApplicationMemberships(ApplicationName.FOURSQUARE);
 		try {
-			FoursquareMediator.getInstance().init(foursquareMemberships);
+			if (foursquareMemberships != null && !foursquareMemberships.isEmpty()) {
+				FoursquareMediator.getInstance().init(foursquareMemberships);
+			}
 		} catch (OPOSException e) {
 			logger.error(e.getMessage());
 		}
 		mediators.add(FoursquareMediator.getInstance());
 	}
 
-	// reimplementirati
+	// TODO: to revise
 	public void propagateOnlinePresence(OnlinePresence onlinePresence){
 		//storing OP into the repository
 		try {
@@ -99,19 +109,19 @@ public class MediatorManager {
 		}
 		
 		String username = onlinePresence.getUserAccount().getAccountName();
-		String app = onlinePresence.getUserAccount().getAccountServiceHomepage().toString();
+		String appHomepage = onlinePresence.getUserAccount().getAccountServiceHomepage().toString();
 		
 		// memberships should be refreshed if a new one is added in the mean time
 		List<Membership> list = personManager.getAllMemberships(username);
 		
 		for (Membership membership : list) {
-			if(membership.getApplication().getWebAddress().equals(app))
+			if(membership.getApplication().getWebAddress().equals(appHomepage))
 				if(membership.isReceiveFrom() == false)
 					return;
 		}
 
 		for (Membership membership : list) {
-			if(membership.getApplication().getWebAddress().equals(app)){
+			if(membership.getApplication().getWebAddress().equals(appHomepage)){
 				logger.debug("|||||Preskocio sam membership" + membership.toString());
 				continue;
 			}
@@ -128,6 +138,12 @@ public class MediatorManager {
 				}
 			}
 		}
+		
+		// putting into the cache
+		LatestPresenceCache.getInstance().addNewOnlinePresence(
+				onlinePresence.getAgent().getUri().toString(), 
+				appHomepage, 
+				onlinePresence);
 	}
 	
 	public Mediator getMediator(String name){

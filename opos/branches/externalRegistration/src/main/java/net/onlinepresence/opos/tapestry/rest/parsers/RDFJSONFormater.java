@@ -3,24 +3,23 @@ package net.onlinepresence.opos.tapestry.rest.parsers;
 import java.io.StringWriter;
 import java.util.Collection;
 
-import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-
 import thewebsemantic.Bean2RDF;
 
-//import com.epimorphics.jsonrdf.Encoder;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-public class RDFjJSONFormater implements OnlinePresenceJSONParser {
+public class RDFJSONFormater implements OnlinePresenceJSONParser {
 	
-	public String exportToJSON(OnlinePresence resource, Person person) {
+	public String exportToJSON(OnlinePresence resource, String userUri) {
 		Model tempModel = ModelFactory.createDefaultModel();
 		
 		Bean2RDF b2rwriter = new Bean2RDF(tempModel);
 		b2rwriter.saveDeep(resource);
 		
 		StringWriter writer = new StringWriter();
+		
+		tempModel.write(writer, "TURTLE");
 		
 //		try {
 //			Encoder.get().encode(tempModel, writer, true);
@@ -30,11 +29,11 @@ public class RDFjJSONFormater implements OnlinePresenceJSONParser {
 		return writer.toString();
 	}
 	
-	public String exportToJSON(Collection<OnlinePresence> onlinePresences, Person person) {
+	public String exportToJSON(Collection<OnlinePresence> onlinePresences, String userUri) {
 		StringBuffer buffer = new StringBuffer();
 		
 		for (OnlinePresence onlinePresence : onlinePresences) {
-			buffer.append(exportToJSON(onlinePresence, person)+"\n");
+			buffer.append(exportToJSON(onlinePresence, userUri)+"\n");
 		}
 		return buffer.toString();
 	}

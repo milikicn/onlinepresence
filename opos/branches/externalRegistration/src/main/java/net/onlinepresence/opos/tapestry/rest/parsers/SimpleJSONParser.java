@@ -3,11 +3,6 @@ package net.onlinepresence.opos.tapestry.rest.parsers;
 import java.util.Collection;
 import java.util.Date;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.general.Resource;
 import net.onlinepresence.jopo.ontmodel.geo.SpatialThing;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
@@ -20,9 +15,13 @@ import net.onlinepresence.jopo.ontmodel.sioc.Item;
 import net.onlinepresence.jopo.ontmodel.sioc.UserAccount;
 import net.onlinepresence.opos.util.DateUtil;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SimpleJSONParser implements OnlinePresenceJSONParser {
 
-	public JSONObject exportToJSON(OnlinePresence onlinePresence, Person person) throws JSONException {
+	public JSONObject exportToJSON(OnlinePresence onlinePresence, String userUri) throws JSONException {
 		
 		JSONObject onlinePresenceJSON = new JSONObject();
 		
@@ -99,16 +98,16 @@ public class SimpleJSONParser implements OnlinePresenceJSONParser {
 		return afterHash.toLowerCase();
 	}
 
-	public String exportToJSON(Collection<OnlinePresence> onlinePresences, Person person) throws JSONException {
+	public String exportToJSON(Collection<OnlinePresence> onlinePresences, String userUri) throws JSONException {
 		JSONObject lastOnlinePresences = new JSONObject();
 		
-		lastOnlinePresences.put("user", person.getUri());
+		lastOnlinePresences.put("user", userUri);
 		lastOnlinePresences.put("timepublished", DateUtil.getPreetyDate(new Date(), DateUtil.TIME_DATE));
 		
 		JSONArray onlinePresencesJSON = new JSONArray();
 		
 		for (OnlinePresence onlinePresence : onlinePresences) {
-			onlinePresencesJSON.put(exportToJSON(onlinePresence, person));
+			onlinePresencesJSON.put(exportToJSON(onlinePresence, userUri));
 		}
 		
 		lastOnlinePresences.put("onlinepresences", onlinePresencesJSON);

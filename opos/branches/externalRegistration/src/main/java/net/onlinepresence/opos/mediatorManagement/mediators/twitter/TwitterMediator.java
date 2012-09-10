@@ -3,7 +3,7 @@ package net.onlinepresence.opos.mediatorManagement.mediators.twitter;
 import org.apache.log4j.Logger;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediatorManagement.mediators.IntervalPullMediator;
 import net.onlinepresence.opos.mediatorManagement.mediators.ProfileCheckerThread;
@@ -62,6 +62,6 @@ public class TwitterMediator extends IntervalPullMediator {
 	}
 	
 	public String getMediatorName() {
-		return ApplicationNames.TWITTER;
+		return ApplicationName.TWITTER;
 	}
 }

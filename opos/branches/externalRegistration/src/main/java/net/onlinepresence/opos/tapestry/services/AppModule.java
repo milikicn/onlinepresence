@@ -5,13 +5,13 @@ import net.onlinepresence.opos.core.spring.ApplicationContextObjectProvider;
 import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.domain.service.UserManager;
 import net.onlinepresence.opos.domain.service.beans.ApplicationManagerBean;
 import net.onlinepresence.opos.domain.service.beans.UserManagerBean;
 
-import org.apache.tapestry5.*;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.ObjectProvider;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -47,34 +47,41 @@ public class AppModule {
 		ApplicationContext context = new ApplicationContextProviderSingleton().getContext();
 		ApplicationManager appManager = (ApplicationManager) context.getBean(ApplicationManager.class.getName());
 		
+//		for (Entry<String, String> app : ApplicationName.apps.entrySet()) {
+//			Application twitterApplication = new Application();
+//			twitterApplication.setWebAddress(app.getValue());
+//			twitterApplication.setName(app.getKey());
+//			appManager.save(twitterApplication);
+//		}
+		
 		// Twitter application
 		Application twitterApplication = new Application();
 		twitterApplication.setWebAddress("http://twitter.com");
-		twitterApplication.setName(ApplicationNames.TWITTER);
+		twitterApplication.setName(ApplicationName.TWITTER);
 		appManager.save(twitterApplication);
 		
 		// Facebook application
 		Application facebookApplication = new Application();
 		facebookApplication.setWebAddress("http://www.facebook.com");
-		facebookApplication.setName(ApplicationNames.FACEBOOK);
+		facebookApplication.setName(ApplicationName.FACEBOOK);
 		appManager.save(facebookApplication);
 		
 		// Spark application
 		Application sparkApplication = new Application();
 		sparkApplication.setWebAddress("http://www.igniterealtime.org/projects/spark/");
-		sparkApplication.setName(ApplicationNames.SPARK);
+		sparkApplication.setName(ApplicationName.SPARK);
 		appManager.save(sparkApplication);
 		
 		// Foursquare application
 		Application foursquareApplication = new Application();
 		foursquareApplication.setWebAddress("https://foursquare.com");
-		foursquareApplication.setName(ApplicationNames.FOURSQUARE);
+		foursquareApplication.setName(ApplicationName.FOURSQUARE);
 		appManager.save(foursquareApplication);
 		
 		// Moodle application
 		Application moodleApplication = new Application();
 		moodleApplication.setWebAddress("http://www.moodle.com");
-		moodleApplication.setName(ApplicationNames.MOODLE);
+		moodleApplication.setName(ApplicationName.MOODLE);
 		appManager.save(moodleApplication);
 		
 		new KeepDatabaseAliveThread().start();

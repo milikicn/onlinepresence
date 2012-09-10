@@ -5,7 +5,7 @@ import java.util.Set;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
@@ -50,7 +50,7 @@ public class Connections {
 	@SpringBean("net.onlinepresence.opos.domain.service.UserManager")
 	private UserManager userManager;
 
-	@Property @SuppressWarnings("unused")
+	@Property
 	private Application currentApplication;
 
 	@SessionState
@@ -66,11 +66,11 @@ public class Connections {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
 		
-		twitterAppSettings = new UserAppSettings(ApplicationNames.TWITTER);
-		facebookAppSettings = new UserAppSettings(ApplicationNames.FACEBOOK);
-		sparkAppSettings = new UserAppSettings(ApplicationNames.SPARK);
-		foursquareAppSettings = new UserAppSettings(ApplicationNames.FOURSQUARE);
-		moodleAppSettings = new UserAppSettings(ApplicationNames.MOODLE);
+		twitterAppSettings = new UserAppSettings(ApplicationName.TWITTER);
+		facebookAppSettings = new UserAppSettings(ApplicationName.FACEBOOK);
+		sparkAppSettings = new UserAppSettings(ApplicationName.SPARK);
+		foursquareAppSettings = new UserAppSettings(ApplicationName.FOURSQUARE);
+		moodleAppSettings = new UserAppSettings(ApplicationName.MOODLE);
 		
 		loadMembershipInformation();
 
@@ -86,15 +86,15 @@ public class Connections {
 		for (Membership mem : memberships) {
 			String appName = mem.getApplication().getName();
 			
-			if (appName.equals(ApplicationNames.TWITTER)) {
+			if (appName.equals(ApplicationName.TWITTER)) {
 				ApplicationSettingsConfigurator.configureUserAppSettings(twitterAppSettings, mem);
-			} else if (appName.equals(ApplicationNames.FACEBOOK)) {
+			} else if (appName.equals(ApplicationName.FACEBOOK)) {
 				ApplicationSettingsConfigurator.configureUserAppSettings(facebookAppSettings, mem);
-			} else if (appName.equals(ApplicationNames.SPARK)) {
+			} else if (appName.equals(ApplicationName.SPARK)) {
 				ApplicationSettingsConfigurator.configureUserAppSettings(sparkAppSettings, mem);
-			} else if (appName.equals(ApplicationNames.FOURSQUARE)) {
+			} else if (appName.equals(ApplicationName.FOURSQUARE)) {
 				ApplicationSettingsConfigurator.configureUserAppSettings(foursquareAppSettings, mem);
-			} else if (appName.equals(ApplicationNames.MOODLE)) {
+			} else if (appName.equals(ApplicationName.MOODLE)) {
 				ApplicationSettingsConfigurator.configureUserAppSettings(moodleAppSettings, mem);
 			}
 		}
@@ -115,7 +115,7 @@ public class Connections {
 
 	@OnEvent(component = "deleteTwitter")
 	void deleteTwitter() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.TWITTER);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationName.TWITTER);
 		userManager.deleteApplicationMemberhsip(m);
 		
 		try {
@@ -136,7 +136,7 @@ public class Connections {
 
 	@OnEvent(component = "deleteFacebook")
 	void deleteFacebook() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FACEBOOK);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationName.FACEBOOK);
 		userManager.deleteApplicationMemberhsip(m);
 		
 		try {
@@ -155,7 +155,7 @@ public class Connections {
 	Object onSubmitFromSparkForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application sparkApp = applicationManager.getApplication(ApplicationNames.SPARK);
+		Application sparkApp = applicationManager.getApplication(ApplicationName.SPARK);
 		
 		Membership memb = new Membership(
 				sparkApp,
@@ -169,7 +169,7 @@ public class Connections {
 	
 	@OnEvent(component = "deleteSpark")
 	void deleteSpark() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.SPARK);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationName.SPARK);
 		userManager.deleteApplicationMemberhsip(m);
 	}
 	
@@ -181,7 +181,7 @@ public class Connections {
 	Object onSubmitFromFoursquareForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application foursquareApp = applicationManager.getApplication(ApplicationNames.FOURSQUARE);
+		Application foursquareApp = applicationManager.getApplication(ApplicationName.FOURSQUARE);
 		
 		Membership memb = new Membership(
 				foursquareApp,
@@ -190,7 +190,7 @@ public class Connections {
 		
 		userManager.createOrUpdateNewMembership(loggedUser.getUser(), memb);
 		
-		FoursquareMediator foursquareMediator = (FoursquareMediator) MediatorManager.getInstance().getMediator(ApplicationNames.FOURSQUARE);
+		FoursquareMediator foursquareMediator = (FoursquareMediator) MediatorManager.getInstance().getMediator(ApplicationName.FOURSQUARE);
 		try {
 			foursquareMediator.spawnAndAddNewProfileCheckerThread(memb);
 		} catch (OPOSException e) {
@@ -202,7 +202,7 @@ public class Connections {
 
 	@OnEvent(component = "deleteFoursquare")
 	void deleteFoursquare() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.FOURSQUARE);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationName.FOURSQUARE);
 		userManager.deleteApplicationMemberhsip(m);
 		
 		try {
@@ -219,7 +219,7 @@ public class Connections {
 	Object onSubmitFromMoodleForm() {
 		// refreshing Hibernate session
 		loggedUser.setUser(userManager.findUser(loggedUser.getUser().getUsername()));
-		Application moodleApp = applicationManager.getApplication(ApplicationNames.MOODLE);
+		Application moodleApp = applicationManager.getApplication(ApplicationName.MOODLE);
 		
 		Membership memb = new Membership(
 				moodleApp,
@@ -233,7 +233,7 @@ public class Connections {
 	
 	@OnEvent(component = "deleteMoodle")
 	void deleteMoodle() {
-		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationNames.MOODLE);
+		Membership m = loggedUser.getUser().deleteApplicationMembership(ApplicationName.MOODLE);
 		userManager.deleteApplicationMemberhsip(m);
 	}
 

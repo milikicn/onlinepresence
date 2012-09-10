@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.mediatorManagement.MediatorManager;
 import net.onlinepresence.opos.mediatorManagement.mediators.Mediator;
@@ -61,7 +61,7 @@ public class SparkMediator extends Thread implements Mediator{
 	}
 	
 	public String getMediatorName(){
-		return ApplicationNames.SPARK;
+		return ApplicationName.SPARK;
 	}
 
 }

@@ -3,7 +3,7 @@ package net.onlinepresence.opos.mediatorManagement.mediators.foursquare;
 import org.apache.log4j.Logger;
 
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.exceptions.OPOSException;
 import net.onlinepresence.opos.mediatorManagement.mediators.IntervalPullMediator;
@@ -42,7 +42,7 @@ public class FoursquareMediator extends IntervalPullMediator {
 	}
 	
 	public String getMediatorName() {
-		return ApplicationNames.FOURSQUARE;
+		return ApplicationName.FOURSQUARE;
 	}
 
 }

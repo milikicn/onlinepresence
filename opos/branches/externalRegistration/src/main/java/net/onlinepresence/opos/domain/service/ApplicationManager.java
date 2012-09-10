@@ -24,4 +24,6 @@ public interface ApplicationManager {
 	List<Application> getAllApplications();
 
 	List<Membership> getAllApplicationMemberships(String appName);
+	
+	String getApplicationName(String webAddress);
 }

@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import net.onlinepresence.opos.core.spring.SpringBean;
-import net.onlinepresence.opos.domain.ApplicationNames;
+import net.onlinepresence.opos.domain.ApplicationName;
 import net.onlinepresence.opos.domain.LoggedUser;
 import net.onlinepresence.opos.domain.User;
 import net.onlinepresence.opos.domain.pages.ExternalRegistrationData;
@@ -120,7 +120,7 @@ public class Registration {
 			if (applicationName != null) {
 				applicationName = applicationName.toUpperCase();
 				
-				if (applicationName.equals(ApplicationNames.TWITTER)) {
+				if (applicationName.equals(ApplicationName.TWITTER)) {
 					twitter = TwitterCommunication.getInstance().getTwitterFactory().getInstance();
 					return registrationService.registerOnTwitter(twitter);
 				} 

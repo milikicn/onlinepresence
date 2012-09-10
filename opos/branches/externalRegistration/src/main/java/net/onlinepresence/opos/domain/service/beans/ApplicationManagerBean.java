@@ -8,13 +8,13 @@ package net.onlinepresence.opos.domain.service.beans;
 
 import java.util.List;
 
-import org.apache.tapestry5.ioc.annotations.Inject;
-
 import net.onlinepresence.opos.core.spring.SpringBean;
 import net.onlinepresence.opos.domain.Application;
 import net.onlinepresence.opos.domain.Membership;
 import net.onlinepresence.opos.domain.service.ApplicationManager;
 import net.onlinepresence.opos.service.crud.impl.ReadCommand;
+
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  * @author Nikola Milikic
@@ -34,14 +34,11 @@ public class ApplicationManagerBean
 		return getReader().execute();
 	}
 
-	/* (non-Javadoc)
-	 * @see opos.service.Applications#getApplication(java.net.URL)
-	 */
 	public Application getApplication(String appName) {
-		
 		List<Application> applications = getAllApplications();
+		
 		for (Application app : applications) {
-			if(app.getName().equals(appName)){
+			if(app.getName().equalsIgnoreCase(appName)){
 				return app;
 			}
 		}
@@ -75,5 +72,22 @@ public class ApplicationManagerBean
 					"JOIN APPLICATION AS APP ON MEMB.APPLICATION = APP.WEBADDRESS " +
 				"WHERE APP.name='" + appName +"'");
 	}
-
+	
+	public String getApplicationName(String webAddress) {
+		String query =
+			"SELECT name " +
+			"FROM Application app " +
+			"WHERE app.webAddress = \'"+webAddress+"\'";
+		
+		@SuppressWarnings("unchecked")
+		List<String> names = membershipReader.getManager().runQuery(query);
+		
+		if (names != null && !names.isEmpty()) {
+			return names.iterator().next().toUpperCase();
+		}
+		return null;
+	}
+	
+	
+	
 }

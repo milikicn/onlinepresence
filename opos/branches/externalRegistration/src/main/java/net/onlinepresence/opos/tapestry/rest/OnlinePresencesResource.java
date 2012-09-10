@@ -10,12 +10,15 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import net.onlinepresence.jopo.ontmodel.foaf.Person;
 import net.onlinepresence.jopo.ontmodel.opo.OnlinePresence;
+import net.onlinepresence.opos.core.spring.ApplicationContextProviderSingleton;
+import net.onlinepresence.opos.domain.ApplicationName;
+import net.onlinepresence.opos.domain.service.ApplicationManager;
+import net.onlinepresence.opos.mediatorManagement.LatestPresenceCache;
 import net.onlinepresence.opos.semanticstuff.services.OnlinePresenceService;
 import net.onlinepresence.opos.tapestry.rest.parsers.OnlinePresenceJSONParser;
 import net.onlinepresence.opos.tapestry.rest.parsers.ParserTypes;
-import net.onlinepresence.opos.tapestry.rest.parsers.RDFjJSONFormater;
+import net.onlinepresence.opos.tapestry.rest.parsers.RDFJSONFormater;
 import net.onlinepresence.opos.tapestry.rest.parsers.SimpleJSONParser;
 
 import org.apache.log4j.Logger;
@@ -24,6 +27,8 @@ import org.apache.log4j.Logger;
 public class OnlinePresencesResource {
 	
 	private Logger logger = Logger.getLogger(this.getClass());
+	ApplicationContextProviderSingleton s = new ApplicationContextProviderSingleton();
+	ApplicationManager applicationManager = (ApplicationManager) s.getContext().getBean(ApplicationManager.class.getName());
 
 	
 //	@GET
@@ -51,7 +56,7 @@ public class OnlinePresencesResource {
 			logger.error(e.getMessage());
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
-		RDFjJSONFormater jsonFormater = new RDFjJSONFormater();
+		RDFJSONFormater jsonFormater = new RDFJSONFormater();
 		return jsonFormater.exportToJSON(op, null);
 	}
 	
@@ -68,25 +73,38 @@ public class OnlinePresencesResource {
 		
 		OnlinePresenceService ops = new OnlinePresenceService();
 		
-		// retieving Person instance having the account with given properties
-		Person person = ops.getPersonHoldingAccountOnApplication(serviceName.toUpperCase(), username);
+		String applicationWebAddress = ApplicationName.getApplicationHomepage(serviceName.toUpperCase());
 		
-		if (person == null)
+		// retieving Person instance having the account with given properties
+		String userUri = ops.getUriOfUserHoldingAccount(applicationWebAddress, username);
+		
+		if (userUri == null)
 			throw new WebApplicationException(Response.Status.NO_CONTENT);
 		
-		// retrieving OnlinePresence instances on all UserAccounts of a person
 		Collection<OnlinePresence> lastOnlinePresences = null;
-		try {
-			lastOnlinePresences = ops.getLastOnlinePresencesOnUserAccounts(person.getUri().toString());
-
-			if (lastOnlinePresences == null) {
+		
+		// check the cache
+		Collection<OnlinePresence> opFromCache = LatestPresenceCache.getInstance().getLatestOnlinePresences(userUri);
+		
+		if (opFromCache != null) {
+			lastOnlinePresences = opFromCache;
+		} else {
+			// retrieving OnlinePresence instances on all UserAccounts of a person
+			try {
+				lastOnlinePresences = ops.getLastOnlinePresencesOnUserAccounts(userUri);
+				
+				if (lastOnlinePresences == null) {
+					throw new WebApplicationException(Response.Status.NOT_FOUND);
+				} else if (lastOnlinePresences.isEmpty()) {
+					throw new WebApplicationException(Response.Status.NO_CONTENT);
+				}
+				
+				// put into cache
+				LatestPresenceCache.getInstance().addOnlinePresences(lastOnlinePresences);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
 				throw new WebApplicationException(Response.Status.NOT_FOUND);
-			} else if (lastOnlinePresences.isEmpty()) {
-				throw new WebApplicationException(Response.Status.NO_CONTENT);
 			}
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
 		
 		// Based on the type parameter, chosing the parser to parse the OnlinePresences.
@@ -95,20 +113,20 @@ public class OnlinePresencesResource {
 		ParserTypes parserType = ParserTypes.valueOf(type.toUpperCase());
 		
 		switch (parserType) {
-			case RDFJ:
-				jsonParser = new RDFjJSONFormater();
+			case RDF:
+				jsonParser = new RDFJSONFormater();
 				break;
 			case SIMPLE:
 				jsonParser = new SimpleJSONParser();
 				break;
 			default:
-				jsonParser = new RDFjJSONFormater();
+				jsonParser = new RDFJSONFormater();
 				break;
 		}
 		
 		String output;
 		try {
-			output = jsonParser.exportToJSON(lastOnlinePresences, person).toString();
+			output = jsonParser.exportToJSON(lastOnlinePresences, userUri).toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			throw new WebApplicationException(Response.Status.NOT_FOUND);

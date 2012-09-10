@@ -6,12 +6,12 @@
     <packaging>war</packaging>
     <name>opos Tapestry 5 Application</name>
     
-    <properties> 
+    <properties>
         <tapestry-release-version>5.2.6</tapestry-release-version>
         <spring.version>3.0.6.RELEASE</spring.version>
 		<hibernate.version>4.0.0.CR2</hibernate.version>
 		<mysql-connectior.version>5.1.17</mysql-connectior.version>
-		<twitter4j.version>[2.1,)</twitter4j.version>
+		<twitter4j.version>2.2.6</twitter4j.version>
 		<jersey.version>1.5</jersey.version>
 		<jena.version>2.6.4</jena.version>
 		<joseki.version>3.4.3</joseki.version>
@@ -171,12 +171,12 @@
   			<version>1.0.7</version> 
   		</dependency>
 		
-		<!-- Joseki dependencies -->
+		<!-- Joseki dependencies 
 		<dependency>
 			<groupId>org.joseki</groupId>
 			<artifactId>joseki</artifactId>
 			<version>${joseki.version}</version>
-		</dependency>
+		</dependency>-->
 		
         <!-- JSON marshaller/unmarshaller -->
 		<dependency>
@@ -322,18 +322,6 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
     </reporting>
 
     <repositories>
-        <!-- This repository is only needed if the Tapestry released artifacts haven't made it to the central Maven repository yet. -->
-        <repository>
-            <id>tapestry</id>
-            <url>http://tapestry.formos.com/maven-repository/</url>
-        </repository>
-
-        <!-- This repository is only needed when the tapestry-release-version is a snapshot release. -->
-        <repository>
-            <id>tapestry-snapshots</id>
-            <url>http://tapestry.formos.com/maven-snapshot-repository/</url>
-        </repository>
-
         <repository>
             <id>codehaus.snapshots</id>
             <url>http://snapshots.repository.codehaus.org</url>
@@ -389,6 +377,11 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 		</repository>
 		
 		<repository>
+			<id>Jenabean</id>
+			<url>http://jenabean.googlecode.com/svn/repo</url>
+		</repository>
+		
+		<repository>
 			<id>repo-jena</id>
 			<name>Jena Maven - Repository</name>
 			<url>http://openjena.org/repo/</url>
@@ -398,14 +391,5 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 		</repository>
 		
     </repositories>
-
-    <pluginRepositories>
-        <!-- As above, this can be commented out when access to the snapshot version
-of a Tapestry Maven plugin is not required.   -->
-        <pluginRepository>
-            <id>tapestry-snapshots</id>
-            <url>http://tapestry.formos.com/maven-snapshot-repository/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
