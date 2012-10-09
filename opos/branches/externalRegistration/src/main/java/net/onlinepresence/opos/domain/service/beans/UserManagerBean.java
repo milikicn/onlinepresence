@@ -156,6 +156,25 @@ public class UserManagerBean
 		}
 		return null;
 	}
+	
+	public String getUsernameOnApplication(String requestedAppName, String knownAppName, String knownUsername) {
+		String query =
+			"SELECT m.username " +
+			"FROM Membership m " +
+			"WHERE m.application.name = \'"+requestedAppName.toUpperCase()+"\' AND m.user IN (" +
+				"SELECT memb.user " +
+				"FROM Membership memb " +
+				"WHERE memb.application.name = \'"+knownAppName.toUpperCase()+"\' AND memb.username = \'"+knownUsername+"\'" +
+			")";
+		
+		@SuppressWarnings("unchecked")
+		List<String> usernames = membershipReader.getManager().runQuery(query);
+		
+		if (usernames != null && !usernames.isEmpty()) {
+			return usernames.iterator().next();
+		}
+		return null;
+	}
 
 	public DeleteCommand<Membership> getMembershipDeleter() {
 		return membershipDeleter;

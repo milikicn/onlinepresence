@@ -24,4 +24,6 @@ public interface UserManager {
 	List<Membership> getAllMemberships(String username);
 	
 	Membership createOrUpdateNewMembership(User user, Membership membership);
+	
+	String getUsernameOnApplication(String requestedAppName, String knownAppName, String knownUsername);
 }

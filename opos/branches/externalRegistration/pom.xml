@@ -123,7 +123,7 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<!-- MySQL Connectior -->
 		<dependency>
     		<groupId>mysql</groupId>
@@ -184,7 +184,13 @@
 			<artifactId>resteasy-jettison-provider</artifactId>
 			<version>2.0.1.GA</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+            
 		<!-- jackson -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
